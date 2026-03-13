@@ -1,0 +1,1050 @@
+{
+  "plan_id": "lp-cas-20260312-001",
+  "knowledge_graph_id": "192dbae4-fe62-4ac3-9cfe-d37fbaf7986d",
+  "created_at": "2026-03-12T15:00:00Z",
+  "anki_config": {
+    "model_id_basic": 1312823487,
+    "model_id_cloze": 1127452008,
+    "model_id_reversed": 1664362795,
+    "deck_id": 1599643080
+  },
+  "total_cards": 68,
+  "decks": [
+    {
+      "deck_name": "Claude Agent SDK Mastery",
+      "cards": [
+        {
+          "card_id": "cas-agent-loop-001",
+          "card_type": "basic",
+          "front": "In the Claude Agent SDK, what is the primary method for running an agent and receiving messages?",
+          "back": "The <code>query()</code> method, which returns an async iterator that yields messages as the agent reasons, selects tools, executes them, and observes results until the task is complete.",
+          "component_id": "vertex-sdk-agent-loop",
+          "topic_tags": [
+            "claude-agent-sdk::core::agent-loop",
+            "claude-agent-sdk::core::query"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 1
+        },
+        {
+          "card_id": "cas-agent-loop-002",
+          "card_type": "cloze",
+          "front": "The Claude Agent SDK agent loop follows a {{c1::think}} \u2192 {{c2::act}} \u2192 {{c3::observe}} cycle, where the agent reasons about the task, invokes tools, and processes tool results before deciding the next step.",
+          "back": "This cycle repeats automatically inside the query() async iterator until the agent determines the task is complete or hits a budget/turn limit.",
+          "component_id": "vertex-sdk-agent-loop",
+          "topic_tags": [
+            "claude-agent-sdk::core::agent-loop",
+            "claude-agent-sdk::core::lifecycle"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 2
+        },
+        {
+          "card_id": "cas-agent-loop-003",
+          "card_type": "basic",
+          "front": "Name the four primary message types yielded by the SDK's <code>query()</code> async iterator and their roles.",
+          "back": "<b>SystemMessage</b>: System prompt and configuration.<br><b>AssistantMessage</b>: Claude's reasoning and tool-use decisions.<br><b>ResultMessage</b>: Tool execution results returned to the agent.<br><b>StreamEvent</b>: Real-time partial updates during streaming mode.",
+          "component_id": "vertex-sdk-agent-loop",
+          "topic_tags": [
+            "claude-agent-sdk::core::agent-loop",
+            "claude-agent-sdk::core::message-types"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 3,
+          "image_svg": "<svg viewBox='0 0 380 200' xmlns='http://www.w3.org/2000/svg'><title>SDK Message Type Flow</title><rect x='10' y='10' width='360' height='180' rx='8' fill='#f9fafb' stroke='#d1d5db'/><rect x='30' y='30' width='130' height='35' rx='6' fill='#2563eb' stroke='none'/><text x='95' y='53' text-anchor='middle' fill='white' font-size='13' font-family='system-ui'>SystemMessage</text><rect x='30' y='75' width='130' height='35' rx='6' fill='#16a34a' stroke='none'/><text x='95' y='98' text-anchor='middle' fill='white' font-size='13' font-family='system-ui'>AssistantMessage</text><rect x='30' y='120' width='130' height='35' rx='6' fill='#d97706' stroke='none'/><text x='95' y='143' text-anchor='middle' fill='white' font-size='13' font-family='system-ui'>ResultMessage</text><rect x='30' y='165' width='130' height='20' rx='6' fill='#9333ea' stroke='none'/><text x='95' y='180' text-anchor='middle' fill='white' font-size='11' font-family='system-ui'>StreamEvent</text><text x='200' y='53' fill='#374151' font-size='11' font-family='system-ui'>Config &amp; prompt</text><text x='200' y='98' fill='#374151' font-size='11' font-family='system-ui'>Reasoning &amp; tool calls</text><text x='200' y='143' fill='#374151' font-size='11' font-family='system-ui'>Tool execution output</text><text x='200' y='180' fill='#374151' font-size='11' font-family='system-ui'>Partial streaming data</text></svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "cas-agent-loop-004",
+          "card_type": "basic",
+          "front": "How does the SDK's <code>query()</code> differ from a synchronous completion API call?",
+          "back": "<code>query()</code> is an <b>async iterator</b> that drives a multi-turn agent loop autonomously. Unlike a single completion call, it automatically handles tool selection, tool execution, result observation, and re-prompting \u2014 continuing until the task is complete, a budget limit is hit, or max turns are reached. You iterate over it with <code>async for message in agent.query(...)</code>.",
+          "component_id": "vertex-sdk-agent-loop",
+          "topic_tags": [
+            "claude-agent-sdk::core::agent-loop",
+            "claude-agent-sdk::core::query"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 4
+        },
+        {
+          "card_id": "cas-custom-tools-005",
+          "card_type": "basic",
+          "front": "What decorator does the Claude Agent SDK provide for creating custom tools, and what does it generate?",
+          "back": "The <code>@tool</code> decorator. Applied to an async function, it automatically generates the JSON Schema for the tool's parameters from the function signature and docstring, making the tool available to the agent.",
+          "component_id": "vertex-sdk-custom-tools",
+          "topic_tags": [
+            "claude-agent-sdk::tools::custom-tools",
+            "claude-agent-sdk::tools::decorator"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 5
+        },
+        {
+          "card_id": "cas-custom-tools-006",
+          "card_type": "basic",
+          "front": "How do you create an in-process MCP server in the SDK to expose custom tools?",
+          "back": "Use <code>create_sdk_mcp_server()</code> to create a server instance, register tools on it, then pass the server via the <code>mcp_servers</code> option when creating the agent. This runs the MCP server in the same process, avoiding separate process management.",
+          "component_id": "vertex-sdk-custom-tools",
+          "topic_tags": [
+            "claude-agent-sdk::tools::custom-tools",
+            "claude-agent-sdk::tools::mcp-server"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 6
+        },
+        {
+          "card_id": "cas-custom-tools-007",
+          "card_type": "cloze",
+          "front": "To restrict which tools an SDK agent can use, pass the {{c1::allowed_tools}} configuration option with a list of tool name patterns. This prevents the agent from calling tools outside the approved set.",
+          "back": "This is one layer of the SDK's 4-layer permission system. It works alongside permission modes, canUseTool callbacks, and hooks.",
+          "component_id": "vertex-sdk-custom-tools",
+          "topic_tags": [
+            "claude-agent-sdk::tools::custom-tools",
+            "claude-agent-sdk::tools::allowed-tools"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 7
+        },
+        {
+          "card_id": "cas-custom-tools-008",
+          "card_type": "basic",
+          "front": "What are three best practices for designing custom tool functions in the SDK?",
+          "back": "1. <b>Clear docstrings</b> \u2014 the agent reads them to decide when/how to use the tool.<br>2. <b>Type-annotated parameters</b> \u2014 the SDK auto-generates JSON Schema from type hints.<br>3. <b>Structured error returns</b> \u2014 return error information the agent can reason about and recover from, rather than raising exceptions that crash the loop.",
+          "component_id": "vertex-sdk-custom-tools",
+          "topic_tags": [
+            "claude-agent-sdk::tools::custom-tools",
+            "claude-agent-sdk::tools::best-practices"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 8
+        },
+        {
+          "card_id": "cas-streaming-009",
+          "card_type": "basic",
+          "front": "What configuration enables streaming mode in the Claude Agent SDK, and what does it provide?",
+          "back": "Set <code>streaming=True</code> in agent configuration. This causes <code>query()</code> to yield <code>StreamEvent</code> messages with partial content as the agent generates responses, enabling real-time UI updates before the full response is complete.",
+          "component_id": "vertex-sdk-streaming",
+          "topic_tags": [
+            "claude-agent-sdk::core::streaming"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 9
+        },
+        {
+          "card_id": "cas-streaming-010",
+          "card_type": "cloze",
+          "front": "To receive real-time partial messages as the agent reasons, enable {{c1::include_partial_messages}} in the streaming configuration. Without this, you only see complete messages after each turn.",
+          "back": "Partial messages are StreamEvent instances that update incrementally as the agent generates text or selects tools.",
+          "component_id": "vertex-sdk-streaming",
+          "topic_tags": [
+            "claude-agent-sdk::core::streaming",
+            "claude-agent-sdk::core::partial-messages"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 10
+        },
+        {
+          "card_id": "cas-streaming-011",
+          "card_type": "basic",
+          "front": "What is the performance tradeoff between streaming and buffered (non-streaming) mode in the SDK?",
+          "back": "Streaming adds minimal latency overhead but provides <b>time-to-first-token</b> advantage \u2014 the user sees output immediately. Buffered mode has slightly lower total overhead but the user waits for the entire response. For real-time UX, streaming is preferred; for batch/headless agents, buffered is simpler and marginally more efficient.",
+          "component_id": "vertex-sdk-streaming",
+          "topic_tags": [
+            "claude-agent-sdk::core::streaming",
+            "claude-agent-sdk::core::performance"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 11
+        },
+        {
+          "card_id": "cas-cost-management-012",
+          "card_type": "basic",
+          "front": "How do you set a budget limit for an SDK agent, and what happens when it's reached?",
+          "back": "Set <code>max_budget_usd</code> in agent configuration (e.g., <code>max_budget_usd=10.0</code>). The SDK tracks token costs across all API calls. When the budget is exhausted, the agent loop terminates gracefully with a budget-exceeded message.",
+          "component_id": "vertex-sdk-cost-management",
+          "topic_tags": [
+            "claude-agent-sdk::control::cost",
+            "claude-agent-sdk::control::budget"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 12
+        },
+        {
+          "card_id": "cas-cost-management-013",
+          "card_type": "basic",
+          "front": "Explain the model mixing strategy for cost optimization in a multi-agent SDK system.",
+          "back": "Use <b>Opus</b> (most capable, most expensive) for the orchestrator that makes strategic decisions and task decomposition. Use <b>Sonnet</b> (capable, moderate cost) for worker agents doing scoped subtasks. Optionally use <b>Haiku</b> (fastest, cheapest) for simple classification or routing tasks. This can reduce costs 60-80% compared to using Opus for everything.",
+          "component_id": "vertex-sdk-cost-management",
+          "topic_tags": [
+            "claude-agent-sdk::control::cost",
+            "claude-agent-sdk::multi-agent::model-mixing"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "strategy",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 13
+        },
+        {
+          "card_id": "cas-database-integration-014",
+          "card_type": "basic",
+          "front": "What is the recommended pattern for connecting an SDK agent to a Postgres database?",
+          "back": "Create custom MCP tools that wrap database operations (queries, inserts, schema inspection), then expose them via <code>create_sdk_mcp_server()</code>. The agent discovers and uses these tools through the standard tool interface. This keeps DB credentials out of the agent's context and provides a controlled access layer.",
+          "component_id": "vertex-sdk-database-integration",
+          "topic_tags": [
+            "claude-agent-sdk::integration::database",
+            "claude-agent-sdk::integration::postgres"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 14
+        },
+        {
+          "card_id": "cas-database-integration-015",
+          "card_type": "basic",
+          "front": "How would you design MCP tools for an agent that needs to do both pgvector similarity search and AGE graph traversals?",
+          "back": "Create separate tools with clear scoping: a <code>semantic_search</code> tool that takes a query string and returns pgvector cosine-similarity results, and a <code>graph_query</code> tool that accepts Cypher queries for AGE traversals. The agent's system prompt should explain when each is appropriate (semantic = fuzzy matching, graph = relationship navigation). Keep tool descriptions precise so the agent routes correctly.",
+          "component_id": "vertex-sdk-database-integration",
+          "topic_tags": [
+            "claude-agent-sdk::integration::database",
+            "claude-agent-sdk::integration::pgvector",
+            "claude-agent-sdk::integration::age"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "strategy",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 15
+        },
+        {
+          "card_id": "cas-external-mcp-016",
+          "card_type": "reversed",
+          "front": "stdio transport for MCP servers",
+          "back": "Runs the MCP server as a subprocess communicating via stdin/stdout. Best for local tools where low latency matters and you control the server lifecycle.",
+          "component_id": "vertex-sdk-external-mcp",
+          "topic_tags": [
+            "claude-agent-sdk::tools::external-mcp",
+            "claude-agent-sdk::tools::stdio"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 16
+        },
+        {
+          "card_id": "cas-external-mcp-017",
+          "card_type": "reversed",
+          "front": "SSE (Server-Sent Events) transport for MCP servers",
+          "back": "Connects to a remote MCP server over HTTP with server-sent events for streaming responses. Best for shared/remote tool services where multiple agents need access.",
+          "component_id": "vertex-sdk-external-mcp",
+          "topic_tags": [
+            "claude-agent-sdk::tools::external-mcp",
+            "claude-agent-sdk::tools::sse"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 17
+        },
+        {
+          "card_id": "cas-external-mcp-018",
+          "card_type": "basic",
+          "front": "Compare stdio vs SSE transport for MCP servers: when should you use each?",
+          "back": "<b>stdio</b>: Local tools, low latency needed, single-agent use, you manage the process lifecycle. The SDK spawns the server as a child process.<br><b>SSE</b>: Remote/shared tools, multiple agents or services need access, the tool server runs independently. Higher latency but centralized management.",
+          "component_id": "vertex-sdk-external-mcp",
+          "topic_tags": [
+            "claude-agent-sdk::tools::external-mcp",
+            "claude-agent-sdk::tools::transport"
+          ],
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 18,
+          "image_svg": "<svg viewBox='0 0 400 180' xmlns='http://www.w3.org/2000/svg'><title>stdio vs SSE MCP Transport</title><rect x='5' y='5' width='390' height='170' rx='8' fill='#f9fafb' stroke='#d1d5db'/><text x='200' y='25' text-anchor='middle' fill='#374151' font-size='13' font-weight='bold' font-family='system-ui'>MCP Transport Comparison</text><rect x='20' y='40' width='170' height='120' rx='6' fill='#dbeafe' stroke='#2563eb'/><text x='105' y='58' text-anchor='middle' fill='#2563eb' font-size='12' font-weight='bold' font-family='system-ui'>stdio</text><text x='105' y='78' text-anchor='middle' fill='#374151' font-size='10' font-family='system-ui'>Local subprocess</text><text x='105' y='95' text-anchor='middle' fill='#374151' font-size='10' font-family='system-ui'>stdin/stdout pipes</text><text x='105' y='112' text-anchor='middle' fill='#16a34a' font-size='10' font-family='system-ui'>Low latency</text><text x='105' y='129' text-anchor='middle' fill='#374151' font-size='10' font-family='system-ui'>Single agent</text><text x='105' y='146' text-anchor='middle' fill='#374151' font-size='10' font-family='system-ui'>SDK manages lifecycle</text><rect x='210' y='40' width='170' height='120' rx='6' fill='#fef3c7' stroke='#d97706'/><text x='295' y='58' text-anchor='middle' fill='#d97706' font-size='12' font-weight='bold' font-family='system-ui'>SSE</text><text x='295' y='78' text-anchor='middle' fill='#374151' font-size='10' font-family='system-ui'>Remote HTTP server</text><text x='295' y='95' text-anchor='middle' fill='#374151' font-size='10' font-family='system-ui'>Server-Sent Events</text><text x='295' y='112' text-anchor='middle' fill='#d97706' font-size='10' font-family='system-ui'>Higher latency</text><text x='295' y='129' text-anchor='middle' fill='#374151' font-size='10' font-family='system-ui'>Multi-agent shared</text><text x='295' y='146' text-anchor='middle' fill='#374151' font-size='10' font-family='system-ui'>Independent lifecycle</text></svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "cas-tool-search-019",
+          "card_type": "basic",
+          "front": "What is the tool search API in the Claude Agent SDK, and why is it important for agents with many tools?",
+          "back": "Tool search allows an agent to discover relevant tools from a large registry (10+ tools) without all tool schemas being loaded into the context window simultaneously. The agent queries for tools matching a description, receives matching schemas, and can then invoke them. This reduces token usage and prevents the context window from being overwhelmed by tool definitions.",
+          "component_id": "vertex-sdk-tool-search",
+          "topic_tags": [
+            "claude-agent-sdk::tools::tool-search"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 19
+        },
+        {
+          "card_id": "cas-tool-search-020",
+          "card_type": "basic",
+          "front": "How does tool search affect the agent's context window compared to listing all tools upfront?",
+          "back": "Without tool search, all tool schemas consume context tokens on every turn. With tool search, only the system prompt and currently-relevant tool schemas are in context. For agents with 20+ tools, this can save thousands of tokens per turn, significantly reducing cost and freeing context for actual reasoning.",
+          "component_id": "vertex-sdk-tool-search",
+          "topic_tags": [
+            "claude-agent-sdk::tools::tool-search",
+            "claude-agent-sdk::core::context-management"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 20
+        },
+        {
+          "card_id": "cas-programmatic-tool-calling-021",
+          "card_type": "basic",
+          "front": "What is programmatic tool calling in the SDK, and how does it differ from the agent's autonomous tool selection?",
+          "back": "Programmatic tool calling lets the application code explicitly invoke a tool on the agent's behalf, rather than waiting for the agent to decide to use it. This is useful for batch operations, structured workflows, or when the application knows which tool to use. The result is injected into the agent's context as a ResultMessage.",
+          "component_id": "vertex-sdk-programmatic-tool-calling",
+          "topic_tags": [
+            "claude-agent-sdk::tools::programmatic-calling"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 21
+        },
+        {
+          "card_id": "cas-programmatic-tool-calling-022",
+          "card_type": "basic",
+          "front": "Give an example where programmatic tool calling would be more efficient than letting the agent choose tools autonomously.",
+          "back": "Batch-querying an AGE graph database: if you need to traverse 50 subgraphs, it's faster and cheaper to programmatically call the graph_query tool 50 times in a loop from application code than to have the agent decide to call it 50 times individually (which costs reasoning tokens on each iteration). Inject the aggregated results as a single ResultMessage for the agent to analyze.",
+          "component_id": "vertex-sdk-programmatic-tool-calling",
+          "topic_tags": [
+            "claude-agent-sdk::tools::programmatic-calling",
+            "claude-agent-sdk::integration::age"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "strategy",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 22
+        },
+        {
+          "card_id": "cas-hooks-023",
+          "card_type": "basic",
+          "front": "What are the two components of the SDK hook system, and what role does each play?",
+          "back": "<b>HookMatcher</b>: A predicate that determines which operations the hook intercepts (e.g., specific tool names, message patterns, event types).<br><b>HookCallback</b>: An async function that runs when the matcher triggers. It can observe, modify, or block the operation.",
+          "component_id": "vertex-sdk-hooks",
+          "topic_tags": [
+            "claude-agent-sdk::control::hooks",
+            "claude-agent-sdk::control::hook-pattern"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 23
+        },
+        {
+          "card_id": "cas-hooks-024",
+          "card_type": "basic",
+          "front": "Give three concrete use cases for SDK hooks in a production agent system.",
+          "back": "1. <b>Audit logging</b>: Hook all tool calls to log tool name, parameters, result, and latency to a database.<br>2. <b>Security gate</b>: Hook file-write operations to block writes outside an approved directory.<br>3. <b>Token tracking</b>: Hook post-completion events to accumulate token usage across subagents for cost monitoring.",
+          "component_id": "vertex-sdk-hooks",
+          "topic_tags": [
+            "claude-agent-sdk::control::hooks",
+            "claude-agent-sdk::control::use-cases"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "strategy",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 24
+        },
+        {
+          "card_id": "cas-hooks-025",
+          "card_type": "cloze",
+          "front": "SDK hooks run {{c1::outside the agent's context window}}, meaning they can observe and modify operations without the agent being aware of their existence or consuming context tokens.",
+          "back": "This is a key safety property \u2014 hooks can enforce policies that the agent cannot circumvent because it doesn't know about them.",
+          "component_id": "vertex-sdk-hooks",
+          "topic_tags": [
+            "claude-agent-sdk::control::hooks",
+            "claude-agent-sdk::control::safety"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 25
+        },
+        {
+          "card_id": "cas-permissions-026",
+          "card_type": "basic",
+          "front": "Describe the SDK's 4-layer permission system and the priority order.",
+          "back": "Layer 1: <b>Permission modes</b> (global: allow/ask/deny defaults).<br>Layer 2: <b>canUseTool callbacks</b> (per-tool programmatic decisions).<br>Layer 3: <b>Hooks</b> (intercept and block/modify operations).<br>Layer 4: <b>settings.json rules</b> (declarative configuration).<br>Priority: <b>deny > ask > allow</b> \u2014 any layer can deny; all must allow for the operation to proceed.",
+          "component_id": "vertex-sdk-permissions",
+          "topic_tags": [
+            "claude-agent-sdk::control::permissions",
+            "claude-agent-sdk::control::4-layer"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 26,
+          "image_svg": "<svg viewBox='0 0 380 200' xmlns='http://www.w3.org/2000/svg'><title>4-Layer Permission System</title><rect x='5' y='5' width='370' height='190' rx='8' fill='#f9fafb' stroke='#d1d5db'/><text x='190' y='25' text-anchor='middle' fill='#374151' font-size='12' font-weight='bold' font-family='system-ui'>Permission Priority: deny > ask > allow</text><rect x='40' y='38' width='300' height='30' rx='4' fill='#dc2626' opacity='0.15' stroke='#dc2626'/><text x='190' y='58' text-anchor='middle' fill='#dc2626' font-size='11' font-family='system-ui'>Layer 1: Permission Modes (global defaults)</text><rect x='60' y='72' width='260' height='30' rx='4' fill='#d97706' opacity='0.15' stroke='#d97706'/><text x='190' y='92' text-anchor='middle' fill='#d97706' font-size='11' font-family='system-ui'>Layer 2: canUseTool Callbacks</text><rect x='80' y='106' width='220' height='30' rx='4' fill='#2563eb' opacity='0.15' stroke='#2563eb'/><text x='190' y='126' text-anchor='middle' fill='#2563eb' font-size='11' font-family='system-ui'>Layer 3: Hooks</text><rect x='100' y='140' width='180' height='30' rx='4' fill='#16a34a' opacity='0.15' stroke='#16a34a'/><text x='190' y='160' text-anchor='middle' fill='#16a34a' font-size='11' font-family='system-ui'>Layer 4: settings.json</text><text x='190' y='185' text-anchor='middle' fill='#374151' font-size='10' font-family='system-ui'>Any layer can DENY \u2192 operation blocked</text></svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "cas-permissions-027",
+          "card_type": "basic",
+          "front": "When would you use a <code>canUseTool</code> callback instead of a hook for permission control?",
+          "back": "<code>canUseTool</code> is purpose-built for binary allow/deny decisions on specific tools \u2014 it's simpler and more declarative. Use it when you need straightforward per-tool policies (e.g., 'only allow database reads, not writes'). Use hooks when you need to <b>modify</b> the operation, log it, or apply context-dependent logic (e.g., 'allow writes only during maintenance windows').",
+          "component_id": "vertex-sdk-permissions",
+          "topic_tags": [
+            "claude-agent-sdk::control::permissions",
+            "claude-agent-sdk::control::canUseTool"
+          ],
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 27
+        },
+        {
+          "card_id": "cas-subagents-028",
+          "card_type": "basic",
+          "front": "How do you spawn a subagent in the SDK, and what is the relationship to the parent agent's context?",
+          "back": "Create a new Agent instance and call <code>query()</code> on it. The subagent has its own <b>isolated context window</b> \u2014 it doesn't share the parent's conversation history. The parent receives subagent results as return values from the async call. Use <code>asyncio.gather()</code> for parallel subagent execution.",
+          "component_id": "vertex-sdk-subagents",
+          "topic_tags": [
+            "claude-agent-sdk::multi-agent::subagents",
+            "claude-agent-sdk::multi-agent::context-isolation"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 28
+        },
+        {
+          "card_id": "cas-subagents-029",
+          "card_type": "basic",
+          "front": "What are the cost and performance tradeoffs of running subagents in parallel vs sequentially?",
+          "back": "<b>Parallel</b> (via asyncio.gather): Lower wall-clock time, but higher peak API concurrency and potentially higher total cost (each subagent has full context overhead). Best for independent tasks.<br><b>Sequential</b>: Lower concurrency, results from earlier agents can inform later ones. Better for dependent tasks or when budget is tight.",
+          "component_id": "vertex-sdk-subagents",
+          "topic_tags": [
+            "claude-agent-sdk::multi-agent::subagents",
+            "claude-agent-sdk::multi-agent::performance"
+          ],
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 29
+        },
+        {
+          "card_id": "cas-subagents-030",
+          "card_type": "cloze",
+          "front": "To collect results from multiple parallel subagents, use {{c1::asyncio.gather()}} with each subagent's query() call, then process the collected {{c2::ResultMessage}} objects in the parent agent.",
+          "back": "Each subagent's final message contains its output. The parent can synthesize these results into a unified response.",
+          "component_id": "vertex-sdk-subagents",
+          "topic_tags": [
+            "claude-agent-sdk::multi-agent::subagents",
+            "claude-agent-sdk::multi-agent::parallel"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 30
+        },
+        {
+          "card_id": "cas-orchestration-031",
+          "card_type": "basic",
+          "front": "Describe the Decompose \u2192 Delegate \u2192 Synthesize orchestration pattern in the SDK.",
+          "back": "<b>Decompose</b>: The orchestrator agent (typically Opus) analyzes the task and breaks it into subtasks.<br><b>Delegate</b>: Each subtask is assigned to a specialized worker agent (typically Sonnet) with focused tools and system prompt.<br><b>Synthesize</b>: The orchestrator collects worker results and combines them into a coherent final output.",
+          "component_id": "vertex-sdk-orchestration",
+          "topic_tags": [
+            "claude-agent-sdk::multi-agent::orchestration",
+            "claude-agent-sdk::multi-agent::pattern"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 31,
+          "image_svg": "<svg viewBox='0 0 400 180' xmlns='http://www.w3.org/2000/svg'><title>Decompose Delegate Synthesize Pattern</title><rect x='5' y='5' width='390' height='170' rx='8' fill='#f9fafb' stroke='#d1d5db'/><rect x='145' y='15' width='110' height='30' rx='6' fill='#9333ea' stroke='none'/><text x='200' y='35' text-anchor='middle' fill='white' font-size='12' font-family='system-ui'>Orchestrator</text><text x='200' y='48' fill='#9333ea' font-size='9' font-family='system-ui' text-anchor='middle'>(Opus)</text><line x1='170' y1='50' x2='60' y2='80' stroke='#374151' stroke-width='1.5' marker-end='url(#arr)'/><line x1='200' y1='50' x2='200' y2='80' stroke='#374151' stroke-width='1.5' marker-end='url(#arr)'/><line x1='230' y1='50' x2='340' y2='80' stroke='#374151' stroke-width='1.5' marker-end='url(#arr)'/><text x='100' y='68' fill='#374151' font-size='9' font-family='system-ui'>Decompose</text><rect x='15' y='80' width='100' height='28' rx='5' fill='#2563eb' stroke='none'/><text x='65' y='99' text-anchor='middle' fill='white' font-size='11' font-family='system-ui'>Worker A</text><rect x='150' y='80' width='100' height='28' rx='5' fill='#2563eb' stroke='none'/><text x='200' y='99' text-anchor='middle' fill='white' font-size='11' font-family='system-ui'>Worker B</text><rect x='285' y='80' width='100' height='28' rx='5' fill='#2563eb' stroke='none'/><text x='335' y='99' text-anchor='middle' fill='white' font-size='11' font-family='system-ui'>Worker C</text><text x='60' y='112' fill='#2563eb' font-size='9' font-family='system-ui' text-anchor='middle'>(Sonnet)</text><text x='200' y='112' fill='#2563eb' font-size='9' font-family='system-ui' text-anchor='middle'>(Sonnet)</text><text x='340' y='112' fill='#2563eb' font-size='9' font-family='system-ui' text-anchor='middle'>(Sonnet)</text><line x1='60' y1='115' x2='170' y2='140' stroke='#374151' stroke-width='1.5' marker-end='url(#arr)'/><line x1='200' y1='115' x2='200' y2='140' stroke='#374151' stroke-width='1.5' marker-end='url(#arr)'/><line x1='340' y1='115' x2='230' y2='140' stroke='#374151' stroke-width='1.5' marker-end='url(#arr)'/><text x='300' y='133' fill='#374151' font-size='9' font-family='system-ui'>Synthesize</text><rect x='145' y='140' width='110' height='25' rx='6' fill='#16a34a' stroke='none'/><text x='200' y='157' text-anchor='middle' fill='white' font-size='11' font-family='system-ui'>Final Output</text><defs><marker id='arr' markerWidth='6' markerHeight='6' refX='5' refY='3' orient='auto'><path d='M0,0 L6,3 L0,6' fill='#374151'/></marker></defs></svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "cas-orchestration-032",
+          "card_type": "basic",
+          "front": "When does orchestration overhead outweigh its benefits? Give two scenarios where a single agent is better.",
+          "back": "1. <b>Simple sequential tasks</b> \u2014 if the task doesn't benefit from parallelism or specialization, the overhead of spawning/coordinating agents wastes tokens and adds latency.<br>2. <b>Tasks requiring deep shared context</b> \u2014 if subtasks are heavily interdependent and workers need to know each other's intermediate results, the context isolation of subagents forces expensive handoff payloads that may exceed the benefit.",
+          "component_id": "vertex-sdk-orchestration",
+          "topic_tags": [
+            "claude-agent-sdk::multi-agent::orchestration",
+            "claude-agent-sdk::multi-agent::tradeoffs"
+          ],
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 32
+        },
+        {
+          "card_id": "cas-agent-teams-033",
+          "card_type": "basic",
+          "front": "How do SDK agent teams differ from the subagent (orchestrator-worker) pattern?",
+          "back": "In <b>teams</b>, agents are peers that communicate directly via TeammateTool \u2014 each has a fresh context window and can independently contribute. There's no hierarchical control. In <b>subagents</b>, there's a parent-child hierarchy where the parent delegates and collects results. Teams are better for collaborative exploration; subagents for structured decomposition.",
+          "component_id": "vertex-sdk-agent-teams",
+          "topic_tags": [
+            "claude-agent-sdk::multi-agent::teams",
+            "claude-agent-sdk::multi-agent::patterns"
+          ],
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 33
+        },
+        {
+          "card_id": "cas-agent-teams-034",
+          "card_type": "cloze",
+          "front": "In the SDK's agent teams, agents communicate using the {{c1::TeammateTool}}, which supports both {{c2::direct}} (one-to-one) and {{c3::group}} (broadcast) message routing.",
+          "back": "Each team member has a fresh context window and coordinates independently, unlike subagents which report back to a parent.",
+          "component_id": "vertex-sdk-agent-teams",
+          "topic_tags": [
+            "claude-agent-sdk::multi-agent::teams",
+            "claude-agent-sdk::multi-agent::communication"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 34
+        },
+        {
+          "card_id": "cas-handoff-patterns-035",
+          "card_type": "basic",
+          "front": "What should a structured handoff payload between SDK agents include?",
+          "back": "A JSON payload with: <b>data</b> (the actual content/results), <b>metadata</b> (source agent ID, timestamp, task context), <b>confidence_score</b> (0-1 indicating result reliability), and <b>source_references</b> (what information the data was derived from). This gives the receiving agent enough context to evaluate and use the results without the full sending agent's history.",
+          "component_id": "vertex-sdk-handoff-patterns",
+          "topic_tags": [
+            "claude-agent-sdk::multi-agent::handoffs",
+            "claude-agent-sdk::multi-agent::structured-data"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 35
+        },
+        {
+          "card_id": "cas-handoff-patterns-036",
+          "card_type": "basic",
+          "front": "Why is context preservation across handoffs challenging, and what's the recommended approach?",
+          "back": "Subagents have <b>isolated context windows</b>, so the receiving agent can't see the sender's full reasoning. The recommended approach: distill the sender's key findings into a structured JSON payload with essential context only (not full conversation history). Include confidence scores so the receiver can weight information appropriately. Over-transferring context wastes tokens; under-transferring causes hallucination.",
+          "component_id": "vertex-sdk-handoff-patterns",
+          "topic_tags": [
+            "claude-agent-sdk::multi-agent::handoffs",
+            "claude-agent-sdk::multi-agent::context"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 36
+        },
+        {
+          "card_id": "cas-sessions-037",
+          "card_type": "basic",
+          "front": "What are the four session operations in the SDK, and when would you use each?",
+          "back": "<b>Create</b>: Start a new session (fresh context).<br><b>Resume</b>: Continue an existing session exactly where it left off.<br><b>Continue</b>: Add new messages to an existing session's history.<br><b>Fork</b>: Branch a session to explore an alternative path without modifying the original.",
+          "component_id": "vertex-sdk-sessions",
+          "topic_tags": [
+            "claude-agent-sdk::state::sessions",
+            "claude-agent-sdk::state::operations"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 37
+        },
+        {
+          "card_id": "cas-sessions-038",
+          "card_type": "basic",
+          "front": "Where are SDK sessions persisted by default, and how are they identified?",
+          "back": "Sessions persist to <code>~/.claude/projects/</code> on disk. Each session has a unique session ID (available in system messages). The persistence is automatic \u2014 the SDK writes conversation state after each turn, enabling resume/continue/fork without manual serialization.",
+          "component_id": "vertex-sdk-sessions",
+          "topic_tags": [
+            "claude-agent-sdk::state::sessions",
+            "claude-agent-sdk::state::persistence"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 38
+        },
+        {
+          "card_id": "cas-memory-tool-039",
+          "card_type": "basic",
+          "front": "What is the Memory Tool in the Claude Agent SDK, and what problem does it solve?",
+          "back": "The Memory Tool gives agents persistent key-value memory that survives across sessions. It solves the problem of agents forgetting learned preferences, discovered facts, or accumulated state between conversations. The agent can store() and retrieve() memories, with the SDK handling persistence.",
+          "component_id": "vertex-sdk-memory-tool",
+          "topic_tags": [
+            "claude-agent-sdk::state::memory-tool"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 39
+        },
+        {
+          "card_id": "cas-memory-tool-040",
+          "card_type": "basic",
+          "front": "When should you use the Memory Tool vs session persistence for state management?",
+          "back": "<b>Memory Tool</b>: For facts/preferences that should persist across multiple sessions (e.g., 'user prefers Python', 'codebase uses FastAPI'). Agent-controlled storage.<br><b>Session persistence</b>: For conversation continuity within a single workflow. Automatic, captures full history. Use sessions for workflow state; use Memory Tool for learned knowledge.",
+          "component_id": "vertex-sdk-memory-tool",
+          "topic_tags": [
+            "claude-agent-sdk::state::memory-tool",
+            "claude-agent-sdk::state::sessions"
+          ],
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 40
+        },
+        {
+          "card_id": "cas-error-handling-041",
+          "card_type": "basic",
+          "front": "What are three error recovery strategies for SDK agents, and when is each appropriate?",
+          "back": "1. <b>Retry with backoff</b>: For transient API/network errors. Implement exponential backoff (1s, 2s, 4s...) with max retries.<br>2. <b>Fallback model</b>: If primary model is unavailable, fall back to a different provider or model (e.g., Bedrock if direct API fails).<br>3. <b>Graceful degradation</b>: If a non-critical tool fails, continue with reduced capability rather than crashing. Inform the user of limited functionality.",
+          "component_id": "vertex-sdk-error-handling",
+          "topic_tags": [
+            "claude-agent-sdk::control::error-handling",
+            "claude-agent-sdk::control::recovery"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "strategy",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 41
+        },
+        {
+          "card_id": "cas-otel-tracing-042",
+          "card_type": "basic",
+          "front": "How do you enable OpenTelemetry tracing in a Claude Agent SDK application?",
+          "back": "Install the OpenTelemetry Python SDK, configure a TracerProvider with an exporter (e.g., OTLP to Langfuse/Jaeger), and the Claude Agent SDK will automatically create spans for: each query() call, each tool invocation, each API completion, and each subagent execution. Set the exporter endpoint via environment variables or programmatic configuration.",
+          "component_id": "vertex-sdk-otel-tracing",
+          "topic_tags": [
+            "claude-agent-sdk::obs::otel",
+            "claude-agent-sdk::obs::setup"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 42
+        },
+        {
+          "card_id": "cas-otel-tracing-043",
+          "card_type": "basic",
+          "front": "What span structure does the SDK generate for a multi-agent system, and how do you correlate traces?",
+          "back": "The SDK creates a span hierarchy: <b>root span</b> (orchestrator query) \u2192 <b>child spans</b> (each subagent query) \u2192 <b>grandchild spans</b> (tool calls within each subagent). Correlation uses the OpenTelemetry <b>trace context</b> \u2014 the parent span ID propagates to children automatically. Use the trace ID to see the complete execution tree across all agents.",
+          "component_id": "vertex-sdk-otel-tracing",
+          "topic_tags": [
+            "claude-agent-sdk::obs::otel",
+            "claude-agent-sdk::obs::span-structure"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 43,
+          "image_svg": "<svg viewBox='0 0 400 160' xmlns='http://www.w3.org/2000/svg'><title>OTel Span Hierarchy</title><rect x='5' y='5' width='390' height='150' rx='8' fill='#f9fafb' stroke='#d1d5db'/><rect x='20' y='20' width='360' height='22' rx='4' fill='#9333ea' opacity='0.8'/><text x='30' y='35' fill='white' font-size='11' font-family='system-ui'>Orchestrator query() \u2014 trace_id: abc123</text><rect x='40' y='50' width='160' height='20' rx='4' fill='#2563eb' opacity='0.8'/><text x='50' y='64' fill='white' font-size='10' font-family='system-ui'>Worker A query()</text><rect x='220' y='50' width='150' height='20' rx='4' fill='#2563eb' opacity='0.8'/><text x='230' y='64' fill='white' font-size='10' font-family='system-ui'>Worker B query()</text><rect x='55' y='78' width='120' height='18' rx='3' fill='#16a34a' opacity='0.7'/><text x='65' y='91' fill='white' font-size='9' font-family='system-ui'>tool: db_query</text><rect x='55' y='100' width='90' height='18' rx='3' fill='#16a34a' opacity='0.7'/><text x='65' y='113' fill='white' font-size='9' font-family='system-ui'>tool: search</text><rect x='235' y='78' width='110' height='18' rx='3' fill='#16a34a' opacity='0.7'/><text x='245' y='91' fill='white' font-size='9' font-family='system-ui'>tool: analyze</text><text x='200' y='140' text-anchor='middle' fill='#374151' font-size='10' font-family='system-ui'>All spans share trace_id for end-to-end correlation</text></svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "cas-otel-tracing-044",
+          "card_type": "cloze",
+          "front": "To add custom metadata to OTel spans in the SDK, use {{c1::span.set_attribute()}} for key-value pairs and {{c2::span.add_event()}} for timestamped annotations within a span.",
+          "back": "Custom attributes enable filtering and searching traces (e.g., by user_id, task_type, or model version).",
+          "component_id": "vertex-sdk-otel-tracing",
+          "topic_tags": [
+            "claude-agent-sdk::obs::otel",
+            "claude-agent-sdk::obs::custom-attributes"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 44
+        },
+        {
+          "card_id": "cas-observability-platforms-045",
+          "card_type": "basic",
+          "front": "Compare Langfuse, Arize, and MLflow for agent observability: what does each excel at?",
+          "back": "<b>Langfuse</b>: Purpose-built for LLM tracing. Excellent trace visualization, prompt management, and cost tracking. Best for development and debugging.<br><b>Arize (Dev-Agent-Lens)</b>: Strong on drift detection, anomaly monitoring, and production alerting. Best for production monitoring at scale.<br><b>MLflow</b>: Broad ML lifecycle tool with autolog for agents. Best when you need experiment tracking alongside agent monitoring.",
+          "component_id": "vertex-sdk-observability-platforms",
+          "topic_tags": [
+            "claude-agent-sdk::obs::platforms",
+            "claude-agent-sdk::obs::comparison"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 45
+        },
+        {
+          "card_id": "cas-observability-platforms-046",
+          "card_type": "basic",
+          "front": "What does 'zero-instrumentation capture' mean in the context of agent observability platforms?",
+          "back": "Some platforms (like certain Langfuse and Arize integrations) can automatically capture agent traces, tool calls, and completions without you adding explicit tracing code. They hook into the SDK or API client at the library level. You just configure the connection (API key + endpoint) and traces appear automatically. This contrasts with manual instrumentation where you explicitly create spans around each operation.",
+          "component_id": "vertex-sdk-observability-platforms",
+          "topic_tags": [
+            "claude-agent-sdk::obs::platforms",
+            "claude-agent-sdk::obs::auto-instrumentation"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 46
+        },
+        {
+          "card_id": "cas-testing-strategies-047",
+          "card_type": "basic",
+          "front": "Name the three testing layers for SDK agents and what each validates.",
+          "back": "<b>Unit tests</b>: Test individual tools in isolation \u2014 do they return correct results for given inputs? Use mocked dependencies.<br><b>Integration tests</b>: Test agent-tool interactions \u2014 does the agent correctly invoke tools and handle their responses in multi-turn flows?<br><b>Eval tests</b> (via promptfoo or custom): Test agent behavior against a suite of scenarios \u2014 does the agent produce correct, high-quality outputs across diverse inputs?",
+          "component_id": "vertex-sdk-testing-strategies",
+          "topic_tags": [
+            "claude-agent-sdk::obs::testing",
+            "claude-agent-sdk::obs::test-layers"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 47,
+          "image_svg": "<svg viewBox='0 0 350 160' xmlns='http://www.w3.org/2000/svg'><title>Three Testing Layers</title><rect x='5' y='5' width='340' height='150' rx='8' fill='#f9fafb' stroke='#d1d5db'/><polygon points='175,15 310,130 40,130' fill='none' stroke='#374151' stroke-width='1.5'/><line x1='40' y1='130' x2='310' y2='130' stroke='#374151' stroke-width='1.5'/><line x1='108' y1='90' x2='242' y2='90' stroke='#374151' stroke-width='1'/><line x1='140' y1='55' x2='210' y2='55' stroke='#374151' stroke-width='1'/><text x='175' y='45' text-anchor='middle' fill='#9333ea' font-size='10' font-weight='bold' font-family='system-ui'>Evals</text><text x='175' y='78' text-anchor='middle' fill='#2563eb' font-size='10' font-weight='bold' font-family='system-ui'>Integration</text><text x='175' y='118' text-anchor='middle' fill='#16a34a' font-size='10' font-weight='bold' font-family='system-ui'>Unit Tests</text><text x='175' y='148' text-anchor='middle' fill='#374151' font-size='9' font-family='system-ui'>More tests, faster, cheaper \u2192 \u2190 Fewer tests, slower, realistic</text></svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "cas-testing-strategies-048",
+          "card_type": "basic",
+          "front": "What is promptfoo, and how do you use it for agent evaluation?",
+          "back": "promptfoo is a CLI tool for testing LLM outputs against defined test cases. For SDK agents, you define: <b>prompts</b> (test scenarios), <b>providers</b> (your agent configuration), and <b>assertions</b> (expected behaviors using built-in or custom scorers). Run <code>promptfoo eval</code> to execute all scenarios and get a pass/fail report with detailed diffs.",
+          "component_id": "vertex-sdk-testing-strategies",
+          "topic_tags": [
+            "claude-agent-sdk::obs::testing",
+            "claude-agent-sdk::obs::promptfoo"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 48
+        },
+        {
+          "card_id": "cas-testing-strategies-049",
+          "card_type": "basic",
+          "front": "What is a custom scorer in agent testing, and when would you write one?",
+          "back": "A custom scorer is a function that evaluates agent output against task-specific criteria beyond simple string matching. Write one when: the correct answer isn't a fixed string (e.g., 'did the agent query the right table?'), you need semantic evaluation (e.g., 'is the summary accurate?'), or you need to check intermediate steps (e.g., 'did the agent call tools in the right order?'). Custom scorers return a score (0-1) and optional explanation.",
+          "component_id": "vertex-sdk-testing-strategies",
+          "topic_tags": [
+            "claude-agent-sdk::obs::testing",
+            "claude-agent-sdk::obs::custom-scorers"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 49
+        },
+        {
+          "card_id": "cas-production-ops-050",
+          "card_type": "basic",
+          "front": "How would you implement a canary release strategy for a new agent version?",
+          "back": "1. Deploy new agent version alongside the old one.<br>2. Route a small percentage (e.g., 5%) of traffic to the new version using a feature flag.<br>3. Monitor key metrics: error rate, latency, cost per task, user satisfaction scores.<br>4. If metrics are stable after a defined period, gradually ramp to 25%, 50%, 100%.<br>5. If any metric degrades beyond threshold, automatically roll back to the old version.",
+          "component_id": "vertex-sdk-production-ops",
+          "topic_tags": [
+            "claude-agent-sdk::obs::production-ops",
+            "claude-agent-sdk::obs::canary-release"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 50
+        },
+        {
+          "card_id": "cas-production-ops-051",
+          "card_type": "cloze",
+          "front": "For production agent monitoring, the three essential metric categories are: {{c1::error rates}} (failures and retries), {{c2::latency}} (time-to-first-token and total), and {{c3::cost}} (tokens consumed and USD spent per task).",
+          "back": "These form the baseline for anomaly detection. Set alerts when any metric deviates >2 standard deviations from the rolling average.",
+          "component_id": "vertex-sdk-production-ops",
+          "topic_tags": [
+            "claude-agent-sdk::obs::production-ops",
+            "claude-agent-sdk::obs::monitoring"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 51
+        },
+        {
+          "card_id": "cas-secure-deployment-052",
+          "card_type": "basic",
+          "front": "What is the recommended Docker deployment pattern for SDK agents, and why?",
+          "back": "Use a <b>hardened Docker container</b> with: minimal base image (distroless or slim), non-root user, read-only filesystem (except agent workspace), network isolation (only allow egress to API endpoints), and a <b>credential proxy</b> sidecar that injects API keys at runtime rather than baking them into the image. This limits blast radius if the agent is compromised.",
+          "component_id": "vertex-sdk-secure-deployment",
+          "topic_tags": [
+            "claude-agent-sdk::arch::secure-deployment",
+            "claude-agent-sdk::arch::docker"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 52
+        },
+        {
+          "card_id": "cas-secure-deployment-053",
+          "card_type": "basic",
+          "front": "What is sandbox-runtime and gVisor, and how do they enhance agent security?",
+          "back": "<b>sandbox-runtime</b> is a container runtime that restricts system calls the agent can make. <b>gVisor</b> is Google's implementation \u2014 it intercepts all syscalls through a user-space kernel, preventing direct kernel access. For agents, this means even if the agent executes malicious code via Bash tool, it can't escape the sandbox or access host resources.",
+          "component_id": "vertex-sdk-secure-deployment",
+          "topic_tags": [
+            "claude-agent-sdk::arch::secure-deployment",
+            "claude-agent-sdk::arch::sandbox"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 53
+        },
+        {
+          "card_id": "cas-secure-deployment-054",
+          "card_type": "basic",
+          "front": "How should API credentials be managed in a production SDK agent deployment?",
+          "back": "Use a <b>credential proxy</b> pattern: API keys are stored in a secrets manager (e.g., AWS Secrets Manager, Vault), a sidecar service retrieves them and injects via environment variables at container start. The agent code reads <code>os.environ['ANTHROPIC_API_KEY']</code>. Never bake credentials into Docker images, source code, or configuration files that get committed.",
+          "component_id": "vertex-sdk-secure-deployment",
+          "topic_tags": [
+            "claude-agent-sdk::arch::secure-deployment",
+            "claude-agent-sdk::arch::credentials"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 54
+        },
+        {
+          "card_id": "cas-long-running-patterns-055",
+          "card_type": "basic",
+          "front": "What is the initializer+worker split pattern for long-running SDK agents?",
+          "back": "Split the agent into two phases: the <b>initializer</b> loads context, validates inputs, sets up tools, and creates a checkpoint; the <b>worker</b> picks up from the checkpoint and executes the main task. This allows: restart from checkpoint on failure, separation of expensive setup from execution, and cleaner resource management for tasks running hours/days.",
+          "component_id": "vertex-sdk-long-running-patterns",
+          "topic_tags": [
+            "claude-agent-sdk::arch::long-running",
+            "claude-agent-sdk::arch::init-worker"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 55
+        },
+        {
+          "card_id": "cas-long-running-patterns-056",
+          "card_type": "basic",
+          "front": "What is a progress.txt ritual for long-running agents, and why is it useful?",
+          "back": "A pattern where the agent periodically writes its current status, progress percentage, and next steps to a <code>progress.txt</code> file. This provides: human visibility into agent state without interrupting it, a recovery checkpoint if the agent crashes, and a log of decisions made during long autonomous runs. The agent checks/updates this file at defined intervals or after each major step.",
+          "component_id": "vertex-sdk-long-running-patterns",
+          "topic_tags": [
+            "claude-agent-sdk::arch::long-running",
+            "claude-agent-sdk::arch::progress-tracking"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 56
+        },
+        {
+          "card_id": "cas-architecture-patterns-057",
+          "card_type": "basic",
+          "front": "Name four common agent architecture patterns and describe when each is most appropriate.",
+          "back": "<b>Single agent</b>: Simple tasks, no parallelism needed, shared context is essential.<br><b>Orchestrator + workers</b>: Complex tasks decomposable into independent subtasks, different tools per subtask.<br><b>Pipeline</b>: Sequential processing stages where each stage transforms the output (e.g., extract \u2192 analyze \u2192 summarize).<br><b>Fan-out/fan-in</b>: Many-to-one reduction \u2014 send same query to multiple sources/approaches, aggregate results.",
+          "component_id": "vertex-sdk-architecture-patterns",
+          "topic_tags": [
+            "claude-agent-sdk::arch::patterns",
+            "claude-agent-sdk::arch::comparison"
+          ],
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 57,
+          "image_svg": "<svg viewBox='0 0 400 200' xmlns='http://www.w3.org/2000/svg'><title>Four Agent Architecture Patterns</title><rect x='5' y='5' width='390' height='190' rx='8' fill='#f9fafb' stroke='#d1d5db'/><rect x='15' y='15' width='175' height='80' rx='4' fill='white' stroke='#d1d5db'/><text x='102' y='30' text-anchor='middle' fill='#374151' font-size='10' font-weight='bold' font-family='system-ui'>Single Agent</text><rect x='55' y='40' width='90' height='20' rx='4' fill='#2563eb'/><text x='100' y='54' text-anchor='middle' fill='white' font-size='9' font-family='system-ui'>Agent</text><text x='102' y='82' text-anchor='middle' fill='#374151' font-size='8' font-family='system-ui'>Simple, shared context</text><rect x='210' y='15' width='175' height='80' rx='4' fill='white' stroke='#d1d5db'/><text x='297' y='30' text-anchor='middle' fill='#374151' font-size='10' font-weight='bold' font-family='system-ui'>Orchestrator+Workers</text><rect x='270' y='38' width='55' height='15' rx='3' fill='#9333ea'/><text x='297' y='49' text-anchor='middle' fill='white' font-size='8' font-family='system-ui'>Orch</text><rect x='230' y='60' width='40' height='12' rx='2' fill='#2563eb'/><rect x='278' y='60' width='40' height='12' rx='2' fill='#2563eb'/><rect x='326' y='60' width='40' height='12' rx='2' fill='#2563eb'/><text x='297' y='82' text-anchor='middle' fill='#374151' font-size='8' font-family='system-ui'>Decompose + delegate</text><rect x='15' y='105' width='175' height='80' rx='4' fill='white' stroke='#d1d5db'/><text x='102' y='120' text-anchor='middle' fill='#374151' font-size='10' font-weight='bold' font-family='system-ui'>Pipeline</text><rect x='30' y='133' width='35' height='15' rx='3' fill='#16a34a'/><text x='72' y='143' fill='#374151' font-size='10'>\u2192</text><rect x='80' y='133' width='35' height='15' rx='3' fill='#d97706'/><text x='122' y='143' fill='#374151' font-size='10'>\u2192</text><rect x='130' y='133' width='35' height='15' rx='3' fill='#dc2626'/><text x='102' y='172' text-anchor='middle' fill='#374151' font-size='8' font-family='system-ui'>Sequential stages</text><rect x='210' y='105' width='175' height='80' rx='4' fill='white' stroke='#d1d5db'/><text x='297' y='120' text-anchor='middle' fill='#374151' font-size='10' font-weight='bold' font-family='system-ui'>Fan-out/Fan-in</text><rect x='270' y='128' width='55' height='12' rx='2' fill='#9333ea'/><rect x='230' y='148' width='40' height='10' rx='2' fill='#2563eb'/><rect x='278' y='148' width='40' height='10' rx='2' fill='#2563eb'/><rect x='326' y='148' width='40' height='10' rx='2' fill='#2563eb'/><rect x='270' y='165' width='55' height='12' rx='2' fill='#16a34a'/><text x='297' y='186' text-anchor='middle' fill='#374151' font-size='8' font-family='system-ui'>Many-to-one reduction</text></svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "cas-architecture-patterns-058",
+          "card_type": "basic",
+          "front": "What decision criteria help you choose between a pipeline and an orchestrator-worker architecture?",
+          "back": "Use <b>pipeline</b> when: stages must run sequentially, each stage's output is the next stage's input, and stages have different tool/model requirements. Use <b>orchestrator-worker</b> when: subtasks are independent and parallelizable, results need intelligent synthesis (not just concatenation), and the decomposition strategy requires reasoning.",
+          "component_id": "vertex-sdk-architecture-patterns",
+          "topic_tags": [
+            "claude-agent-sdk::arch::patterns",
+            "claude-agent-sdk::arch::decision-criteria"
+          ],
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 58
+        },
+        {
+          "card_id": "cas-evolution-tracking-059",
+          "card_type": "basic",
+          "front": "What components make up an SDK changelog radar system?",
+          "back": "1. <b>Automated fetch</b>: Script that polls the SDK GitHub repo for new releases/commits.<br>2. <b>Change classifier</b>: Categorizes changes as breaking, feature, fix, or internal.<br>3. <b>Impact analyzer</b>: Maps changes to your codebase \u2014 which files/agents are affected.<br>4. <b>Alert system</b>: Notifies you of breaking changes immediately, features weekly.<br>5. <b>Migration tracker</b>: Tracks which changes have been adopted and which are pending.",
+          "component_id": "vertex-sdk-evolution-tracking",
+          "topic_tags": [
+            "claude-agent-sdk::arch::evolution",
+            "claude-agent-sdk::arch::changelog-radar"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 59
+        },
+        {
+          "card_id": "cas-evolution-tracking-060",
+          "card_type": "basic",
+          "front": "What is the recommended version pinning strategy for SDK dependencies in production?",
+          "back": "Pin the <b>exact version</b> in requirements.txt (e.g., <code>claude-agent-sdk==1.2.3</code>), not a range. Run the changelog radar to detect new versions. Test upgrades in CI with your full test suite before updating the pin. Never auto-upgrade in production. Keep a separate branch for testing against the latest SDK to catch issues early.",
+          "component_id": "vertex-sdk-evolution-tracking",
+          "topic_tags": [
+            "claude-agent-sdk::arch::evolution",
+            "claude-agent-sdk::arch::versioning"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 60
+        },
+        {
+          "card_id": "cas-provider-config-061",
+          "card_type": "basic",
+          "front": "What are the four cloud providers supported by the Claude Agent SDK, and how does authentication differ?",
+          "back": "<b>Anthropic API</b>: Direct API key via ANTHROPIC_API_KEY env var.<br><b>AWS Bedrock</b>: IAM role or access key + secret key + region. Model IDs use Bedrock format.<br><b>Google Vertex AI</b>: Service account JSON or ADC (Application Default Credentials) + project + location.<br><b>Azure AI Foundry</b>: Azure AD token or API key + endpoint URL.",
+          "component_id": "vertex-sdk-provider-config",
+          "topic_tags": [
+            "claude-agent-sdk::ecosystem::provider-config",
+            "claude-agent-sdk::ecosystem::authentication"
+          ],
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 61
+        },
+        {
+          "card_id": "cas-provider-config-062",
+          "card_type": "basic",
+          "front": "How would you implement multi-provider failover in a production SDK agent?",
+          "back": "Configure a primary provider (e.g., direct Anthropic API) and one or more fallbacks (e.g., Bedrock, Vertex). On API error, catch the exception, log the failure, and retry with the next provider. Key considerations: model names may differ between providers, latency varies, and some features (like streaming) may behave differently. Test failover regularly.",
+          "component_id": "vertex-sdk-provider-config",
+          "topic_tags": [
+            "claude-agent-sdk::ecosystem::provider-config",
+            "claude-agent-sdk::ecosystem::failover"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "strategy",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 62
+        },
+        {
+          "card_id": "cas-api-design-063",
+          "card_type": "basic",
+          "front": "What pattern should you use when wrapping an SDK agent behind a REST API for long-running tasks?",
+          "back": "Use an <b>async job queue</b> pattern: POST /agent/task returns immediately with a job_id, the agent runs asynchronously, clients poll GET /agent/task/{job_id}/status or register a webhook for completion notification. This avoids HTTP timeout issues for tasks that take minutes. Return streaming progress via SSE for real-time updates.",
+          "component_id": "vertex-sdk-api-design",
+          "topic_tags": [
+            "claude-agent-sdk::integration::api-design",
+            "claude-agent-sdk::integration::async-patterns"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 63
+        },
+        {
+          "card_id": "cas-api-design-064",
+          "card_type": "basic",
+          "front": "What abstraction layer should sit between your API endpoints and the SDK agent?",
+          "back": "A <b>task manager</b> that: translates API requests into agent prompts, manages agent lifecycle (creation, execution, cleanup), handles result extraction from agent messages, implements retry/timeout logic, and provides a clean domain-specific interface that hides SDK internals. This prevents API consumers from needing to understand agent internals and makes the agent implementation swappable.",
+          "component_id": "vertex-sdk-api-design",
+          "topic_tags": [
+            "claude-agent-sdk::integration::api-design",
+            "claude-agent-sdk::integration::abstraction"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 64
+        },
+        {
+          "card_id": "cas-conversation-state-065",
+          "card_type": "basic",
+          "front": "What are the key patterns for managing state across multi-turn agent conversations?",
+          "back": "1. <b>Accumulator pattern</b>: Each turn adds to a growing state object (e.g., discovered facts, completed steps). Store in session.<br>2. <b>Summary compaction</b>: Periodically summarize older turns to free context, keeping only the state summary + recent history.<br>3. <b>External state store</b>: For complex state, write to a database between turns and inject relevant state into each new prompt. Avoids context window limits.",
+          "component_id": "vertex-sdk-conversation-state",
+          "topic_tags": [
+            "claude-agent-sdk::state::conversation",
+            "claude-agent-sdk::state::patterns"
+          ],
+          "bloom_level": "apply",
+          "knowledge_type": "strategy",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 65
+        },
+        {
+          "card_id": "cas-conversation-state-066",
+          "card_type": "basic",
+          "front": "When should you start a fresh session vs continue an existing one for a multi-turn agent task?",
+          "back": "<b>Continue</b> when: the new request directly builds on previous context, the context window isn't near capacity, and the user expects conversational continuity.<br><b>Fresh session</b> when: the task is unrelated, the context is bloated with irrelevant history, or you need a clean slate for reproducibility. <b>Fork</b> when: you want to explore an alternative approach without losing the current path.",
+          "component_id": "vertex-sdk-conversation-state",
+          "topic_tags": [
+            "claude-agent-sdk::state::conversation",
+            "claude-agent-sdk::state::session-decisions"
+          ],
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 66
+        },
+        {
+          "card_id": "cas-agent-teams-067",
+          "card_type": "basic",
+          "front": "Compare subagents vs agent teams: what is the key structural difference, and when would you choose each?",
+          "back": "<b>Subagents</b>: Hierarchical \u2014 parent spawns children, children report back results. Parent controls decomposition and synthesis. Best for structured task decomposition with clear subtasks.<br><b>Teams</b>: Peer-to-peer \u2014 agents communicate via TeammateTool, no hierarchy. Each agent works independently. Best for collaborative exploration where agents have different expertise and share findings.",
+          "component_id": "vertex-sdk-agent-teams",
+          "topic_tags": [
+            "claude-agent-sdk::multi-agent::comparison",
+            "claude-agent-sdk::multi-agent::patterns"
+          ],
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 67
+        },
+        {
+          "card_id": "cas-permissions-068",
+          "card_type": "basic",
+          "front": "Compare hooks vs canUseTool vs permission modes: which SDK control mechanism should you use for each scenario?",
+          "back": "<b>Permission modes</b>: Global defaults (allow all tools, ask for sensitive ones, deny dangerous ones). Use for broad policy.<br><b>canUseTool</b>: Per-tool binary allow/deny. Use for simple tool-level access control.<br><b>Hooks</b>: Rich interception with modify/block/log. Use when you need context-dependent decisions, logging, or operation modification.",
+          "component_id": "vertex-sdk-permissions",
+          "topic_tags": [
+            "claude-agent-sdk::control::comparison",
+            "claude-agent-sdk::control::mechanisms"
+          ],
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 68
+        }
+      ]
+    }
+  ]
+}

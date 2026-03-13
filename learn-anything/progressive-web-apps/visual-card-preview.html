@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visual Card Preview</title>
+<style>
+body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #fafafa; }
+.card { background: white; border-radius: 12px; padding: 20px; margin: 24px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.card h3 { margin: 0 0 8px; color: #374151; font-size: 14px; }
+.card .question { margin-bottom: 12px; color: #1a1a1a; font-size: 15px; }
+.card .answer { margin-bottom: 12px; color: #374151; font-size: 14px; border-top: 1px solid #eee; padding-top: 12px; }
+.card svg { max-width: 100%; height: auto; }
+.card .meta { font-size: 12px; color: #999; margin-top: 8px; }
+h1 { color: #1a1a1a; }
+h2 { color: #374151; margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+</style></head><body>
+<h1>PWA Flashcard Visual Preview</h1>
+<p>13 cards with SVG diagrams out of 60 total (~22%)</p>
+<h2>PWA Architecture :: TC1 Foundations</h2><div class="card">
+<h3>pwa-tc1-request-lifecycle-01 (basic) — diagram on back</h3>
+<div class="question"><b>Q:</b> List the 5 cache layers a browser request passes through, from closest to the user to furthest.</div>
+
+<div class="answer"><b>A:</b> 1. Memory cache (in-process, same-page resources)<br>2. Service Worker (Cache API intercept)<br>3. HTTP cache (browser disk cache)<br>4. CDN edge cache<br>5. Origin server</div>
+<div><svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg">
+  <title>Browser request passes through 5 cache layers from memory cache to origin server</title>
+  <defs>
+    <marker id="arr1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#374151"/></marker>
+  </defs>
+  <rect x="80" y="10" width="200" height="36" rx="6" fill="#2563eb" opacity="0.15" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="180" y="33" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">1. Memory Cache</text>
+  <line x1="180" y1="46" x2="180" y2="58" stroke="#374151" marker-end="url(#arr1)"/>
+  <rect x="80" y="60" width="200" height="36" rx="6" fill="#9333ea" opacity="0.15" stroke="#9333ea" stroke-width="1.5"/>
+  <text x="180" y="83" text-anchor="middle" font-size="13" font-weight="bold" fill="#9333ea">2. Service Worker</text>
+  <line x1="180" y1="96" x2="180" y2="108" stroke="#374151" marker-end="url(#arr1)"/>
+  <rect x="80" y="110" width="200" height="36" rx="6" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="180" y="133" text-anchor="middle" font-size="13" font-weight="bold" fill="#16a34a">3. Cache API</text>
+  <line x1="180" y1="146" x2="180" y2="158" stroke="#374151" marker-end="url(#arr1)"/>
+  <rect x="80" y="160" width="200" height="36" rx="6" fill="#d97706" opacity="0.15" stroke="#d97706" stroke-width="1.5"/>
+  <text x="180" y="183" text-anchor="middle" font-size="13" font-weight="bold" fill="#d97706">4. HTTP Cache</text>
+  <line x1="180" y1="196" x2="180" y2="208" stroke="#374151" marker-end="url(#arr1)"/>
+  <rect x="80" y="210" width="200" height="36" rx="6" fill="#dc2626" opacity="0.15" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="180" y="233" text-anchor="middle" font-size="13" font-weight="bold" fill="#dc2626">5. CDN / Origin</text>
+  <text x="30" y="33" text-anchor="middle" font-size="12" fill="#374151">closest</text>
+  <text x="30" y="233" text-anchor="middle" font-size="12" fill="#374151">farthest</text>
+  <line x1="30" y1="45" x2="30" y2="218" stroke="#374151" stroke-dasharray="4" marker-end="url(#arr1)"/>
+  <text x="180" y="270" text-anchor="middle" font-size="12" fill="#374151">Miss at each layer → request falls through to next</text>
+</svg></div>
+<div class="meta">remember · fact</div>
+</div><div class="card">
+<h3>pwa-tc1-request-lifecycle-02 (basic) — diagram on back</h3>
+<div class="question"><b>Q:</b> At what point in the browser request lifecycle does a service worker get the chance to intercept a request?</div>
+
+<div class="answer"><b>A:</b> After the memory cache check but before the HTTP cache. The SW's <code>fetch</code> event fires, giving it full control: it can serve from Cache API, modify and forward the request to the network, or generate a response entirely. If the SW calls <code>fetch()</code> itself, that request then passes through the HTTP cache and on to CDN/origin.</div>
+<div><svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+  <title>Service worker intercepts requests between the page and the network via the fetch event</title>
+  <defs>
+    <marker id="arr2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#374151"/></marker>
+  </defs>
+  <rect x="10" y="70" width="80" height="50" rx="6" fill="#2563eb" opacity="0.15" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="50" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">Page</text>
+  <line x1="90" y1="95" x2="120" y2="95" stroke="#374151" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <text x="105" y="85" text-anchor="middle" font-size="12" fill="#374151">fetch()</text>
+  <rect x="122" y="55" width="120" height="80" rx="8" fill="#9333ea" opacity="0.12" stroke="#9333ea" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="182" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#9333ea">Service Worker</text>
+  <text x="182" y="100" text-anchor="middle" font-size="12" fill="#9333ea">fetch event</text>
+  <text x="182" y="120" text-anchor="middle" font-size="12" fill="#374151">can intercept,</text>
+  <text x="182" y="132" text-anchor="middle" font-size="12" fill="#374151">modify, or cache</text>
+  <line x1="242" y1="95" x2="272" y2="95" stroke="#374151" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <rect x="274" y="70" width="96" height="50" rx="6" fill="#dc2626" opacity="0.15" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="322" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#dc2626">Network</text>
+  <text x="190" y="170" text-anchor="middle" font-size="12" fill="#d97706">SW sits between page and network — controls all outgoing requests</text>
+  <text x="190" y="25" text-anchor="middle" font-size="12" fill="#374151">Only active after installation + activation (not on first page load)</text>
+</svg></div>
+<div class="meta">understand · concept</div>
+</div><div class="card">
+<h3>pwa-tc1-sw-lifecycle-01 (basic) — diagram on back</h3>
+<div class="question"><b>Q:</b> What are the 4 main phases of the service worker lifecycle, in order?</div>
+
+<div class="answer"><b>A:</b> 1. <b>Registration</b> — browser downloads the SW script<br>2. <b>Installation</b> — <code>install</code> event fires, typically pre-caches essential resources<br>3. <b>Waiting</b> — new SW waits until all tabs using the old SW close<br>4. <b>Activation</b> — <code>activate</code> event fires, typically cleans up old caches; SW now controls pages</div>
+<div><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <title>Service worker lifecycle: Install, Wait, Activate, Fetch (with idle/terminated)</title>
+  <defs>
+    <marker id="arr3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#374151"/></marker>
+  </defs>
+  <rect x="10" y="55" width="80" height="40" rx="6" fill="#2563eb" opacity="0.15" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="50" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">Install</text>
+  <line x1="90" y1="75" x2="110" y2="75" stroke="#374151" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <rect x="112" y="55" width="70" height="40" rx="6" fill="#d97706" opacity="0.15" stroke="#d97706" stroke-width="1.5"/>
+  <text x="147" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#d97706">Wait</text>
+  <line x1="182" y1="75" x2="202" y2="75" stroke="#374151" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <rect x="204" y="55" width="86" height="40" rx="6" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="247" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#16a34a">Activate</text>
+  <line x1="290" y1="75" x2="310" y2="75" stroke="#374151" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <rect x="312" y="55" width="78" height="40" rx="6" fill="#9333ea" opacity="0.15" stroke="#9333ea" stroke-width="1.5"/>
+  <text x="351" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#9333ea">Fetch</text>
+  <text x="50" y="115" text-anchor="middle" font-size="12" fill="#374151">cache assets</text>
+  <text x="147" y="115" text-anchor="middle" font-size="12" fill="#374151">old SW still</text>
+  <text x="147" y="128" text-anchor="middle" font-size="12" fill="#374151">controls tabs</text>
+  <text x="247" y="115" text-anchor="middle" font-size="12" fill="#374151">clean old</text>
+  <text x="247" y="128" text-anchor="middle" font-size="12" fill="#374151">caches</text>
+  <text x="351" y="115" text-anchor="middle" font-size="12" fill="#374151">handle</text>
+  <text x="351" y="128" text-anchor="middle" font-size="12" fill="#374151">requests</text>
+  <text x="200" y="165" text-anchor="middle" font-size="12" fill="#dc2626">Between events, the browser may terminate the SW to save memory</text>
+  <text x="200" y="30" text-anchor="middle" font-size="12" fill="#374151">Service Worker Lifecycle</text>
+</svg></div>
+<div class="meta">remember · procedure</div>
+</div><h2>PWA Architecture :: TC2 Caching Strategy</h2><div class="card">
+<h3>pwa-tc2-strategy-04 (comparison) — diagram on back</h3>
+<div class="question"><b>Q:</b> Compare <b>Cache-First</b> and <b>Network-First</b>: when does each strategy serve stale data, and what's the user experience tradeoff?</div>
+
+<div class="answer"><b>A:</b> <b>Cache-First</b>: Serves stale data if the cache entry is outdated AND the URL hasn't changed (risk with non-hashed URLs). UX: instant load, but potentially stale.<br><b>Network-First</b>: Serves stale data only when the network fails (offline/timeout fallback). UX: slower load (waits for network), but usually fresh. However, Network-First can ALSO serve stale data if the browser HTTP cache returns a cached response to the SW's fetch() call — the "HTTP cache trap."</div>
+<div><svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+  <title>Cache-First checks cache then network on miss; Network-First checks network then cache on failure</title>
+  <defs>
+    <marker id="arr4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#374151"/></marker>
+  </defs>
+  <text x="100" y="20" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">Cache-First</text>
+  <text x="300" y="20" text-anchor="middle" font-size="13" font-weight="bold" fill="#dc2626">Network-First</text>
+  <line x1="200" y1="10" x2="200" y2="230" stroke="#374151" stroke-dasharray="4"/>
+  <!-- Cache-First flow -->
+  <rect x="55" y="35" width="90" height="32" rx="5" fill="#2563eb" opacity="0.15" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="100" y="56" text-anchor="middle" font-size="12" fill="#2563eb">Check Cache</text>
+  <text x="160" y="48" font-size="12" fill="#16a34a">hit →</text>
+  <text x="160" y="62" font-size="12" fill="#16a34a">respond</text>
+  <line x1="100" y1="67" x2="100" y2="82" stroke="#374151" marker-end="url(#arr4)"/>
+  <text x="74" y="78" font-size="12" fill="#d97706">miss</text>
+  <rect x="55" y="85" width="90" height="32" rx="5" fill="#dc2626" opacity="0.15" stroke="#dc2626" stroke-width="1.2"/>
+  <text x="100" y="106" text-anchor="middle" font-size="12" fill="#dc2626">Fetch Network</text>
+  <line x1="100" y1="117" x2="100" y2="132" stroke="#374151" marker-end="url(#arr4)"/>
+  <rect x="55" y="135" width="90" height="32" rx="5" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="100" y="156" text-anchor="middle" font-size="12" fill="#16a34a">Cache + Return</text>
+  <!-- Network-First flow -->
+  <rect x="255" y="35" width="90" height="32" rx="5" fill="#dc2626" opacity="0.15" stroke="#dc2626" stroke-width="1.2"/>
+  <text x="300" y="56" text-anchor="middle" font-size="12" fill="#dc2626">Fetch Network</text>
+  <text x="356" y="48" font-size="12" fill="#16a34a">ok →</text>
+  <text x="356" y="62" font-size="12" fill="#16a34a">respond</text>
+  <line x1="300" y1="67" x2="300" y2="82" stroke="#374151" marker-end="url(#arr4)"/>
+  <text x="268" y="78" font-size="12" fill="#d97706">fail</text>
+  <rect x="255" y="85" width="90" height="32" rx="5" fill="#2563eb" opacity="0.15" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="300" y="106" text-anchor="middle" font-size="12" fill="#2563eb">Check Cache</text>
+  <line x1="300" y1="117" x2="300" y2="132" stroke="#374151" marker-end="url(#arr4)"/>
+  <rect x="255" y="135" width="90" height="32" rx="5" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="300" y="156" text-anchor="middle" font-size="12" fill="#16a34a">Return Stale</text>
+  <!-- Summary -->
+  <text x="100" y="190" text-anchor="middle" font-size="12" fill="#374151">Best: static assets,</text>
+  <text x="100" y="204" text-anchor="middle" font-size="12" fill="#374151">hashed filenames</text>
+  <text x="300" y="190" text-anchor="middle" font-size="12" fill="#374151">Best: API data,</text>
+  <text x="300" y="204" text-anchor="middle" font-size="12" fill="#374151">user content</text>
+  <text x="100" y="225" text-anchor="middle" font-size="12" fill="#2563eb">Speed over freshness</text>
+  <text x="300" y="225" text-anchor="middle" font-size="12" fill="#dc2626">Freshness over speed</text>
+</svg></div>
+<div class="meta">analyze · concept</div>
+</div><div class="card">
+<h3>pwa-tc2-sw-http-01 (basic) — diagram on back</h3>
+<div class="question"><b>Q:</b> Explain the "network-first hits HTTP cache" trap. Why does a network-first SW strategy sometimes return stale data?</div>
+
+<div class="answer"><b>A:</b> When the SW calls <code>fetch(request)</code> to go to the network, that fetch request first passes through the browser's HTTP cache. If the HTTP cache has a fresh (unexpired) entry, the browser returns it without ever reaching the CDN or origin. So "network-first" actually means "HTTP-cache-first, then network." The SW thinks it got a fresh network response, but it came from the HTTP cache. Fix: use <code>fetch(request, { cache: 'reload' })</code> to bypass the HTTP cache.</div>
+<div><svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+  <title>Network-first SW strategy can still serve stale data when fetch() hits the browser HTTP cache instead of the origin</title>
+  <defs>
+    <marker id="arr5" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#374151"/></marker>
+    <marker id="arr5r" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#dc2626"/></marker>
+  </defs>
+  <text x="200" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">The "Network-First Hits HTTP Cache" Trap</text>
+  <!-- Expected path -->
+  <text x="10" y="48" font-size="12" fill="#16a34a">Expected:</text>
+  <rect x="10" y="55" width="60" height="30" rx="4" fill="#9333ea" opacity="0.15" stroke="#9333ea" stroke-width="1.2"/>
+  <text x="40" y="75" text-anchor="middle" font-size="12" fill="#9333ea">SW</text>
+  <line x1="70" y1="70" x2="100" y2="70" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr5)"/>
+  <text x="85" y="62" font-size="12" fill="#16a34a">fetch()</text>
+  <rect x="102" y="55" width="80" height="30" rx="4" fill="#d97706" opacity="0.08" stroke="#374151" stroke-width="1" stroke-dasharray="3"/>
+  <text x="142" y="75" text-anchor="middle" font-size="12" fill="#374151">HTTP Cache</text>
+  <line x1="182" y1="70" x2="212" y2="70" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr5)"/>
+  <text x="197" y="62" font-size="12" fill="#16a34a">pass</text>
+  <rect x="214" y="55" width="70" height="30" rx="4" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="249" y="75" text-anchor="middle" font-size="12" fill="#16a34a">Origin</text>
+  <text x="310" y="75" font-size="12" fill="#16a34a">✓ Fresh</text>
+  <!-- Actual path (the trap) -->
+  <text x="10" y="118" font-size="12" fill="#dc2626">Actual:</text>
+  <rect x="10" y="125" width="60" height="30" rx="4" fill="#9333ea" opacity="0.15" stroke="#9333ea" stroke-width="1.2"/>
+  <text x="40" y="145" text-anchor="middle" font-size="12" fill="#9333ea">SW</text>
+  <line x1="70" y1="140" x2="100" y2="140" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr5r)"/>
+  <text x="85" y="132" font-size="12" fill="#dc2626">fetch()</text>
+  <rect x="102" y="125" width="80" height="30" rx="4" fill="#dc2626" opacity="0.15" stroke="#dc2626" stroke-width="2"/>
+  <text x="142" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">HTTP Cache</text>
+  <text x="215" y="140" font-size="12" fill="#dc2626">← max-age</text>
+  <text x="215" y="154" font-size="12" fill="#dc2626">    not expired</text>
+  <text x="310" y="145" font-size="12" fill="#dc2626">✗ Stale!</text>
+  <!-- Fix -->
+  <rect x="30" y="178" width="340" height="30" rx="5" fill="#16a34a" opacity="0.08" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="200" y="198" text-anchor="middle" font-size="12" fill="#16a34a">Fix: fetch(url, { cache: "reload" }) bypasses HTTP cache</text>
+</svg></div>
+<div class="meta">analyze · concept</div>
+</div><div class="card">
+<h3>pwa-tc2-cdn-01 (basic) — diagram on back</h3>
+<div class="question"><b>Q:</b> What is the "double-cache problem" when a service worker is combined with a CDN?</div>
+
+<div class="answer"><b>A:</b> After a deploy, both the SW cache and the CDN edge cache may hold stale content. Even if the SW uses network-first, the "network" response comes from the CDN edge which may still serve the old version (CDN TTL hasn't expired). So the user gets: old SW cache → falls through to network → CDN serves old version anyway. Two layers of staleness must be coordinated — purging one isn't enough.</div>
+<div><svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
+  <title>Double-cache problem: SW cache and CDN cache can both hold stale versions after a deploy</title>
+  <defs>
+    <marker id="arr6" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#374151"/></marker>
+  </defs>
+  <text x="200" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">The Double-Cache Problem</text>
+  <!-- Timeline -->
+  <text x="200" y="45" text-anchor="middle" font-size="12" fill="#374151">After deploy of v2, user still gets v1:</text>
+  <!-- Layer 1: SW Cache -->
+  <rect x="40" y="60" width="130" height="55" rx="6" fill="#9333ea" opacity="0.12" stroke="#9333ea" stroke-width="1.5"/>
+  <text x="105" y="80" text-anchor="middle" font-size="12" font-weight="bold" fill="#9333ea">SW Cache</text>
+  <text x="105" y="96" text-anchor="middle" font-size="12" fill="#dc2626">has v1 cached</text>
+  <text x="105" y="108" text-anchor="middle" font-size="12" fill="#374151">(cache-first)</text>
+  <!-- Layer 2: CDN -->
+  <rect x="230" y="60" width="130" height="55" rx="6" fill="#d97706" opacity="0.12" stroke="#d97706" stroke-width="1.5"/>
+  <text x="295" y="80" text-anchor="middle" font-size="12" font-weight="bold" fill="#d97706">CDN Edge</text>
+  <text x="295" y="96" text-anchor="middle" font-size="12" fill="#dc2626">has v1 cached</text>
+  <text x="295" y="108" text-anchor="middle" font-size="12" fill="#374151">(TTL active)</text>
+  <!-- Arrows showing the problem -->
+  <line x1="105" y1="115" x2="105" y2="140" stroke="#374151" marker-end="url(#arr6)"/>
+  <line x1="295" y1="115" x2="295" y2="140" stroke="#374151" marker-end="url(#arr6)"/>
+  <text x="105" y="155" text-anchor="middle" font-size="12" fill="#dc2626">serves stale v1</text>
+  <text x="105" y="168" text-anchor="middle" font-size="12" fill="#dc2626">without checking</text>
+  <text x="295" y="155" text-anchor="middle" font-size="12" fill="#dc2626">even if SW checks</text>
+  <text x="295" y="168" text-anchor="middle" font-size="12" fill="#dc2626">network, gets v1</text>
+  <!-- Solution hint -->
+  <rect x="30" y="185" width="340" height="36" rx="5" fill="#16a34a" opacity="0.08" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="200" y="200" text-anchor="middle" font-size="12" fill="#16a34a">Both caches must be invalidated on deploy:</text>
+  <text x="200" y="214" text-anchor="middle" font-size="12" fill="#16a34a">Content-hash filenames + CDN purge + SW versioned cache names</text>
+</svg></div>
+<div class="meta">analyze · concept</div>
+</div><div class="card">
+<h3>pwa-tc2-appshell-01 (basic) — diagram on back</h3>
+<div class="question"><b>Q:</b> What is the App Shell architecture pattern, and what problem does it solve?</div>
+
+<div class="answer"><b>A:</b> App Shell separates a minimal UI skeleton (navigation, layout, loading states) from dynamic content. The shell is pre-cached by the SW and served instantly on every visit — the user sees the app frame immediately while content loads. It solves the "blank screen" problem: instead of waiting for HTML + JS + CSS + data, the user sees a familiar UI within milliseconds.</div>
+<div><svg viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg">
+  <title>App Shell pattern: static shell is cache-first for instant load, dynamic content fetched separately</title>
+  <!-- Browser frame -->
+  <rect x="90" y="10" width="200" height="170" rx="8" fill="white" stroke="#374151" stroke-width="1.5"/>
+  <rect x="90" y="10" width="200" height="24" rx="8" fill="#374151" opacity="0.1"/>
+  <circle cx="104" cy="22" r="4" fill="#dc2626" opacity="0.5"/>
+  <circle cx="116" cy="22" r="4" fill="#d97706" opacity="0.5"/>
+  <circle cx="128" cy="22" r="4" fill="#16a34a" opacity="0.5"/>
+  <!-- Shell (cached) -->
+  <rect x="96" y="38" width="188" height="20" rx="3" fill="#2563eb" opacity="0.2" stroke="#2563eb" stroke-width="1"/>
+  <text x="190" y="53" text-anchor="middle" font-size="12" fill="#2563eb">Nav Bar (shell)</text>
+  <rect x="96" y="62" width="50" height="112" rx="3" fill="#2563eb" opacity="0.2" stroke="#2563eb" stroke-width="1"/>
+  <text x="121" y="120" text-anchor="middle" font-size="12" fill="#2563eb" transform="rotate(-90 121 120)">Sidebar (shell)</text>
+  <!-- Dynamic content area -->
+  <rect x="150" y="62" width="134" height="112" rx="3" fill="#d97706" opacity="0.12" stroke="#d97706" stroke-width="1" stroke-dasharray="4"/>
+  <text x="217" y="110" text-anchor="middle" font-size="12" fill="#d97706">Dynamic</text>
+  <text x="217" y="126" text-anchor="middle" font-size="12" fill="#d97706">Content</text>
+  <!-- Labels -->
+  <text x="16" y="55" font-size="12" fill="#2563eb">Cache-</text>
+  <text x="16" y="68" font-size="12" fill="#2563eb">First</text>
+  <line x1="52" y1="60" x2="93" y2="48" stroke="#2563eb" stroke-dasharray="3"/>
+  <text x="310" y="108" font-size="12" fill="#d97706">Network</text>
+  <text x="310" y="121" font-size="12" fill="#d97706">Fetch</text>
+  <line x1="310" y1="110" x2="287" y2="110" stroke="#d97706" stroke-dasharray="3"/>
+  <text x="190" y="205" text-anchor="middle" font-size="12" fill="#374151">Shell loads instantly from cache → content fills in from network</text>
+</svg></div>
+<div class="meta">understand · concept</div>
+</div><div class="card">
+<h3>pwa-tc2-appshell-03 (comparison) — diagram on back</h3>
+<div class="question"><b>Q:</b> Compare the caching approach for an App Shell SPA vs a server-rendered htmx application. What does each cache, and what strategy works best?</div>
+
+<div class="answer"><b>A:</b> <b>App Shell SPA</b>: Cache the shell (HTML template + JS + CSS) with cache-first. Cache API data with network-first or SWR. Shell loads instantly, data fills in.<br><b>Server-rendered htmx</b>: Cache complete HTML pages with SWR or network-first. Each page is a full document. Can cache previously-viewed pages for offline reading, but can't meaningfully separate shell from content. Offline creation of new pages requires fundamentally different architecture.</div>
+<div><svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+  <title>App Shell SPA caches shell locally and fetches JSON API; htmx server-rendered pages are full HTML from server with no separable shell</title>
+  <text x="100" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">App Shell SPA</text>
+  <text x="300" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#d97706">Server-Rendered (htmx)</text>
+  <line x1="200" y1="5" x2="200" y2="210" stroke="#374151" stroke-dasharray="4"/>
+  <!-- SPA side -->
+  <rect x="20" y="30" width="160" height="40" rx="5" fill="#2563eb" opacity="0.15" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="100" y="48" text-anchor="middle" font-size="12" fill="#2563eb">Shell: HTML + CSS + JS</text>
+  <text x="100" y="62" text-anchor="middle" font-size="12" fill="#374151">(cache-first, instant)</text>
+  <rect x="40" y="80" width="40" height="25" rx="3" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1"/>
+  <text x="60" y="97" text-anchor="middle" font-size="12" fill="#16a34a">API</text>
+  <rect x="90" y="80" width="40" height="25" rx="3" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1"/>
+  <text x="110" y="97" text-anchor="middle" font-size="12" fill="#16a34a">API</text>
+  <rect x="140" y="80" width="40" height="25" rx="3" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1"/>
+  <text x="160" y="97" text-anchor="middle" font-size="12" fill="#16a34a">API</text>
+  <text x="100" y="120" text-anchor="middle" font-size="12" fill="#374151">(network-first JSON)</text>
+  <!-- htmx side -->
+  <rect x="220" y="30" width="160" height="40" rx="5" fill="#d97706" opacity="0.15" stroke="#d97706" stroke-width="1.2"/>
+  <text x="300" y="48" text-anchor="middle" font-size="12" fill="#d97706">Full HTML page</text>
+  <text x="300" y="62" text-anchor="middle" font-size="12" fill="#374151">(server-rendered, no shell)</text>
+  <rect x="230" y="80" width="140" height="25" rx="3" fill="#d97706" opacity="0.15" stroke="#d97706" stroke-width="1"/>
+  <text x="300" y="97" text-anchor="middle" font-size="12" fill="#d97706">HTML fragments</text>
+  <text x="300" y="120" text-anchor="middle" font-size="12" fill="#374151">(each hx-get = full HTML)</text>
+  <!-- Offline implications -->
+  <rect x="20" y="140" width="160" height="32" rx="4" fill="#16a34a" opacity="0.08" stroke="#16a34a" stroke-width="1"/>
+  <text x="100" y="157" text-anchor="middle" font-size="12" fill="#16a34a">Offline shell ✓</text>
+  <text x="100" y="170" text-anchor="middle" font-size="12" fill="#16a34a">content needs API</text>
+  <rect x="220" y="140" width="160" height="32" rx="4" fill="#dc2626" opacity="0.08" stroke="#dc2626" stroke-width="1"/>
+  <text x="300" y="157" text-anchor="middle" font-size="12" fill="#dc2626">No separable shell ✗</text>
+  <text x="300" y="170" text-anchor="middle" font-size="12" fill="#dc2626">offline = cache full pages</text>
+  <text x="200" y="200" text-anchor="middle" font-size="12" fill="#374151">App Shell assumes client-side rendering — htmx is server-side</text>
+</svg></div>
+<div class="meta">analyze · concept</div>
+</div><h2>PWA Architecture :: TC3 Evaluation Framework</h2><div class="card">
+<h3>pwa-tc3-offline-01 (basic) — diagram on back</h3>
+<div class="question"><b>Q:</b> What are the 3 tiers of offline strategy for a PWA, from least to most complex?</div>
+
+<div class="answer"><b>A:</b> 1. <b>Offline fallback page</b> — Show a branded "you're offline" page instead of the browser's default error. Minimal effort, minimal value.<br>2. <b>Offline reading</b> — Cache previously-viewed content so users can re-access it offline (read-only). Moderate effort.<br>3. <b>Offline-first</b> — Full read/write offline capability with background sync. App works completely without network, syncs when reconnected. High complexity (conflict resolution, queue management).</div>
+<div><svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+  <title>Three offline strategy tiers: Tier 1 offline page only, Tier 2 read-only cached content, Tier 3 full offline read-write with sync</title>
+  <text x="190" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#374151">Offline Strategy Tiers</text>
+  <!-- Tier 1 -->
+  <rect x="20" y="35" width="110" height="100" rx="6" fill="#16a34a" opacity="0.1" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="75" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#16a34a">Tier 1</text>
+  <text x="75" y="72" text-anchor="middle" font-size="12" fill="#374151">Offline page</text>
+  <text x="75" y="86" text-anchor="middle" font-size="12" fill="#374151">only</text>
+  <text x="75" y="110" text-anchor="middle" font-size="12" fill="#16a34a">Low effort</text>
+  <text x="75" y="124" text-anchor="middle" font-size="12" fill="#16a34a">Any architecture</text>
+  <!-- Tier 2 -->
+  <rect x="140" y="35" width="110" height="100" rx="6" fill="#d97706" opacity="0.1" stroke="#d97706" stroke-width="1.5"/>
+  <text x="195" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#d97706">Tier 2</text>
+  <text x="195" y="72" text-anchor="middle" font-size="12" fill="#374151">Read-only</text>
+  <text x="195" y="86" text-anchor="middle" font-size="12" fill="#374151">cached content</text>
+  <text x="195" y="110" text-anchor="middle" font-size="12" fill="#d97706">Medium effort</text>
+  <text x="195" y="124" text-anchor="middle" font-size="12" fill="#d97706">Needs SW caching</text>
+  <!-- Tier 3 -->
+  <rect x="260" y="35" width="110" height="100" rx="6" fill="#dc2626" opacity="0.1" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="315" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#dc2626">Tier 3</text>
+  <text x="315" y="72" text-anchor="middle" font-size="12" fill="#374151">Full offline</text>
+  <text x="315" y="86" text-anchor="middle" font-size="12" fill="#374151">read-write</text>
+  <text x="315" y="110" text-anchor="middle" font-size="12" fill="#dc2626">High effort</text>
+  <text x="315" y="124" text-anchor="middle" font-size="12" fill="#dc2626">Needs sync engine</text>
+  <!-- Complexity arrow -->
+  <line x1="40" y1="155" x2="350" y2="155" stroke="#374151" stroke-width="1"/>
+  <text x="40" y="172" font-size="12" fill="#16a34a">Simple</text>
+  <text x="320" y="172" font-size="12" fill="#dc2626">Complex</text>
+  <text x="190" y="192" text-anchor="middle" font-size="12" fill="#374151">Choose the lowest tier that satisfies user needs</text>
+</svg></div>
+<div class="meta">understand · concept</div>
+</div><div class="card">
+<h3>pwa-tc3-update-01 (basic) — diagram on back</h3>
+<div class="question"><b>Q:</b> Describe the recommended user-controlled update flow for a PWA (as opposed to skipWaiting).</div>
+
+<div class="answer"><b>A:</b> 1. New SW installs in background (waiting state)<br>2. App detects <code>controllerchange</code> or checks <code>registration.waiting</code><br>3. Show a non-intrusive notification (toast/banner): "Update available — click to refresh"<br>4. On user click: send <code>postMessage('SKIP_WAITING')</code> to the waiting SW<br>5. Waiting SW calls <code>skipWaiting()</code><br>6. <code>controllerchange</code> event fires → app reloads<br><br>This gives the user control and ensures they don't lose unsaved work.</div>
+<div><svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg">
+  <title>Recommended PWA update flow: detect new SW, prompt user, user clicks update, postMessage to skipWaiting, controllerchange reloads page</title>
+  <defs>
+    <marker id="arr7" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#374151"/></marker>
+  </defs>
+  <text x="190" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#374151">User-Controlled SW Update Flow</text>
+  <!-- Step 1 -->
+  <rect x="110" y="30" width="170" height="30" rx="5" fill="#2563eb" opacity="0.15" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="195" y="50" text-anchor="middle" font-size="12" fill="#2563eb">1. New SW found (installing)</text>
+  <line x1="195" y1="60" x2="195" y2="72" stroke="#374151" marker-end="url(#arr7)"/>
+  <!-- Step 2 -->
+  <rect x="110" y="75" width="170" height="30" rx="5" fill="#d97706" opacity="0.15" stroke="#d97706" stroke-width="1.2"/>
+  <text x="195" y="95" text-anchor="middle" font-size="12" fill="#d97706">2. SW enters waiting state</text>
+  <line x1="195" y1="105" x2="195" y2="117" stroke="#374151" marker-end="url(#arr7)"/>
+  <!-- Step 3 -->
+  <rect x="80" y="120" width="230" height="30" rx="5" fill="#9333ea" opacity="0.15" stroke="#9333ea" stroke-width="1.5"/>
+  <text x="195" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#9333ea">3. Show banner: "Update available"</text>
+  <line x1="195" y1="150" x2="195" y2="162" stroke="#374151" marker-end="url(#arr7)"/>
+  <!-- Step 4 -->
+  <rect x="80" y="165" width="230" height="30" rx="5" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="195" y="185" text-anchor="middle" font-size="12" fill="#16a34a">4. User clicks → postMessage(SKIP_WAITING)</text>
+  <line x1="195" y1="195" x2="195" y2="207" stroke="#374151" marker-end="url(#arr7)"/>
+  <!-- Step 5 -->
+  <rect x="100" y="210" width="190" height="26" rx="5" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="195" y="228" text-anchor="middle" font-size="12" fill="#16a34a">5. controllerchange → reload</text>
+  <text x="22" y="140" font-size="12" fill="#dc2626">user</text>
+  <text x="22" y="154" font-size="12" fill="#dc2626">controls</text>
+  <text x="22" y="168" font-size="12" fill="#dc2626">timing</text>
+</svg></div>
+<div class="meta">apply · procedure</div>
+</div><div class="card">
+<h3>pwa-tc3-fitness-01 (basic) — diagram on back</h3>
+<div class="question"><b>Q:</b> What are the 5 dimensions of a structured PWA fitness evaluation?</div>
+
+<div class="answer"><b>A:</b> 1. <b>Offline strategy tier</b> — What offline capability does the app need? (fallback/reading/offline-first)<br>2. <b>Platform constraints</b> — Are iOS limitations deal-breakers for the target audience?<br>3. <b>Update flow</b> — How critical is version freshness? What's the cost of stale content?<br>4. <b>Architectural compatibility</b> — Does the current architecture (SPA/SSR/htmx) support PWA features?<br>5. <b>Migration cost vs. value</b> — What does PWA add that the current app doesn't have, and is it worth the effort?</div>
+<div><svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+  <title>Five dimensions of PWA fitness evaluation: offline strategy, platform constraints, update flow, architecture tension, migration cost</title>
+  <!-- Central hub -->
+  <circle cx="200" cy="100" r="40" fill="#2563eb" opacity="0.1" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="200" y="96" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">PWA</text>
+  <text x="200" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">Fitness</text>
+  <!-- Dimension 1 -->
+  <rect x="5" y="10" width="100" height="36" rx="5" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="55" y="25" text-anchor="middle" font-size="12" fill="#16a34a">1. Offline</text>
+  <text x="55" y="39" text-anchor="middle" font-size="12" fill="#16a34a">Strategy</text>
+  <line x1="105" y1="35" x2="162" y2="75" stroke="#374151" stroke-width="1"/>
+  <!-- Dimension 2 -->
+  <rect x="295" y="10" width="100" height="36" rx="5" fill="#d97706" opacity="0.15" stroke="#d97706" stroke-width="1.2"/>
+  <text x="345" y="25" text-anchor="middle" font-size="12" fill="#d97706">2. Platform</text>
+  <text x="345" y="39" text-anchor="middle" font-size="12" fill="#d97706">Constraints</text>
+  <line x1="295" y1="35" x2="238" y2="75" stroke="#374151" stroke-width="1"/>
+  <!-- Dimension 3 -->
+  <rect x="305" y="125" width="90" height="36" rx="5" fill="#9333ea" opacity="0.15" stroke="#9333ea" stroke-width="1.2"/>
+  <text x="350" y="140" text-anchor="middle" font-size="12" fill="#9333ea">3. Update</text>
+  <text x="350" y="154" text-anchor="middle" font-size="12" fill="#9333ea">Flow</text>
+  <line x1="305" y1="136" x2="238" y2="118" stroke="#374151" stroke-width="1"/>
+  <!-- Dimension 4 -->
+  <rect x="5" y="125" width="100" height="36" rx="5" fill="#dc2626" opacity="0.15" stroke="#dc2626" stroke-width="1.2"/>
+  <text x="55" y="140" text-anchor="middle" font-size="12" fill="#dc2626">4. Architecture</text>
+  <text x="55" y="154" text-anchor="middle" font-size="12" fill="#dc2626">Tension</text>
+  <line x1="105" y1="136" x2="162" y2="118" stroke="#374151" stroke-width="1"/>
+  <!-- Dimension 5 -->
+  <rect x="150" y="170" width="100" height="36" rx="5" fill="#374151" opacity="0.15" stroke="#374151" stroke-width="1.2"/>
+  <text x="200" y="185" text-anchor="middle" font-size="12" fill="#374151">5. Migration</text>
+  <text x="200" y="199" text-anchor="middle" font-size="12" fill="#374151">Cost</text>
+  <line x1="200" y1="170" x2="200" y2="140" stroke="#374151" stroke-width="1"/>
+</svg></div>
+<div class="meta">remember · procedure</div>
+</div><h2>PWA Architecture :: TC4 Quality Detection</h2><div class="card">
+<h3>pwa-tc4-migration-01 (basic) — diagram on back</h3>
+<div class="question"><b>Q:</b> What are the 4 levels of PWA migration complexity, from easiest to hardest?</div>
+
+<div class="answer"><b>A:</b> 1. <b>Add-on PWA</b> (1-2 days): Add manifest + basic SW to existing app. Installability + offline fallback page.<br>2. <b>Caching PWA</b> (1-2 weeks): Add intelligent caching strategies per resource type. SWR for pages, cache-first for assets. Offline reading.<br>3. <b>Offline-capable PWA</b> (1-3 months): Full offline read/write with background sync, conflict resolution, IndexedDB state management.<br>4. <b>Architecture migration</b> (3+ months): Restructure from server-rendered to client-side for App Shell pattern or offline-first.</div>
+<div><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <title>Four levels of PWA migration complexity from manifest-only to full offline architecture</title>
+  <text x="200" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#374151">PWA Migration Complexity</text>
+  <!-- Level 1 -->
+  <rect x="10" y="32" width="85" height="72" rx="5" fill="#16a34a" opacity="0.12" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="52" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#16a34a">Level 1</text>
+  <text x="52" y="68" text-anchor="middle" font-size="12" fill="#374151">Manifest +</text>
+  <text x="52" y="80" text-anchor="middle" font-size="12" fill="#374151">HTTPS only</text>
+  <text x="52" y="96" text-anchor="middle" font-size="12" fill="#16a34a">~1 day</text>
+  <!-- Level 2 -->
+  <rect x="105" y="32" width="85" height="72" rx="5" fill="#2563eb" opacity="0.12" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="147" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">Level 2</text>
+  <text x="147" y="68" text-anchor="middle" font-size="12" fill="#374151">+ Basic SW</text>
+  <text x="147" y="80" text-anchor="middle" font-size="12" fill="#374151">offline page</text>
+  <text x="147" y="96" text-anchor="middle" font-size="12" fill="#2563eb">~1 week</text>
+  <!-- Level 3 -->
+  <rect x="200" y="32" width="90" height="72" rx="5" fill="#d97706" opacity="0.12" stroke="#d97706" stroke-width="1.5"/>
+  <text x="245" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#d97706">Level 3</text>
+  <text x="245" y="68" text-anchor="middle" font-size="12" fill="#374151">+ Caching</text>
+  <text x="245" y="80" text-anchor="middle" font-size="12" fill="#374151">strategies</text>
+  <text x="245" y="96" text-anchor="middle" font-size="12" fill="#d97706">~1 month</text>
+  <!-- Level 4 -->
+  <rect x="300" y="32" width="90" height="72" rx="5" fill="#dc2626" opacity="0.12" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="345" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">Level 4</text>
+  <text x="345" y="68" text-anchor="middle" font-size="12" fill="#374151">Full offline</text>
+  <text x="345" y="80" text-anchor="middle" font-size="12" fill="#374151">+ sync</text>
+  <text x="345" y="96" text-anchor="middle" font-size="12" fill="#dc2626">months</text>
+  <!-- Complexity arrow -->
+  <line x1="30" y1="125" x2="370" y2="125" stroke="#374151" stroke-width="1"/>
+  <text x="30" y="142" font-size="12" fill="#16a34a">Low risk</text>
+  <text x="330" y="142" font-size="12" fill="#dc2626">High risk</text>
+  <text x="200" y="168" text-anchor="middle" font-size="12" fill="#374151">Most apps should start at Level 1 and iterate</text>
+</svg></div>
+<div class="meta">understand · concept</div>
+</div><h2>PWA Architecture :: TC5 Advanced Topics</h2><div class="card">
+<h3>pwa-tc5-push-01 (basic) — diagram on back</h3>
+<div class="question"><b>Q:</b> Describe the full pipeline for Web Push notifications: what components are involved and how do they interact?</div>
+
+<div class="answer"><b>A:</b> 1. <b>Client</b> requests permission, subscribes via Push API → gets a <b>PushSubscription</b> (endpoint URL + keys)<br>2. <b>App server</b> stores the subscription, later sends a push message to the <b>push service</b> (e.g., FCM for Chrome, WNS for Edge) using VAPID keys for authentication<br>3. <b>Push service</b> delivers the message to the browser<br>4. <b>Service worker</b> receives the <code>push</code> event (even if the app/browser is closed)<br>5. SW must show a Notification (browser requirement — can't silently receive pushes)<br>6. User interacts with notification → <code>notificationclick</code> event → SW opens/focuses the app</div>
+<div><svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
+  <title>Web Push pipeline: app server sends to push service, push service wakes service worker, SW shows notification</title>
+  <defs>
+    <marker id="arr8" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#374151"/></marker>
+  </defs>
+  <text x="200" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#374151">Web Push Notification Pipeline</text>
+  <!-- Step 1: Subscribe -->
+  <rect x="20" y="35" width="100" height="40" rx="5" fill="#2563eb" opacity="0.15" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="70" y="52" text-anchor="middle" font-size="12" fill="#2563eb">Browser</text>
+  <text x="70" y="66" text-anchor="middle" font-size="12" fill="#2563eb">(subscribe)</text>
+  <line x1="120" y1="55" x2="150" y2="55" stroke="#374151" marker-end="url(#arr8)"/>
+  <text x="135" y="46" font-size="12" fill="#374151">endpoint</text>
+  <!-- Push Service -->
+  <rect x="152" y="35" width="100" height="40" rx="5" fill="#9333ea" opacity="0.15" stroke="#9333ea" stroke-width="1.2"/>
+  <text x="202" y="52" text-anchor="middle" font-size="12" fill="#9333ea">Push Service</text>
+  <text x="202" y="66" text-anchor="middle" font-size="12" fill="#374151">(FCM/APNs)</text>
+  <line x1="252" y1="55" x2="278" y2="55" stroke="#374151" marker-end="url(#arr8)"/>
+  <text x="265" y="46" font-size="12" fill="#374151">keys</text>
+  <!-- App Server -->
+  <rect x="280" y="35" width="100" height="40" rx="5" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="330" y="52" text-anchor="middle" font-size="12" fill="#16a34a">App Server</text>
+  <text x="330" y="66" text-anchor="middle" font-size="12" fill="#374151">(stores sub)</text>
+  <!-- Send flow (bottom) -->
+  <text x="200" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#d97706">When sending a push:</text>
+  <rect x="280" y="110" width="100" height="35" rx="5" fill="#16a34a" opacity="0.15" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="330" y="132" text-anchor="middle" font-size="12" fill="#16a34a">App Server</text>
+  <line x1="280" y1="128" x2="254" y2="128" stroke="#374151" marker-end="url(#arr8)"/>
+  <text x="267" y="120" font-size="12" fill="#374151">VAPID</text>
+  <rect x="152" y="110" width="100" height="35" rx="5" fill="#9333ea" opacity="0.15" stroke="#9333ea" stroke-width="1.2"/>
+  <text x="202" y="132" text-anchor="middle" font-size="12" fill="#9333ea">Push Service</text>
+  <line x1="152" y1="128" x2="122" y2="128" stroke="#374151" marker-end="url(#arr8)"/>
+  <text x="137" y="120" font-size="12" fill="#374151">wake</text>
+  <rect x="20" y="110" width="100" height="35" rx="5" fill="#2563eb" opacity="0.15" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="70" y="125" text-anchor="middle" font-size="12" fill="#2563eb">Service Worker</text>
+  <text x="70" y="138" text-anchor="middle" font-size="12" fill="#374151">(push event)</text>
+  <!-- Final action -->
+  <line x1="70" y1="145" x2="70" y2="167" stroke="#374151" marker-end="url(#arr8)"/>
+  <rect x="20" y="170" width="100" height="30" rx="5" fill="#d97706" opacity="0.15" stroke="#d97706" stroke-width="1.2"/>
+  <text x="70" y="190" text-anchor="middle" font-size="12" fill="#d97706">Show Notification</text>
+  <text x="200" y="218" text-anchor="middle" font-size="12" fill="#374151">SW must show a notification — silent push is not allowed</text>
+</svg></div>
+<div class="meta">understand · procedure</div>
+</div></body></html>

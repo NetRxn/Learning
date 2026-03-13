@@ -1,0 +1,595 @@
+{
+  "id": "sd-pwa-20260309-001",
+  "assessment_id": "da-pwa-20260309-001",
+  "created_at": "2026-03-09T12:30:00Z",
+  "target_skill": "Progressive Web Apps — architectural decision-making, caching system mastery, CDN/WASM interaction, migration evaluation, anti-pattern detection",
+
+  "graph": {
+    "vertices": [
+      {
+        "id": "vertex-pwa-http-caching-fundamentals",
+        "label": "Concept",
+        "name": "HTTP Caching Fundamentals",
+        "description": "Cache-Control headers (max-age, no-cache, no-store, must-revalidate, stale-while-revalidate), ETags, conditional requests (If-None-Match, If-Modified-Since), and the browser HTTP cache behavior. The foundational layer that all other caching builds on.",
+        "blooms_level": "understand",
+        "component_type": "recurrent",
+        "frequency_score": 0.9,
+        "impact_score": 0.85,
+        "confidence": "high",
+        "cluster_id": "caching-foundations",
+        "assessment_criteria": "Can explain what happens at each cache layer when a browser requests a resource with specific Cache-Control headers. Can predict caching behavior from headers alone.",
+        "example": "A CDN serves an image with 'Cache-Control: max-age=3600, stale-while-revalidate=86400'. The learner should be able to explain what happens at hour 2 vs hour 25 vs hour 100."
+      },
+      {
+        "id": "vertex-pwa-browser-request-lifecycle",
+        "label": "Concept",
+        "name": "Browser Request Lifecycle",
+        "description": "The full path of a resource request: navigation request → service worker intercept → Cache API check → HTTP cache check → CDN edge → origin server. Understanding which layer has priority and how they compose.",
+        "blooms_level": "understand",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.85,
+        "impact_score": 0.9,
+        "confidence": "high",
+        "cluster_id": "caching-foundations",
+        "assessment_criteria": "Can trace a request through all layers and predict what happens when different layers have conflicting cache states.",
+        "example": "A service worker uses cache-first for app shell assets, but the CDN has a newer version. The learner traces what happens: SW cache wins, user gets stale version, and explains when/how the update propagates."
+      },
+      {
+        "id": "vertex-pwa-service-worker-lifecycle",
+        "label": "Concept",
+        "name": "Service Worker Lifecycle",
+        "description": "Registration, installation, activation, and update phases. The 'waiting' state, skipWaiting(), clients.claim(), and why updates don't take effect immediately. Scope rules and why SW placement matters.",
+        "blooms_level": "understand",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.95,
+        "impact_score": 0.95,
+        "confidence": "high",
+        "cluster_id": "service-worker-core",
+        "assessment_criteria": "Can explain why a user might see stale content after a deployment, and what the correct update notification pattern looks like. Can identify scope misconfiguration.",
+        "example": "A developer deploys a new SW version but users report seeing the old app. The learner diagnoses: old SW is still controlling all open tabs, new SW is in 'waiting' state, and explains the correct update flow with user notification."
+      },
+      {
+        "id": "vertex-pwa-cache-api-mechanics",
+        "label": "Concept",
+        "name": "Cache API & Storage Mechanics",
+        "description": "The Cache interface (cache.put, cache.match, cache.addAll), cache versioning, storage quotas, eviction policies, and IndexedDB for structured data. How the Cache API differs from HTTP cache — it's a separate, programmatic store.",
+        "blooms_level": "understand",
+        "component_type": "recurrent",
+        "frequency_score": 0.85,
+        "impact_score": 0.8,
+        "confidence": "high",
+        "cluster_id": "service-worker-core",
+        "assessment_criteria": "Can explain the difference between Cache API storage and HTTP cache, identify when storage quota issues might arise, and evaluate whether a caching implementation handles versioning correctly.",
+        "example": "An LLM generates a service worker that uses cache.addAll() in the install event but never cleans up old caches. The learner identifies the growing storage problem and the missing cache versioning pattern."
+      },
+      {
+        "id": "vertex-pwa-caching-strategy-selection",
+        "label": "Skill",
+        "name": "Caching Strategy Selection",
+        "description": "Choosing the right strategy (cache-first, network-first, stale-while-revalidate, cache-only, network-only) for each resource type. Understanding the tradeoffs: freshness vs speed vs reliability. Matching strategy to content characteristics (static assets, API responses, HTML pages, user-generated content).",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.95,
+        "impact_score": 0.95,
+        "confidence": "high",
+        "cluster_id": "caching-strategy",
+        "assessment_criteria": "Given a list of resource types for an application, can assign appropriate caching strategies with clear rationale. Can explain why the wrong strategy would cause problems.",
+        "example": "An e-commerce PWA needs strategies for: product images, pricing API, shopping cart state, app shell HTML, and third-party analytics. The learner assigns cache-first for images, network-first for pricing, and explains why cache-first for pricing would show stale prices."
+      },
+      {
+        "id": "vertex-pwa-sw-cdn-interaction",
+        "label": "Skill",
+        "name": "Service Worker + CDN Cache Interaction",
+        "description": "How service worker caching composes with CDN edge caching. Conflicts between SW cache-first and CDN TTLs. Opaque responses from cross-origin CDN resources. Cache invalidation coordination between CDN purge and SW update. The double-cache problem and how to align layers.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.7,
+        "impact_score": 0.9,
+        "confidence": "high",
+        "cluster_id": "caching-strategy",
+        "assessment_criteria": "Can identify when a CDN + SW setup will produce stale content, explain the invalidation coordination problem, and evaluate whether a proposed caching architecture avoids the double-cache trap.",
+        "example": "An app uses Cloudflare CDN with 1-hour TTL and a service worker with cache-first. After deploying a critical bug fix, the learner explains why some users won't see the fix for up to 2 hours (SW cache + CDN cache compounding) and proposes a fix."
+      },
+      {
+        "id": "vertex-pwa-sw-http-cache-alignment",
+        "label": "Skill",
+        "name": "Service Worker + HTTP Cache Alignment",
+        "description": "Understanding how service worker fetch events interact with the browser's HTTP cache layer. When SW requests hit the HTTP cache vs the network. How Cache-Control headers on fetch responses inside a SW affect caching behavior. The web.dev recommendation to use longer expiry in SW and shorter in HTTP cache.",
+        "blooms_level": "analyze",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.75,
+        "impact_score": 0.85,
+        "confidence": "high",
+        "cluster_id": "caching-strategy",
+        "assessment_criteria": "Can explain what happens when a SW network-first strategy fetches from a URL that has a long HTTP cache TTL, and why the result might not be 'fresh'. Can evaluate whether an implementation correctly manages both layers.",
+        "example": "A SW uses network-first for API data, but the API sets Cache-Control: max-age=3600. The learner explains that the SW's 'network' request may be served from the HTTP cache, making 'network-first' misleading, and recommends cache-busting or no-cache headers."
+      },
+      {
+        "id": "vertex-pwa-web-app-manifest",
+        "label": "Concept",
+        "name": "Web App Manifest & Installability",
+        "description": "The manifest.json file: name, icons, start_url, display modes (standalone, fullscreen, minimal-ui, browser), scope, theme_color, background_color. Installability criteria across browsers. The install prompt UX. What display mode to choose and why.",
+        "blooms_level": "understand",
+        "component_type": "recurrent",
+        "frequency_score": 0.7,
+        "impact_score": 0.6,
+        "confidence": "high",
+        "cluster_id": "pwa-shell",
+        "assessment_criteria": "Can evaluate a manifest.json for correctness and appropriateness. Can explain when installability matters vs when it's unnecessary overhead.",
+        "example": "An internal business tool has a manifest with display: 'fullscreen' and no back navigation. The learner identifies this as problematic — standalone is almost always better for tools, and fullscreen without custom navigation traps users."
+      },
+      {
+        "id": "vertex-pwa-app-shell-pattern",
+        "label": "Concept",
+        "name": "App Shell Architecture Pattern",
+        "description": "Separating the minimal UI shell (navigation, layout) from dynamic content. Pre-caching the shell for instant loads. Streaming dynamic content into the shell. How this pattern interacts with server-side rendering and htmx-style server-rendered HTML.",
+        "blooms_level": "analyze",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.8,
+        "impact_score": 0.75,
+        "confidence": "high",
+        "cluster_id": "pwa-shell",
+        "assessment_criteria": "Can evaluate whether an application's architecture is suitable for the app shell pattern, identify what belongs in the shell vs dynamic content, and recognize when the pattern conflicts with server-rendered approaches.",
+        "example": "An htmx app returns full HTML fragments from the server. The learner analyzes whether app shell pattern makes sense here — the tension is that htmx expects the server to own rendering, while app shell expects the client to own the layout."
+      },
+      {
+        "id": "vertex-pwa-offline-strategy-design",
+        "label": "Skill",
+        "name": "Offline Strategy Design",
+        "description": "Deciding what offline capability an app actually needs: full offline-first, graceful degradation, offline fallback page, or none. Mapping user journeys to offline requirements. Understanding that most apps don't need full offline-first — and over-engineering offline support is a common anti-pattern.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.85,
+        "impact_score": 0.85,
+        "confidence": "high",
+        "cluster_id": "architectural-decisions",
+        "assessment_criteria": "Can analyze user journeys for an application and prescribe the right level of offline support with clear cost/benefit reasoning. Can identify when 'offline-first' is over-engineering.",
+        "example": "A project management SaaS wants 'full offline support.' The learner evaluates: most actions need server coordination (task assignment, notifications), so full offline-first means conflict resolution complexity. Recommends offline read-only with queued writes for specific high-value flows instead."
+      },
+      {
+        "id": "vertex-pwa-wasm-in-pwa-context",
+        "label": "Concept",
+        "name": "WASM in PWA Context",
+        "description": "How WebAssembly modules interact with service workers and caching. Caching .wasm files (they're large binary assets — cache-first with content hashing). WASM for computation-heavy offline tasks. When WASM adds value in a PWA vs when it's unnecessary. The Blazor WASM PWA pattern as a reference point.",
+        "blooms_level": "analyze",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.4,
+        "impact_score": 0.6,
+        "confidence": "medium",
+        "cluster_id": "advanced-integration",
+        "assessment_criteria": "Can explain how .wasm files should be cached differently from JS bundles, identify use cases where WASM genuinely adds PWA value, and evaluate whether a WASM-in-PWA architecture is justified for a given application.",
+        "example": "A data visualization PWA wants to use WASM for client-side data processing while offline. The learner evaluates: WASM binary is 2MB, needs cache-first with content-hash versioning, and the offline compute capability justifies the download cost for this use case."
+      },
+      {
+        "id": "vertex-pwa-update-flow-design",
+        "label": "Skill",
+        "name": "Update Flow & Version Management",
+        "description": "Designing the update experience: detecting new SW versions, notifying users, handling the skipWaiting/reload flow, cache busting strategies, handling the 'stuck on old version' problem. Coordinating deploys with CDN cache invalidation.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.8,
+        "impact_score": 0.9,
+        "confidence": "high",
+        "cluster_id": "service-worker-core",
+        "assessment_criteria": "Can design an update notification flow for a PWA, identify where version management can go wrong, and evaluate whether an LLM-generated update flow handles edge cases (multiple tabs, failed updates, rollback).",
+        "example": "An LLM generates a SW that calls skipWaiting() immediately in the install event. The learner identifies the anti-pattern: this can break in-flight requests by activating a new SW with a different cache while the old page is still loaded. Correct pattern is to notify the user and let them choose when to update."
+      },
+      {
+        "id": "vertex-pwa-pwa-fitness-evaluation",
+        "label": "Skill",
+        "name": "PWA Fitness Evaluation",
+        "description": "The meta-skill: given an application's requirements, user base, and existing architecture, determine whether PWA is the right approach. Decision factors: offline need, installability value, push notification need, performance budget, team capability, platform constraints (especially iOS limitations), existing architecture compatibility.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 1.0,
+        "impact_score": 1.0,
+        "confidence": "high",
+        "cluster_id": "architectural-decisions",
+        "assessment_criteria": "Can produce a structured go/no-go recommendation for PWA adoption for a given application, with clear reasoning addressing offline needs, platform constraints, migration cost, and architectural fit.",
+        "example": "An htmx admin dashboard used by 50 internal users on corporate networks. The learner evaluates: no offline need, no push need, installability has marginal value, htmx architecture conflicts with app shell — recommends against PWA, suggests focusing on performance optimization instead."
+      },
+      {
+        "id": "vertex-pwa-migration-cost-assessment",
+        "label": "Skill",
+        "name": "Migration Path & Cost Assessment",
+        "description": "Evaluating what it takes to move an existing application to PWA: which parts of the architecture need to change, what stays the same, effort estimation, risk identification. Special focus on server-rendered (htmx-style) to PWA migration paths and the architectural tensions involved.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.7,
+        "impact_score": 0.85,
+        "confidence": "medium",
+        "cluster_id": "architectural-decisions",
+        "assessment_criteria": "Can produce a migration assessment for an existing app: what changes, what doesn't, estimated effort, key risks, and whether the migration is worth the investment.",
+        "example": "A TypeScript/htmx app needs push notifications and wants installability. The learner assesses: can add manifest + basic SW without changing htmx architecture, push requires a push server, but full offline support would require rearchitecting away from server-rendered HTML — recommends progressive enhancement (manifest + push) without full offline."
+      },
+      {
+        "id": "vertex-pwa-anti-pattern-detection",
+        "label": "Skill",
+        "name": "PWA Anti-Pattern & Code Quality Detection",
+        "description": "Recognizing common anti-patterns in PWA implementations, especially in LLM-generated service worker code: overly aggressive caching, missing cache versioning, skipWaiting without user notification, caching opaque responses with large storage impact, no offline fallback, incorrect scope, missing error handling in fetch events, caching POST requests inappropriately.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.85,
+        "impact_score": 0.9,
+        "confidence": "high",
+        "cluster_id": "quality-evaluation",
+        "assessment_criteria": "Given a service worker implementation, can identify anti-patterns and explain the real-world consequences of each. Can distinguish between acceptable shortcuts and genuine quality issues.",
+        "example": "An LLM-generated SW caches all fetch responses including POST requests and opaque cross-origin responses. The learner identifies: POST caching will serve stale form submissions, opaque responses use ~7MB each in Chrome's storage accounting, and neither should be cached this way."
+      },
+      {
+        "id": "vertex-pwa-workbox-and-tooling",
+        "label": "Concept",
+        "name": "Workbox & PWA Tooling Landscape",
+        "description": "Google's Workbox library as the standard abstraction over raw service worker APIs. Workbox routing, strategies, precaching, and plugins. PWA Builder, Lighthouse PWA audits. When to use Workbox vs raw SW code. Evaluating tooling choices.",
+        "blooms_level": "understand",
+        "component_type": "recurrent",
+        "frequency_score": 0.75,
+        "impact_score": 0.7,
+        "confidence": "high",
+        "cluster_id": "quality-evaluation",
+        "assessment_criteria": "Can explain what Workbox abstracts and why it's preferred over hand-written service workers. Can evaluate whether an LLM should be prompted to use Workbox vs raw APIs for a given project.",
+        "example": "An LLM generates a hand-written service worker with 200 lines of custom caching logic. The learner identifies that Workbox would handle all of this in ~20 lines with better-tested edge case handling, and recommends re-prompting with Workbox."
+      },
+      {
+        "id": "vertex-pwa-push-notifications-architecture",
+        "label": "Concept",
+        "name": "Web Push Notification Architecture",
+        "description": "The Push API, Notification API, and their server-side counterpart (VAPID keys, push service endpoints). Permission UX patterns. The server push → service worker → notification pipeline. Platform differences (iOS 16.4+ support, limitations). When push adds value vs when it annoys users.",
+        "blooms_level": "analyze",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.5,
+        "impact_score": 0.55,
+        "confidence": "high",
+        "cluster_id": "advanced-integration",
+        "assessment_criteria": "Can evaluate whether push notifications justify their implementation complexity for a given app. Understands the full pipeline from server to notification display.",
+        "example": "A B2B SaaS wants push notifications for task assignments. The learner evaluates: iOS support is recent and limited, the app already has email notifications, push requires a dedicated server component — recommends push only if real-time alerting is a validated user need."
+      },
+      {
+        "id": "vertex-pwa-background-sync",
+        "label": "Concept",
+        "name": "Background Sync & Periodic Background Sync",
+        "description": "The Background Sync API for deferred actions (retry failed requests when connectivity returns). Periodic Background Sync for recurring tasks. Browser support limitations. When background sync genuinely adds value vs over-engineering.",
+        "blooms_level": "understand",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.35,
+        "impact_score": 0.45,
+        "confidence": "high",
+        "cluster_id": "advanced-integration",
+        "assessment_criteria": "Can explain the background sync mechanism and evaluate whether it's worth implementing for a given use case, considering browser support and complexity cost.",
+        "example": "A field service app needs to queue work orders completed offline. The learner evaluates background sync as a good fit here — limited browser support is acceptable because the company controls device fleet (Android + Chrome)."
+      },
+      {
+        "id": "vertex-pwa-performance-budgeting",
+        "label": "Skill",
+        "name": "PWA Performance Budgeting & Measurement",
+        "description": "Setting and measuring performance budgets for a PWA: initial load, repeat visit load, time-to-interactive, cache hit rates. Using Lighthouse, Chrome DevTools Application panel, and performance panel for PWA-specific diagnostics. Understanding what 'good' looks like.",
+        "blooms_level": "analyze",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.6,
+        "impact_score": 0.7,
+        "confidence": "high",
+        "cluster_id": "quality-evaluation",
+        "assessment_criteria": "Can set appropriate performance targets for a PWA, identify the right metrics to track, and evaluate whether observed performance indicates a healthy or unhealthy caching setup.",
+        "example": "A PWA shows 95% cache hit rate but users report slow loads. The learner diagnoses: high cache hit rate but the cached assets are stale and trigger layout shifts when updated content arrives via stale-while-revalidate, causing perceived slowness."
+      },
+      {
+        "id": "vertex-pwa-platform-constraints",
+        "label": "Concept",
+        "name": "Platform Constraints & Browser Differences",
+        "description": "iOS PWA limitations (storage eviction after ~7 days without use, no background sync, limited push support, WebKit-only engine). Android PWA capabilities. Desktop PWA landscape (Chromium-based browsers, Firefox 143+ on Windows). How platform constraints affect the go/no-go decision.",
+        "blooms_level": "understand",
+        "component_type": "recurrent",
+        "frequency_score": 0.7,
+        "impact_score": 0.75,
+        "confidence": "high",
+        "cluster_id": "architectural-decisions",
+        "assessment_criteria": "Can identify platform-specific constraints that affect a PWA decision. Knows the key iOS limitations and can explain their practical impact.",
+        "example": "A consumer app targeting iPhone users wants offline-first PWA. The learner flags iOS 7-day eviction policy: if a user doesn't open the PWA for a week, cached assets are wiped and they get a fresh download — fundamentally undermining the offline-first value proposition for casual users."
+      },
+      {
+        "id": "vertex-pwa-htmx-pwa-tension",
+        "label": "Skill",
+        "name": "Server-Rendered (htmx) vs PWA Architectural Tension",
+        "description": "The fundamental tension between hypermedia-driven architecture (server owns rendering, HTML fragments over the wire) and PWA offline-first architecture (client owns rendering, cached shell + dynamic data). Where they compose well (manifest + basic SW for installability) vs where they conflict (full offline support requires client-side rendering). Progressive enhancement strategies.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.8,
+        "impact_score": 0.85,
+        "confidence": "medium",
+        "cluster_id": "architectural-decisions",
+        "assessment_criteria": "Can articulate the specific architectural tensions between htmx and PWA, identify which PWA features compose well with server-rendered apps vs which require fundamental rearchitecting, and make nuanced recommendations.",
+        "example": "An htmx app wants 'the PWA experience.' The learner decomposes: installability (easy, just add manifest), basic caching of static assets (easy, basic SW), offline reading of previously-viewed content (moderate, cache HTML fragments), offline form submission (hard, needs background sync + potentially client-side validation), full offline-first (very hard, contradicts htmx philosophy). Recommends tiered approach."
+      },
+      {
+        "id": "vertex-pwa-security-https-sw",
+        "label": "Concept",
+        "name": "HTTPS & Service Worker Security Model",
+        "description": "Why HTTPS is mandatory for service workers (man-in-the-middle prevention). Service worker as a network proxy — the security implications. Content Security Policy considerations for PWAs. Scope-based security boundaries.",
+        "blooms_level": "understand",
+        "component_type": "recurrent",
+        "frequency_score": 0.5,
+        "impact_score": 0.55,
+        "confidence": "high",
+        "cluster_id": "caching-foundations",
+        "assessment_criteria": "Can explain why HTTPS is required, understand the security implications of a service worker intercepting all requests, and identify CSP issues in a PWA configuration.",
+        "example": "A developer asks why their service worker doesn't work on their HTTP staging server. The learner explains the HTTPS requirement (exception: localhost for development) and the security rationale."
+      }
+    ],
+
+    "edges": [
+      {"from_id": "vertex-pwa-http-caching-fundamentals", "to_id": "vertex-pwa-browser-request-lifecycle", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-http-caching-fundamentals", "to_id": "vertex-pwa-caching-strategy-selection", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-http-caching-fundamentals", "to_id": "vertex-pwa-sw-http-cache-alignment", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-http-caching-fundamentals", "to_id": "vertex-pwa-sw-cdn-interaction", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "hard"},
+
+      {"from_id": "vertex-pwa-browser-request-lifecycle", "to_id": "vertex-pwa-sw-cdn-interaction", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-browser-request-lifecycle", "to_id": "vertex-pwa-sw-http-cache-alignment", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
+      {"from_id": "vertex-pwa-browser-request-lifecycle", "to_id": "vertex-pwa-performance-budgeting", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+
+      {"from_id": "vertex-pwa-service-worker-lifecycle", "to_id": "vertex-pwa-cache-api-mechanics", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-service-worker-lifecycle", "to_id": "vertex-pwa-update-flow-design", "label": "PREREQUISITE", "strength": 0.95, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-service-worker-lifecycle", "to_id": "vertex-pwa-caching-strategy-selection", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-service-worker-lifecycle", "to_id": "vertex-pwa-anti-pattern-detection", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
+
+      {"from_id": "vertex-pwa-cache-api-mechanics", "to_id": "vertex-pwa-caching-strategy-selection", "label": "PREREQUISITE", "strength": 0.75, "prerequisite_type": "soft"},
+      {"from_id": "vertex-pwa-cache-api-mechanics", "to_id": "vertex-pwa-anti-pattern-detection", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+
+      {"from_id": "vertex-pwa-caching-strategy-selection", "to_id": "vertex-pwa-sw-cdn-interaction", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-caching-strategy-selection", "to_id": "vertex-pwa-sw-http-cache-alignment", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-caching-strategy-selection", "to_id": "vertex-pwa-offline-strategy-design", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-caching-strategy-selection", "to_id": "vertex-pwa-anti-pattern-detection", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "hard"},
+
+      {"from_id": "vertex-pwa-sw-cdn-interaction", "to_id": "vertex-pwa-pwa-fitness-evaluation", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+      {"from_id": "vertex-pwa-sw-http-cache-alignment", "to_id": "vertex-pwa-pwa-fitness-evaluation", "label": "PREREQUISITE", "strength": 0.65, "prerequisite_type": "soft"},
+
+      {"from_id": "vertex-pwa-offline-strategy-design", "to_id": "vertex-pwa-pwa-fitness-evaluation", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-offline-strategy-design", "to_id": "vertex-pwa-migration-cost-assessment", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "hard"},
+
+      {"from_id": "vertex-pwa-platform-constraints", "to_id": "vertex-pwa-pwa-fitness-evaluation", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-platform-constraints", "to_id": "vertex-pwa-offline-strategy-design", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+
+      {"from_id": "vertex-pwa-web-app-manifest", "to_id": "vertex-pwa-pwa-fitness-evaluation", "label": "PREREQUISITE", "strength": 0.5, "prerequisite_type": "soft"},
+      {"from_id": "vertex-pwa-app-shell-pattern", "to_id": "vertex-pwa-htmx-pwa-tension", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-app-shell-pattern", "to_id": "vertex-pwa-offline-strategy-design", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+
+      {"from_id": "vertex-pwa-update-flow-design", "to_id": "vertex-pwa-anti-pattern-detection", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
+      {"from_id": "vertex-pwa-update-flow-design", "to_id": "vertex-pwa-migration-cost-assessment", "label": "PREREQUISITE", "strength": 0.6, "prerequisite_type": "soft"},
+
+      {"from_id": "vertex-pwa-workbox-and-tooling", "to_id": "vertex-pwa-anti-pattern-detection", "label": "PREREQUISITE", "strength": 0.65, "prerequisite_type": "soft"},
+
+      {"from_id": "vertex-pwa-htmx-pwa-tension", "to_id": "vertex-pwa-migration-cost-assessment", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
+      {"from_id": "vertex-pwa-htmx-pwa-tension", "to_id": "vertex-pwa-pwa-fitness-evaluation", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
+
+      {"from_id": "vertex-pwa-anti-pattern-detection", "to_id": "vertex-pwa-pwa-fitness-evaluation", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+
+      {"from_id": "vertex-pwa-security-https-sw", "to_id": "vertex-pwa-service-worker-lifecycle", "label": "PREREQUISITE", "strength": 0.5, "prerequisite_type": "soft"},
+
+      {"from_id": "vertex-pwa-pwa-fitness-evaluation", "to_id": "vertex-pwa-migration-cost-assessment", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+
+      {"from_id": "vertex-pwa-caching-strategy-selection", "to_id": "vertex-pwa-wasm-in-pwa-context", "label": "RELATED", "strength": 0.6, "transfer_coefficient": 0.5},
+      {"from_id": "vertex-pwa-offline-strategy-design", "to_id": "vertex-pwa-background-sync", "label": "RELATED", "strength": 0.7, "transfer_coefficient": 0.5},
+      {"from_id": "vertex-pwa-push-notifications-architecture", "to_id": "vertex-pwa-background-sync", "label": "RELATED", "strength": 0.5, "transfer_coefficient": 0.3},
+      {"from_id": "vertex-pwa-sw-cdn-interaction", "to_id": "vertex-pwa-sw-http-cache-alignment", "label": "RELATED", "strength": 0.8, "transfer_coefficient": 0.7},
+      {"from_id": "vertex-pwa-web-app-manifest", "to_id": "vertex-pwa-app-shell-pattern", "label": "RELATED", "strength": 0.5, "transfer_coefficient": 0.3},
+      {"from_id": "vertex-pwa-pwa-fitness-evaluation", "to_id": "vertex-pwa-anti-pattern-detection", "label": "RELATED", "strength": 0.7, "transfer_coefficient": 0.5},
+
+      {"from_id": "vertex-pwa-sw-cdn-interaction", "to_id": "vertex-pwa-update-flow-design", "label": "REINFORCEMENT", "strength": 0.75},
+      {"from_id": "vertex-pwa-anti-pattern-detection", "to_id": "vertex-pwa-pwa-fitness-evaluation", "label": "REINFORCEMENT", "strength": 0.85},
+      {"from_id": "vertex-pwa-caching-strategy-selection", "to_id": "vertex-pwa-performance-budgeting", "label": "REINFORCEMENT", "strength": 0.7},
+      {"from_id": "vertex-pwa-htmx-pwa-tension", "to_id": "vertex-pwa-offline-strategy-design", "label": "REINFORCEMENT", "strength": 0.7},
+      {"from_id": "vertex-pwa-sw-http-cache-alignment", "to_id": "vertex-pwa-anti-pattern-detection", "label": "REINFORCEMENT", "strength": 0.75}
+    ]
+  },
+
+  "frequency_analysis": {
+    "distribution_type": "75/25",
+    "coverage_thresholds": [
+      {"component_percentage": 25, "competence_coverage": 60},
+      {"component_percentage": 45, "competence_coverage": 80},
+      {"component_percentage": 70, "competence_coverage": 95}
+    ],
+    "gateway_nodes": [
+      "vertex-pwa-http-caching-fundamentals",
+      "vertex-pwa-service-worker-lifecycle",
+      "vertex-pwa-caching-strategy-selection",
+      "vertex-pwa-offline-strategy-design"
+    ],
+    "analysis_notes": "This is a 75/25 domain for the learner's stated goal (architectural evaluation, not implementation). The top 5 components (HTTP caching fundamentals, service worker lifecycle, caching strategy selection, offline strategy design, and PWA fitness evaluation) cover roughly 60% of the decision-making competence needed. Adding the cache layer interaction skills (SW+CDN, SW+HTTP cache), htmx tension analysis, and anti-pattern detection gets to ~80%. The remaining components (WASM, push, background sync, performance budgeting, manifest details) are situationally important but not core to the evaluation skill. The gateway nodes are HTTP caching fundamentals and service worker lifecycle — everything downstream depends on these two being solid."
+  },
+
+  "transfer_pathways": [
+    {
+      "source_domain": "Python backend development",
+      "target_vertex_id": "vertex-pwa-http-caching-fundamentals",
+      "similarity_score": 0.75,
+      "transfer_type": "moderate",
+      "description": "Backend developers understand HTTP request/response mechanics from the server side. The concepts of Cache-Control headers and conditional requests transfer well, but the client-side perspective (how the browser interprets and acts on these headers) is new.",
+      "recommended_action": "accelerated_path"
+    },
+    {
+      "source_domain": "Python backend development",
+      "target_vertex_id": "vertex-pwa-browser-request-lifecycle",
+      "similarity_score": 0.65,
+      "transfer_type": "far",
+      "description": "Understanding of server-side request processing provides a foundation, but the browser-side lifecycle (memory cache → SW → HTTP cache → CDN → origin) is a different mental model. The server-side view is 'receive request, generate response' — the browser-side view is 'multiple cache layers before the request even reaches the server.'",
+      "recommended_action": "probe_first"
+    },
+    {
+      "source_domain": "Software architecture evaluation",
+      "target_vertex_id": "vertex-pwa-pwa-fitness-evaluation",
+      "similarity_score": 0.85,
+      "transfer_type": "moderate",
+      "description": "Strong existing tradeoff analysis skills transfer directly. The learner already knows how to evaluate technology decisions — they just need the PWA-specific criteria and failure modes to populate their evaluation framework.",
+      "recommended_action": "accelerated_path"
+    },
+    {
+      "source_domain": "Software architecture evaluation",
+      "target_vertex_id": "vertex-pwa-migration-cost-assessment",
+      "similarity_score": 0.8,
+      "transfer_type": "moderate",
+      "description": "Migration assessment is a general skill the learner already has. The PWA-specific dimensions (what changes in caching, offline support complexity, architectural conflicts) are new content to plug into an existing evaluation framework.",
+      "recommended_action": "accelerated_path"
+    },
+    {
+      "source_domain": "htmx",
+      "target_vertex_id": "vertex-pwa-htmx-pwa-tension",
+      "similarity_score": 0.9,
+      "transfer_type": "near",
+      "description": "Deep understanding of htmx's server-rendered philosophy means the learner already has one side of the tension well-understood. They can rapidly grasp the architectural conflict because they intimately know the htmx side.",
+      "recommended_action": "auto_boost"
+    },
+    {
+      "source_domain": "htmx",
+      "target_vertex_id": "vertex-pwa-app-shell-pattern",
+      "similarity_score": 0.7,
+      "transfer_type": "negative_risk",
+      "description": "The htmx mental model (server owns rendering, send HTML fragments) conflicts with the app shell pattern (client owns layout shell, fill with dynamic data). This is a productive tension but there's risk of the learner dismissing app shell as 'wrong' rather than understanding it as a different architectural trade-off.",
+      "recommended_action": "contrast_instruction"
+    },
+    {
+      "source_domain": "LLM-assisted development",
+      "target_vertex_id": "vertex-pwa-anti-pattern-detection",
+      "similarity_score": 0.75,
+      "transfer_type": "moderate",
+      "description": "Already experienced at reviewing LLM-generated code. The code evaluation skill transfers; what's needed is the PWA-specific vocabulary of anti-patterns (what to look for in service worker code specifically).",
+      "recommended_action": "accelerated_path"
+    },
+    {
+      "source_domain": "CDNs",
+      "target_vertex_id": "vertex-pwa-sw-cdn-interaction",
+      "similarity_score": 0.65,
+      "transfer_type": "far",
+      "description": "Working understanding of CDN concepts provides a foundation, but the specific interaction between SW caching and CDN edge caching (the double-cache problem, invalidation coordination) is new territory.",
+      "recommended_action": "probe_first"
+    },
+    {
+      "source_domain": "TypeScript",
+      "target_vertex_id": "vertex-pwa-workbox-and-tooling",
+      "similarity_score": 0.7,
+      "transfer_type": "moderate",
+      "description": "TypeScript familiarity means the tooling ecosystem (npm, build tools, Workbox integration) will be familiar. The learner can read and evaluate Workbox-based code comfortably.",
+      "recommended_action": "accelerated_path"
+    }
+  ],
+
+  "failure_points": [
+    {
+      "type": "beginner_mistake",
+      "description": "Treating PWA as all-or-nothing: either you go full offline-first or you don't do PWA at all. In reality, PWA is a spectrum — you can adopt manifest + basic SW for installability without committing to offline-first architecture.",
+      "typical_timing": "Week 1",
+      "affected_vertices": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-offline-strategy-design"],
+      "mitigation": "Present the PWA feature spectrum early. Show that many successful PWAs use only manifest + basic caching + push, without full offline support."
+    },
+    {
+      "type": "beginner_mistake",
+      "description": "Confusing caching layers: thinking that setting Cache-Control headers is sufficient, or that the service worker cache and HTTP cache are the same thing. This leads to unpredictable caching behavior.",
+      "typical_timing": "Week 1-2",
+      "affected_vertices": ["vertex-pwa-http-caching-fundamentals", "vertex-pwa-browser-request-lifecycle", "vertex-pwa-sw-http-cache-alignment"],
+      "mitigation": "Teach the full request lifecycle diagram early with all layers explicitly labeled. Use concrete trace-through exercises."
+    },
+    {
+      "type": "beginner_mistake",
+      "description": "Writing service workers by hand instead of using Workbox. Hand-written SWs miss edge cases that have been solved in Workbox over years of production use. LLMs often generate hand-written SWs because training data includes many tutorials that predate Workbox maturity.",
+      "typical_timing": "When first evaluating LLM-generated code",
+      "affected_vertices": ["vertex-pwa-workbox-and-tooling", "vertex-pwa-anti-pattern-detection"],
+      "mitigation": "Establish Workbox as the default expectation. When reviewing hand-written SW code, the first question should be 'why not Workbox?'"
+    },
+    {
+      "type": "plateau",
+      "description": "Can recite caching strategies but can't select the right one for a novel situation. The learner knows cache-first vs network-first definitions but freezes when given a real application with mixed content types and unclear requirements.",
+      "typical_timing": "After initial learning, before sufficient practice with varied scenarios",
+      "affected_vertices": ["vertex-pwa-caching-strategy-selection", "vertex-pwa-offline-strategy-design"],
+      "mitigation": "Case-based practice with diverse applications. Present 5-8 different application profiles and require strategy selection with reasoning. Interleave rather than block."
+    },
+    {
+      "type": "strategy_transition",
+      "description": "Moving from 'understanding components' to 'evaluating whole architectures.' The learner understands each PWA component individually but struggles to integrate them into a coherent architectural assessment. This requires shifting from component thinking to systems thinking.",
+      "typical_timing": "Week 2-3",
+      "affected_vertices": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-migration-cost-assessment"],
+      "mitigation": "Introduce whole-architecture evaluation exercises early (even before all components are mastered). Use the learner's own apps as evaluation targets."
+    },
+    {
+      "type": "illusion_of_competence",
+      "description": "Over-confidence in caching understanding after learning the five strategies. The named strategies (cache-first, network-first, etc.) feel complete, but the real complexity is in the interactions between layers (SW + HTTP cache + CDN) and edge cases (opaque responses, storage quotas, update races).",
+      "typical_timing": "After learning caching strategies, before encountering multi-layer complexity",
+      "affected_vertices": ["vertex-pwa-caching-strategy-selection", "vertex-pwa-sw-cdn-interaction", "vertex-pwa-sw-http-cache-alignment"],
+      "mitigation": "After teaching the five strategies, immediately present a scenario where the 'right' strategy produces unexpected results due to HTTP cache interaction. This punctures the illusion productively."
+    },
+    {
+      "type": "illusion_of_competence",
+      "description": "Assuming htmx knowledge automatically makes PWA evaluation easy. The learner's strong server-rendered mental model can create blind spots — they may too quickly dismiss PWA patterns that are genuinely valuable in client-heavy applications, or underestimate the legitimate use cases for app shell architecture.",
+      "typical_timing": "Throughout, especially in evaluation exercises",
+      "affected_vertices": ["vertex-pwa-htmx-pwa-tension", "vertex-pwa-app-shell-pattern", "vertex-pwa-pwa-fitness-evaluation"],
+      "mitigation": "Present cases where PWA is clearly the right choice (e.g., field worker app, content consumption app) alongside cases where htmx wins. Force the learner to argue FOR PWA even when their instinct says htmx."
+    }
+  ],
+
+  "research_sources": [
+    {
+      "type": "web_resource",
+      "title": "Progressive web apps - MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps",
+      "notes": "Canonical reference for PWA concepts, APIs, and best practices. Used for component definitions and API details."
+    },
+    {
+      "type": "web_resource",
+      "title": "Service worker caching and HTTP caching - web.dev",
+      "url": "https://web.dev/articles/service-worker-caching-and-http-caching",
+      "notes": "Key source for understanding the interaction between SW cache and HTTP cache layers. Informed the cache alignment component and the double-cache failure point."
+    },
+    {
+      "type": "web_resource",
+      "title": "Stuff I wish I'd known sooner about service workers - Rich Harris",
+      "url": "https://gist.github.com/Rich-Harris/fd6c3c73e6e707e312d7c5d7d0f3b2f9",
+      "notes": "Expert perspective on service worker pitfalls from the creator of Svelte. Informed failure points and anti-pattern catalog."
+    },
+    {
+      "type": "web_resource",
+      "title": "Caching strategies overview - Workbox (Chrome for Developers)",
+      "url": "https://developer.chrome.com/docs/workbox/caching-strategies-overview",
+      "notes": "Authoritative source on Workbox strategies. Used for caching strategy component and tooling evaluation."
+    },
+    {
+      "type": "web_resource",
+      "title": "Caching - web.dev PWA Learning",
+      "url": "https://web.dev/learn/pwa/caching",
+      "notes": "Google's PWA course module on caching. Used for Cache API mechanics and strategy selection."
+    },
+    {
+      "type": "web_resource",
+      "title": "Building a PWA at Google, part 1 - web.dev",
+      "url": "https://web.dev/building-a-pwa-at-google-part-1/",
+      "notes": "Real-world migration case study from Google's Bulletin team. Informed migration assessment and anti-pattern components."
+    },
+    {
+      "type": "web_resource",
+      "title": "Only 37% of PWAs implement service workers - PWA Builder Blog",
+      "url": "https://blog.pwabuilder.com/posts/only-37percent-of-pwas-implement-service-workers-a-quick-review-of-the-pwa-ecosystem/",
+      "notes": "Ecosystem analysis showing most PWAs are minimal (manifest-only). Informed the spectrum view of PWA adoption."
+    },
+    {
+      "type": "web_resource",
+      "title": "htmx-offline - GitHub",
+      "url": "https://github.com/mvolkmann/htmx-offline",
+      "notes": "Example of htmx offline PWA implementation. Informed the htmx-PWA tension analysis."
+    },
+    {
+      "type": "web_resource",
+      "title": "WebAssembly and Progressive Web Apps: A Powerful Combination",
+      "url": "https://blog.pixelfreestudio.com/webassembly-and-progressive-web-apps-a-powerful-combination/",
+      "notes": "Overview of WASM + PWA integration patterns. Informed the WASM component."
+    },
+    {
+      "type": "web_resource",
+      "title": "Cloudflare Cache Revalidation Documentation",
+      "url": "https://developers.cloudflare.com/cache/concepts/revalidation/",
+      "notes": "CDN-specific cache behavior. Informed the SW+CDN interaction component."
+    },
+    {
+      "type": "web_resource",
+      "title": "PWA 2025 - HTTP Archive Web Almanac",
+      "url": "https://almanac.httparchive.org/en/2025/pwa",
+      "notes": "Ecosystem statistics on real-world PWA adoption and feature usage."
+    }
+  ]
+}

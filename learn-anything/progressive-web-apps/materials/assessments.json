@@ -1,0 +1,178 @@
+{
+  "assessments": [
+    {
+      "mastery_gate_id": "tc-1-foundations",
+      "bloom_level": "understand",
+      "items": [
+        {
+          "id": "assess-tc1-01",
+          "type": "cold_recall",
+          "prompt": "A user visits your PWA and the service worker intercepts a request for an image. The SW calls fetch() to go to the network. Trace the complete path this fetch request takes from the SW to the origin server, naming every cache layer it passes through.",
+          "scoring_rubric": "Must name: HTTP cache → CDN edge → origin. Full credit: explains that HTTP cache is checked first (even though SW asked for 'network'), CDN edge is next, origin is last. Partial credit: names layers but doesn't explain HTTP cache trap. No credit: skips HTTP cache or puts layers in wrong order.",
+          "vertex_ids": ["vertex-pwa-browser-request-lifecycle", "vertex-pwa-http-caching-fundamentals"],
+          "surface_features_varied": true,
+          "notes": "Uses an image request (not the typical HTML/API example from instruction)"
+        },
+        {
+          "id": "assess-tc1-02",
+          "type": "application_under_novelty",
+          "prompt": "A developer deploys a fix to their PWA service worker at 2pm. At 3pm, a user reports the bug is still present. The user has had the PWA open in a tab since morning. Explain step-by-step why the user hasn't received the fix, and what must happen for them to get it.",
+          "scoring_rubric": "Must explain: (1) Browser checks for SW updates on navigation (not continuously), (2) Even if new SW is downloaded, it enters waiting state because old tabs are open, (3) User must close ALL tabs and reopen for new SW to activate. Full credit if also mentions the 24-hour auto-check cycle and that the user's tab being open since morning means no navigation = no update check.",
+          "vertex_ids": ["vertex-pwa-service-worker-lifecycle"],
+          "surface_features_varied": true,
+          "notes": "Novel scenario: bug still present despite deploy — tests understanding of waiting state in a debugging context"
+        },
+        {
+          "id": "assess-tc1-03",
+          "type": "explain_to_teach",
+          "prompt": "A junior developer asks: 'Why can't we just use Cache-Control headers for everything? Why do we need a service worker at all?' Explain in a way that makes the value of the SW layer clear compared to HTTP caching alone.",
+          "scoring_rubric": "Must cover: (1) HTTP cache is automatic/opaque — no programmatic control, (2) SW gives full control: decide per-request what to cache, when to serve from cache, when to go to network, (3) SW enables offline functionality (HTTP cache alone can't serve custom offline pages), (4) SW enables background sync, push notifications. Full credit includes a concrete example showing SW flexibility that HTTP cache can't match.",
+          "vertex_ids": ["vertex-pwa-http-caching-fundamentals", "vertex-pwa-service-worker-lifecycle"],
+          "surface_features_varied": true,
+          "notes": "Explain-to-teach format tests conceptual understanding through teaching"
+        }
+      ]
+    },
+    {
+      "mastery_gate_id": "tc-2-caching-strategy",
+      "bloom_level": "analyze",
+      "items": [
+        {
+          "id": "assess-tc2-01",
+          "type": "cold_recall",
+          "prompt": "You have a PWA with a network-first caching strategy for HTML pages. The origin server is behind a CDN with a 10-minute TTL. You deploy new HTML at time T=0. Walk through exactly what happens when a user visits at T=5 minutes, including all cache layers. When will they see the new content?",
+          "scoring_rubric": "Must trace: SW network-first → fetch() → HTTP cache (check max-age) → CDN edge (TTL still valid at T=5) → CDN serves old HTML. User does NOT see new content at T=5. They see it after CDN TTL expires (T=10+) AND the next SW network-first fetch occurs. Full credit: identifies that even network-first can serve stale via CDN. Bonus: mentions fetch({ cache: 'reload' }) to bypass HTTP cache but notes it can't bypass CDN.",
+          "vertex_ids": ["vertex-pwa-caching-strategy-selection", "vertex-pwa-sw-cdn-interaction"],
+          "surface_features_varied": true,
+          "notes": "Tests the multi-layer staleness concept with specific timing"
+        },
+        {
+          "id": "assess-tc2-02",
+          "type": "application_under_novelty",
+          "prompt": "You're reviewing a caching configuration for a recipe-sharing PWA. The team has assigned: cache-first for recipe pages (/recipes/*), stale-while-revalidate for user profiles (/users/*), network-only for the recipe submission form POST. The recipe pages include user-editable ingredients lists that update when users submit corrections. Identify the problem and propose a fix.",
+          "scoring_rubric": "Must identify: cache-first for recipe pages is dangerous because the pages are mutable (ingredients are user-editable). Cache-first will serve stale recipes forever, potentially showing incorrect ingredient quantities. Fix: switch to SWR or network-first for recipe pages. Full credit includes: noting that content-hashed URLs would make cache-first safe (but recipe pages don't have content-hashed URLs), suggesting ExpirationPlugin as additional safety.",
+          "vertex_ids": ["vertex-pwa-caching-strategy-selection", "vertex-pwa-sw-http-cache-alignment"],
+          "surface_features_varied": true,
+          "notes": "Novel domain (recipes, not the typical SPA/htmx examples). Tests cache-first misuse detection."
+        },
+        {
+          "id": "assess-tc2-03",
+          "type": "explain_to_teach",
+          "prompt": "A colleague says: 'I set my service worker to network-first for API calls, so I'm guaranteed to always get fresh data from the server.' Explain why this isn't true, using a concrete example of how they could get stale data despite network-first.",
+          "scoring_rubric": "Must explain the HTTP cache trap: SW's fetch() passes through the browser HTTP cache before reaching the network. If API responses have Cache-Control headers with max-age > 0, the 'network' response actually comes from the HTTP cache. Concrete example required. Full credit: also mentions CDN as a second source of staleness, and provides the fix (fetch({ cache: 'reload' })).",
+          "vertex_ids": ["vertex-pwa-sw-http-cache-alignment"],
+          "surface_features_varied": true,
+          "notes": "Directly tests the productive failure concept"
+        },
+        {
+          "id": "assess-tc2-04",
+          "type": "application_under_novelty",
+          "prompt": "Evaluate the app shell pattern for a multi-language documentation site (Next.js, 4 languages, 500+ pages). The navigation sidebar and header are identical across all pages; only the content area changes. The site is deployed behind Cloudflare CDN. Should they use the App Shell pattern? Analyze tradeoffs.",
+          "scoring_rubric": "Strong answer considers: (1) App Shell fits because shell (nav + header) IS identical and cacheable, (2) But 500+ pages means precaching all content is impractical — need runtime caching for content, (3) Multi-language adds complexity: different shell text per language (4 variants to precache?), (4) CDN already provides fast delivery — does App Shell add meaningful value? (5) If using SSR/ISR, App Shell conflicts with server rendering. Full credit: arrives at a nuanced recommendation (not just yes/no).",
+          "vertex_ids": ["vertex-pwa-app-shell-pattern", "vertex-pwa-sw-cdn-interaction"],
+          "surface_features_varied": true,
+          "notes": "Novel scenario: multi-language docs site tests App Shell analysis beyond simple SPA vs MPA"
+        }
+      ]
+    },
+    {
+      "mastery_gate_id": "tc-3-evaluation-framework",
+      "bloom_level": "evaluate",
+      "items": [
+        {
+          "id": "assess-tc3-01",
+          "type": "cold_recall",
+          "prompt": "Produce a PWA fitness evaluation for a veterinary clinic management system: appointment scheduling, patient records (animal health histories), prescription tracking. Used by clinic staff on tablets, sometimes in rural areas with poor connectivity. Built with Django + htmx. Walk through all 5 dimensions of the evaluation framework.",
+          "scoring_rubric": "Must cover all 5 dimensions with correct analysis. Key judgments: (1) Offline Tier 2 appropriate (view existing records offline), Tier 3 impractical with htmx; (2) iOS storage eviction manageable for Tier 2; (3) Update flow medium criticality (prescription data freshness matters); (4) htmx architecture compatible with Tier 2 but not App Shell; (5) Moderate value — viewing records in poor connectivity is genuinely useful. Final recommendation should be progressive enhancement GO with specific features. Full credit: identifies prescription data freshness as a safety concern for caching strategy.",
+          "vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-offline-strategy-design", "vertex-pwa-htmx-pwa-tension", "vertex-pwa-platform-constraints"],
+          "surface_features_varied": true,
+          "notes": "Novel domain (veterinary), htmx architecture, safety-sensitive data (prescriptions)"
+        },
+        {
+          "id": "assess-tc3-02",
+          "type": "application_under_novelty",
+          "prompt": "Two apps need PWA evaluation:\n\nApp A: A government benefits application portal. Citizens fill multi-step forms, upload documents, and check application status. React SPA, mostly used on mobile phones. Some users are in areas with unreliable internet.\n\nApp B: A live sports scores app. Real-time updates via WebSocket, push notifications for game events. React SPA, used on phones during games.\n\nEvaluate both. For the one you'd recommend PWA for, specify the tier and key features. For the one you wouldn't (or would limit), explain why.",
+          "scoring_rubric": "App A: Strong GO — Tier 2-3 depending on form complexity. Offline reading of application status, form drafts saved locally, document upload queued. iOS storage eviction is a concern for draft form data — needs aggressive sync. Push for status updates. App B: Limited GO — Tier 1 max. Real-time scores meaningless offline. But push notifications are the killer PWA feature here. Installability adds value for sports fans. Don't invest in caching scores (stale scores are worse than no scores). Full credit: identifies that App A and B have DIFFERENT primary PWA value props (offline vs push+install).",
+          "vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-offline-strategy-design", "vertex-pwa-platform-constraints"],
+          "surface_features_varied": true,
+          "notes": "Discrimination pair: two apps with different PWA value props"
+        },
+        {
+          "id": "assess-tc3-03",
+          "type": "explain_to_teach",
+          "prompt": "A product manager asks: 'We have an htmx app. Our competitor has a native app. Can we make our app a PWA to match their offline capabilities?' Draft a response that's honest about what's achievable and what isn't, using the htmx-PWA compatibility spectrum.",
+          "scoring_rubric": "Must: (1) Explain the compatibility spectrum (not all-or-nothing), (2) Be specific about what htmx CAN do with PWA (install, offline reading, push, basic SW POST queue), (3) Be honest about what htmx CAN'T do (full offline-first, App Shell, offline content creation), (4) Provide a concrete recommendation with effort estimates, (5) Address the competitor comparison fairly — native app has advantages for deep offline but PWA closes the gap for common use cases. Full credit: frames it as 'progressive enhancement' rather than 'PWA vs not-PWA'.",
+          "vertex_ids": ["vertex-pwa-htmx-pwa-tension", "vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-migration-cost-assessment"],
+          "surface_features_varied": true,
+          "notes": "Stakeholder communication format — tests ability to translate technical analysis into business advice"
+        }
+      ]
+    },
+    {
+      "mastery_gate_id": "tc-4-quality-detection",
+      "bloom_level": "evaluate",
+      "items": [
+        {
+          "id": "assess-tc4-01",
+          "type": "cold_recall",
+          "prompt": "You're reviewing this service worker code generated by an LLM. List every anti-pattern you find and explain the consequence of each:\n\n```js\nself.addEventListener('install', (e) => {\n  self.skipWaiting();\n  e.waitUntil(\n    caches.open('app-cache').then(cache =>\n      cache.addAll(['/index.html', '/app.js', '/style.css', '/logo.png',\n        '/about.html', '/contact.html', '/images/hero.jpg',\n        '/images/team.jpg', '/fonts/inter.woff2'])\n    )\n  );\n});\n\nself.addEventListener('fetch', (e) => {\n  e.respondWith(\n    caches.match(e.request).then(r => r || fetch(e.request)\n      .then(res => {\n        caches.open('app-cache').then(c => c.put(e.request, res.clone()));\n        return res;\n      })\n    ).catch(() => caches.match('/index.html'))\n  );\n});\n```",
+          "scoring_rubric": "Anti-patterns to identify: (1) Unconditional skipWaiting — breaks open tabs, (2) Single cache for everything ('app-cache') — can't manage independently, (3) No versioned cache naming — can't clean up on deploy, (4) Cache-first-then-network for ALL requests (cache.match first) — stale for dynamic content, (5) Caches all network responses indiscriminately (no URL filtering) — bloats cache, (6) Catch-all returns index.html for all failures — masks API errors and serves HTML for image/JS failures, (7) No ExpirationPlugin/limit — unbounded growth, (8) No cache cleanup in activate (no activate handler at all). Full credit: 6+ anti-patterns with consequences. Bonus: suggests Workbox-based rewrite.",
+          "vertex_ids": ["vertex-pwa-anti-pattern-detection", "vertex-pwa-workbox-and-tooling"],
+          "surface_features_varied": true,
+          "notes": "Real-looking LLM-generated code with multiple embedded anti-patterns"
+        },
+        {
+          "id": "assess-tc4-02",
+          "type": "application_under_novelty",
+          "prompt": "A team shows you their Workbox configuration for an e-commerce PWA. They report that after deploying a price change, some users see old prices for hours. The relevant config:\n\n```js\nregisterRoute(\n  ({url}) => url.pathname.startsWith('/api/products'),\n  new NetworkFirst({ cacheName: 'api-cache', networkTimeoutSeconds: 3 })\n);\n```\n\nTheir API server sets `Cache-Control: max-age=3600`. CDN TTL is 5 minutes. Diagnose the stale price issue and propose a fix.",
+          "scoring_rubric": "Must identify: NetworkFirst Workbox strategy calls fetch() which hits HTTP cache first. With max-age=3600, the HTTP cache serves stale prices for up to 1 hour. Even CDN purge doesn't help because the HTTP cache is local. Fix: add fetchOptions: { cache: 'reload' } to the Workbox NetworkFirst strategy OR change the API server's Cache-Control to no-store/no-cache. Full credit: identifies BOTH the HTTP cache layer AND the CDN 5-minute TTL as sources of staleness, and proposes fixes for both.",
+          "vertex_ids": ["vertex-pwa-anti-pattern-detection", "vertex-pwa-performance-budgeting", "vertex-pwa-sw-http-cache-alignment"],
+          "surface_features_varied": true,
+          "notes": "Novel domain (e-commerce prices), uses Workbox (not raw SW), requires multi-layer analysis"
+        },
+        {
+          "id": "assess-tc4-03",
+          "type": "explain_to_teach",
+          "prompt": "Write the 'PWA review checklist' section you would add to your team's PR review guidelines. It should be concise enough that a developer can use it in 5 minutes during code review, but thorough enough to catch the most impactful issues. Target audience: developers who are not PWA experts.",
+          "scoring_rubric": "Must include: (1) Is Workbox/Serwist used? (2) skipWaiting check, (3) Cache separation check, (4) fetchOptions for network strategies, (5) Cache cleanup in activate, (6) ExpirationPlugin presence, (7) Tooling currency check. Full credit: organized for quick scanning (not a wall of text), includes 'what to look for' and 'why it matters' for each item, practical for non-experts.",
+          "vertex_ids": ["vertex-pwa-anti-pattern-detection", "vertex-pwa-workbox-and-tooling", "vertex-pwa-migration-cost-assessment"],
+          "surface_features_varied": true,
+          "notes": "Practical output format — tests ability to synthesize review knowledge into an actionable artifact"
+        }
+      ]
+    },
+    {
+      "mastery_gate_id": "tc-5-extended-mastery",
+      "bloom_level": "evaluate",
+      "items": [
+        {
+          "id": "assess-tc5-01",
+          "type": "cold_recall",
+          "prompt": "A data visualization company wants to build a PWA that processes satellite imagery client-side using WASM (image classification ML model). Users are field researchers in remote areas. They need: offline image processing, push notifications for new satellite data availability, and background sync of classification results. Evaluate this application across all dimensions including the advanced topics.",
+          "scoring_rubric": "Must address: (1) WASM caching (large .wasm binary, cache-first with content-hash, storage quota check), (2) Offline strategy Tier 3 (genuine offline compute use case, WASM enables it), (3) Push for data availability alerts (check iOS limitations — field researchers may use iPhones), (4) Background sync for results upload (iOS fallback needed), (5) Platform constraints (storage for large WASM + image data), (6) Architecture fit (SPA required for WASM integration). Full credit: produces a nuanced recommendation that accounts for platform differences.",
+          "vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-wasm-in-pwa-context", "vertex-pwa-push-notifications-architecture", "vertex-pwa-background-sync"],
+          "surface_features_varied": true,
+          "notes": "Integrates all advanced topics into a single evaluation"
+        },
+        {
+          "id": "assess-tc5-02",
+          "type": "application_under_novelty",
+          "prompt": "Evaluate THREE apps quickly (2-3 minutes each, rapid judgment):\n\n1. A habit-tracking app (React, used daily, simple CRUD, users want streaks visible offline)\n2. A restaurant POS system (htmx, requires real-time order sync between terminals)\n3. A field research notebook (Next.js static export, used in remote locations, text + photos + GPS coordinates)\n\nFor each: go/no-go, tier, and the single most important PWA feature.",
+          "scoring_rubric": "App 1: GO, Tier 2-3, key feature: offline reading of streaks + habit check-ins queued offline. App 2: LIMITED GO, Tier 0-1, key feature: installability only — real-time sync makes offline meaningless, htmx limits offline capability anyway. App 3: STRONG GO, Tier 3, key feature: offline data collection (static export = SPA architecture, perfect for offline-first). Full credit: rapid, decisive evaluations with clear reasoning. No waffling.",
+          "vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-migration-cost-assessment"],
+          "surface_features_varied": true,
+          "notes": "Speed assessment — tests pattern recognition and rapid judgment"
+        },
+        {
+          "id": "assess-tc5-03",
+          "type": "explain_to_teach",
+          "prompt": "Your CTO asks: 'We have 5 apps in our portfolio. Should we make them all PWAs? What's our PWA strategy?' Draft a framework for portfolio-level PWA decision-making that the CTO can use to evaluate any current or future app.",
+          "scoring_rubric": "Must include: (1) A decision tree or heuristic that's general enough for any app, (2) Criteria for quick screening (connectivity needs, audience platforms, architecture), (3) Investment tiers (add-on, caching, offline-capable, full migration) with effort estimates, (4) Portfolio-level considerations (shared SW libraries, consistent UX, maintenance burden). Full credit: produces a reusable framework, not just advice about the 5 apps. Demonstrates systems thinking about PWA as an organizational capability.",
+          "vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-migration-cost-assessment", "vertex-pwa-platform-constraints"],
+          "surface_features_varied": true,
+          "notes": "Strategic/leadership communication format — highest-level synthesis"
+        }
+      ]
+    }
+  ]
+}

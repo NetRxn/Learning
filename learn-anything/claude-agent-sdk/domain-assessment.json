@@ -1,0 +1,91 @@
+{
+  "id": "c4a40ef0-1947-41f9-8b47-898226c079fb",
+  "created_at": "2026-03-12T12:00:00Z",
+  "skill_classification": {
+    "target_skill": "Claude Agent SDK — full expertise in primitives, architecture, testing, observability, integration with Claude Code ecosystem and Postgres/AGE/pgvector, plus a system for tracking rapid SDK evolution",
+    "skill_type": "hybrid",
+    "skill_type_secondary": ["cognitive_higher", "cognitive_lower"],
+    "environment_type": "mostly_kind",
+    "blooms_ceiling": "evaluate",
+    "modularity": "moderately_modular",
+    "tacit_knowledge_ratio": "moderate",
+    "classification_confidence": "high",
+    "classification_notes": "Primary cognitive_higher: architectural reasoning, tradeoff evaluation, design decisions for agent systems. Secondary cognitive_lower: API surface memorization, configuration patterns, tool schemas. Environment is mostly_kind because SDK behavior is deterministic and testable, but agent behavior at runtime introduces ambiguity. Tacit knowledge is moderate — best practices for prompt engineering within agents, debugging emergent agent behaviors, and knowing when to use which primitive involve pattern recognition built through practice."
+  },
+  "learner_profile": {
+    "related_experience": [
+      {
+        "domain": "Python programming",
+        "level": "expert",
+        "description": "Expert-level Python — primary language for backend, data, and systems work",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "Claude / Claude Code daily usage",
+        "level": "advanced",
+        "description": "~8 hours daily for approximately a year. Deep familiarity with Claude Code CLI, plugins, skills, ~/.claude configuration, prompt engineering patterns",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "Claude plugins & skills ecosystem",
+        "level": "advanced",
+        "description": "Heavy user of ecosystem plugins, has customized plugins and skills. Understands the skill/plugin abstraction layer sitting on top of the Agent SDK",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "LangChain / LangGraph",
+        "level": "intermediate",
+        "description": "Prior experience with competing agent framework — provides mental models for agent orchestration, tool use, state management, and graph-based workflows",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "PostgreSQL / AGE / pgvector",
+        "level": "advanced",
+        "description": "Production database experience with graph (AGE) and vector (pgvector) extensions — key integration target for agent systems",
+        "transfer_potential": "moderate"
+      },
+      {
+        "domain": "Backend / systems architecture",
+        "level": "advanced",
+        "description": "Strong backend and data systems background with some full-stack projects",
+        "transfer_potential": "high"
+      }
+    ],
+    "frameworks_and_vocabulary": [
+      "Agent/tool/prompt abstractions from LangChain/LangGraph",
+      "Claude API concepts: messages, tools, system prompts, streaming",
+      "MCP (Model Context Protocol) — tool servers, resources",
+      "Claude Code internals: ~/.claude config, CLAUDE.md, hooks, permissions",
+      "Graph data modeling (AGE/property graphs) and vector similarity (pgvector)",
+      "Software architecture patterns: modularity, observability, testability"
+    ],
+    "learning_experience": "experienced_self_directed",
+    "constraints": {
+      "time_per_day_minutes": 150,
+      "days_per_week": 7,
+      "total_timeframe": "2-3 weeks intensive",
+      "equipment_access": "Full development environment, Claude Pro/API access, existing Postgres stack",
+      "environment_notes": "Learning while actively building portfolio projects — can immediately apply new knowledge to real codebases"
+    },
+    "purpose": "Develop deep expertise in the Claude Agent SDK to power portfolio projects, integrate with Postgres/AGE/pgvector stack, and build a systematic process for staying current as the SDK evolves rapidly. Serve as an informed architect who can evaluate tradeoffs for developers, stakeholders, and users.",
+    "desired_competence_level": "advanced_practitioner"
+  },
+  "approach_strategy": {
+    "instructional_approach": "whole_task_4cid",
+    "approach_rationale": "The learner's goal requires architectural reasoning, tradeoff evaluation, and integration design — not just API surface knowledge. Whole-task 4C/ID is the right fit because: (1) they need to work with the full agent lifecycle from day one (not isolated components), (2) their existing LangChain/Claude Code experience means they can handle complex tasks early with scaffolding, (3) the integration with their database stack demands systems-level thinking that only emerges in whole-task practice. The heavy transfer potential from their existing experience means we can start at high complexity with selective scaffolding rather than building from basics.",
+    "short_term_plan_summary": "In 2-3 weeks, you'll have: (1) Mastery of all SDK primitives — agents, tools, handoffs, guardrails, tracing, context management — with clear mental models for when/why to use each. (2) A working integration pattern for Agent SDK ↔ Postgres/AGE/pgvector that you can replicate across projects. (3) A testing and observability framework for your agents — structured approaches to unit testing tool calls, integration testing agent flows, and monitoring production behavior. (4) A personal 'SDK changelog radar' system — a repeatable process for tracking SDK releases, evaluating breaking changes, and integrating new features. (5) Architectural fluency to explain tradeoffs to technical and non-technical stakeholders.",
+    "extended_roadmap_summary": "Beyond the initial sprint: (1) Contribute to the ecosystem — build and publish plugins/tools that leverage your deep understanding. (2) Multi-agent orchestration patterns — complex workflows with agent handoffs, shared state, and error recovery. (3) Performance optimization — token efficiency, latency reduction, cost modeling for production agent systems. (4) Advanced observability — custom tracing, anomaly detection in agent behavior, A/B testing agent configurations.",
+    "domain_specific_adaptations": [
+      "SDK is evolving rapidly — the curriculum must include meta-skills for tracking changes, not just current-state knowledge. We'll build a 'changelog radar' workflow early.",
+      "Heavy emphasis on code-based learning — every concept gets implemented in a real project context, not just studied abstractly.",
+      "Integration-first: your Postgres/AGE/pgvector stack is the integration target throughout, so exercises build toward real architectural patterns you'll reuse.",
+      "Contrast with LangChain/LangGraph throughout — leverage your existing mental models by explicitly mapping 'in LangChain this was X, in Agent SDK it's Y and here's why'.",
+      "Claude Code ecosystem context: connect SDK primitives to the plugin/skill/hook layer you already know well, showing how they compose.",
+      "Observability and testing treated as first-class topics, not afterthoughts — given your explicit goal of improving these."
+    ]
+  },
+  "identity_frame": {
+    "identity_statement": "You're becoming a Claude Agent SDK architect — someone who doesn't just use the SDK but understands its design philosophy, evaluates its tradeoffs, and builds systems that evolve with it.",
+    "purpose_connection": "This connects directly to your portfolio projects and your role as someone who bridges deep technical implementation with architectural decision-making for stakeholders. You're building the expertise to be the person teams turn to when they need to know how to build, test, and scale agent systems on Claude."
+  }
+}

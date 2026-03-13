@@ -1,0 +1,378 @@
+{
+  "id": "progress-pwa-20260309-001",
+  "skill_slug": "progressive-web-apps",
+  "learner_id": "learner-netrxn-001",
+  "created_at": "2026-03-09T18:30:00Z",
+  "sessions": [
+    {
+      "session_id": "session-pwa-001",
+      "date": "2026-03-09",
+      "duration_minutes": 45,
+      "template_used": "A_concept_intro",
+      "task_class": "tc-1-foundations",
+      "task_sequence": 1,
+      "topics_covered": [
+        {
+          "vertex_id": "vertex-pwa-service-worker-lifecycle",
+          "activity_type": "concept_introduction",
+          "performance": "guided_correct",
+          "notes": "Guessed 'middleware' first (right shape), then understood SW as separate-thread persistent network interceptor. Does not yet know lifecycle phases."
+        },
+        {
+          "vertex_id": "vertex-pwa-browser-request-lifecycle",
+          "activity_type": "concept_introduction",
+          "performance": "strong",
+          "notes": "In consolidation, correctly traced full offline flow: cache reads (GET), queue writes (POST), event replay on reconnect. HTTP method as routing signal was immediate."
+        },
+        {
+          "vertex_id": "vertex-pwa-cache-api-mechanics",
+          "activity_type": "exposure",
+          "performance": "receptive",
+          "notes": "Told about Cache API vs IndexedDB vs HTTP cache. Accepted and understood the distinction but hasn't reasoned about storage decisions independently."
+        },
+        {
+          "vertex_id": "vertex-pwa-background-sync",
+          "activity_type": "concept_introduction",
+          "performance": "strong",
+          "notes": "Independently invented the delayed-send pattern before being told its name. Connected to event sourcing for FlashcardReview sync."
+        },
+        {
+          "vertex_id": "vertex-pwa-offline-strategy-design",
+          "activity_type": "applied_analysis",
+          "performance": "strong",
+          "notes": "Applied to real app (StudyElf). Drew scope boundary (student offline, admin online). Identified event sourcing vs last-write-wins. Raised quiz security and multi-device session state as open problems."
+        },
+        {
+          "vertex_id": "vertex-pwa-pwa-fitness-evaluation",
+          "activity_type": "applied_analysis",
+          "performance": "strong",
+          "notes": "Evaluated StudyElf against PWA criteria using actual codebase. Identified use-client pattern as favorable, REST conventions as enabling, FlashcardReview as natural event log. Good architectural reasoning."
+        },
+        {
+          "vertex_id": "vertex-pwa-migration-cost-assessment",
+          "activity_type": "applied_analysis",
+          "performance": "strong",
+          "notes": "Walked through apiClient.ts and categorized impact areas by effort. Correctly identified that SW intercept means minimal apiClient changes. Identified SM-2 as portable client-side."
+        },
+        {
+          "vertex_id": "vertex-pwa-http-caching-fundamentals",
+          "activity_type": "clarification",
+          "performance": "receptive",
+          "notes": "Clarified HTTP cache vs Cache API distinction. Small advance."
+        }
+      ],
+      "retrieval_probes": [],
+      "mastery_transitions": [
+        {
+          "vertex_id": "vertex-pwa-service-worker-lifecycle",
+          "from": "not_started",
+          "to": "attempted"
+        },
+        {
+          "vertex_id": "vertex-pwa-cache-api-mechanics",
+          "from": "not_started",
+          "to": "attempted"
+        },
+        {
+          "vertex_id": "vertex-pwa-background-sync",
+          "from": "not_started",
+          "to": "attempted"
+        },
+        {
+          "vertex_id": "vertex-pwa-offline-strategy-design",
+          "from": "attempted",
+          "to": "familiar"
+        },
+        {
+          "vertex_id": "vertex-pwa-pwa-fitness-evaluation",
+          "from": "attempted",
+          "to": "familiar"
+        }
+      ],
+      "difficulty_observations": {
+        "zone_start": "zpd_optimal",
+        "zone_end": "zpd_optimal",
+        "adjustments": "Grounded all concepts in learner's real StudyElf codebase. This dramatically accelerated comprehension \u2014 concrete examples > abstract theory. Learner's architectural instincts are strong; the gap is PWA-specific vocabulary and mechanisms, not reasoning ability.",
+        "rolling_accuracy": 0.8,
+        "scaffold_level": 2
+      },
+      "session_summary": "Session 1 grounded the PWA mental model in StudyElf (learner's real pharmacy education app). Key breakthrough: learner walked through their actual apiClient.ts and flashcard session code to evaluate PWA fitness. Discovered their 'use client' architecture, REST conventions, and existing FlashcardReview event log are all favorable for PWA. Built the three-layer model: service worker intercepts (cache reads via GET, queue writes via POST), local storage (Cache API + IndexedDB), background sync (event replay on reconnect). Drew smart scope boundary: student study flows offline, instructor/admin online-only. Open questions for next session: SW lifecycle phases, caching strategy selection (five flavors), quiz answer security in offline mode, Next.js-specific PWA tooling.",
+      "engagement": "high",
+      "grounding_context": "Used learner's StudyElf V3 codebase throughout \u2014 flashcard session page, apiClient.ts, FlashcardReview endpoint, architecture doc. This real-app grounding was extremely effective."
+    },
+    {
+      "session_id": "session-pwa-002",
+      "date": "2026-03-10",
+      "duration_minutes": 40,
+      "template_used": "A_concept_intro",
+      "task_class": "tc-1-foundations",
+      "task_sequence": 2,
+      "topics_covered": [
+        {
+          "vertex_id": "vertex-pwa-service-worker-lifecycle",
+          "activity_type": "guided_discovery",
+          "performance": "strong",
+          "notes": "Full lifecycle understanding achieved: install \u2192 wait \u2192 activate \u2192 fetch \u2192 update. Byte-diff trigger, 24hr auto-check, skipWaiting concept. Initially conflated SW update with per-request caching but self-corrected after clarification. Understands waiting state protects mid-session users."
+        },
+        {
+          "vertex_id": "vertex-pwa-cache-api-mechanics",
+          "activity_type": "guided_discovery",
+          "performance": "strong",
+          "notes": "Mapped all five caching strategies to StudyElf resource types with correct reasoning. Cache-first for hashed assets, SWR for HTML shells, network-first for analytics dashboards, cache-only for content packs. Key insight: URL immutability (content hash) determines safe cache-first usage. Correctly identified cache-only failure mode for new users."
+        },
+        {
+          "vertex_id": "vertex-pwa-browser-request-lifecycle",
+          "activity_type": "deepening",
+          "performance": "strong",
+          "notes": "Traced full SSR \u2192 hydration \u2192 useEffect sequence. Connected to standalone vs export: server only produces empty shells for 'use client' components. This is the architectural insight that unlocked the export migration discovery."
+        },
+        {
+          "vertex_id": "vertex-pwa-http-caching-fundamentals",
+          "activity_type": "guided_discovery",
+          "performance": "guided_correct",
+          "notes": "Explored CDN caching vs SW caching interaction. Initial intuition that cache-first \u2248 SWR with CDN was corrected \u2014 understood cache-first never hits CDN for returning users. Good question about scale/performance tradeoffs showed curiosity."
+        },
+        {
+          "vertex_id": "vertex-pwa-offline-strategy-design",
+          "activity_type": "scenario_application",
+          "performance": "strong",
+          "notes": "Walked through complete offline flashcard scenario: answer (POST\u2192queue), next card (GET\u2192cache+client SM-2), performance history (GET\u2192network-first fallback). Understood staleness cost varies by content type (history ok stale, pharmacology content not)."
+        },
+        {
+          "vertex_id": "vertex-pwa-pwa-fitness-evaluation",
+          "activity_type": "deep_analysis",
+          "performance": "strong",
+          "notes": "Major architectural discovery: standalone\u2192export migration. Ran full codebase analysis confirming zero server features used. Identified elimination of Node.js container (1 CPU, 1 GB savings). CDN deployment unlocked. This emerged organically from PWA mental model questions."
+        },
+        {
+          "vertex_id": "vertex-pwa-migration-cost-assessment",
+          "activity_type": "applied_analysis",
+          "performance": "strong",
+          "notes": "Concrete migration analysis: 2 trivial code fixes, infrastructure config updates. Identified Cloudflare Pages as natural CDN fit. Understands NEXT_PUBLIC_API_URL bake-time constraint."
+        },
+        {
+          "vertex_id": "vertex-pwa-background-sync",
+          "activity_type": "retrieval_reinforcement",
+          "performance": "strong",
+          "notes": "Retrieval probe: correctly recalled event sourcing sync model. Applied in offline scenario: POST flashcard answer \u2192 IndexedDB queue."
+        }
+      ],
+      "retrieval_probes": [
+        {
+          "vertex_id": "vertex-pwa-service-worker-lifecycle",
+          "question": "What is a service worker?",
+          "response_quality": "correct",
+          "notes": "Correctly identified as network interceptor"
+        },
+        {
+          "vertex_id": "vertex-pwa-browser-request-lifecycle",
+          "question": "Event sourcing vs last-write-wins for sync?",
+          "response_quality": "correct",
+          "notes": "Correctly recalled event replay model"
+        },
+        {
+          "vertex_id": "vertex-pwa-background-sync",
+          "question": "GET vs POST routing in SW?",
+          "response_quality": "correct",
+          "notes": "GET cached reads, POST queued writes \u2014 immediate recall"
+        }
+      ],
+      "mastery_transitions": [
+        {
+          "vertex_id": "vertex-pwa-service-worker-lifecycle",
+          "from": "attempted",
+          "to": "familiar"
+        },
+        {
+          "vertex_id": "vertex-pwa-cache-api-mechanics",
+          "from": "attempted",
+          "to": "familiar"
+        },
+        {
+          "vertex_id": "vertex-pwa-browser-request-lifecycle",
+          "from": "attempted",
+          "to": "familiar"
+        },
+        {
+          "vertex_id": "vertex-pwa-http-caching-fundamentals",
+          "from": "attempted",
+          "to": "familiar"
+        }
+      ],
+      "difficulty_observations": {
+        "zone_start": "zpd_optimal",
+        "zone_end": "zpd_optimal",
+        "adjustments": "Continued grounding in StudyElf codebase. Learner's strongest mode is reasoning through concrete scenarios \u2014 the offline flashcard walkthrough produced immediate correct answers. The standalone\u2192export discovery was a high-engagement moment that validated the learning approach. CDN/caching interaction question showed good instinct even when initial answer was wrong.",
+        "rolling_accuracy": 0.85,
+        "scaffold_level": 2
+      },
+      "session_summary": "Session 2 completed TC-1 Foundations. Covered SW lifecycle (install\u2192wait\u2192activate\u2192fetch\u2192update, byte-diff trigger, skipWaiting), all five caching strategies mapped to StudyElf resource types, and the interaction between SW update cycle and per-request caching. Major architectural discovery: Next.js standalone\u2192export migration \u2014 learner's codebase uses zero server features, so the Node.js container can be eliminated entirely. Covered CDN caching vs SW caching interaction. Final integration exercise: walked through complete offline flashcard scenario (POST queue, GET cache, network-first analytics). TC-1 mastery gate effectively passed \u2014 learner can articulate the three-layer model, map strategies to resource types, and reason about offline behavior for their specific app.",
+      "engagement": "high",
+      "grounding_context": "StudyElf V3 codebase, next.config.mjs output mode, standalone\u2192export migration analysis, CDN deployment strategy"
+    },
+    {
+      "session_id": "session-pwa-003",
+      "date": "2026-03-10",
+      "duration_minutes": 45,
+      "template_used": "B_completion_task",
+      "task_class": "tc-2-caching-deep-dive",
+      "task_sequence": 3,
+      "topics_covered": [
+        {
+          "vertex_id": "vertex-pwa-http-caching-fundamentals",
+          "activity_type": "guided_discovery",
+          "performance": "guided_correct",
+          "notes": "Understood HTTP cache as middle layer. Initially skipped in pharmacology scenario but correctly integrated after prompting. Learned fetch({ cache: 'reload' }) bypass."
+        },
+        {
+          "vertex_id": "vertex-pwa-cache-api-mechanics",
+          "activity_type": "retrieval_and_deepening",
+          "performance": "strong",
+          "notes": "Strong retrieval on cache-first safety (content hash = URL immutability). Designed versioned cache naming and multi-cache architecture by purpose."
+        },
+        {
+          "vertex_id": "vertex-pwa-service-worker-lifecycle",
+          "activity_type": "retrieval_and_deepening",
+          "performance": "strong",
+          "notes": "Clean retrieval of phases. Learned 24hr auto-check. Understood activate as cache cleanup moment. Found skipWaiting danger and first-install registration bug."
+        },
+        {
+          "vertex_id": "vertex-pwa-sw-cdn-interaction",
+          "activity_type": "guided_discovery",
+          "performance": "strong",
+          "notes": "Correctly traced SW->CDN->origin path. Chose API-driven cache purging over TTLs for infrequent high-stakes updates. Full invalidation sequence mastered."
+        },
+        {
+          "vertex_id": "vertex-pwa-sw-http-cache-alignment",
+          "activity_type": "productive_failure",
+          "performance": "guided_correct",
+          "notes": "Key session learning. Initially missed HTTP cache layer in three-layer trace. Identified Cache-Control max-age as failure mode. Guessed header values before landing on fetch option. Missed in first Serwist plan draft but caught immediately when prompted."
+        },
+        {
+          "vertex_id": "vertex-pwa-caching-strategy-selection",
+          "activity_type": "applied_analysis",
+          "performance": "strong",
+          "notes": "Produced complete Serwist caching config: SWR for study content (500 entries/7d), NetworkFirst for API (64 entries/1d), CacheFirst for static via defaultCache. Correct route ordering."
+        },
+        {
+          "vertex_id": "vertex-pwa-workbox-and-tooling",
+          "activity_type": "concept_introduction_and_application",
+          "performance": "strong",
+          "notes": "Understood Workbox/Serwist abstraction. Caught next-pwa deprecation before building on stale tooling. Produced complete Serwist migration plan. Correct @serwist/next vs @serwist/turbopack decision."
+        },
+        {
+          "vertex_id": "vertex-pwa-update-flow-design",
+          "activity_type": "applied_design",
+          "performance": "strong",
+          "notes": "Designed full update lifecycle: skipWaiting:false -> waiting state -> sonner toast -> SKIP_WAITING message -> controllerchange reload. Found first-install bug (controller gate)."
+        },
+        {
+          "vertex_id": "vertex-pwa-anti-pattern-detection",
+          "activity_type": "applied_analysis",
+          "performance": "guided_correct",
+          "notes": "Identified single-versioned-cache anti-pattern, stale tooling risk, skipWaiting for long sessions, first-install prompt bug. Missed fetchOptions in own plan \u2014 pattern matching improving but not yet automatic."
+        }
+      ],
+      "retrieval_probes": [
+        {
+          "vertex_id": "vertex-pwa-cache-api-mechanics",
+          "question": "Which assets use cache-first and why?",
+          "response_quality": "correct",
+          "notes": "Content-hashed JS/CSS bundles. URL immutability = safe cache-first. Immediate recall."
+        },
+        {
+          "vertex_id": "vertex-pwa-service-worker-lifecycle",
+          "question": "Walk through SW lifecycle phases in order with triggers",
+          "response_quality": "correct",
+          "notes": "All phases recalled correctly with transitions. Missed 24hr auto-check (not previously covered). Strong overall."
+        },
+        {
+          "vertex_id": "vertex-pwa-sw-cdn-interaction",
+          "question": "Network-first with CDN in front \u2014 what does 'network' mean?",
+          "response_quality": "correct",
+          "notes": "CDN edge answers, not origin. Correctly identified CDN staleness risk."
+        }
+      ],
+      "mastery_transitions": [
+        {
+          "vertex_id": "vertex-pwa-sw-http-cache-alignment",
+          "from": "not_started",
+          "to": "familiar"
+        },
+        {
+          "vertex_id": "vertex-pwa-caching-strategy-selection",
+          "from": "not_started",
+          "to": "familiar"
+        },
+        {
+          "vertex_id": "vertex-pwa-workbox-and-tooling",
+          "from": "not_started",
+          "to": "familiar"
+        },
+        {
+          "vertex_id": "vertex-pwa-update-flow-design",
+          "from": "not_started",
+          "to": "familiar"
+        },
+        {
+          "vertex_id": "vertex-pwa-sw-cdn-interaction",
+          "from": "attempted",
+          "to": "familiar"
+        },
+        {
+          "vertex_id": "vertex-pwa-anti-pattern-detection",
+          "from": "attempted",
+          "to": "familiar"
+        }
+      ],
+      "difficulty_observations": {
+        "zone_start": "zpd_optimal",
+        "zone_end": "zpd_optimal",
+        "adjustments": "Session format shifted to plan review/validation which was highly effective. Learner's strongest mode is reviewing concrete implementation plans against learned principles. The three-layer cache model was tested via productive failure (missing HTTP cache layer) then reinforced through Serwist plan review. Rolling accuracy high but HTTP cache bypass was a repeated gap until internalized.",
+        "rolling_accuracy": 0.85,
+        "scaffold_level": 1
+      },
+      "session_summary": "Session 3 covered TC-2 Caching Deep Dive. Three-layer cache model (Cache API + HTTP cache + CDN) taught through pharmacology correction scenario. Key learning: fetch({ cache: 'reload' }) bypasses browser HTTP cache \u2014 initially missed, then internalized. Cache versioning: versioned names by purpose (static-vN, shell-vN, api-content, precached-packs), cleanup in activate handler. Serwist introduced as Workbox-fork for Next.js \u2014 learner caught next-pwa deprecation independently. Bulk of session spent reviewing and validating learner's Serwist migration plan for StudyElf. Found 5 issues across 2 review rounds: missing fetchOptions cache:reload, skipWaiting danger, window.serwist reliability, unbounded cache growth, first-install update prompt bug. All fixed in final plan. Self-assessed 3.5/5 \u2014 accurate calibration. Pattern-matching and assessment instincts strong; not yet automatic (missed fetchOptions in own plan despite just learning it).",
+      "engagement": "high",
+      "grounding_context": "Serwist migration plan for StudyElf PWA, ADR-013 Phase 4. Plan review as teaching vehicle was extremely effective \u2014 real stakes, real decisions."
+    }
+  ],
+  "current_state": {
+    "curriculum_position": {
+      "task_class": "tc-2-caching-deep-dive",
+      "task_sequence": 3,
+      "status": "in_progress",
+      "notes": "Session 3 covered cache layer interactions, versioning, invalidation, Serwist tooling, and update flow design. TC-2 mastery gate approaching \u2014 learner needs to demonstrate independent cache architecture reasoning without prompts. Content pack offline caching and background sync deferred to TC-3."
+    },
+    "next_session_agenda": {
+      "task_class": "tc-2-caching-deep-dive",
+      "task_sequence": 4,
+      "template": "E_mastery_gate",
+      "plan": "Session 4: TC-2 Mastery Gate Assessment. Cold recall of three-layer cache model, cache versioning, invalidation strategies, Serwist configuration. Application under novelty: present an unfamiliar app scenario (not StudyElf) and ask learner to design the caching architecture from scratch. Explain-to-teach: have learner explain the SW update lifecycle to a hypothetical junior developer. Pass all three -> advance to TC-3 (offline data and sync). Fail -> targeted re-teach on weak areas.",
+      "retrieval_vertices": [
+        "vertex-pwa-sw-http-cache-alignment",
+        "vertex-pwa-caching-strategy-selection",
+        "vertex-pwa-update-flow-design",
+        "vertex-pwa-workbox-and-tooling",
+        "vertex-pwa-sw-cdn-interaction"
+      ],
+      "open_questions_from_last_session": [
+        "Content pack download and cache-only strategy (deferred to TC-3)",
+        "Quiz answer queuing with background sync (deferred \u2014 separate implementation plan)",
+        "ExpirationPlugin maxEntries sizing based on actual usage patterns"
+      ]
+    },
+    "motivation_state": {
+      "engagement_trend": "high",
+      "plateau_status": "none",
+      "identity_frame": "architect making production-ready decisions for StudyElf",
+      "notes": "Plan review format was a peak engagement session \u2014 learner sees direct ROI (the plan IS the deliverable). Self-assessment accuracy is excellent (3.5/5 matched observed performance). Three days from first hearing PWA to producing a reviewable Serwist migration plan is strong velocity. The 'right filters to run through' metacognitive comment shows emerging assessment instincts."
+    },
+    "difficulty_calibration": {
+      "current_zone": "zpd_optimal",
+      "rolling_accuracy_5q": 0.85,
+      "scaffold_level": 1,
+      "notes": "Scaffold level decreased from 2 to 1. Learner self-corrects quickly and produces strong work product. Main gap is automation \u2014 principles learned but not yet reflexive (missed fetchOptions in own plan). Mastery gate will test whether three-layer model is internalized enough for independent application to novel scenarios."
+    }
+  }
+}

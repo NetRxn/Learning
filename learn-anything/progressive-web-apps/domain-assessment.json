@@ -1,0 +1,107 @@
+{
+  "id": "da-pwa-20260309-001",
+  "created_at": "2026-03-09T12:00:00Z",
+
+  "skill_classification": {
+    "target_skill": "Progressive Web Apps — architectural decision-making, caching system mastery, CDN/WASM interaction understanding, migration evaluation, and quality/anti-pattern detection when working with LLM-generated code",
+    "skill_type": "hybrid",
+    "skill_type_secondary": ["cognitive_higher", "perceptual"],
+    "environment_type": "mixed",
+    "blooms_ceiling": "evaluate",
+    "modularity": "moderately_modular",
+    "tacit_knowledge_ratio": "moderate",
+    "classification_confidence": "high",
+    "classification_notes": "Primary demand is evaluate-level cognitive work: analyzing tradeoffs, judging architectural fit, detecting anti-patterns. The perceptual secondary reflects the pattern-recognition component — learning to 'smell' bad PWA decisions or poor LLM-generated service worker code. Environment is mixed because PWA architectural decisions have reasonably clear technical constraints (caching behavior is deterministic) but business/UX fit is contextual and feedback is delayed. Modularity is moderate — caching, service workers, manifest, WASM, and CDN interaction are somewhat independent topics but architectural judgment requires integrating them."
+  },
+
+  "learner_profile": {
+    "related_experience": [
+      {
+        "domain": "Python backend development",
+        "level": "advanced",
+        "description": "Primary coding language, strong backend/data focus. Provides strong foundation in systems thinking, HTTP, APIs, and data flow.",
+        "transfer_potential": "moderate"
+      },
+      {
+        "domain": "TypeScript",
+        "level": "intermediate",
+        "description": "Has existing applications written in TypeScript. Understands the language and ecosystem.",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "htmx",
+        "level": "intermediate",
+        "description": "Has existing applications using htmx. Understands the hypermedia-driven approach and server-rendered patterns — this is a key reference point for evaluating PWA tradeoffs since htmx and PWAs represent quite different architectural philosophies.",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "WebAssembly (WASM)",
+        "level": "beginner",
+        "description": "Working conceptual understanding but no projects under direct management.",
+        "transfer_potential": "moderate"
+      },
+      {
+        "domain": "CDNs",
+        "level": "beginner",
+        "description": "Working understanding of CDN concepts but no hands-on management experience.",
+        "transfer_potential": "moderate"
+      },
+      {
+        "domain": "Web platform fundamentals (HTTP caching, browser lifecycle)",
+        "level": "beginner",
+        "description": "Self-assessed as mostly new to browser rendering pipeline, HTTP caching headers, and request/response lifecycle details.",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "Software architecture evaluation",
+        "level": "advanced",
+        "description": "Regularly evaluates applications and makes technology decisions. Strong existing mental model for tradeoff analysis.",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "LLM-assisted development",
+        "level": "advanced",
+        "description": "Actively uses LLMs to write code. Needs to extend this workflow to PWA territory and develop the ability to evaluate LLM-generated PWA code for quality and anti-patterns.",
+        "transfer_potential": "high"
+      }
+    ],
+    "frameworks_and_vocabulary": [
+      "Backend systems architecture and tradeoff analysis",
+      "HTTP request/response model (server-side perspective)",
+      "Hypermedia-driven architecture (htmx philosophy)",
+      "TypeScript type system and ecosystem",
+      "Python ecosystem for data and backend services",
+      "LLM prompting and code evaluation patterns"
+    ],
+    "learning_experience": "experienced_self_directed",
+    "constraints": {
+      "time_per_day_minutes": 60,
+      "days_per_week": 5,
+      "total_timeframe": "8 hours initial sprint, then extended program (~4-6 weeks) for stable competence",
+      "equipment_access": "Full development environment, browser dev tools, existing TypeScript/htmx applications to evaluate",
+      "environment_notes": "Will not be implementing code directly — works with LLMs for implementation. Needs to develop evaluation/review capability rather than hands-on coding skill. Has existing applications that serve as concrete evaluation targets."
+    },
+    "purpose": "Has a portfolio of TypeScript/htmx applications and regularly evaluates new projects. Needs to make informed decisions about when PWA architecture is worth adopting, whether existing apps should be migrated, and how to evaluate the quality of PWA implementations produced by LLMs. The driving force is practical decision-making authority over a real portfolio.",
+    "desired_competence_level": "competent_practitioner"
+  },
+
+  "approach_strategy": {
+    "instructional_approach": "hybrid",
+    "approach_rationale": "Combines whole_task_4cid (architectural decision-making is a complex cognitive skill that must be practiced as whole tasks from early on — you can't learn to evaluate PWA fitness by studying components in isolation) with categorical_framework (building the perceptual vocabulary to recognize anti-patterns and quality signals in PWA code). The evaluation/judgment emphasis means we need case-based reasoning, not tutorial-following. Decision frameworks and heuristics should be the primary learning artifacts, not code samples.",
+    "short_term_plan_summary": "In ~8 hours, you'll build a solid mental model of the PWA architecture stack (service workers, caching strategies, manifest, and app shell pattern), understand how caching interacts with CDNs and where WASM fits in, and develop an initial decision framework for 'should this be a PWA?' that you can apply to your existing TypeScript/htmx apps. You'll practice evaluating 2-3 real architectural scenarios and walk away with a concrete checklist for reviewing LLM-generated service worker code. You won't be an expert, but you'll have calibrated intuition and know what questions to ask.",
+    "extended_roadmap_summary": "Over the following 4-6 weeks (~2-3 hours/week), we deepen pattern recognition through repeated case evaluation, cover advanced topics (background sync, Web Push architecture, update flow edge cases, PWA + SSR hybrid patterns particularly relevant to your htmx background), and build stable judgment through coached decision exercises where I challenge your reasoning. By the end, you'll reliably make sound PWA architectural calls and catch the common failure modes in generated code.",
+    "domain_specific_adaptations": [
+      "Evaluation-first pedagogy: Every concept is taught through the lens of 'how does this affect the go/no-go decision' rather than 'how do you implement this'",
+      "Case-based reasoning: Real-world PWA migration stories (successes and failures) as primary teaching material rather than tutorials",
+      "Anti-pattern catalog: Build a structured mental library of PWA anti-patterns and code smells, specifically tuned for reviewing LLM-generated service worker and caching code",
+      "htmx contrast framing: Use the learner's existing htmx mental model as a deliberate comparison point — when does server-rendered hypermedia win vs. PWA offline-first? This leverages strong existing knowledge",
+      "Decision framework output: The primary learning artifact is a reusable decision framework, not a codebase",
+      "Coached judgment sessions: Training sessions that present ambiguous scenarios and challenge the learner's reasoning, building the perceptual pattern-recognition layer"
+    ]
+  },
+
+  "identity_frame": {
+    "identity_statement": "You're becoming a technical decision-maker who can confidently call the shots on PWA architecture — knowing when it's the right tool, when it's overkill, and how to keep implementations honest.",
+    "purpose_connection": "This connects directly to your role managing a portfolio of applications and evaluating new projects. Every PWA decision you make better protects your time, your users' experience, and the quality of your codebase."
+  }
+}

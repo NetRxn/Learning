@@ -1,0 +1,905 @@
+{
+  "plan_id": "lp-pwa-20260309-001",
+  "knowledge_graph_id": "kg-pwa-20260309-001",
+  "generated_at": "2026-03-11T18:00:00Z",
+  "anki_config": {
+    "model_id_basic": 1547823691,
+    "model_id_cloze": 1893274510,
+    "model_id_reversed": 1234987652,
+    "deck_id": 1678432901
+  },
+  "decks": [
+    {
+      "deck_name": "PWA Architecture :: TC1 Foundations",
+      "cards": [
+        {
+          "card_id": "pwa-tc1-http-cache-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-http-caching-fundamentals",
+          "front": "In the browser's HTTP caching system, what is the role of the <code>Cache-Control: max-age</code> header?",
+          "back": "It tells the browser how many seconds a response can be served from the HTTP cache without revalidating with the server. During this window, the browser never contacts the origin \u2014 the response is served directly from the local HTTP cache.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::caching::http-cache::cache-control"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-http-cache-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-http-caching-fundamentals",
+          "front": "What is the difference between a <b>conditional request</b> using <code>ETag</code> vs one using <code>Last-Modified</code>?",
+          "back": "Both allow the browser to ask the server \"has this changed?\" without re-downloading if unchanged (304 Not Modified). <code>ETag</code> uses a content hash or version token (more precise \u2014 catches any change). <code>Last-Modified</code> uses a timestamp (simpler but only second-level granularity, can miss rapid changes).",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::caching::http-cache::etag",
+            "pwa::caching::http-cache::conditional-requests"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-http-cache-03",
+          "card_type": "cloze",
+          "component_id": "vertex-pwa-http-caching-fundamentals",
+          "front": "When a service worker calls {{c1::fetch({ cache: 'reload' })}}, the browser bypasses the {{c2::HTTP cache}} and goes directly to the network (CDN or origin), ensuring a truly fresh response.",
+          "back": "This is the key mechanism for avoiding the 'network-first hits HTTP cache' trap.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::caching::http-cache::fetch-options"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-http-cache-04",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-http-caching-fundamentals",
+          "front": "Why is <code>Cache-Control: no-cache</code> misleadingly named? What does it actually do?",
+          "back": "It does NOT prevent caching. It means the browser must revalidate with the server before using a cached copy (conditional request every time). The response IS stored in cache \u2014 it just can't be used without checking freshness first. To truly prevent caching, use <code>Cache-Control: no-store</code>.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::caching::http-cache::cache-control"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-request-lifecycle-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-browser-request-lifecycle",
+          "front": "List the 5 cache layers a browser request passes through, from closest to the user to furthest.",
+          "back": "1. Memory cache (in-process, same-page resources)<br>2. Service Worker (Cache API intercept)<br>3. HTTP cache (browser disk cache)<br>4. CDN edge cache<br>5. Origin server",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::caching::request-lifecycle::layers"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 360 280\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Browser request passes through 5 cache layers from memory cache to origin server</title>\n  <defs>\n    <marker id=\"arr1\" markerWidth=\"8\" markerHeight=\"6\" refX=\"8\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L8,3 L0,6\" fill=\"#374151\"/></marker>\n  </defs>\n  <rect x=\"80\" y=\"10\" width=\"200\" height=\"36\" rx=\"6\" fill=\"#2563eb\" opacity=\"0.15\" stroke=\"#2563eb\" stroke-width=\"1.5\"/>\n  <text x=\"180\" y=\"33\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#2563eb\">1. Memory Cache</text>\n  <line x1=\"180\" y1=\"46\" x2=\"180\" y2=\"58\" stroke=\"#374151\" marker-end=\"url(#arr1)\"/>\n  <rect x=\"80\" y=\"60\" width=\"200\" height=\"36\" rx=\"6\" fill=\"#9333ea\" opacity=\"0.15\" stroke=\"#9333ea\" stroke-width=\"1.5\"/>\n  <text x=\"180\" y=\"83\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#9333ea\">2. Service Worker</text>\n  <line x1=\"180\" y1=\"96\" x2=\"180\" y2=\"108\" stroke=\"#374151\" marker-end=\"url(#arr1)\"/>\n  <rect x=\"80\" y=\"110\" width=\"200\" height=\"36\" rx=\"6\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1.5\"/>\n  <text x=\"180\" y=\"133\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#16a34a\">3. Cache API</text>\n  <line x1=\"180\" y1=\"146\" x2=\"180\" y2=\"158\" stroke=\"#374151\" marker-end=\"url(#arr1)\"/>\n  <rect x=\"80\" y=\"160\" width=\"200\" height=\"36\" rx=\"6\" fill=\"#d97706\" opacity=\"0.15\" stroke=\"#d97706\" stroke-width=\"1.5\"/>\n  <text x=\"180\" y=\"183\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#d97706\">4. HTTP Cache</text>\n  <line x1=\"180\" y1=\"196\" x2=\"180\" y2=\"208\" stroke=\"#374151\" marker-end=\"url(#arr1)\"/>\n  <rect x=\"80\" y=\"210\" width=\"200\" height=\"36\" rx=\"6\" fill=\"#dc2626\" opacity=\"0.15\" stroke=\"#dc2626\" stroke-width=\"1.5\"/>\n  <text x=\"180\" y=\"233\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#dc2626\">5. CDN / Origin</text>\n  <text x=\"30\" y=\"33\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">closest</text>\n  <text x=\"30\" y=\"233\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">farthest</text>\n  <line x1=\"30\" y1=\"45\" x2=\"30\" y2=\"218\" stroke=\"#374151\" stroke-dasharray=\"4\" marker-end=\"url(#arr1)\"/>\n  <text x=\"180\" y=\"270\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Miss at each layer \u2192 request falls through to next</text>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc1-request-lifecycle-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-browser-request-lifecycle",
+          "front": "At what point in the browser request lifecycle does a service worker get the chance to intercept a request?",
+          "back": "After the memory cache check but before the HTTP cache. The SW's <code>fetch</code> event fires, giving it full control: it can serve from Cache API, modify and forward the request to the network, or generate a response entirely. If the SW calls <code>fetch()</code> itself, that request then passes through the HTTP cache and on to CDN/origin.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::caching::request-lifecycle::sw-intercept"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 380 200\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Service worker intercepts requests between the page and the network via the fetch event</title>\n  <defs>\n    <marker id=\"arr2\" markerWidth=\"8\" markerHeight=\"6\" refX=\"8\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L8,3 L0,6\" fill=\"#374151\"/></marker>\n  </defs>\n  <rect x=\"10\" y=\"70\" width=\"80\" height=\"50\" rx=\"6\" fill=\"#2563eb\" opacity=\"0.15\" stroke=\"#2563eb\" stroke-width=\"1.5\"/>\n  <text x=\"50\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#2563eb\">Page</text>\n  <line x1=\"90\" y1=\"95\" x2=\"120\" y2=\"95\" stroke=\"#374151\" stroke-width=\"1.5\" marker-end=\"url(#arr2)\"/>\n  <text x=\"105\" y=\"85\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">fetch()</text>\n  <rect x=\"122\" y=\"55\" width=\"120\" height=\"80\" rx=\"8\" fill=\"#9333ea\" opacity=\"0.12\" stroke=\"#9333ea\" stroke-width=\"2\" stroke-dasharray=\"5,3\"/>\n  <text x=\"182\" y=\"80\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#9333ea\">Service Worker</text>\n  <text x=\"182\" y=\"100\" text-anchor=\"middle\" font-size=\"12\" fill=\"#9333ea\">fetch event</text>\n  <text x=\"182\" y=\"120\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">can intercept,</text>\n  <text x=\"182\" y=\"132\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">modify, or cache</text>\n  <line x1=\"242\" y1=\"95\" x2=\"272\" y2=\"95\" stroke=\"#374151\" stroke-width=\"1.5\" marker-end=\"url(#arr2)\"/>\n  <rect x=\"274\" y=\"70\" width=\"96\" height=\"50\" rx=\"6\" fill=\"#dc2626\" opacity=\"0.15\" stroke=\"#dc2626\" stroke-width=\"1.5\"/>\n  <text x=\"322\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#dc2626\">Network</text>\n  <text x=\"190\" y=\"170\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">SW sits between page and network \u2014 controls all outgoing requests</text>\n  <text x=\"190\" y=\"25\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Only active after installation + activation (not on first page load)</text>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc1-request-lifecycle-03",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-browser-request-lifecycle",
+          "front": "Why does the service worker NOT intercept the very first page load (before installation)?",
+          "back": "The SW must be registered, downloaded, installed, and activated before it can intercept requests. On the first visit, there's no SW yet \u2014 so the page loads normally through the standard HTTP cache \u2192 CDN \u2192 origin path. The SW only controls requests starting from the <em>next</em> navigation (or after <code>clients.claim()</code> during activation).",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::caching::request-lifecycle::first-load"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-sw-lifecycle-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-service-worker-lifecycle",
+          "front": "What are the 4 main phases of the service worker lifecycle, in order?",
+          "back": "1. <b>Registration</b> \u2014 browser downloads the SW script<br>2. <b>Installation</b> \u2014 <code>install</code> event fires, typically pre-caches essential resources<br>3. <b>Waiting</b> \u2014 new SW waits until all tabs using the old SW close<br>4. <b>Activation</b> \u2014 <code>activate</code> event fires, typically cleans up old caches; SW now controls pages",
+          "bloom_level": "remember",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::service-worker::lifecycle::phases"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 400 180\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Service worker lifecycle: Install, Wait, Activate, Fetch (with idle/terminated)</title>\n  <defs>\n    <marker id=\"arr3\" markerWidth=\"8\" markerHeight=\"6\" refX=\"8\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L8,3 L0,6\" fill=\"#374151\"/></marker>\n  </defs>\n  <rect x=\"10\" y=\"55\" width=\"80\" height=\"40\" rx=\"6\" fill=\"#2563eb\" opacity=\"0.15\" stroke=\"#2563eb\" stroke-width=\"1.5\"/>\n  <text x=\"50\" y=\"80\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#2563eb\">Install</text>\n  <line x1=\"90\" y1=\"75\" x2=\"110\" y2=\"75\" stroke=\"#374151\" stroke-width=\"1.5\" marker-end=\"url(#arr3)\"/>\n  <rect x=\"112\" y=\"55\" width=\"70\" height=\"40\" rx=\"6\" fill=\"#d97706\" opacity=\"0.15\" stroke=\"#d97706\" stroke-width=\"1.5\"/>\n  <text x=\"147\" y=\"80\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#d97706\">Wait</text>\n  <line x1=\"182\" y1=\"75\" x2=\"202\" y2=\"75\" stroke=\"#374151\" stroke-width=\"1.5\" marker-end=\"url(#arr3)\"/>\n  <rect x=\"204\" y=\"55\" width=\"86\" height=\"40\" rx=\"6\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1.5\"/>\n  <text x=\"247\" y=\"80\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#16a34a\">Activate</text>\n  <line x1=\"290\" y1=\"75\" x2=\"310\" y2=\"75\" stroke=\"#374151\" stroke-width=\"1.5\" marker-end=\"url(#arr3)\"/>\n  <rect x=\"312\" y=\"55\" width=\"78\" height=\"40\" rx=\"6\" fill=\"#9333ea\" opacity=\"0.15\" stroke=\"#9333ea\" stroke-width=\"1.5\"/>\n  <text x=\"351\" y=\"80\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#9333ea\">Fetch</text>\n  <text x=\"50\" y=\"115\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">cache assets</text>\n  <text x=\"147\" y=\"115\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">old SW still</text>\n  <text x=\"147\" y=\"128\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">controls tabs</text>\n  <text x=\"247\" y=\"115\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">clean old</text>\n  <text x=\"247\" y=\"128\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">caches</text>\n  <text x=\"351\" y=\"115\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">handle</text>\n  <text x=\"351\" y=\"128\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">requests</text>\n  <text x=\"200\" y=\"165\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">Between events, the browser may terminate the SW to save memory</text>\n  <text x=\"200\" y=\"30\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Service Worker Lifecycle</text>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc1-sw-lifecycle-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-service-worker-lifecycle",
+          "front": "Why does a newly installed service worker enter a <b>waiting</b> state instead of activating immediately?",
+          "back": "To protect running tabs. If the new SW has different caching logic or handles requests differently, activating it while old tabs are open could cause inconsistent behavior (e.g., the page expects resources cached by the old SW, but the new SW serves different versions). Waiting ensures a clean transition \u2014 all old tabs close first, then the new SW takes over.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::service-worker::lifecycle::waiting"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-sw-lifecycle-03",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-service-worker-lifecycle",
+          "front": "What is the danger of calling <code>skipWaiting()</code> in a service worker's install event?",
+          "back": "It forces the new SW to activate immediately, skipping the waiting phase. Users with open tabs will suddenly be controlled by the new SW mid-session. If the new SW has different cached resources or routing logic, the page can break \u2014 stale references, missing assets, inconsistent state. It's especially dangerous when the HTML page was served by the old SW but JS/CSS now comes from the new one.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::service-worker::lifecycle::skipWaiting"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-sw-lifecycle-04",
+          "card_type": "cloze",
+          "component_id": "vertex-pwa-service-worker-lifecycle",
+          "front": "The browser automatically checks for SW updates every {{c1::24 hours}} when a page is navigated to. It also checks if the SW script has changed by even {{c2::one byte}} compared to the cached version.",
+          "back": "This means deploys take effect within 24 hours even if users don't hard-refresh. Byte comparison means comments or whitespace changes trigger updates.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::service-worker::lifecycle::updates"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-sw-lifecycle-05",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-service-worker-lifecycle",
+          "front": "What is the purpose of the <code>activate</code> event in a service worker, and what is the most common task performed in it?",
+          "back": "The <code>activate</code> event fires when the SW takes control after the old SW is gone. The most common task is <b>cleaning up old caches</b> \u2014 deleting cache entries from previous versions that are no longer needed. This is the safe moment to delete old caches because no tabs are using the old SW anymore.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::service-worker::lifecycle::activate"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-manifest-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-web-app-manifest",
+          "front": "What are the 3 minimum requirements for a PWA to meet browser installability criteria?",
+          "back": "1. A valid <code>manifest.json</code> with at least <code>name</code> (or <code>short_name</code>), <code>start_url</code>, <code>display</code> mode (standalone/fullscreen/minimal-ui), and a suitable icon (at least 192\u00d7192 and 512\u00d7512)<br>2. Served over HTTPS<br>3. A registered service worker with a <code>fetch</code> event handler",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::manifest::installability"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-manifest-02",
+          "card_type": "cloze",
+          "component_id": "vertex-pwa-web-app-manifest",
+          "front": "The manifest <code>display</code> field controls how the PWA appears when launched. {{c1::standalone}} removes the browser URL bar (app-like), while {{c2::minimal-ui}} keeps a minimal navigation bar. {{c3::fullscreen}} hides everything including the status bar.",
+          "back": "Most PWAs use standalone. Games and immersive apps use fullscreen. minimal-ui is a compromise that preserves some browser navigation.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.25,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::manifest::display-modes"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-manifest-03",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-web-app-manifest",
+          "front": "What does the <code>scope</code> field in a manifest.json control, and what happens if a user navigates outside the scope?",
+          "back": "The <code>scope</code> defines which URL paths the PWA \"owns.\" Navigating to a URL outside the scope causes the browser to open it in a regular browser tab/window instead of within the PWA's standalone frame. This prevents the PWA from \"trapping\" users on external links. If omitted, scope defaults to the directory containing the manifest.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::manifest::scope"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-security-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-security-https-sw",
+          "front": "Why do browsers refuse to register a service worker on an HTTP (non-HTTPS) page?",
+          "back": "A service worker acts as a programmable network proxy \u2014 it can intercept, modify, and fabricate any response. On an insecure HTTP connection, a man-in-the-middle attacker could inject a malicious SW script, which would then persistently control all future requests. HTTPS ensures the SW code hasn't been tampered with. The exception is <code>localhost</code>, which is considered secure for development.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::security::https-requirement"
+          ]
+        },
+        {
+          "card_id": "pwa-tc1-security-02",
+          "card_type": "cloze",
+          "component_id": "vertex-pwa-security-https-sw",
+          "front": "Service workers are only permitted on {{c1::HTTPS}} origins (plus {{c2::localhost}} for development), because they act as a {{c3::network proxy}} that can intercept and modify all requests.",
+          "back": "This prevents man-in-the-middle attacks from injecting persistent malicious service workers.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.2,
+          "curriculum_position": 1,
+          "topic_tags": [
+            "pwa::security::https-sw"
+          ]
+        }
+      ]
+    },
+    {
+      "deck_name": "PWA Architecture :: TC2 Caching Strategy",
+      "cards": [
+        {
+          "card_id": "pwa-tc2-cache-api-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-cache-api-mechanics",
+          "front": "How does the Cache API differ from the browser's HTTP cache?",
+          "back": "The Cache API is a <b>programmatic</b> key-value store (Request \u2192 Response) fully controlled by your JavaScript code. You decide what to store, when to store it, and when to delete it. The HTTP cache is <b>automatic</b> \u2014 the browser manages it based on Cache-Control headers, and your code has no direct control over its contents. Cache API lives alongside the HTTP cache, not inside it.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::cache-api::vs-http-cache"
+          ]
+        },
+        {
+          "card_id": "pwa-tc2-cache-api-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-cache-api-mechanics",
+          "front": "What is the \"versioned cache naming\" pattern, and why is it important?",
+          "back": "Name each cache with a version string (e.g., <code>app-shell-v2</code>, <code>api-cache-v3</code>). During the SW <code>activate</code> event, delete caches whose names don't match the current version list. This ensures old cached resources from previous deploys are cleaned up, preventing stale data from being served.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::cache-api::versioning"
+          ]
+        },
+        {
+          "card_id": "pwa-tc2-cache-api-03",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-cache-api-mechanics",
+          "front": "Why is using a single cache for all resource types an anti-pattern?",
+          "back": "Different resource types need different eviction policies, expiration rules, and version lifecycles. A single cache means you can't purge API data without also purging the app shell, or set different size limits for images vs. HTML. Best practice: separate caches by purpose (e.g., <code>app-shell</code>, <code>api-responses</code>, <code>images</code>) so each can be managed independently.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::cache-api::anti-patterns"
+          ]
+        },
+        {
+          "card_id": "pwa-tc2-strategy-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-caching-strategy-selection",
+          "front": "Name the 5 main service worker caching strategies and give a one-line description of each.",
+          "back": "1. <b>Cache-First</b>: Check cache, fall back to network. Best for versioned/immutable assets.<br>2. <b>Network-First</b>: Try network, fall back to cache. Best for frequently-updating content.<br>3. <b>Stale-While-Revalidate</b>: Serve from cache immediately, fetch update in background. Best for content that's OK slightly stale.<br>4. <b>Network-Only</b>: Always hit network, no caching. For non-cacheable requests (POST, auth).<br>5. <b>Cache-Only</b>: Only serve from cache. For pre-cached resources you fully control.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::strategies::overview"
+          ]
+        },
+        {
+          "card_id": "pwa-tc2-strategy-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-caching-strategy-selection",
+          "front": "For a content-hashed JavaScript bundle (e.g., <code>main.a3f2b1.js</code>), which caching strategy is optimal and why?",
+          "back": "<b>Cache-First</b>. The filename contains a content hash \u2014 if the content changes, the filename changes. So the cached version is guaranteed to be correct for that URL forever. No need to ever hit the network for the same URL again. This gives instant loads with zero network cost.",
+          "bloom_level": "apply",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::strategies::cache-first"
+          ]
+        },
+        {
+          "card_id": "pwa-tc2-strategy-03",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-caching-strategy-selection",
+          "front": "When should you choose <b>Stale-While-Revalidate</b> over <b>Network-First</b>?",
+          "back": "Use SWR when speed matters more than freshness and slightly stale data is acceptable. SWR serves from cache instantly (fast) while fetching an update in the background (eventual freshness). Network-First prioritizes freshness (hits network first) but is slower because the user waits for the network response. Choose Network-First when the user must always see the latest data (e.g., a pharmacology app where stale dosage info could be dangerous).",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::strategies::swr-vs-network-first"
+          ]
+        },
+        {
+          "card_id": "pwa-tc2-strategy-04",
+          "card_type": "comparison",
+          "component_id": "vertex-pwa-caching-strategy-selection",
+          "front": "Compare <b>Cache-First</b> and <b>Network-First</b>: when does each strategy serve stale data, and what's the user experience tradeoff?",
+          "back": "<b>Cache-First</b>: Serves stale data if the cache entry is outdated AND the URL hasn't changed (risk with non-hashed URLs). UX: instant load, but potentially stale.<br><b>Network-First</b>: Serves stale data only when the network fails (offline/timeout fallback). UX: slower load (waits for network), but usually fresh. However, Network-First can ALSO serve stale data if the browser HTTP cache returns a cached response to the SW's fetch() call \u2014 the \"HTTP cache trap.\"",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::strategies::comparison"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 400 240\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Cache-First checks cache then network on miss; Network-First checks network then cache on failure</title>\n  <defs>\n    <marker id=\"arr4\" markerWidth=\"8\" markerHeight=\"6\" refX=\"8\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L8,3 L0,6\" fill=\"#374151\"/></marker>\n  </defs>\n  <text x=\"100\" y=\"20\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#2563eb\">Cache-First</text>\n  <text x=\"300\" y=\"20\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#dc2626\">Network-First</text>\n  <line x1=\"200\" y1=\"10\" x2=\"200\" y2=\"230\" stroke=\"#374151\" stroke-dasharray=\"4\"/>\n  <!-- Cache-First flow -->\n  <rect x=\"55\" y=\"35\" width=\"90\" height=\"32\" rx=\"5\" fill=\"#2563eb\" opacity=\"0.15\" stroke=\"#2563eb\" stroke-width=\"1.2\"/>\n  <text x=\"100\" y=\"56\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2563eb\">Check Cache</text>\n  <text x=\"160\" y=\"48\" font-size=\"12\" fill=\"#16a34a\">hit \u2192</text>\n  <text x=\"160\" y=\"62\" font-size=\"12\" fill=\"#16a34a\">respond</text>\n  <line x1=\"100\" y1=\"67\" x2=\"100\" y2=\"82\" stroke=\"#374151\" marker-end=\"url(#arr4)\"/>\n  <text x=\"74\" y=\"78\" font-size=\"12\" fill=\"#d97706\">miss</text>\n  <rect x=\"55\" y=\"85\" width=\"90\" height=\"32\" rx=\"5\" fill=\"#dc2626\" opacity=\"0.15\" stroke=\"#dc2626\" stroke-width=\"1.2\"/>\n  <text x=\"100\" y=\"106\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">Fetch Network</text>\n  <line x1=\"100\" y1=\"117\" x2=\"100\" y2=\"132\" stroke=\"#374151\" marker-end=\"url(#arr4)\"/>\n  <rect x=\"55\" y=\"135\" width=\"90\" height=\"32\" rx=\"5\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1.2\"/>\n  <text x=\"100\" y=\"156\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">Cache + Return</text>\n  <!-- Network-First flow -->\n  <rect x=\"255\" y=\"35\" width=\"90\" height=\"32\" rx=\"5\" fill=\"#dc2626\" opacity=\"0.15\" stroke=\"#dc2626\" stroke-width=\"1.2\"/>\n  <text x=\"300\" y=\"56\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">Fetch Network</text>\n  <text x=\"356\" y=\"48\" font-size=\"12\" fill=\"#16a34a\">ok \u2192</text>\n  <text x=\"356\" y=\"62\" font-size=\"12\" fill=\"#16a34a\">respond</text>\n  <line x1=\"300\" y1=\"67\" x2=\"300\" y2=\"82\" stroke=\"#374151\" marker-end=\"url(#arr4)\"/>\n  <text x=\"268\" y=\"78\" font-size=\"12\" fill=\"#d97706\">fail</text>\n  <rect x=\"255\" y=\"85\" width=\"90\" height=\"32\" rx=\"5\" fill=\"#2563eb\" opacity=\"0.15\" stroke=\"#2563eb\" stroke-width=\"1.2\"/>\n  <text x=\"300\" y=\"106\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2563eb\">Check Cache</text>\n  <line x1=\"300\" y1=\"117\" x2=\"300\" y2=\"132\" stroke=\"#374151\" marker-end=\"url(#arr4)\"/>\n  <rect x=\"255\" y=\"135\" width=\"90\" height=\"32\" rx=\"5\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1.2\"/>\n  <text x=\"300\" y=\"156\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">Return Stale</text>\n  <!-- Summary -->\n  <text x=\"100\" y=\"190\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Best: static assets,</text>\n  <text x=\"100\" y=\"204\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">hashed filenames</text>\n  <text x=\"300\" y=\"190\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Best: API data,</text>\n  <text x=\"300\" y=\"204\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">user content</text>\n  <text x=\"100\" y=\"225\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2563eb\">Speed over freshness</text>\n  <text x=\"300\" y=\"225\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">Freshness over speed</text>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc2-sw-http-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-sw-http-cache-alignment",
+          "front": "Explain the \"network-first hits HTTP cache\" trap. Why does a network-first SW strategy sometimes return stale data?",
+          "back": "When the SW calls <code>fetch(request)</code> to go to the network, that fetch request first passes through the browser's HTTP cache. If the HTTP cache has a fresh (unexpired) entry, the browser returns it without ever reaching the CDN or origin. So \"network-first\" actually means \"HTTP-cache-first, then network.\" The SW thinks it got a fresh network response, but it came from the HTTP cache. Fix: use <code>fetch(request, { cache: 'reload' })</code> to bypass the HTTP cache.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::sw-http-alignment::trap"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 400 220\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Network-first SW strategy can still serve stale data when fetch() hits the browser HTTP cache instead of the origin</title>\n  <defs>\n    <marker id=\"arr5\" markerWidth=\"8\" markerHeight=\"6\" refX=\"8\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L8,3 L0,6\" fill=\"#374151\"/></marker>\n    <marker id=\"arr5r\" markerWidth=\"8\" markerHeight=\"6\" refX=\"8\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L8,3 L0,6\" fill=\"#dc2626\"/></marker>\n  </defs>\n  <text x=\"200\" y=\"18\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#dc2626\">The \"Network-First Hits HTTP Cache\" Trap</text>\n  <!-- Expected path -->\n  <text x=\"10\" y=\"48\" font-size=\"12\" fill=\"#16a34a\">Expected:</text>\n  <rect x=\"10\" y=\"55\" width=\"60\" height=\"30\" rx=\"4\" fill=\"#9333ea\" opacity=\"0.15\" stroke=\"#9333ea\" stroke-width=\"1.2\"/>\n  <text x=\"40\" y=\"75\" text-anchor=\"middle\" font-size=\"12\" fill=\"#9333ea\">SW</text>\n  <line x1=\"70\" y1=\"70\" x2=\"100\" y2=\"70\" stroke=\"#16a34a\" stroke-width=\"1.5\" marker-end=\"url(#arr5)\"/>\n  <text x=\"85\" y=\"62\" font-size=\"12\" fill=\"#16a34a\">fetch()</text>\n  <rect x=\"102\" y=\"55\" width=\"80\" height=\"30\" rx=\"4\" fill=\"#d97706\" opacity=\"0.08\" stroke=\"#374151\" stroke-width=\"1\" stroke-dasharray=\"3\"/>\n  <text x=\"142\" y=\"75\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">HTTP Cache</text>\n  <line x1=\"182\" y1=\"70\" x2=\"212\" y2=\"70\" stroke=\"#16a34a\" stroke-width=\"1.5\" marker-end=\"url(#arr5)\"/>\n  <text x=\"197\" y=\"62\" font-size=\"12\" fill=\"#16a34a\">pass</text>\n  <rect x=\"214\" y=\"55\" width=\"70\" height=\"30\" rx=\"4\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1.2\"/>\n  <text x=\"249\" y=\"75\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">Origin</text>\n  <text x=\"310\" y=\"75\" font-size=\"12\" fill=\"#16a34a\">\u2713 Fresh</text>\n  <!-- Actual path (the trap) -->\n  <text x=\"10\" y=\"118\" font-size=\"12\" fill=\"#dc2626\">Actual:</text>\n  <rect x=\"10\" y=\"125\" width=\"60\" height=\"30\" rx=\"4\" fill=\"#9333ea\" opacity=\"0.15\" stroke=\"#9333ea\" stroke-width=\"1.2\"/>\n  <text x=\"40\" y=\"145\" text-anchor=\"middle\" font-size=\"12\" fill=\"#9333ea\">SW</text>\n  <line x1=\"70\" y1=\"140\" x2=\"100\" y2=\"140\" stroke=\"#dc2626\" stroke-width=\"1.5\" marker-end=\"url(#arr5r)\"/>\n  <text x=\"85\" y=\"132\" font-size=\"12\" fill=\"#dc2626\">fetch()</text>\n  <rect x=\"102\" y=\"125\" width=\"80\" height=\"30\" rx=\"4\" fill=\"#dc2626\" opacity=\"0.15\" stroke=\"#dc2626\" stroke-width=\"2\"/>\n  <text x=\"142\" y=\"145\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#dc2626\">HTTP Cache</text>\n  <text x=\"215\" y=\"140\" font-size=\"12\" fill=\"#dc2626\">\u2190 max-age</text>\n  <text x=\"215\" y=\"154\" font-size=\"12\" fill=\"#dc2626\">    not expired</text>\n  <text x=\"310\" y=\"145\" font-size=\"12\" fill=\"#dc2626\">\u2717 Stale!</text>\n  <!-- Fix -->\n  <rect x=\"30\" y=\"178\" width=\"340\" height=\"30\" rx=\"5\" fill=\"#16a34a\" opacity=\"0.08\" stroke=\"#16a34a\" stroke-width=\"1.2\"/>\n  <text x=\"200\" y=\"198\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">Fix: fetch(url, { cache: \"reload\" }) bypasses HTTP cache</text>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc2-sw-http-02",
+          "card_type": "cloze",
+          "component_id": "vertex-pwa-sw-http-cache-alignment",
+          "front": "To ensure a network-first service worker strategy actually reaches the origin, use {{c1::fetch(request, { cache: 'reload' })}} which bypasses the {{c2::HTTP cache}} layer entirely.",
+          "back": "Without this, 'network-first' is really 'HTTP-cache-first' since the SW's fetch() respects HTTP cache headers by default.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::sw-http-alignment::fix"
+          ]
+        },
+        {
+          "card_id": "pwa-tc2-cdn-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-sw-cdn-interaction",
+          "front": "What is the \"double-cache problem\" when a service worker is combined with a CDN?",
+          "back": "After a deploy, both the SW cache and the CDN edge cache may hold stale content. Even if the SW uses network-first, the \"network\" response comes from the CDN edge which may still serve the old version (CDN TTL hasn't expired). So the user gets: old SW cache \u2192 falls through to network \u2192 CDN serves old version anyway. Two layers of staleness must be coordinated \u2014 purging one isn't enough.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::sw-cdn::double-cache"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 400 230\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Double-cache problem: SW cache and CDN cache can both hold stale versions after a deploy</title>\n  <defs>\n    <marker id=\"arr6\" markerWidth=\"8\" markerHeight=\"6\" refX=\"8\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L8,3 L0,6\" fill=\"#374151\"/></marker>\n  </defs>\n  <text x=\"200\" y=\"18\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#dc2626\">The Double-Cache Problem</text>\n  <!-- Timeline -->\n  <text x=\"200\" y=\"45\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">After deploy of v2, user still gets v1:</text>\n  <!-- Layer 1: SW Cache -->\n  <rect x=\"40\" y=\"60\" width=\"130\" height=\"55\" rx=\"6\" fill=\"#9333ea\" opacity=\"0.12\" stroke=\"#9333ea\" stroke-width=\"1.5\"/>\n  <text x=\"105\" y=\"80\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#9333ea\">SW Cache</text>\n  <text x=\"105\" y=\"96\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">has v1 cached</text>\n  <text x=\"105\" y=\"108\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">(cache-first)</text>\n  <!-- Layer 2: CDN -->\n  <rect x=\"230\" y=\"60\" width=\"130\" height=\"55\" rx=\"6\" fill=\"#d97706\" opacity=\"0.12\" stroke=\"#d97706\" stroke-width=\"1.5\"/>\n  <text x=\"295\" y=\"80\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#d97706\">CDN Edge</text>\n  <text x=\"295\" y=\"96\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">has v1 cached</text>\n  <text x=\"295\" y=\"108\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">(TTL active)</text>\n  <!-- Arrows showing the problem -->\n  <line x1=\"105\" y1=\"115\" x2=\"105\" y2=\"140\" stroke=\"#374151\" marker-end=\"url(#arr6)\"/>\n  <line x1=\"295\" y1=\"115\" x2=\"295\" y2=\"140\" stroke=\"#374151\" marker-end=\"url(#arr6)\"/>\n  <text x=\"105\" y=\"155\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">serves stale v1</text>\n  <text x=\"105\" y=\"168\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">without checking</text>\n  <text x=\"295\" y=\"155\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">even if SW checks</text>\n  <text x=\"295\" y=\"168\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">network, gets v1</text>\n  <!-- Solution hint -->\n  <rect x=\"30\" y=\"185\" width=\"340\" height=\"36\" rx=\"5\" fill=\"#16a34a\" opacity=\"0.08\" stroke=\"#16a34a\" stroke-width=\"1.2\"/>\n  <text x=\"200\" y=\"200\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">Both caches must be invalidated on deploy:</text>\n  <text x=\"200\" y=\"214\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">Content-hash filenames + CDN purge + SW versioned cache names</text>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc2-cdn-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-sw-cdn-interaction",
+          "front": "Name two strategies for coordinating cache invalidation between a service worker and a CDN on deploy.",
+          "back": "1. <b>Content-hashed URLs</b> \u2014 New deploy produces new filenames (e.g., <code>main.abc123.js</code>). CDN can cache them with long TTLs because the URL is unique. SW references new URLs via an updated precache manifest. Old URLs naturally expire.<br>2. <b>API-driven CDN purge</b> \u2014 On deploy, call the CDN's purge API to invalidate specific paths. Combined with SW update (new SW script triggers install), both caches refresh. More complex but handles non-hashable URLs (like <code>/api/config</code>).",
+          "bloom_level": "apply",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::sw-cdn::invalidation"
+          ]
+        },
+        {
+          "card_id": "pwa-tc2-cdn-03",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-sw-cdn-interaction",
+          "front": "When a SW calls <code>fetch()</code> and it goes to the network, does the request hit the CDN edge or the origin server?",
+          "back": "It hits the <b>CDN edge</b> first (assuming DNS routes to the CDN). The CDN either serves from its edge cache (if cached and TTL valid) or forwards to the origin. The SW has no way to bypass the CDN \u2014 only the CDN operator can purge or configure pass-through. This is why CDN TTL settings are critical for PWA freshness.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::caching::sw-cdn::request-path"
+          ]
+        },
+        {
+          "card_id": "pwa-tc2-appshell-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-app-shell-pattern",
+          "front": "What is the App Shell architecture pattern, and what problem does it solve?",
+          "back": "App Shell separates a minimal UI skeleton (navigation, layout, loading states) from dynamic content. The shell is pre-cached by the SW and served instantly on every visit \u2014 the user sees the app frame immediately while content loads. It solves the \"blank screen\" problem: instead of waiting for HTML + JS + CSS + data, the user sees a familiar UI within milliseconds.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::architecture::app-shell::definition"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 380 220\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>App Shell pattern: static shell is cache-first for instant load, dynamic content fetched separately</title>\n  <!-- Browser frame -->\n  <rect x=\"90\" y=\"10\" width=\"200\" height=\"170\" rx=\"8\" fill=\"white\" stroke=\"#374151\" stroke-width=\"1.5\"/>\n  <rect x=\"90\" y=\"10\" width=\"200\" height=\"24\" rx=\"8\" fill=\"#374151\" opacity=\"0.1\"/>\n  <circle cx=\"104\" cy=\"22\" r=\"4\" fill=\"#dc2626\" opacity=\"0.5\"/>\n  <circle cx=\"116\" cy=\"22\" r=\"4\" fill=\"#d97706\" opacity=\"0.5\"/>\n  <circle cx=\"128\" cy=\"22\" r=\"4\" fill=\"#16a34a\" opacity=\"0.5\"/>\n  <!-- Shell (cached) -->\n  <rect x=\"96\" y=\"38\" width=\"188\" height=\"20\" rx=\"3\" fill=\"#2563eb\" opacity=\"0.2\" stroke=\"#2563eb\" stroke-width=\"1\"/>\n  <text x=\"190\" y=\"53\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2563eb\">Nav Bar (shell)</text>\n  <rect x=\"96\" y=\"62\" width=\"50\" height=\"112\" rx=\"3\" fill=\"#2563eb\" opacity=\"0.2\" stroke=\"#2563eb\" stroke-width=\"1\"/>\n  <text x=\"121\" y=\"120\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2563eb\" transform=\"rotate(-90 121 120)\">Sidebar (shell)</text>\n  <!-- Dynamic content area -->\n  <rect x=\"150\" y=\"62\" width=\"134\" height=\"112\" rx=\"3\" fill=\"#d97706\" opacity=\"0.12\" stroke=\"#d97706\" stroke-width=\"1\" stroke-dasharray=\"4\"/>\n  <text x=\"217\" y=\"110\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">Dynamic</text>\n  <text x=\"217\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">Content</text>\n  <!-- Labels -->\n  <text x=\"16\" y=\"55\" font-size=\"12\" fill=\"#2563eb\">Cache-</text>\n  <text x=\"16\" y=\"68\" font-size=\"12\" fill=\"#2563eb\">First</text>\n  <line x1=\"52\" y1=\"60\" x2=\"93\" y2=\"48\" stroke=\"#2563eb\" stroke-dasharray=\"3\"/>\n  <text x=\"310\" y=\"108\" font-size=\"12\" fill=\"#d97706\">Network</text>\n  <text x=\"310\" y=\"121\" font-size=\"12\" fill=\"#d97706\">Fetch</text>\n  <line x1=\"310\" y1=\"110\" x2=\"287\" y2=\"110\" stroke=\"#d97706\" stroke-dasharray=\"3\"/>\n  <text x=\"190\" y=\"205\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Shell loads instantly from cache \u2192 content fills in from network</text>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc2-appshell-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-app-shell-pattern",
+          "front": "Why is the App Shell pattern a poor fit for server-rendered (htmx-style) applications?",
+          "back": "In server-rendered apps, the server produces complete HTML pages \u2014 the \"shell\" and \"content\" aren't separated. The HTML IS the content. There's no static skeleton to cache separately because each page is dynamically generated. Caching the shell would mean caching a template without data, which breaks the server-rendering model where the server sends ready-to-display HTML. App Shell assumes a client-side rendering architecture where JS fetches data separately.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::architecture::app-shell::limitations"
+          ]
+        },
+        {
+          "card_id": "pwa-tc2-appshell-03",
+          "card_type": "comparison",
+          "component_id": "vertex-pwa-app-shell-pattern",
+          "front": "Compare the caching approach for an App Shell SPA vs a server-rendered htmx application. What does each cache, and what strategy works best?",
+          "back": "<b>App Shell SPA</b>: Cache the shell (HTML template + JS + CSS) with cache-first. Cache API data with network-first or SWR. Shell loads instantly, data fills in.<br><b>Server-rendered htmx</b>: Cache complete HTML pages with SWR or network-first. Each page is a full document. Can cache previously-viewed pages for offline reading, but can't meaningfully separate shell from content. Offline creation of new pages requires fundamentally different architecture.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 2,
+          "topic_tags": [
+            "pwa::architecture::app-shell::vs-server-rendered"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 400 220\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>App Shell SPA caches shell locally and fetches JSON API; htmx server-rendered pages are full HTML from server with no separable shell</title>\n  <text x=\"100\" y=\"18\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#2563eb\">App Shell SPA</text>\n  <text x=\"300\" y=\"18\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#d97706\">Server-Rendered (htmx)</text>\n  <line x1=\"200\" y1=\"5\" x2=\"200\" y2=\"210\" stroke=\"#374151\" stroke-dasharray=\"4\"/>\n  <!-- SPA side -->\n  <rect x=\"20\" y=\"30\" width=\"160\" height=\"40\" rx=\"5\" fill=\"#2563eb\" opacity=\"0.15\" stroke=\"#2563eb\" stroke-width=\"1.2\"/>\n  <text x=\"100\" y=\"48\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2563eb\">Shell: HTML + CSS + JS</text>\n  <text x=\"100\" y=\"62\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">(cache-first, instant)</text>\n  <rect x=\"40\" y=\"80\" width=\"40\" height=\"25\" rx=\"3\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1\"/>\n  <text x=\"60\" y=\"97\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">API</text>\n  <rect x=\"90\" y=\"80\" width=\"40\" height=\"25\" rx=\"3\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1\"/>\n  <text x=\"110\" y=\"97\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">API</text>\n  <rect x=\"140\" y=\"80\" width=\"40\" height=\"25\" rx=\"3\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1\"/>\n  <text x=\"160\" y=\"97\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">API</text>\n  <text x=\"100\" y=\"120\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">(network-first JSON)</text>\n  <!-- htmx side -->\n  <rect x=\"220\" y=\"30\" width=\"160\" height=\"40\" rx=\"5\" fill=\"#d97706\" opacity=\"0.15\" stroke=\"#d97706\" stroke-width=\"1.2\"/>\n  <text x=\"300\" y=\"48\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">Full HTML page</text>\n  <text x=\"300\" y=\"62\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">(server-rendered, no shell)</text>\n  <rect x=\"230\" y=\"80\" width=\"140\" height=\"25\" rx=\"3\" fill=\"#d97706\" opacity=\"0.15\" stroke=\"#d97706\" stroke-width=\"1\"/>\n  <text x=\"300\" y=\"97\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">HTML fragments</text>\n  <text x=\"300\" y=\"120\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">(each hx-get = full HTML)</text>\n  <!-- Offline implications -->\n  <rect x=\"20\" y=\"140\" width=\"160\" height=\"32\" rx=\"4\" fill=\"#16a34a\" opacity=\"0.08\" stroke=\"#16a34a\" stroke-width=\"1\"/>\n  <text x=\"100\" y=\"157\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">Offline shell \u2713</text>\n  <text x=\"100\" y=\"170\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">content needs API</text>\n  <rect x=\"220\" y=\"140\" width=\"160\" height=\"32\" rx=\"4\" fill=\"#dc2626\" opacity=\"0.08\" stroke=\"#dc2626\" stroke-width=\"1\"/>\n  <text x=\"300\" y=\"157\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">No separable shell \u2717</text>\n  <text x=\"300\" y=\"170\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">offline = cache full pages</text>\n  <text x=\"200\" y=\"200\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">App Shell assumes client-side rendering \u2014 htmx is server-side</text>\n</svg>",
+          "image_placement": "back"
+        }
+      ]
+    },
+    {
+      "deck_name": "PWA Architecture :: TC3 Evaluation Framework",
+      "cards": [
+        {
+          "card_id": "pwa-tc3-offline-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-offline-strategy-design",
+          "front": "What are the 3 tiers of offline strategy for a PWA, from least to most complex?",
+          "back": "1. <b>Offline fallback page</b> \u2014 Show a branded \"you're offline\" page instead of the browser's default error. Minimal effort, minimal value.<br>2. <b>Offline reading</b> \u2014 Cache previously-viewed content so users can re-access it offline (read-only). Moderate effort.<br>3. <b>Offline-first</b> \u2014 Full read/write offline capability with background sync. App works completely without network, syncs when reconnected. High complexity (conflict resolution, queue management).",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::offline::strategy-tiers"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 380 200\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Three offline strategy tiers: Tier 1 offline page only, Tier 2 read-only cached content, Tier 3 full offline read-write with sync</title>\n  <text x=\"190\" y=\"18\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#374151\">Offline Strategy Tiers</text>\n  <!-- Tier 1 -->\n  <rect x=\"20\" y=\"35\" width=\"110\" height=\"100\" rx=\"6\" fill=\"#16a34a\" opacity=\"0.1\" stroke=\"#16a34a\" stroke-width=\"1.5\"/>\n  <text x=\"75\" y=\"55\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#16a34a\">Tier 1</text>\n  <text x=\"75\" y=\"72\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Offline page</text>\n  <text x=\"75\" y=\"86\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">only</text>\n  <text x=\"75\" y=\"110\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">Low effort</text>\n  <text x=\"75\" y=\"124\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">Any architecture</text>\n  <!-- Tier 2 -->\n  <rect x=\"140\" y=\"35\" width=\"110\" height=\"100\" rx=\"6\" fill=\"#d97706\" opacity=\"0.1\" stroke=\"#d97706\" stroke-width=\"1.5\"/>\n  <text x=\"195\" y=\"55\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#d97706\">Tier 2</text>\n  <text x=\"195\" y=\"72\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Read-only</text>\n  <text x=\"195\" y=\"86\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">cached content</text>\n  <text x=\"195\" y=\"110\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">Medium effort</text>\n  <text x=\"195\" y=\"124\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">Needs SW caching</text>\n  <!-- Tier 3 -->\n  <rect x=\"260\" y=\"35\" width=\"110\" height=\"100\" rx=\"6\" fill=\"#dc2626\" opacity=\"0.1\" stroke=\"#dc2626\" stroke-width=\"1.5\"/>\n  <text x=\"315\" y=\"55\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#dc2626\">Tier 3</text>\n  <text x=\"315\" y=\"72\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Full offline</text>\n  <text x=\"315\" y=\"86\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">read-write</text>\n  <text x=\"315\" y=\"110\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">High effort</text>\n  <text x=\"315\" y=\"124\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">Needs sync engine</text>\n  <!-- Complexity arrow -->\n  <line x1=\"40\" y1=\"155\" x2=\"350\" y2=\"155\" stroke=\"#374151\" stroke-width=\"1\"/>\n  <text x=\"40\" y=\"172\" font-size=\"12\" fill=\"#16a34a\">Simple</text>\n  <text x=\"320\" y=\"172\" font-size=\"12\" fill=\"#dc2626\">Complex</text>\n  <text x=\"190\" y=\"192\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Choose the lowest tier that satisfies user needs</text>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc3-offline-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-offline-strategy-design",
+          "front": "How do you decide which offline tier is appropriate for a given application?",
+          "back": "Map the user journey: Where are users when they lose connectivity? What are they trying to do? <b>Tier 1</b> if offline is rare and users can just wait. <b>Tier 2</b> if users need to reference content in low-connectivity situations (field work, commuting, flights). <b>Tier 3</b> only if users must create/modify data offline AND the domain supports eventual consistency (forms, notes, inspections \u2014 NOT real-time collaboration or financial transactions).",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::offline::strategy-selection"
+          ]
+        },
+        {
+          "card_id": "pwa-tc3-offline-03",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-offline-strategy-design",
+          "front": "For an htmx server-rendered app, what is the maximum practical offline tier and why?",
+          "back": "<b>Tier 2 (offline reading)</b> is the practical maximum. Cache previously-visited HTML pages and their associated resources. Users can re-read content offline. Tier 3 (offline-first) would require the client to generate HTML that the server would normally produce, fundamentally breaking the server-rendering model. You'd essentially need to rebuild the server's rendering logic client-side, at which point you've abandoned the htmx architecture.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::offline::htmx-limitations"
+          ]
+        },
+        {
+          "card_id": "pwa-tc3-platform-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-platform-constraints",
+          "front": "Name 3 major iOS/Safari limitations that affect PWA architectural decisions.",
+          "back": "1. <b>Storage eviction</b> \u2014 Safari can evict all SW cache and IndexedDB data after ~7 days of no use (no persistent storage API on iOS)<br>2. <b>No Web Push on iOS before 16.4</b> \u2014 and even after 16.4, push only works for home-screen-installed PWAs with user permission<br>3. <b>No Background Sync API</b> \u2014 deferred offline actions can't auto-retry when connectivity returns; must rely on app-level polling when user reopens",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::platform::ios-limitations"
+          ]
+        },
+        {
+          "card_id": "pwa-tc3-platform-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-platform-constraints",
+          "front": "How does iOS's 7-day storage eviction policy affect the decision to build a Tier 3 (offline-first) PWA?",
+          "back": "It's a potential deal-breaker. If the user doesn't open the PWA for a week, ALL cached data and IndexedDB content is wiped \u2014 including any unsynced offline changes. This means offline-first PWAs on iOS must assume data loss is possible and design accordingly: aggressive sync-on-open, minimal local-only state, and user communication about the limitation. For apps where data loss is unacceptable, this pushes toward a native app instead.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::platform::ios-storage-eviction"
+          ]
+        },
+        {
+          "card_id": "pwa-tc3-platform-03",
+          "card_type": "cloze",
+          "component_id": "vertex-pwa-platform-constraints",
+          "front": "On Android, PWAs installed via Chrome can use {{c1::persistent storage}} (via the Storage API's <code>persist()</code> method) to prevent cache eviction, but on iOS Safari this is {{c2::not available}} \u2014 the OS can evict data after approximately {{c3::7 days}} of inactivity.",
+          "back": "This is one of the most impactful platform differences for offline strategy design.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::platform::storage-persistence"
+          ]
+        },
+        {
+          "card_id": "pwa-tc3-update-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-update-flow-design",
+          "front": "Describe the recommended user-controlled update flow for a PWA (as opposed to skipWaiting).",
+          "back": "1. New SW installs in background (waiting state)<br>2. App detects <code>controllerchange</code> or checks <code>registration.waiting</code><br>3. Show a non-intrusive notification (toast/banner): \"Update available \u2014 click to refresh\"<br>4. On user click: send <code>postMessage('SKIP_WAITING')</code> to the waiting SW<br>5. Waiting SW calls <code>skipWaiting()</code><br>6. <code>controllerchange</code> event fires \u2192 app reloads<br><br>This gives the user control and ensures they don't lose unsaved work.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::update-flow::user-controlled"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 380 240\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Recommended PWA update flow: detect new SW, prompt user, user clicks update, postMessage to skipWaiting, controllerchange reloads page</title>\n  <defs>\n    <marker id=\"arr7\" markerWidth=\"8\" markerHeight=\"6\" refX=\"8\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L8,3 L0,6\" fill=\"#374151\"/></marker>\n  </defs>\n  <text x=\"190\" y=\"18\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#374151\">User-Controlled SW Update Flow</text>\n  <!-- Step 1 -->\n  <rect x=\"110\" y=\"30\" width=\"170\" height=\"30\" rx=\"5\" fill=\"#2563eb\" opacity=\"0.15\" stroke=\"#2563eb\" stroke-width=\"1.2\"/>\n  <text x=\"195\" y=\"50\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2563eb\">1. New SW found (installing)</text>\n  <line x1=\"195\" y1=\"60\" x2=\"195\" y2=\"72\" stroke=\"#374151\" marker-end=\"url(#arr7)\"/>\n  <!-- Step 2 -->\n  <rect x=\"110\" y=\"75\" width=\"170\" height=\"30\" rx=\"5\" fill=\"#d97706\" opacity=\"0.15\" stroke=\"#d97706\" stroke-width=\"1.2\"/>\n  <text x=\"195\" y=\"95\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">2. SW enters waiting state</text>\n  <line x1=\"195\" y1=\"105\" x2=\"195\" y2=\"117\" stroke=\"#374151\" marker-end=\"url(#arr7)\"/>\n  <!-- Step 3 -->\n  <rect x=\"80\" y=\"120\" width=\"230\" height=\"30\" rx=\"5\" fill=\"#9333ea\" opacity=\"0.15\" stroke=\"#9333ea\" stroke-width=\"1.5\"/>\n  <text x=\"195\" y=\"140\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#9333ea\">3. Show banner: \"Update available\"</text>\n  <line x1=\"195\" y1=\"150\" x2=\"195\" y2=\"162\" stroke=\"#374151\" marker-end=\"url(#arr7)\"/>\n  <!-- Step 4 -->\n  <rect x=\"80\" y=\"165\" width=\"230\" height=\"30\" rx=\"5\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1.2\"/>\n  <text x=\"195\" y=\"185\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">4. User clicks \u2192 postMessage(SKIP_WAITING)</text>\n  <line x1=\"195\" y1=\"195\" x2=\"195\" y2=\"207\" stroke=\"#374151\" marker-end=\"url(#arr7)\"/>\n  <!-- Step 5 -->\n  <rect x=\"100\" y=\"210\" width=\"190\" height=\"26\" rx=\"5\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1.2\"/>\n  <text x=\"195\" y=\"228\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">5. controllerchange \u2192 reload</text>\n  <text x=\"22\" y=\"140\" font-size=\"12\" fill=\"#dc2626\">user</text>\n  <text x=\"22\" y=\"154\" font-size=\"12\" fill=\"#dc2626\">controls</text>\n  <text x=\"22\" y=\"168\" font-size=\"12\" fill=\"#dc2626\">timing</text>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc3-update-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-update-flow-design",
+          "front": "What bug occurs when checking <code>navigator.serviceWorker.controller</code> on the very first visit to a PWA?",
+          "back": "On the first visit, there is no active SW yet \u2014 <code>navigator.serviceWorker.controller</code> is <code>null</code>. If the update notification logic relies on checking <code>controller</code> before showing the \"update available\" toast, it will incorrectly fire on first install (showing \"update available\" when it's actually the initial installation). Fix: track whether this is a first install (e.g., check a flag in localStorage) and skip the update prompt.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::update-flow::first-install-bug"
+          ]
+        },
+        {
+          "card_id": "pwa-tc3-htmx-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-htmx-pwa-tension",
+          "front": "Where do htmx and PWA compose well (low tension), and where do they fundamentally conflict (high tension)?",
+          "back": "<b>Low tension (composes well):</b> Manifest + installability, basic service worker for offline fallback page, push notifications, caching previously-viewed server-rendered pages for offline reading.<br><br><b>High tension (conflicts):</b> App Shell pattern (requires client-side rendering), offline-first data creation (htmx needs server to produce HTML), background sync (limited value without offline writes), SPA-style routing in the SW.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::architecture::htmx-pwa-tension::spectrum"
+          ]
+        },
+        {
+          "card_id": "pwa-tc3-htmx-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-htmx-pwa-tension",
+          "front": "A team with a server-rendered htmx app is considering \"going PWA.\" What progressive enhancement approach would you recommend?",
+          "back": "Start with the low-tension features that add real value without architectural conflict: (1) Add a manifest for installability \u2014 users get an app icon, standalone display. (2) Add a SW with a simple caching strategy: SWR or network-first for HTML pages, cache-first for static assets. Users get faster repeat visits and offline reading of visited pages. (3) Consider push notifications if relevant. Only pursue deeper offline if the use case genuinely demands it \u2014 and at that point, evaluate whether a hybrid architecture (htmx for online, client-side JS for offline writes) is worth the complexity.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::architecture::htmx-pwa-tension::progressive-enhancement"
+          ]
+        },
+        {
+          "card_id": "pwa-tc3-fitness-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-pwa-fitness-evaluation",
+          "front": "What are the 5 dimensions of a structured PWA fitness evaluation?",
+          "back": "1. <b>Offline strategy tier</b> \u2014 What offline capability does the app need? (fallback/reading/offline-first)<br>2. <b>Platform constraints</b> \u2014 Are iOS limitations deal-breakers for the target audience?<br>3. <b>Update flow</b> \u2014 How critical is version freshness? What's the cost of stale content?<br>4. <b>Architectural compatibility</b> \u2014 Does the current architecture (SPA/SSR/htmx) support PWA features?<br>5. <b>Migration cost vs. value</b> \u2014 What does PWA add that the current app doesn't have, and is it worth the effort?",
+          "bloom_level": "remember",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::evaluation::framework-dimensions"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 400 220\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Five dimensions of PWA fitness evaluation: offline strategy, platform constraints, update flow, architecture tension, migration cost</title>\n  <!-- Central hub -->\n  <circle cx=\"200\" cy=\"100\" r=\"40\" fill=\"#2563eb\" opacity=\"0.1\" stroke=\"#2563eb\" stroke-width=\"1.5\"/>\n  <text x=\"200\" y=\"96\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#2563eb\">PWA</text>\n  <text x=\"200\" y=\"110\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#2563eb\">Fitness</text>\n  <!-- Dimension 1 -->\n  <rect x=\"5\" y=\"10\" width=\"100\" height=\"36\" rx=\"5\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1.2\"/>\n  <text x=\"55\" y=\"25\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">1. Offline</text>\n  <text x=\"55\" y=\"39\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">Strategy</text>\n  <line x1=\"105\" y1=\"35\" x2=\"162\" y2=\"75\" stroke=\"#374151\" stroke-width=\"1\"/>\n  <!-- Dimension 2 -->\n  <rect x=\"295\" y=\"10\" width=\"100\" height=\"36\" rx=\"5\" fill=\"#d97706\" opacity=\"0.15\" stroke=\"#d97706\" stroke-width=\"1.2\"/>\n  <text x=\"345\" y=\"25\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">2. Platform</text>\n  <text x=\"345\" y=\"39\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">Constraints</text>\n  <line x1=\"295\" y1=\"35\" x2=\"238\" y2=\"75\" stroke=\"#374151\" stroke-width=\"1\"/>\n  <!-- Dimension 3 -->\n  <rect x=\"305\" y=\"125\" width=\"90\" height=\"36\" rx=\"5\" fill=\"#9333ea\" opacity=\"0.15\" stroke=\"#9333ea\" stroke-width=\"1.2\"/>\n  <text x=\"350\" y=\"140\" text-anchor=\"middle\" font-size=\"12\" fill=\"#9333ea\">3. Update</text>\n  <text x=\"350\" y=\"154\" text-anchor=\"middle\" font-size=\"12\" fill=\"#9333ea\">Flow</text>\n  <line x1=\"305\" y1=\"136\" x2=\"238\" y2=\"118\" stroke=\"#374151\" stroke-width=\"1\"/>\n  <!-- Dimension 4 -->\n  <rect x=\"5\" y=\"125\" width=\"100\" height=\"36\" rx=\"5\" fill=\"#dc2626\" opacity=\"0.15\" stroke=\"#dc2626\" stroke-width=\"1.2\"/>\n  <text x=\"55\" y=\"140\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">4. Architecture</text>\n  <text x=\"55\" y=\"154\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">Tension</text>\n  <line x1=\"105\" y1=\"136\" x2=\"162\" y2=\"118\" stroke=\"#374151\" stroke-width=\"1\"/>\n  <!-- Dimension 5 -->\n  <rect x=\"150\" y=\"170\" width=\"100\" height=\"36\" rx=\"5\" fill=\"#374151\" opacity=\"0.15\" stroke=\"#374151\" stroke-width=\"1.2\"/>\n  <text x=\"200\" y=\"185\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">5. Migration</text>\n  <text x=\"200\" y=\"199\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Cost</text>\n  <line x1=\"200\" y1=\"170\" x2=\"200\" y2=\"140\" stroke=\"#374151\" stroke-width=\"1\"/>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc3-fitness-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-pwa-fitness-evaluation",
+          "front": "Give an example of an app where PWA is clearly the <b>wrong</b> choice, and explain why.",
+          "back": "A real-time trading platform. Reasons: (1) Data must be fresh \u2014 any caching adds latency and staleness risk. (2) Offline is meaningless \u2014 you can't trade without a connection. (3) iOS storage eviction could wipe critical local state. (4) Performance requirements may exceed browser limits. (5) Push notification reliability across platforms isn't sufficient for price alerts. A native app with direct socket connections is a better fit. PWA adds installability but the offline/caching benefits are liabilities here.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 3,
+          "topic_tags": [
+            "pwa::evaluation::counter-example"
+          ]
+        }
+      ]
+    },
+    {
+      "deck_name": "PWA Architecture :: TC4 Quality Detection",
+      "cards": [
+        {
+          "card_id": "pwa-tc4-workbox-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-workbox-and-tooling",
+          "front": "What is Workbox, and why is hand-written service worker code generally a red flag in code review?",
+          "back": "Workbox is Google's library for building production-quality service workers. It provides battle-tested implementations of caching strategies, precaching, routing, and expiration. Hand-written SW code is a red flag because: (1) caching strategies are deceptively subtle (HTTP cache traps, race conditions, storage limits), (2) Workbox handles edge cases that hand-rolled code almost always misses, (3) LLM-generated SW code especially tends to produce plausible-looking but subtly broken implementations.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 4,
+          "topic_tags": [
+            "pwa::tooling::workbox::rationale"
+          ]
+        },
+        {
+          "card_id": "pwa-tc4-workbox-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-workbox-and-tooling",
+          "front": "What is Serwist, and how does it relate to Workbox?",
+          "back": "Serwist is a framework-specific wrapper around Workbox patterns, particularly for Next.js. It provides a declarative configuration (define routes, strategies, and plugins in config) that generates a production SW. It replaced the deprecated <code>next-pwa</code> package. The key choice: <code>@serwist/next</code> for Next.js with server features, or direct Serwist for static exports. It's a convenience layer \u2014 the underlying strategies are still Workbox-pattern implementations.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 4,
+          "topic_tags": [
+            "pwa::tooling::serwist"
+          ]
+        },
+        {
+          "card_id": "pwa-tc4-antipattern-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-anti-pattern-detection",
+          "front": "Name 5 common anti-patterns in LLM-generated service worker code.",
+          "back": "1. <b>skipWaiting() without user consent</b> \u2014 Forces activation mid-session, breaking page state<br>2. <b>Single versioned cache</b> \u2014 One cache for everything, can't manage resource types independently<br>3. <b>Cache-first without content hashing</b> \u2014 Caches mutable URLs, serves stale content forever<br>4. <b>Missing fetchOptions for network-first</b> \u2014 Doesn't bypass HTTP cache, so \"network-first\" hits browser cache<br>5. <b>Catching all errors silently</b> \u2014 <code>catch(() => caches.match('/offline.html'))</code> on every route, masking real failures",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 4,
+          "topic_tags": [
+            "pwa::anti-patterns::llm-generated"
+          ]
+        },
+        {
+          "card_id": "pwa-tc4-antipattern-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-anti-pattern-detection",
+          "front": "You're reviewing a service worker that caches <code>/api/*</code> responses with a cache-first strategy. What's wrong and what would you recommend?",
+          "back": "API responses are typically dynamic \u2014 cache-first will serve stale data indefinitely after the first fetch. Unless the API uses content-addressed URLs, cache-first means users never see updates. <b>Recommendation</b>: Use <b>network-first</b> (with <code>{ cache: 'reload' }</code> fetchOptions to bypass HTTP cache) for API routes, with a cache fallback for offline access. Or use <b>stale-while-revalidate</b> if slightly-stale API data is acceptable. Add an <code>ExpirationPlugin</code> with maxEntries and maxAgeSeconds.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 4,
+          "topic_tags": [
+            "pwa::anti-patterns::cache-first-api"
+          ]
+        },
+        {
+          "card_id": "pwa-tc4-antipattern-03",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-anti-pattern-detection",
+          "front": "What is the \"stale tooling\" anti-pattern in PWA implementations, and how do you detect it?",
+          "back": "Using deprecated or abandoned PWA libraries (e.g., <code>next-pwa</code>, old Workbox versions). Detection: check the package's npm page for last publish date, GitHub for archived/deprecated status, and whether the library supports the current framework version. <b>Why it matters</b>: deprecated tooling often has unpatched bugs, doesn't support current browser APIs, and LLMs frequently recommend it because training data includes old tutorials.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 4,
+          "topic_tags": [
+            "pwa::anti-patterns::stale-tooling"
+          ]
+        },
+        {
+          "card_id": "pwa-tc4-perf-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-performance-budgeting",
+          "front": "What are the key Lighthouse PWA audit categories, and what score thresholds indicate a well-implemented PWA?",
+          "back": "Lighthouse checks: (1) <b>Installability</b> \u2014 valid manifest, SW with fetch handler, HTTPS. (2) <b>PWA Optimized</b> \u2014 redirects HTTP\u2192HTTPS, sets theme-color, viewport, apple-touch-icon. (3) <b>Performance</b> \u2014 FCP, LCP, CLS, TTI metrics. A well-implemented PWA should pass all installability checks, all PWA-optimized checks, and achieve Performance score >90. Scores <70 indicate caching strategy or asset optimization issues.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 4,
+          "topic_tags": [
+            "pwa::performance::lighthouse"
+          ]
+        },
+        {
+          "card_id": "pwa-tc4-perf-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-performance-budgeting",
+          "front": "How does caching strategy selection directly affect Core Web Vitals (LCP and CLS)?",
+          "back": "<b>LCP (Largest Contentful Paint)</b>: Cache-first for the app shell and critical CSS dramatically improves LCP \u2014 resources load from local cache instead of network. Network-first for critical resources delays LCP until network responds.<br><b>CLS (Cumulative Layout Shift)</b>: If the SW serves a cached shell that renders placeholder space, then content loads and shifts layout, CLS increases. Pre-caching both shell AND critical above-the-fold content (or using proper skeleton placeholders with correct dimensions) prevents shifts.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 4,
+          "topic_tags": [
+            "pwa::performance::core-web-vitals"
+          ]
+        },
+        {
+          "card_id": "pwa-tc4-migration-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-migration-cost-assessment",
+          "front": "What are the 4 levels of PWA migration complexity, from easiest to hardest?",
+          "back": "1. <b>Add-on PWA</b> (1-2 days): Add manifest + basic SW to existing app. Installability + offline fallback page.<br>2. <b>Caching PWA</b> (1-2 weeks): Add intelligent caching strategies per resource type. SWR for pages, cache-first for assets. Offline reading.<br>3. <b>Offline-capable PWA</b> (1-3 months): Full offline read/write with background sync, conflict resolution, IndexedDB state management.<br>4. <b>Architecture migration</b> (3+ months): Restructure from server-rendered to client-side for App Shell pattern or offline-first.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 4,
+          "topic_tags": [
+            "pwa::migration::complexity-levels"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 400 180\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Four levels of PWA migration complexity from manifest-only to full offline architecture</title>\n  <text x=\"200\" y=\"18\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#374151\">PWA Migration Complexity</text>\n  <!-- Level 1 -->\n  <rect x=\"10\" y=\"32\" width=\"85\" height=\"72\" rx=\"5\" fill=\"#16a34a\" opacity=\"0.12\" stroke=\"#16a34a\" stroke-width=\"1.5\"/>\n  <text x=\"52\" y=\"52\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#16a34a\">Level 1</text>\n  <text x=\"52\" y=\"68\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Manifest +</text>\n  <text x=\"52\" y=\"80\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">HTTPS only</text>\n  <text x=\"52\" y=\"96\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">~1 day</text>\n  <!-- Level 2 -->\n  <rect x=\"105\" y=\"32\" width=\"85\" height=\"72\" rx=\"5\" fill=\"#2563eb\" opacity=\"0.12\" stroke=\"#2563eb\" stroke-width=\"1.5\"/>\n  <text x=\"147\" y=\"52\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#2563eb\">Level 2</text>\n  <text x=\"147\" y=\"68\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">+ Basic SW</text>\n  <text x=\"147\" y=\"80\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">offline page</text>\n  <text x=\"147\" y=\"96\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2563eb\">~1 week</text>\n  <!-- Level 3 -->\n  <rect x=\"200\" y=\"32\" width=\"90\" height=\"72\" rx=\"5\" fill=\"#d97706\" opacity=\"0.12\" stroke=\"#d97706\" stroke-width=\"1.5\"/>\n  <text x=\"245\" y=\"52\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#d97706\">Level 3</text>\n  <text x=\"245\" y=\"68\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">+ Caching</text>\n  <text x=\"245\" y=\"80\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">strategies</text>\n  <text x=\"245\" y=\"96\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">~1 month</text>\n  <!-- Level 4 -->\n  <rect x=\"300\" y=\"32\" width=\"90\" height=\"72\" rx=\"5\" fill=\"#dc2626\" opacity=\"0.12\" stroke=\"#dc2626\" stroke-width=\"1.5\"/>\n  <text x=\"345\" y=\"52\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#dc2626\">Level 4</text>\n  <text x=\"345\" y=\"68\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Full offline</text>\n  <text x=\"345\" y=\"80\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">+ sync</text>\n  <text x=\"345\" y=\"96\" text-anchor=\"middle\" font-size=\"12\" fill=\"#dc2626\">months</text>\n  <!-- Complexity arrow -->\n  <line x1=\"30\" y1=\"125\" x2=\"370\" y2=\"125\" stroke=\"#374151\" stroke-width=\"1\"/>\n  <text x=\"30\" y=\"142\" font-size=\"12\" fill=\"#16a34a\">Low risk</text>\n  <text x=\"330\" y=\"142\" font-size=\"12\" fill=\"#dc2626\">High risk</text>\n  <text x=\"200\" y=\"168\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">Most apps should start at Level 1 and iterate</text>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc4-migration-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-migration-cost-assessment",
+          "front": "When evaluating PWA migration cost for an existing app, what 3 questions determine whether to proceed?",
+          "back": "1. <b>What does PWA add that the current app doesn't have?</b> \u2014 Installability? Offline? Push? If the answer is \"just installability\" and the app is a dashboard, the value may not justify the testing burden.<br>2. <b>What's the maintenance cost?</b> \u2014 SW bugs are invisible and persistent. Every deploy needs SW-aware cache invalidation. Is the team prepared for this ongoing cost?<br>3. <b>Do platform constraints block the key value prop?</b> \u2014 If the primary value is offline and 60% of users are on iOS, the 7-day eviction policy undermines the entire investment.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 4,
+          "topic_tags": [
+            "pwa::migration::decision-criteria"
+          ]
+        }
+      ]
+    },
+    {
+      "deck_name": "PWA Architecture :: TC5 Advanced Topics",
+      "cards": [
+        {
+          "card_id": "pwa-tc5-wasm-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-wasm-in-pwa-context",
+          "front": "What is the main caching challenge with WASM (.wasm) files in a PWA, and how should they be cached?",
+          "back": "WASM binaries can be very large (10-50+ MB for complex modules). Caching them with cache-first is essential for performance (avoid re-downloading), but they count against storage quotas. Use <b>content-hashed filenames</b> so the SW cache-first strategy is safe. Consider <b>streaming compilation</b> (<code>WebAssembly.compileStreaming</code>) from the cache. For very large WASM files, check storage quota before caching and implement a fallback network path if storage is insufficient.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 5,
+          "topic_tags": [
+            "pwa::advanced::wasm::caching"
+          ]
+        },
+        {
+          "card_id": "pwa-tc5-wasm-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-wasm-in-pwa-context",
+          "front": "When does combining WASM with a PWA create genuine architectural value (not just novelty)?",
+          "back": "When you need <b>offline compute</b> \u2014 processing that normally runs on a server but can run client-side when offline. Examples: image/audio processing, scientific calculations, data transformation, ML inference. The PWA provides the offline shell + cached WASM binary; WASM provides near-native compute performance. Also valuable for <b>privacy</b>: data never leaves the device (medical image analysis, document processing). Not valuable if the WASM module just does trivial work that JS handles fine.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 5,
+          "topic_tags": [
+            "pwa::advanced::wasm::use-cases"
+          ]
+        },
+        {
+          "card_id": "pwa-tc5-push-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-push-notifications-architecture",
+          "front": "Describe the full pipeline for Web Push notifications: what components are involved and how do they interact?",
+          "back": "1. <b>Client</b> requests permission, subscribes via Push API \u2192 gets a <b>PushSubscription</b> (endpoint URL + keys)<br>2. <b>App server</b> stores the subscription, later sends a push message to the <b>push service</b> (e.g., FCM for Chrome, WNS for Edge) using VAPID keys for authentication<br>3. <b>Push service</b> delivers the message to the browser<br>4. <b>Service worker</b> receives the <code>push</code> event (even if the app/browser is closed)<br>5. SW must show a Notification (browser requirement \u2014 can't silently receive pushes)<br>6. User interacts with notification \u2192 <code>notificationclick</code> event \u2192 SW opens/focuses the app",
+          "bloom_level": "understand",
+          "knowledge_type": "procedure",
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 5,
+          "topic_tags": [
+            "pwa::advanced::push::pipeline"
+          ],
+          "image_svg": "<svg viewBox=\"0 0 400 230\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Web Push pipeline: app server sends to push service, push service wakes service worker, SW shows notification</title>\n  <defs>\n    <marker id=\"arr8\" markerWidth=\"8\" markerHeight=\"6\" refX=\"8\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L8,3 L0,6\" fill=\"#374151\"/></marker>\n  </defs>\n  <text x=\"200\" y=\"18\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#374151\">Web Push Notification Pipeline</text>\n  <!-- Step 1: Subscribe -->\n  <rect x=\"20\" y=\"35\" width=\"100\" height=\"40\" rx=\"5\" fill=\"#2563eb\" opacity=\"0.15\" stroke=\"#2563eb\" stroke-width=\"1.2\"/>\n  <text x=\"70\" y=\"52\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2563eb\">Browser</text>\n  <text x=\"70\" y=\"66\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2563eb\">(subscribe)</text>\n  <line x1=\"120\" y1=\"55\" x2=\"150\" y2=\"55\" stroke=\"#374151\" marker-end=\"url(#arr8)\"/>\n  <text x=\"135\" y=\"46\" font-size=\"12\" fill=\"#374151\">endpoint</text>\n  <!-- Push Service -->\n  <rect x=\"152\" y=\"35\" width=\"100\" height=\"40\" rx=\"5\" fill=\"#9333ea\" opacity=\"0.15\" stroke=\"#9333ea\" stroke-width=\"1.2\"/>\n  <text x=\"202\" y=\"52\" text-anchor=\"middle\" font-size=\"12\" fill=\"#9333ea\">Push Service</text>\n  <text x=\"202\" y=\"66\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">(FCM/APNs)</text>\n  <line x1=\"252\" y1=\"55\" x2=\"278\" y2=\"55\" stroke=\"#374151\" marker-end=\"url(#arr8)\"/>\n  <text x=\"265\" y=\"46\" font-size=\"12\" fill=\"#374151\">keys</text>\n  <!-- App Server -->\n  <rect x=\"280\" y=\"35\" width=\"100\" height=\"40\" rx=\"5\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1.2\"/>\n  <text x=\"330\" y=\"52\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">App Server</text>\n  <text x=\"330\" y=\"66\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">(stores sub)</text>\n  <!-- Send flow (bottom) -->\n  <text x=\"200\" y=\"100\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#d97706\">When sending a push:</text>\n  <rect x=\"280\" y=\"110\" width=\"100\" height=\"35\" rx=\"5\" fill=\"#16a34a\" opacity=\"0.15\" stroke=\"#16a34a\" stroke-width=\"1.2\"/>\n  <text x=\"330\" y=\"132\" text-anchor=\"middle\" font-size=\"12\" fill=\"#16a34a\">App Server</text>\n  <line x1=\"280\" y1=\"128\" x2=\"254\" y2=\"128\" stroke=\"#374151\" marker-end=\"url(#arr8)\"/>\n  <text x=\"267\" y=\"120\" font-size=\"12\" fill=\"#374151\">VAPID</text>\n  <rect x=\"152\" y=\"110\" width=\"100\" height=\"35\" rx=\"5\" fill=\"#9333ea\" opacity=\"0.15\" stroke=\"#9333ea\" stroke-width=\"1.2\"/>\n  <text x=\"202\" y=\"132\" text-anchor=\"middle\" font-size=\"12\" fill=\"#9333ea\">Push Service</text>\n  <line x1=\"152\" y1=\"128\" x2=\"122\" y2=\"128\" stroke=\"#374151\" marker-end=\"url(#arr8)\"/>\n  <text x=\"137\" y=\"120\" font-size=\"12\" fill=\"#374151\">wake</text>\n  <rect x=\"20\" y=\"110\" width=\"100\" height=\"35\" rx=\"5\" fill=\"#2563eb\" opacity=\"0.15\" stroke=\"#2563eb\" stroke-width=\"1.2\"/>\n  <text x=\"70\" y=\"125\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2563eb\">Service Worker</text>\n  <text x=\"70\" y=\"138\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">(push event)</text>\n  <!-- Final action -->\n  <line x1=\"70\" y1=\"145\" x2=\"70\" y2=\"167\" stroke=\"#374151\" marker-end=\"url(#arr8)\"/>\n  <rect x=\"20\" y=\"170\" width=\"100\" height=\"30\" rx=\"5\" fill=\"#d97706\" opacity=\"0.15\" stroke=\"#d97706\" stroke-width=\"1.2\"/>\n  <text x=\"70\" y=\"190\" text-anchor=\"middle\" font-size=\"12\" fill=\"#d97706\">Show Notification</text>\n  <text x=\"200\" y=\"218\" text-anchor=\"middle\" font-size=\"12\" fill=\"#374151\">SW must show a notification \u2014 silent push is not allowed</text>\n</svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "pwa-tc5-push-02",
+          "card_type": "cloze",
+          "component_id": "vertex-pwa-push-notifications-architecture",
+          "front": "Web Push uses {{c1::VAPID}} (Voluntary Application Server Identification) keys for the app server to authenticate with the push service. The {{c2::public key}} is shared with the browser during subscription, and the {{c3::private key}} signs push messages on the server.",
+          "back": "VAPID prevents unauthorized parties from sending push notifications to your subscribers.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 5,
+          "topic_tags": [
+            "pwa::advanced::push::vapid"
+          ]
+        },
+        {
+          "card_id": "pwa-tc5-push-03",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-push-notifications-architecture",
+          "front": "What are the key platform differences for Web Push on iOS vs Android?",
+          "back": "<b>iOS (Safari 16.4+):</b> Push only works if the PWA is installed to home screen. User must grant permission inside the installed PWA. No push in Safari browser tabs. Notification payload limited. Background processing limited.<br><b>Android (Chrome):</b> Push works in both browser and installed PWA. More reliable delivery. Richer notification features (actions, images, badges). Background processing more permissive. Earlier and more complete API support.",
+          "bloom_level": "understand",
+          "knowledge_type": "fact",
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 5,
+          "topic_tags": [
+            "pwa::advanced::push::platform-differences"
+          ]
+        },
+        {
+          "card_id": "pwa-tc5-sync-01",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-background-sync",
+          "front": "What is the Background Sync API, and what problem does it solve?",
+          "back": "It lets a service worker defer actions until the user has connectivity. If a POST/PUT fails because the user is offline, instead of losing the data, the SW registers a <code>sync</code> event. When connectivity returns, the browser fires the <code>sync</code> event and the SW retries the request. The user can close the tab/browser \u2014 the sync still happens. Solves: \"user submitted a form offline and the data was lost.\"",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 5,
+          "topic_tags": [
+            "pwa::advanced::background-sync::definition"
+          ]
+        },
+        {
+          "card_id": "pwa-tc5-sync-02",
+          "card_type": "basic",
+          "component_id": "vertex-pwa-background-sync",
+          "front": "What is the biggest practical limitation of the Background Sync API, and how does it affect PWA architecture decisions?",
+          "back": "It's <b>only supported in Chromium browsers</b> \u2014 not Safari/iOS. This means any PWA targeting iOS users cannot rely on Background Sync for deferred offline actions. You must implement an app-level alternative: store failed requests in IndexedDB and retry them when the app is reopened and detects connectivity (app-level sync). This makes the Background Sync API more of a progressive enhancement than a foundation \u2014 design for the fallback first.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 5,
+          "topic_tags": [
+            "pwa::advanced::background-sync::limitations"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,493 @@
+{
+  "mastery_gates": [
+    {
+      "task_class": "TC1",
+      "gate_name": "Core Agent Competency",
+      "description": "Foundational understanding of agent loops, system prompts, and context management",
+      "prereqs": ["Agent Loop & Query (55%)", "System Prompts (80%)", "Context Compaction (75%)"],
+      "bloom_level": "understand",
+      "items": [
+        {
+          "id": "TC1-A1",
+          "question": "A user query arrives at your agent. Describe the sequence of steps the agent loop executes before returning a response, including where system prompts are applied.",
+          "bloom_level": "understand",
+          "expected_answer": "The agent loop: (1) receives and processes the user query, (2) applies system prompts to establish behavior constraints and capabilities, (3) manages context window by compacting old messages if needed, (4) streams response tokens as they're generated, (5) buffers complete response, (6) returns formatted output. System prompts shape tool availability and response style throughout steps 2-5.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Identifies all 6 major steps in sequence", "points": 3},
+              {"description": "Correctly locates system prompt application", "points": 2},
+              {"description": "Mentions context compaction as selective mechanism", "points": 2},
+              {"description": "Acknowledges streaming token generation", "points": 2},
+              {"description": "Minor gaps in sequencing or detail", "points": -1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: ask about a different scenario (webhook query vs chat). Far-transfer: ask how streaming affects token budget calculations."
+        },
+        {
+          "id": "TC1-A2",
+          "question": "Your agent's context window is 80% full after 15 conversation turns. The next user message is 2,000 tokens. What does context compaction prioritize when deciding what to discard, and why?",
+          "bloom_level": "understand",
+          "expected_answer": "Context compaction prioritizes: (1) oldest messages first (FIFO), (2) lowest semantic relevance to recent context, (3) preserves system prompt and current task state. Rationale: recency bias (recent turns shape agent behavior), task coherence (current goal requires recent state), and irreversible loss (newer info can be recovered from logs, old context cannot).",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Identifies FIFO + relevance weighting strategy", "points": 3},
+              {"description": "Explains why oldest is discarded first", "points": 2},
+              {"description": "Notes system prompt preservation", "points": 2},
+              {"description": "Connects to task state coherence", "points": 2},
+              {"description": "Mentions recency bias principle", "points": 1}
+            ],
+            "total": 10,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: what if context is 95% full? Far-transfer: how does compaction interact with multi-agent handoffs where context must be transferred?"
+        },
+        {
+          "id": "TC1-A3",
+          "question": "You observe that streaming is enabled, but response tokens are buffered before returning to the user. What is the purpose of this buffering, and what would happen if you disabled it?",
+          "bloom_level": "remember",
+          "expected_answer": "Streaming buffers tokens to: (1) accumulate a complete, coherent response before transmission, (2) ensure tool calls are fully formed before execution, (3) prevent partial/malformed output. Disabling it would cause: premature tool invocation on incomplete schemas, user-facing garbled responses, loss of response semantics.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Identifies buffering ensures completeness", "points": 2},
+              {"description": "Connects to tool call integrity", "points": 2},
+              {"description": "Explains at least 2 consequences of disabling", "points": 3},
+              {"description": "Mentions response coherence", "points": 2}
+            ],
+            "total": 9,
+            "passing_threshold": 6
+          },
+          "surface_features": "Near-transfer: what if you buffer only tool calls but stream text responses? Far-transfer: how does buffering affect latency in high-frequency agent scenarios?"
+        },
+        {
+          "id": "TC1-A4",
+          "question": "Design a system prompt for an agent that must (a) query a PostgreSQL database, (b) refuse to delete records, (c) always cite data sources. Write 3-4 sentences.",
+          "bloom_level": "apply",
+          "expected_answer": "You are a data analyst agent with access to PostgreSQL. You can query, read, and aggregate data, but NEVER execute DELETE, DROP, or ALTER statements. For every fact you report, cite the source table and query. If a user requests deletion, explain why you cannot and suggest an alternative (e.g., soft-delete with update). Always verify multi-table joins for accuracy before reporting results.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Clearly states agent role and PostgreSQL access", "points": 2},
+              {"description": "Explicitly forbids DELETE/DROP/ALTER operations", "points": 2},
+              {"description": "Mandates source citation for all facts", "points": 2},
+              {"description": "Includes fallback guidance for prohibited requests", "points": 2},
+              {"description": "Is concise and unambiguous (3-4 sentences)", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: add a constraint about transaction isolation levels. Far-transfer: design a prompt that delegates deletion decisions to a human-in-the-loop subagent."
+        },
+        {
+          "id": "TC1-A5",
+          "question": "Your agent's system prompt says 'never assume user intent; ask for clarification.' A user says 'get my data.' What does this mean for context compaction and the next agent loop iteration?",
+          "bloom_level": "analyze",
+          "expected_answer": "The system prompt constraint means the agent must: (1) NOT execute any query until user specifies which dataset, time range, and filters; (2) respond with clarification questions. For context compaction: the user's ambiguous query must be preserved (high relevance to current interaction), and the agent's clarification request becomes the new 'current task state.' Next iteration: agent awaits refined input before executing; compaction prioritizes recent clarification context. Implication: ambiguity costs tokens (longer context) until resolved.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Explains agent must ask clarifying questions", "points": 2},
+              {"description": "Connects system prompt constraint to agent behavior", "points": 2},
+              {"description": "Describes how compaction preserves clarification chain", "points": 2},
+              {"description": "Notes cost implication (token overhead)", "points": 2},
+              {"description": "Explains state carryover to next iteration", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 6
+          },
+          "surface_features": "Near-transfer: what if the system prompt encourages 'reasonable assumptions' instead? Far-transfer: analyze how this constraint scales in a multi-agent system where subagents also ask clarifications."
+        }
+      ]
+    },
+    {
+      "task_class": "TC2",
+      "gate_name": "Tool Integration Mastery",
+      "description": "Competency in discovering, designing, and invoking tools; custom tools and MCPs",
+      "prereqs": ["Built-in Tools (90%)", "Custom Tools (65%)", "Tool Design (80%)"],
+      "bloom_level": "apply",
+      "items": [
+        {
+          "id": "TC2-A1",
+          "question": "You have a PostgreSQL database tool and a text-generation tool. A user asks 'find records where sentiment is negative, then generate a summary.' Should these tools be composed in sequence or in parallel, and why?",
+          "bloom_level": "analyze",
+          "expected_answer": "Sequence (PostgreSQL → text-generation) because: (1) text-generation requires the dataset from PostgreSQL as input, (2) parallel execution would cause text-generation to run without data, (3) the user's intent implies a dependency (filter, then summarize). Tool composition must respect data dependencies, not execution speed.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Identifies correct sequence: PostgreSQL then text-generation", "points": 3},
+              {"description": "Explains data dependency as the reason", "points": 2},
+              {"description": "Rules out parallel execution with justification", "points": 2},
+              {"description": "Mentions respecting user intent", "points": 1},
+              {"description": "Minor reasoning gaps", "points": -1}
+            ],
+            "total": 8,
+            "passing_threshold": 6
+          },
+          "surface_features": "Near-transfer: what if both tools are read-only and can run in parallel? Far-transfer: design a tool composition DAG for a 4-tool workflow."
+        },
+        {
+          "id": "TC2-A2",
+          "question": "Define what makes a 'good' tool signature. List 3 properties and explain why each matters for agent usability.",
+          "bloom_level": "understand",
+          "expected_answer": "(1) Clear, unambiguous parameter names (why: agent must map user intent to parameters; ambiguous names cause wrong arguments), (2) Explicit return type and schema (why: agent needs to predict what data it will receive for next-step planning), (3) Failure modes documented (why: agent must know how to handle errors; undocumented failures cause silent failures or crashes).",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Lists 3 distinct properties of good signatures", "points": 3},
+              {"description": "Explains each property's impact on agent behavior", "points": 3},
+              {"description": "Uses examples (optional but +1 if present)", "points": 1},
+              {"description": "All explanations are cogent and concise", "points": 2}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: what if a tool has optional parameters? Far-transfer: how does tool signature design change for multi-agent systems?"
+        },
+        {
+          "id": "TC2-A3",
+          "question": "You want to build a custom tool that validates email addresses. Should it be a local function or an MCP? What factors determine this choice?",
+          "bloom_level": "apply",
+          "expected_answer": "Local function if: (1) logic is simple (regex or syntax check), (2) no external API calls, (3) fast execution (<100ms), (4) no secret keys. MCP if: (1) integrates external service (SMTP verification), (2) needs versioning/updates independent of agent, (3) shared by multiple agents, (4) requires authentication. Email validation: simple case → local; full verification → MCP.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Distinguishes local function vs MCP trade-offs", "points": 3},
+              {"description": "Lists 3+ decision factors", "points": 3},
+              {"description": "Applies reasoning to email validation example", "points": 2},
+              {"description": "Considers scalability/reuse", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: should phone number validation be local or MCP? Far-transfer: how does tool architecture change when you need A/B testing of email validators?"
+        },
+        {
+          "id": "TC2-A4",
+          "question": "Your tool search returns 12 candidates for 'database query.' How should an agent prioritize which tool to use? Describe the decision process.",
+          "bloom_level": "understand",
+          "expected_answer": "Priority order: (1) Exact database type match (e.g., 'PostgreSQL query' for Postgres), (2) generalist tools with high success rates, (3) by recency/freshness of tool docs, (4) by lowest latency/cost. Rationale: exact match minimizes misunderstandings; generalist tools are safer fallbacks; fresh docs reduce bugs; latency matters for real-time agents. Agent should NOT pick the first result.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Identifies exact type matching as highest priority", "points": 2},
+              {"description": "Lists 2-3 secondary criteria", "points": 2},
+              {"description": "Explains rationale for each criterion", "points": 3},
+              {"description": "Avoids picking 'first result' naively", "points": 2}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: how does prioritization change if 3 tools are equally good? Far-transfer: design a scoring function that combines type match, success rate, and cost."
+        },
+        {
+          "id": "TC2-A5",
+          "question": "Evaluate this tool call: 'query_database(user_input)' where user_input is the raw string 'SELECT * FROM users WHERE id=1;'. What risks exist, and how should the tool signature change?",
+          "bloom_level": "analyze",
+          "expected_answer": "Risks: (1) SQL injection if user_input contains malicious SQL, (2) no schema validation, (3) unbounded result sets (SELECT * can return gigabytes). Better signature: 'query_database(table: str, filters: Dict[str, Any], columns: List[str])' with validation. Rationale: structured parameters prevent injection; type hints enable validation; column specification bounds results. User intent ('get user #1') maps to safe call: query_database('users', {'id': 1}, ['*']).",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Identifies SQL injection vulnerability", "points": 2},
+              {"description": "Notes schema validation gap", "points": 2},
+              {"description": "Proposes improved signature with structured params", "points": 2},
+              {"description": "Explains how validation prevents attacks", "points": 2},
+              {"description": "Shows safe parameter mapping", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: same signature but with prepared statements. Far-transfer: design a parameterized query DSL for multi-dialect database tools."
+        }
+      ]
+    },
+    {
+      "task_class": "TC3",
+      "gate_name": "Control, Safety & Governance",
+      "description": "Permissions, hooks, error handling, and cost management in agent systems",
+      "prereqs": ["Permissions (75%)", "Hooks (75%)", "Error Handling (70%)", "Cost Management (50%)"],
+      "bloom_level": "apply",
+      "items": [
+        {
+          "id": "TC3-A1",
+          "question": "A hook is triggered before a tool call. Should it (a) validate parameters, (b) enforce rate limits, (c) log execution, (d) all of the above? Justify your answer.",
+          "bloom_level": "understand",
+          "expected_answer": "(d) All of the above. Hooks are the interception point for (a) safety—validate that parameters are safe before execution; (b) governance—enforce user/system limits before allowing expensive operations; (c) observability—log what ran for audit trails. These are independent concerns that don't conflict. A hook that only does one is missing opportunities for control.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Selects answer (d) and justifies", "points": 2},
+              {"description": "Explains safety validation role", "points": 2},
+              {"description": "Connects hooks to rate limiting/governance", "points": 2},
+              {"description": "Mentions observability/audit benefit", "points": 2},
+              {"description": "Notes these are non-conflicting concerns", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: can hooks be used after tool execution? Far-transfer: design a hook system with priority levels (pre-safety, pre-rate-limit, pre-log)."
+        },
+        {
+          "id": "TC3-A2",
+          "question": "Your agent has a $5 budget per conversation. A user makes 10 calls, each costing $0.60. After call 8 ($4.80 spent), should the agent (a) allow call 9 and stop at call 10, (b) deny call 9, (c) query the user? Why?",
+          "bloom_level": "apply",
+          "expected_answer": "(b) Deny call 9 with explanation. Rationale: $4.80 spent + $0.60 for call 9 = $5.40, which exceeds budget. The agent should have known the cost of call 9 before execution (cost management hook), and refused to invoke it. Option (c) is too slow (user waits for confirmation); option (a) violates the budget. Best response: 'Your next action costs $0.60 but you have $0.20 remaining. Please adjust your request.'",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Selects answer (b) with correct math", "points": 3},
+              {"description": "Explains pre-execution cost checking", "points": 2},
+              {"description": "Rejects option (a) with justification", "points": 2},
+              {"description": "Provides user-friendly explanation message", "points": 2}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: what if the user is granted a $10 budget? Far-transfer: design a cost-aware scheduling system for multi-agent teams with shared budgets."
+        },
+        {
+          "id": "TC3-A3",
+          "question": "An error occurs inside a tool (e.g., database timeout). What should the error handler do? List 3 responsibilities and 1 thing it should NOT do.",
+          "bloom_level": "understand",
+          "expected_answer": "Responsibilities: (1) catch and classify the error (timeout vs permission denied vs schema error), (2) log it with context (which tool, what input, what time), (3) decide retry-ability (is it transient? should the agent retry?). Should NOT: (1) silently swallow the error; (2) crash the agent; (3) expose sensitive error details (database structure, credentials) to the user. Error classification enables smart recovery; logging enables debugging; retry logic minimizes latency.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Lists 3 distinct responsibilities", "points": 3},
+              {"description": "Explains why each is important", "points": 2},
+              {"description": "Identifies 1 critical 'do NOT'", "points": 2},
+              {"description": "Mentions error classification/retry logic", "points": 2}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: should the agent retry automatically or ask the user? Far-transfer: design an error recovery policy that balances latency, cost, and user experience."
+        },
+        {
+          "id": "TC3-A4",
+          "question": "Your agent has 'read' permission for a PostgreSQL table but 'write' permission only for a staging schema. A user asks to 'update the live database.' What does your permission system do, and why?",
+          "bloom_level": "apply",
+          "expected_answer": "Permission system: (1) intercepts the 'update live database' request, (2) checks permissions, (3) denies with explanation: 'You have write access only to staging schema, not the live database.' Why: least privilege principle—agent operates with minimal permissions needed. User is not surprised (clear error); agent is protected (cannot accidentally corrupt live data); audit trail shows the attempt. Agent may suggest: 'I can update staging. Would you like to review it before promoting to live?'",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Describes permission check sequence", "points": 2},
+              {"description": "Explains least privilege principle", "points": 2},
+              {"description": "Denies operation with clear explanation", "points": 2},
+              {"description": "Offers constructive alternative", "points": 2},
+              {"description": "Mentions audit trail", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: user asks to 'read the audit logs'—do you check permissions? Far-transfer: design a permission escalation workflow where users can request temporary elevated access."
+        },
+        {
+          "id": "TC3-A5",
+          "question": "A single-tool call costs $2.00, which would exceed the remaining budget by $0.50. Your agent can decompose the task into 3 smaller calls at $0.60 each. Should it (a) refuse the single call, (b) automatically decompose, (c) ask the user? Explain the trade-offs.",
+          "bloom_level": "analyze",
+          "expected_answer": "(c) Ask the user. Trade-offs: (a) safe but unhelpful (user gets blocked); (b) helpful but opaque (user doesn't know they were charged differently; may violate expectations); (c) respectful and transparent (user chooses their trade-off: speed vs cost). Agent message: 'This costs $2.00 (over budget). I can break it into 3 cheaper calls ($1.80). Which would you prefer, or should I fail?' This honors user autonomy while managing cost.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Selects answer (c) with strong justification", "points": 3},
+              {"description": "Explains trade-off between safety/helpfulness/transparency", "points": 3},
+              {"description": "Shows user-facing message", "points": 2},
+              {"description": "Mentions autonomy/expectation management", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: what if decomposition is impossible? Far-transfer: design a cost optimization system that learns which decompositions are effective."
+        }
+      ]
+    },
+    {
+      "task_class": "TC4",
+      "gate_name": "State Management & Multi-Agent Coordination",
+      "description": "Sessions, structured output, conversation state, and agent team orchestration",
+      "prereqs": ["Sessions (75%)", "Structured Output (90%)", "Conversation State (70%)", "Agent Teams (70%)", "Orchestration (65%)"],
+      "bloom_level": "apply",
+      "items": [
+        {
+          "id": "TC4-A1",
+          "question": "A multi-agent team consists of (a) Planner, (b) DataAgent, (c) AnalystAgent. Planner coordinates the others. What does Planner need to know about the structured output of DataAgent to properly invoke AnalystAgent?",
+          "bloom_level": "understand",
+          "expected_answer": "Planner must know: (1) DataAgent's output schema (what fields, what types), (2) which fields are mandatory vs optional, (3) what happens if DataAgent returns null/empty (should AnalystAgent be skipped?), (4) what queries AnalystAgent expects (does it need raw data or aggregated data?). Example: if DataAgent outputs {data: List[Dict], error: str}, Planner knows to check error field before passing data. Structured output enables orchestration by making contracts explicit.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Identifies schema knowledge as essential", "points": 2},
+              {"description": "Mentions field optionality/nullability", "points": 2},
+              {"description": "Considers error/fallback handling", "points": 2},
+              {"description": "Connects schema to downstream expectations", "points": 2},
+              {"description": "Notes contract explicitness", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: what if DataAgent can fail partially (some data valid, some error)? Far-transfer: design a schema versioning system for multi-agent teams."
+        },
+        {
+          "id": "TC4-A2",
+          "question": "A session stores conversation history. Should it also store intermediate agent states (e.g., 'DataAgent retrieved 5,000 rows'), and why?",
+          "bloom_level": "apply",
+          "expected_answer": "Yes, intermediate states should be stored. Rationale: (1) debugging—if AnalystAgent fails, you can see exactly what DataAgent returned, (2) cost tracking—intermediate states reveal where tokens/money was spent, (3) context recovery—if session is resumed, agent knows which steps completed, (4) audit/compliance—regulatory requirements often demand execution traces. Exception: don't store sensitive intermediate data (credentials, PII) that isn't needed for recovery.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Answers 'yes' and provides rationale", "points": 2},
+              {"description": "Lists 2-3 reasons (debugging, cost, recovery)", "points": 3},
+              {"description": "Mentions audit/compliance value", "points": 2},
+              {"description": "Notes the exception (sensitive data)", "points": 2}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: how much intermediate state is too much? Far-transfer: design a compression policy for long-running sessions."
+        },
+        {
+          "id": "TC4-A3",
+          "question": "A user resumes a session from yesterday. The conversation state shows 'AnalystAgent was waiting for data.' What does the agent do: (a) restart from the beginning, (b) ask DataAgent for the same data again, (c) check if the old data is still valid, (d) something else?",
+          "bloom_level": "apply",
+          "expected_answer": "(c) Check if old data is valid. Before re-invoking DataAgent: (1) verify the data hasn't become stale (is it still fresh?), (2) verify the query parameters haven't changed, (3) if valid, skip re-execution and resume AnalystAgent. Rationale: efficiency (avoid redundant calls), cost (save tokens/money), consistency (same input → same output). If data is invalid, invoke DataAgent again. Option (a) is inefficient; (b) is redundant; (c) is smart.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Selects (c) with clear reasoning", "points": 3},
+              {"description": "Explains freshness/staleness check", "points": 2},
+              {"description": "Verifies query parameters unchanged", "points": 2},
+              {"description": "Notes efficiency/cost savings", "points": 1},
+              {"description": "Considers fallback if invalid", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: what if data source was updated (new rows added)? Far-transfer: design a freshness policy for different data types (real-time streams vs nightly exports)."
+        },
+        {
+          "id": "TC4-A4",
+          "question": "Orchestration: If Agent A needs output from Agent B, and Agent B needs output from Agent C, should they execute A→B→C (sequential) or B→C→A (still sequential, different order)? Why does order matter?",
+          "bloom_level": "understand",
+          "expected_answer": "Order: C→B→A (execute in dependency order: C first, then B, then A). Why: (1) dependency graph must be acyclic (no circular dependencies), (2) topological sort ensures each agent's inputs are ready before it executes, (3) wrong order causes agent to block waiting for missing input. Example: if A runs before C, A blocks waiting for C's output; then C blocks waiting for... nothing (C is independent). Correct order: C executes (no dependencies), B uses C's output, A uses B's output. Sequential is required if there are dependencies.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Identifies correct order as C→B→A (topological sort)", "points": 3},
+              {"description": "Explains why dependency order matters", "points": 2},
+              {"description": "Notes acyclic requirement", "points": 1},
+              {"description": "Describes blocking behavior of wrong order", "points": 2},
+              {"description": "Gives clear example", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: what if C and B are independent? Far-transfer: design a scheduler that balances parallelism and dependency constraints."
+        },
+        {
+          "id": "TC4-A5",
+          "question": "A team of 3 agents has shared conversation state. Agent A modifies a field X, then Agent B reads X. Is this always safe? What could go wrong, and how should state mutations be coordinated?",
+          "bloom_level": "analyze",
+          "expected_answer": "NOT always safe. Issues: (1) race condition—B reads X after A starts modifying but before completion, (2) consistency—multiple agents modifying the same state can cause conflicts, (3) rollback—if A's mutation fails, should B's read be invalidated? Coordination: (a) use explicit state versioning (version X after each mutation), (b) establish read-before-write semantics (A increments version, B verifies version unchanged before using), (c) serialize mutations (only one agent modifies state at a time), (d) use transactions (all-or-nothing mutations). Best practice: immutable state sharing where each agent produces a new state version.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Identifies race condition risk", "points": 2},
+              {"description": "Explains consistency issue", "points": 2},
+              {"description": "Considers rollback scenarios", "points": 1},
+              {"description": "Proposes versioning or serialization solution", "points": 2},
+              {"description": "Mentions transaction semantics", "points": 1},
+              {"description": "Suggests immutable state pattern", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: what if all agents read-only? Far-transfer: design a conflict-free state model for geographically distributed agent teams."
+        }
+      ]
+    },
+    {
+      "task_class": "TC5",
+      "gate_name": "Production Readiness & Advanced Architecture",
+      "description": "Observability, testing, secure deployment, long-running patterns, and evolution tracking",
+      "prereqs": ["OTel Tracing (10%)", "Observability Platforms (10%)", "Testing Strategies (10%)", "Secure Deployment (0%)", "Long-Running Patterns (0%)", "Evolution Tracking (10%)"],
+      "bloom_level": "analyze",
+      "items": [
+        {
+          "id": "TC5-A1",
+          "question": "Your agent makes 5 sequential tool calls in production. One call takes 45 seconds. How would you detect this using OTel tracing, and what information would you collect to diagnose it?",
+          "bloom_level": "understand",
+          "expected_answer": "OTel tracing: (1) instrument each tool call as a span with duration metadata, (2) emit a trace event when call starts and completes, (3) tag span with tool name, input size, output size, (4) record latency (duration_ms). To diagnose the 45-second call: (a) check input size (is the input huge?), (b) check tool logs (did the tool itself report slowness, or did it wait externally?), (c) check downstream service health (is the database slow?), (d) compare to baseline (is 45s normal for this tool?). You'd see 45s latency on one span vs ~1s on the other 4 spans.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Describes instrumentation (spans, events, tags)", "points": 2},
+              {"description": "Specifies what metadata to collect", "points": 2},
+              {"description": "Lists 3-4 diagnostic questions", "points": 3},
+              {"description": "Mentions baseline comparison", "points": 1},
+              {"description": "Notes span-to-span latency visibility", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: how would you alert when latency exceeds 10s? Far-transfer: design a trace sampling strategy for high-volume agents."
+        },
+        {
+          "id": "TC5-A2",
+          "question": "You deploy a new version of your agent. How do you test it safely in production without breaking existing users? Describe a deployment strategy.",
+          "bloom_level": "apply",
+          "expected_answer": "Canary deployment: (1) deploy new version to a small % of traffic (5%), (2) monitor error rate, latency, cost of new version vs old, (3) if metrics are good, gradually increase traffic (5% → 25% → 50% → 100%), (4) if issues arise, roll back to old version. Observability: (a) tag all metrics with version, (b) have dashboards comparing v1 vs v2, (c) alert on regressions (latency up >10%, error rate up >1%). Safe deployment ensures users aren't surprised; gradual rollout limits blast radius.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Identifies canary deployment as strategy", "points": 3},
+              {"description": "Describes traffic ramp-up (5% → 100%)", "points": 2},
+              {"description": "Lists metrics to monitor (error, latency, cost)", "points": 2},
+              {"description": "Explains quick rollback capability", "points": 1},
+              {"description": "Mentions version-tagged observability", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: what if the new version has a critical bug affecting 25% of traffic? Far-transfer: design a multi-region deployment strategy."
+        },
+        {
+          "id": "TC5-A3",
+          "question": "Your agent runs for 72 hours continuously. What long-running pattern issue might occur, and how does the agent mitigate it?",
+          "bloom_level": "understand",
+          "expected_answer": "Issue: memory leak or context window drift. Over 72 hours, (1) context accumulates (conversation history grows unbounded), (2) agent becomes slower (context compaction takes longer), (3) cost increases (more tokens processed), (4) possible crash (memory exhausted). Mitigation: (a) periodic session checkpoints (save state every 6 hours, reset context), (b) aggressive compaction (discard old messages more frequently), (c) bounded history (keep only last N turns), (d) memory monitoring (alert if memory usage exceeds threshold). Example: every 24 hours, save final state, start fresh session with only summary of work done.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Identifies memory/context accumulation issue", "points": 3},
+              {"description": "Explains consequences (slowness, cost, crash)", "points": 2},
+              {"description": "Proposes checkpointing strategy", "points": 2},
+              {"description": "Mentions compaction/bounded history", "points": 1},
+              {"description": "Suggests monitoring/alerting", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: what if the agent must remember all context (e.g., for compliance)? Far-transfer: design a memory management strategy for a fleet of agents."
+        },
+        {
+          "id": "TC5-A4",
+          "question": "You need to deploy an agent that accesses production secrets (database credentials, API keys). What security measures must you implement?",
+          "bloom_level": "apply",
+          "expected_answer": "Security measures: (1) never hardcode secrets in code or prompts, (2) use a secrets manager (e.g., AWS Secrets Manager, HashiCorp Vault), (3) load secrets at runtime, (4) rotate secrets regularly (weekly/monthly), (5) limit agent access (principle of least privilege—only the credentials it needs), (6) audit secret access (log when/where secrets are read), (7) encrypt secrets in transit (TLS/HTTPS), (8) never log secret values. Example: agent requests secret from Vault (authenticated), receives credential, uses it, forgets it. Vault has audit trail: who requested, when, from where. If compromised, rotate only that secret, not all credentials.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Forbids hardcoding secrets", "points": 2},
+              {"description": "Specifies secrets manager usage", "points": 2},
+              {"description": "Mentions runtime loading and rotation", "points": 2},
+              {"description": "Describes least privilege principle", "points": 1},
+              {"description": "Includes audit/encryption requirements", "points": 1},
+              {"description": "Gives concrete example", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: how do you handle key rotation in a team of 10 agents? Far-transfer: design a zero-trust security model for agent access."
+        },
+        {
+          "id": "TC5-A5",
+          "question": "Your agent evolves: v1.0 used Tool A, v2.0 uses Tool B (better accuracy), v3.0 combines both. How do you track which version an output came from, and why does it matter?",
+          "bloom_level": "analyze",
+          "expected_answer": "Tracking: (1) tag all outputs with version (output metadata: {version: '3.0', timestamp, tools_used: ['A', 'B']}), (2) log version in observability platform, (3) version schema (if output format changes, bump version). Why it matters: (a) reproducibility—can you re-run v2.0 if v3.0 regresses?, (b) debugging—if v3.0 fails on 10% of inputs, can you identify patterns (e.g., Tool A outputs cause failures)?, (c) comparison—A/B testing across versions to measure improvement, (d) compliance—audit trail showing which version was used for each decision. Example: you compare v2 vs v3 accuracy on 1000 historical inputs; v3 is +5% better, so you roll out v3 to all users.",
+          "scoring_rubric": {
+            "criteria": [
+              {"description": "Describes version tagging in output metadata", "points": 2},
+              {"description": "Lists 3-4 reasons why tracking matters", "points": 3},
+              {"description": "Mentions reproducibility and debugging", "points": 2},
+              {"description": "Includes A/B testing use case", "points": 1},
+              {"description": "Gives concrete example", "points": 1}
+            ],
+            "total": 9,
+            "passing_threshold": 7
+          },
+          "surface_features": "Near-transfer: what if Tool A and Tool B give conflicting results? Far-transfer: design a gradual rollout strategy that measures version performance across 1M users."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,483 @@
+{
+  "id": "lp-pwa-20260309-001",
+  "knowledge_graph_id": "kg-pwa-20260309-001",
+  "learner_id": "learner-netrxn-001",
+  "created_at": "2026-03-09T14:00:00Z",
+
+  "curriculum": {
+    "epitome": {
+      "description": "Evaluate one of your own TypeScript/htmx applications for PWA fitness. Walk through a structured go/no-go analysis: What does the app do? Who uses it? What would PWA add (installability, offline, push)? What architectural tensions exist with htmx? What's the migration cost? Produce a written recommendation. This is simplified (you'll be guided through the framework step by step with worked examples of each criterion) but it exercises the COMPLETE evaluation skill from session one — the exact thing you're learning to do independently.",
+      "vertex_ids": [
+        "vertex-pwa-pwa-fitness-evaluation",
+        "vertex-pwa-htmx-pwa-tension",
+        "vertex-pwa-offline-strategy-design",
+        "vertex-pwa-platform-constraints"
+      ],
+      "leverages_existing_knowledge": "Your structured evaluation framework (intent, use-cases, pain-points, lifecycle, reversibility, incremental rollout) IS the skeleton. We populate it with PWA-specific criteria rather than teaching evaluation methodology. Your htmx knowledge provides one side of the architectural tension immediately."
+    },
+
+    "task_classes": [
+      {
+        "id": "tc-1-foundations",
+        "name": "The PWA Mental Model",
+        "complexity_level": 1,
+        "description": "Build the foundational mental model: what a PWA actually is (and isn't), how requests flow through cache layers, service worker basics, and the PWA feature spectrum. Anchored to your backend HTTP experience. Ends with evaluating a simple app scenario.",
+        "vertex_ids": [
+          "vertex-pwa-http-caching-fundamentals",
+          "vertex-pwa-browser-request-lifecycle",
+          "vertex-pwa-service-worker-lifecycle",
+          "vertex-pwa-web-app-manifest",
+          "vertex-pwa-security-https-sw"
+        ],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "EPITOME: Walk through a complete PWA fitness evaluation of one of your apps, with full guidance at each step. I trace a request through all cache layers, explain the SW lifecycle, show the manifest, and you observe + explain back what each piece means for your app.",
+            "vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-http-caching-fundamentals", "vertex-pwa-browser-request-lifecycle", "vertex-pwa-service-worker-lifecycle", "vertex-pwa-web-app-manifest", "vertex-pwa-security-https-sw"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 2,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "I provide the request lifecycle diagram and caching layer explanation. You fill in: what happens at each layer for a specific resource type (JS bundle, API response, image). Then explain how the SW lifecycle phases map to a deployment scenario.",
+            "vertex_ids": ["vertex-pwa-http-caching-fundamentals", "vertex-pwa-browser-request-lifecycle", "vertex-pwa-service-worker-lifecycle"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 3,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "Given a simple web app description, trace a request through all layers yourself. Explain what happens during a SW update. I provide hints only if asked.",
+            "vertex_ids": ["vertex-pwa-http-caching-fundamentals", "vertex-pwa-browser-request-lifecycle", "vertex-pwa-service-worker-lifecycle"],
+            "session_template": "C_skill_drill"
+          },
+          {
+            "sequence": 4,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "Evaluate a fresh scenario: a content blog wants to become a PWA. Identify what the manifest should look like, what the SW lifecycle implications are, and whether HTTPS is already handled. No hints.",
+            "vertex_ids": ["vertex-pwa-http-caching-fundamentals", "vertex-pwa-browser-request-lifecycle", "vertex-pwa-service-worker-lifecycle", "vertex-pwa-web-app-manifest", "vertex-pwa-security-https-sw"],
+            "session_template": "C_skill_drill"
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can trace a request through all cache layers (memory → SW → Cache API → HTTP cache → CDN → origin) and predict behavior. Can explain SW lifecycle phases and why updates don't take effect immediately. Can identify what a manifest needs for installability.",
+          "assessment_vertex_ids": ["vertex-pwa-http-caching-fundamentals", "vertex-pwa-browser-request-lifecycle", "vertex-pwa-service-worker-lifecycle"],
+          "bloom_level_required": "understand",
+          "passing_threshold": 0.7,
+          "min_items": 3
+        },
+        "productive_failure_points": [],
+        "interleaving_pool": []
+      },
+      {
+        "id": "tc-2-caching-strategy",
+        "name": "Caching Strategy & Layer Interactions",
+        "complexity_level": 2,
+        "description": "Master the five caching strategies, learn to select per resource type, then tackle the hard part: how SW cache interacts with HTTP cache and CDN cache. The 'double-cache' problem. This is where the real complexity lives.",
+        "vertex_ids": [
+          "vertex-pwa-cache-api-mechanics",
+          "vertex-pwa-caching-strategy-selection",
+          "vertex-pwa-sw-http-cache-alignment",
+          "vertex-pwa-sw-cdn-interaction",
+          "vertex-pwa-app-shell-pattern"
+        ],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "I walk through a complete caching architecture for a real app: assign strategies per resource type, show how Cache API stores and versions entries, demonstrate the SW+HTTP cache interaction, and trace a CDN deploy through all layers. You observe and explain back.",
+            "vertex_ids": ["vertex-pwa-cache-api-mechanics", "vertex-pwa-caching-strategy-selection", "vertex-pwa-sw-http-cache-alignment", "vertex-pwa-sw-cdn-interaction"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 2,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "I provide an app with 6 resource types. Caching strategies for 3 are already assigned with rationale. You complete the remaining 3 and explain the CDN interaction implications for each.",
+            "vertex_ids": ["vertex-pwa-caching-strategy-selection", "vertex-pwa-sw-cdn-interaction"],
+            "session_template": "C_skill_drill"
+          },
+          {
+            "sequence": 3,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "Evaluate the app shell pattern: I present two architectures (SPA with app shell vs. server-rendered htmx). You analyze which caching strategies each supports, where the SW+CDN interactions differ, and what the app shell buys you. Hints if asked.",
+            "vertex_ids": ["vertex-pwa-app-shell-pattern", "vertex-pwa-caching-strategy-selection", "vertex-pwa-sw-cdn-interaction"],
+            "session_template": "C_skill_drill"
+          },
+          {
+            "sequence": 4,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "Full caching architecture design: given a new application, assign all strategies, identify CDN+SW conflict points, propose the cache alignment approach, and explain your rationale. No support.",
+            "vertex_ids": ["vertex-pwa-cache-api-mechanics", "vertex-pwa-caching-strategy-selection", "vertex-pwa-sw-http-cache-alignment", "vertex-pwa-sw-cdn-interaction", "vertex-pwa-app-shell-pattern"],
+            "session_template": "C_skill_drill"
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can assign appropriate caching strategies per resource type with clear rationale. Can predict what happens when SW cache-first compounds with CDN TTL on a deploy. Can explain when network-first SW strategy still serves stale data (HTTP cache trap). Can evaluate app shell pattern fit.",
+          "assessment_vertex_ids": ["vertex-pwa-caching-strategy-selection", "vertex-pwa-sw-cdn-interaction", "vertex-pwa-sw-http-cache-alignment", "vertex-pwa-app-shell-pattern"],
+          "bloom_level_required": "analyze",
+          "passing_threshold": 0.7,
+          "min_items": 4
+        },
+        "productive_failure_points": [
+          {
+            "vertex_id": "vertex-pwa-sw-http-cache-alignment",
+            "rationale": "The naive theory is that 'network-first means fresh data.' In reality, the SW's network request can hit the HTTP cache and return stale data. This misconception must be surfaced through experience before instruction.",
+            "naive_theory": "Network-first strategy guarantees fresh responses from the server."
+          }
+        ],
+        "interleaving_pool": ["vertex-pwa-http-caching-fundamentals", "vertex-pwa-browser-request-lifecycle", "vertex-pwa-service-worker-lifecycle"]
+      },
+      {
+        "id": "tc-3-evaluation-framework",
+        "name": "Architectural Decision-Making",
+        "complexity_level": 3,
+        "description": "The target skill cluster: PWA fitness evaluation, offline strategy design, platform constraints, htmx-PWA tension analysis, and update flow design. Uses your evaluation framework as the skeleton and populates it with everything learned so far.",
+        "vertex_ids": [
+          "vertex-pwa-offline-strategy-design",
+          "vertex-pwa-platform-constraints",
+          "vertex-pwa-update-flow-design",
+          "vertex-pwa-htmx-pwa-tension",
+          "vertex-pwa-pwa-fitness-evaluation"
+        ],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "Complete PWA fitness evaluation of 3 contrasting apps: (1) a field service app with genuine offline need, (2) a real-time analytics dashboard, (3) an htmx content management tool. I walk through the full decision framework for each: offline strategy tier selection, platform constraint check, htmx tension analysis, update flow implications, final recommendation.",
+            "vertex_ids": ["vertex-pwa-offline-strategy-design", "vertex-pwa-platform-constraints", "vertex-pwa-update-flow-design", "vertex-pwa-htmx-pwa-tension", "vertex-pwa-pwa-fitness-evaluation"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 2,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "I provide a partial evaluation of an e-commerce PWA: offline strategy and platform analysis are done. You complete the update flow assessment, the htmx compatibility analysis (if the team is considering htmx for the next version), and the final go/no-go recommendation.",
+            "vertex_ids": ["vertex-pwa-update-flow-design", "vertex-pwa-htmx-pwa-tension", "vertex-pwa-pwa-fitness-evaluation"],
+            "session_template": "C_skill_drill"
+          },
+          {
+            "sequence": 3,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "Evaluate one of YOUR actual applications for PWA fitness. Full evaluation: offline strategy, platform constraints, update flow, htmx tension, migration cost sketch. I provide guidance only if asked.",
+            "vertex_ids": ["vertex-pwa-offline-strategy-design", "vertex-pwa-platform-constraints", "vertex-pwa-update-flow-design", "vertex-pwa-htmx-pwa-tension", "vertex-pwa-pwa-fitness-evaluation"],
+            "session_template": "C_skill_drill"
+          },
+          {
+            "sequence": 4,
+            "support_level": "independent",
+            "task_type": "whole_task",
+            "description": "Evaluate a novel application you haven't seen before. I present the scenario, you run the full evaluation independently, and I challenge your reasoning afterward. This is the coached judgment session.",
+            "vertex_ids": ["vertex-pwa-offline-strategy-design", "vertex-pwa-platform-constraints", "vertex-pwa-update-flow-design", "vertex-pwa-htmx-pwa-tension", "vertex-pwa-pwa-fitness-evaluation"],
+            "session_template": "E_mastery_gate"
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can independently produce a structured PWA fitness evaluation for a novel application: correct offline strategy tier selection, platform constraint identification, update flow assessment, htmx compatibility analysis, and clear go/no-go recommendation with rationale. Reasoning survives challenge.",
+          "assessment_vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-offline-strategy-design", "vertex-pwa-htmx-pwa-tension", "vertex-pwa-platform-constraints", "vertex-pwa-update-flow-design"],
+          "bloom_level_required": "evaluate",
+          "passing_threshold": 0.75,
+          "min_items": 3
+        },
+        "productive_failure_points": [
+          {
+            "vertex_id": "vertex-pwa-htmx-pwa-tension",
+            "rationale": "The learner's htmx background may lead them to dismiss PWA too quickly for server-rendered apps. Presenting a case where PWA genuinely adds value to a server-rendered app (progressive enhancement: manifest + push + basic offline of previously-viewed content) surfaces the over-dismissal tendency before instruction on the compatibility spectrum.",
+            "naive_theory": "Server-rendered htmx apps and PWAs are fundamentally incompatible."
+          }
+        ],
+        "interleaving_pool": ["vertex-pwa-caching-strategy-selection", "vertex-pwa-sw-cdn-interaction", "vertex-pwa-browser-request-lifecycle"]
+      },
+      {
+        "id": "tc-4-quality-detection",
+        "name": "Code Quality & Anti-Pattern Detection",
+        "complexity_level": 4,
+        "description": "Build the PWA-specific code review lens: Workbox as the quality baseline, the anti-pattern catalog for LLM-generated service workers, and performance diagnostics. Plugs into your existing PR review pipeline.",
+        "vertex_ids": [
+          "vertex-pwa-workbox-and-tooling",
+          "vertex-pwa-anti-pattern-detection",
+          "vertex-pwa-performance-budgeting",
+          "vertex-pwa-migration-cost-assessment"
+        ],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "I show you 3 LLM-generated service worker implementations side by side: one hand-written with anti-patterns, one using Workbox correctly, one using Workbox with subtle errors. I walk through each, pointing out anti-patterns, explaining why Workbox is preferred, and demonstrating the performance/quality evaluation. You explain back what you'd flag.",
+            "vertex_ids": ["vertex-pwa-workbox-and-tooling", "vertex-pwa-anti-pattern-detection", "vertex-pwa-performance-budgeting"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 2,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "I provide a partially-reviewed SW implementation: I've flagged 3 of 6 anti-patterns. You find the remaining 3, explain their consequences, and recommend fixes. Then assess whether the migration cost for the fix is worth it.",
+            "vertex_ids": ["vertex-pwa-anti-pattern-detection", "vertex-pwa-migration-cost-assessment"],
+            "session_template": "C_skill_drill"
+          },
+          {
+            "sequence": 3,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "Review a complete PWA implementation from scratch: service worker, manifest, caching strategy. Produce a full quality assessment with anti-pattern identification, performance evaluation, and migration/improvement recommendations. Hints if asked.",
+            "vertex_ids": ["vertex-pwa-workbox-and-tooling", "vertex-pwa-anti-pattern-detection", "vertex-pwa-performance-budgeting", "vertex-pwa-migration-cost-assessment"],
+            "session_template": "C_skill_drill"
+          },
+          {
+            "sequence": 4,
+            "support_level": "independent",
+            "task_type": "whole_task",
+            "description": "Full independent review of a novel PWA implementation. Produce the quality assessment, then I challenge your findings. This becomes a PWA-specific review agent you can add to your existing PR review pipeline.",
+            "vertex_ids": ["vertex-pwa-workbox-and-tooling", "vertex-pwa-anti-pattern-detection", "vertex-pwa-performance-budgeting", "vertex-pwa-migration-cost-assessment"],
+            "session_template": "E_mastery_gate"
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can independently review a PWA implementation: identify anti-patterns in service worker code (especially LLM-generated), explain consequences, recommend Workbox-based alternatives, assess performance implications, and produce a migration cost/benefit analysis. Findings are accurate and well-reasoned.",
+          "assessment_vertex_ids": ["vertex-pwa-anti-pattern-detection", "vertex-pwa-workbox-and-tooling", "vertex-pwa-performance-budgeting", "vertex-pwa-migration-cost-assessment"],
+          "bloom_level_required": "evaluate",
+          "passing_threshold": 0.75,
+          "min_items": 3
+        },
+        "productive_failure_points": [],
+        "interleaving_pool": ["vertex-pwa-caching-strategy-selection", "vertex-pwa-sw-cdn-interaction", "vertex-pwa-update-flow-design", "vertex-pwa-pwa-fitness-evaluation"]
+      },
+      {
+        "id": "tc-5-extended-mastery",
+        "name": "Advanced Topics & Coached Judgment",
+        "complexity_level": 5,
+        "description": "Extended program: WASM+PWA patterns, push notification architecture, background sync, and repeated coached judgment sessions with increasingly ambiguous scenarios. This is where stable competence develops through varied practice.",
+        "vertex_ids": [
+          "vertex-pwa-wasm-in-pwa-context",
+          "vertex-pwa-push-notifications-architecture",
+          "vertex-pwa-background-sync"
+        ],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "Walk through WASM+PWA integration patterns: caching large .wasm binaries, offline compute use cases, when WASM adds genuine value in a PWA. Then push notification architecture: the full pipeline, platform differences, when push is worth it. Background sync overview.",
+            "vertex_ids": ["vertex-pwa-wasm-in-pwa-context", "vertex-pwa-push-notifications-architecture", "vertex-pwa-background-sync"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 2,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "Evaluate a complex scenario that involves WASM, push, and offline: a data visualization PWA that processes data client-side (WASM), needs real-time alerts (push), and should work in spotty connectivity (background sync). Full fitness evaluation integrating all advanced topics.",
+            "vertex_ids": ["vertex-pwa-wasm-in-pwa-context", "vertex-pwa-push-notifications-architecture", "vertex-pwa-background-sync", "vertex-pwa-pwa-fitness-evaluation"],
+            "session_template": "C_skill_drill"
+          },
+          {
+            "sequence": 3,
+            "support_level": "independent",
+            "task_type": "whole_task",
+            "description": "Coached judgment session: I present 3 ambiguous, real-world-ish scenarios in sequence. You evaluate each independently, I challenge your reasoning, we discuss. Focus is on developing rapid, reliable pattern recognition for PWA go/no-go decisions.",
+            "vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-anti-pattern-detection", "vertex-pwa-migration-cost-assessment"],
+            "session_template": "E_mastery_gate"
+          },
+          {
+            "sequence": 4,
+            "support_level": "independent",
+            "task_type": "whole_task",
+            "description": "Final coached session: evaluate YOUR remaining applications. Produce actionable recommendations for each. This is the capstone — applying everything to your actual portfolio.",
+            "vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-migration-cost-assessment", "vertex-pwa-htmx-pwa-tension"],
+            "session_template": "E_mastery_gate"
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can rapidly evaluate ambiguous PWA scenarios integrating all topics (caching, CDN, WASM, push, offline, platform constraints, htmx compatibility) with reasoning that survives challenge. Can produce actionable portfolio-level recommendations.",
+          "assessment_vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-wasm-in-pwa-context", "vertex-pwa-push-notifications-architecture", "vertex-pwa-migration-cost-assessment"],
+          "bloom_level_required": "evaluate",
+          "passing_threshold": 0.8,
+          "min_items": 3
+        },
+        "productive_failure_points": [],
+        "interleaving_pool": ["vertex-pwa-caching-strategy-selection", "vertex-pwa-sw-cdn-interaction", "vertex-pwa-htmx-pwa-tension", "vertex-pwa-anti-pattern-detection", "vertex-pwa-update-flow-design", "vertex-pwa-offline-strategy-design"]
+      }
+    ],
+
+    "selected_vertices": [
+      {"vertex_id": "vertex-pwa-service-worker-lifecycle", "priority_rank": 1, "selection_score": 0.95, "rationale": "Gateway node, highest betweenness centrality. Unlocks update flow, caching strategies, anti-patterns.", "excluded": false},
+      {"vertex_id": "vertex-pwa-http-caching-fundamentals", "priority_rank": 2, "selection_score": 0.92, "rationale": "Gateway node, foundation for all caching layers. Transfer from backend HTTP.", "excluded": false},
+      {"vertex_id": "vertex-pwa-caching-strategy-selection", "priority_rank": 3, "selection_score": 0.90, "rationale": "Gateway node, highest frequency+impact. Core daily-use skill.", "excluded": false},
+      {"vertex_id": "vertex-pwa-browser-request-lifecycle", "priority_rank": 4, "selection_score": 0.88, "rationale": "Critical mental model for all cache layer interactions.", "excluded": false},
+      {"vertex_id": "vertex-pwa-offline-strategy-design", "priority_rank": 5, "selection_score": 0.82, "rationale": "Gateway node, central to fitness evaluation.", "excluded": false},
+      {"vertex_id": "vertex-pwa-update-flow-design", "priority_rank": 6, "selection_score": 0.80, "rationale": "High impact, critical for anti-pattern detection.", "excluded": false},
+      {"vertex_id": "vertex-pwa-anti-pattern-detection", "priority_rank": 7, "selection_score": 0.78, "rationale": "Core to learner's LLM code review workflow.", "excluded": false},
+      {"vertex_id": "vertex-pwa-sw-cdn-interaction", "priority_rank": 8, "selection_score": 0.75, "rationale": "Double-cache problem is a critical evaluation concept.", "excluded": false},
+      {"vertex_id": "vertex-pwa-platform-constraints", "priority_rank": 9, "selection_score": 0.72, "rationale": "Directly feeds fitness evaluation. iOS limitations are decision-changers.", "excluded": false},
+      {"vertex_id": "vertex-pwa-htmx-pwa-tension", "priority_rank": 10, "selection_score": 0.70, "rationale": "Directly relevant to learner's portfolio.", "excluded": false},
+      {"vertex_id": "vertex-pwa-app-shell-pattern", "priority_rank": 11, "selection_score": 0.65, "rationale": "Important for htmx tension and offline strategy. Negative transfer risk.", "excluded": false},
+      {"vertex_id": "vertex-pwa-pwa-fitness-evaluation", "priority_rank": 12, "selection_score": 0.62, "rationale": "Ultimate target skill. Improves as prerequisites fill.", "excluded": false},
+      {"vertex_id": "vertex-pwa-sw-http-cache-alignment", "priority_rank": 13, "selection_score": 0.60, "rationale": "Important trap to understand (network-first hits HTTP cache).", "excluded": false},
+      {"vertex_id": "vertex-pwa-workbox-and-tooling", "priority_rank": 14, "selection_score": 0.55, "rationale": "Key heuristic for code review. Quick to learn.", "excluded": false},
+      {"vertex_id": "vertex-pwa-migration-cost-assessment", "priority_rank": 15, "selection_score": 0.52, "rationale": "Directly relevant to portfolio decisions.", "excluded": false},
+      {"vertex_id": "vertex-pwa-cache-api-mechanics", "priority_rank": 16, "selection_score": 0.48, "rationale": "Supporting knowledge for strategy selection.", "excluded": false},
+      {"vertex_id": "vertex-pwa-wasm-in-pwa-context", "priority_rank": 17, "selection_score": 0.35, "rationale": "Learner interest + portfolio relevance. Extended program.", "excluded": false},
+      {"vertex_id": "vertex-pwa-performance-budgeting", "priority_rank": 18, "selection_score": 0.32, "rationale": "Quality evaluation support. Transfer from architecture.", "excluded": false},
+      {"vertex_id": "vertex-pwa-web-app-manifest", "priority_rank": 19, "selection_score": 0.28, "rationale": "Low complexity, needed for completeness.", "excluded": false},
+      {"vertex_id": "vertex-pwa-push-notifications-architecture", "priority_rank": 20, "selection_score": 0.22, "rationale": "Situationally important. Extended program.", "excluded": false},
+      {"vertex_id": "vertex-pwa-security-https-sw", "priority_rank": 21, "selection_score": 0.15, "rationale": "Quick win — mostly already known.", "excluded": false},
+      {"vertex_id": "vertex-pwa-background-sync", "priority_rank": 22, "selection_score": 0.12, "rationale": "Low frequency. Extended program only.", "excluded": false}
+    ]
+  },
+
+  "schedule": {
+    "short_term_plan": {
+      "timeframe": "8 hours total across 8 sessions",
+      "start_date": "2026-03-10",
+      "target_end_date": "2026-03-21",
+      "sessions_per_week": 4,
+      "session_duration_minutes": 60,
+      "total_sessions": 8,
+      "milestones": [
+        {
+          "week": 1,
+          "description": "Sessions 1-4: Complete Task Classes 1-2. You can trace requests through cache layers, select caching strategies, and understand the SW+CDN double-cache problem. You have the PWA mental model.",
+          "task_class_id": "tc-2-caching-strategy",
+          "expected_coverage": 0.50
+        },
+        {
+          "week": 2,
+          "description": "Sessions 5-8: Complete Task Classes 3-4. You can independently evaluate apps for PWA fitness, analyze htmx compatibility, review LLM-generated PWA code, and produce migration assessments. Sprint complete — working decision framework in hand.",
+          "task_class_id": "tc-4-quality-detection",
+          "expected_coverage": 0.80
+        }
+      ]
+    },
+    "extended_roadmap": {
+      "description": "After the 8-hour sprint, the extended program deepens judgment through advanced topics and coached practice. Sessions shift from learning to deliberate practice with increasingly ambiguous scenarios.",
+      "phases": [
+        {
+          "phase_name": "Advanced Integration",
+          "timeframe": "Weeks 3-4 (2 sessions/week, 60 min each)",
+          "focus": "WASM+PWA patterns, push notification architecture, background sync. Complete Task Class 5 worked examples and guided practice.",
+          "target_coverage": 0.90
+        },
+        {
+          "phase_name": "Coached Judgment",
+          "timeframe": "Weeks 5-6 (1-2 sessions/week, 60 min each)",
+          "focus": "Repeated coached evaluation sessions with novel, ambiguous scenarios. Pattern recognition stabilization. Portfolio evaluation capstone.",
+          "target_coverage": 0.95
+        },
+        {
+          "phase_name": "Maintenance",
+          "timeframe": "Ongoing (1 session/month)",
+          "focus": "Stay current with platform changes (especially iOS PWA updates), review new projects as they arise, occasional anti-pattern review of LLM-generated code.",
+          "target_coverage": 0.95
+        }
+      ]
+    },
+    "session_design": {
+      "warmup_minutes": 10,
+      "deliberate_practice_minutes": 35,
+      "integration_minutes": 15,
+      "spacing_interval_days": 2,
+      "overlearning_budget_minutes": 10
+    },
+    "plateau_protocols": [
+      {
+        "expected_timing": "Session 3-4 (end of Task Class 1 / start of Task Class 2)",
+        "description": "Caching strategy illusion of competence: the five named strategies feel complete, but multi-layer interactions produce unexpected results. This feels like 'I thought I understood caching but now I'm confused again.'",
+        "breakthrough_strategy": "This is expected and productive. The productive failure exercise at TC2 entry surfaces the 'network-first = fresh data' myth. After the aha moment, the multi-layer model clicks into place. Don't try to power through — let the confusion resolve through the worked examples.",
+        "affected_task_class": "tc-2-caching-strategy"
+      },
+      {
+        "expected_timing": "Session 5-6 (Task Class 3)",
+        "description": "Component-to-system integration gap: you understand each piece individually but struggle to combine them into a coherent architectural evaluation. Evaluations feel slow and uncertain.",
+        "breakthrough_strategy": "This is the strategy transition from component thinking to systems thinking. The worked example at TC3 entry provides the integration framework. Practice with YOUR apps provides concrete anchoring. Speed and confidence come from repetition across varied scenarios, not from studying more theory.",
+        "affected_task_class": "tc-3-evaluation-framework"
+      },
+      {
+        "expected_timing": "Weeks 4-5 (extended program)",
+        "description": "htmx bias: tendency to too-quickly dismiss PWA for server-rendered applications, missing legitimate progressive enhancement opportunities.",
+        "breakthrough_strategy": "Contrast instruction: evaluate cases where PWA adds genuine value to server-rendered apps (installability + push + basic offline of viewed content). Practice arguing FOR PWA even when your instinct says htmx. This calibrates judgment toward nuance rather than categorical rejection.",
+        "affected_task_class": "tc-5-extended-mastery"
+      }
+    ],
+    "srs_export_schedule": [
+      {"task_class_id": "tc-1-foundations", "export_timing": "After session 1", "card_count_estimate": 25},
+      {"task_class_id": "tc-2-caching-strategy", "export_timing": "After session 3", "card_count_estimate": 30},
+      {"task_class_id": "tc-3-evaluation-framework", "export_timing": "After session 5", "card_count_estimate": 20},
+      {"task_class_id": "tc-4-quality-detection", "export_timing": "After session 7", "card_count_estimate": 20},
+      {"task_class_id": "tc-5-extended-mastery", "export_timing": "Week 3 start", "card_count_estimate": 15}
+    ]
+  },
+
+  "motivation_architecture": {
+    "identity_frame": "You're becoming a technical decision-maker who can confidently call the shots on PWA architecture — knowing when it's the right tool, when it's overkill, and how to keep implementations honest.",
+    "process_goals": [
+      "Sprint phase: Complete one session every 2 days, focusing on understanding the reasoning behind each decision (not memorizing answers)",
+      "Each session: Trace at least one request through all cache layers from memory before checking",
+      "Each evaluation exercise: Write your recommendation BEFORE I present the worked answer, even if uncertain",
+      "Extended phase: Evaluate one real or hypothetical app per session, defending your reasoning against challenge",
+      "Ongoing: When reviewing any LLM-generated web code, run the PWA anti-pattern checklist even if the code isn't PWA-specific (the caching awareness transfers)"
+    ],
+    "competence_markers": [
+      {
+        "description": "Can trace a request through all 5 cache layers without reference",
+        "vertex_ids": ["vertex-pwa-browser-request-lifecycle", "vertex-pwa-http-caching-fundamentals"],
+        "timing": "End of session 2"
+      },
+      {
+        "description": "Can assign caching strategies to 5 resource types with correct rationale in under 5 minutes",
+        "vertex_ids": ["vertex-pwa-caching-strategy-selection"],
+        "timing": "End of session 4"
+      },
+      {
+        "description": "Can produce a structured go/no-go PWA recommendation for a novel app in under 15 minutes",
+        "vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-offline-strategy-design", "vertex-pwa-platform-constraints", "vertex-pwa-htmx-pwa-tension"],
+        "timing": "End of session 7"
+      },
+      {
+        "description": "Can identify 5+ anti-patterns in an LLM-generated service worker and recommend Workbox-based alternatives",
+        "vertex_ids": ["vertex-pwa-anti-pattern-detection", "vertex-pwa-workbox-and-tooling"],
+        "timing": "End of session 8"
+      },
+      {
+        "description": "PWA evaluation reasoning survives challenge from coached sessions — recommendations hold up under scrutiny",
+        "vertex_ids": ["vertex-pwa-pwa-fitness-evaluation", "vertex-pwa-migration-cost-assessment"],
+        "timing": "End of extended program"
+      }
+    ],
+    "community_resources": [
+      {
+        "name": "web.dev PWA learning path",
+        "type": "course",
+        "url": "https://web.dev/learn/pwa",
+        "description": "Google's canonical PWA course. Good reference for when you want to dig into implementation details beyond the evaluation level."
+      },
+      {
+        "name": "Workbox documentation",
+        "type": "reference",
+        "url": "https://developer.chrome.com/docs/workbox",
+        "description": "The primary reference for evaluating whether LLM-generated code uses Workbox correctly."
+      },
+      {
+        "name": "r/progressive_web_apps",
+        "type": "community",
+        "url": "https://reddit.com/r/progressive_web_apps",
+        "description": "Active community for real-world PWA discussions, migration stories, and platform updates."
+      },
+      {
+        "name": "PWA Builder Blog",
+        "type": "reference",
+        "url": "https://blog.pwabuilder.com",
+        "description": "Microsoft's PWA tooling blog. Good for ecosystem statistics and real-world adoption data."
+      }
+    ],
+    "stakes_plan": "Not applicable. Intrinsic motivation is high — the learner has a real portfolio of applications driving the learning need. No external accountability structure needed."
+  }
+}
