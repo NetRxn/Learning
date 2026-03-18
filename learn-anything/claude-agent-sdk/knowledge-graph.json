@@ -1,1717 +1,684 @@
 {
-  "id": "192dbae4-fe62-4ac3-9cfe-d37fbaf7986d",
-  "dossier_id": "a7e3b2f1-4d89-4c2e-b6a1-8f3d2e1c5a90",
+  "id": "d3e4f5a6-7b8c-9d0e-1f2a-3b4c5d6e7f8a",
+  "dossier_id": "b8f2c1d4-6e9a-4b3f-a7d1-9c5e8f2a4b6d",
   "learner_id": "c4a40ef0-1947-41f9-8b47-898226c079fb",
-  "created_at": "2026-03-12T13:00:00Z",
+  "created_at": "2026-03-17T14:00:00Z",
+  "updated_at": "2026-03-17T14:00:00Z",
   "skill_name": "Claude Agent SDK Mastery",
   "skill_id": "claude-agent-sdk",
+
   "graph": {
     "vertices": [
       {
-        "id": "vertex-sdk-agent-loop",
-        "label": "Concept",
-        "name": "Agent Loop & Query Mechanics",
-        "description": "Understanding the core query() async iterator, think\u2192act\u2192observe cycle, message types (SystemMessage, AssistantMessage, ResultMessage, StreamEvent), and how the agent harness drives agentic reasoning.",
-        "blooms_level": "understand",
-        "component_type": "core",
-        "confidence": 0.95,
+        "id": "vertex-sdk-query-function",
+        "label": "Skill",
+        "name": "query() Async Iterator",
+        "description": "The primary entry point for stateless, one-shot agent interactions. query() returns an AsyncIterator[Message] that yields messages as Claude works through a task.",
+        "blooms_level": "apply",
+        "component_type": "recurrent",
         "frequency_score": 0.95,
         "impact_score": 1.0,
         "cluster_id": "cluster-core",
-        "assessment_criteria": [
-          "Can describe the think\u2192act\u2192observe lifecycle",
-          "Understands message types and iteration patterns",
-          "Can trace execution through a multi-step agent task",
-          "Knows how query() differs from synchronous completions"
-        ],
-        "example": "Async iteration over query() yielding messages as Claude reasons, decides tools, executes, observes results, then iterates until task completion",
         "learner_state": {
-          "mastery": 0.55,
+          "mastery_probability": 0.45,
           "mastery_category": "familiar",
-          "confidence": 0.85,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Knows general think\u2192tool\u2192result flow from daily Claude Code usage; fuzzy on specific SDK message types (SystemMessage, AssistantMessage, ResultMessage, StreamEvent) and streaming config details"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 5.25,
-            "stability": 16.5,
-            "lapses": 0,
-            "reps": 0
-          }
+          "confidence": 0.8,
+          "evidence_count": 2,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Knows to look for ResultMessage from query(), understands async iterator concept from Python expertise. Needs docs for specific fields (total_cost_usd, subtype). Hasn't written query() code yet.",
+          "source": "calibration",
+          "transfer_boost": 0.2,
+          "fsrs_difficulty": 4.5,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.2,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
         }
       },
       {
-        "id": "vertex-sdk-system-prompts",
-        "label": "Concept",
-        "name": "System Prompt Crafting for Agents",
-        "description": "Designing effective system prompts, CLAUDE.md integration, prompt structure for agentic behavior, and how system prompts guide agent reasoning vs direct instruction.",
+        "id": "vertex-sdk-client",
+        "label": "Skill",
+        "name": "ClaudeSDKClient Bidirectional Client",
+        "description": "The stateful, bidirectional client for interactive conversations with connect/disconnect lifecycle and mid-conversation controls.",
         "blooms_level": "apply",
-        "component_type": "core",
-        "confidence": 0.85,
-        "frequency_score": 0.8,
+        "component_type": "non_recurrent",
+        "frequency_score": 0.7,
         "impact_score": 0.85,
         "cluster_id": "cluster-core",
-        "assessment_criteria": [
-          "Can design role-based system prompts for agents",
-          "Understands CLAUDE.md file structure and integration",
-          "Knows how prompts affect tool selection and behavior",
-          "Can test and iterate prompts for agent robustness"
-        ],
-        "example": "System prompt defining agent role, constraints, tool usage patterns, and cognitive strategies for complex multi-turn tasks",
         "learner_state": {
-          "mastery": 0.8,
-          "mastery_category": "proficient",
-          "confidence": 0.75,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Propagation from Claude Code daily usage + prompt engineering experience"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.0,
-            "stability": 24.0,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.4
+          "mastery_probability": 0.35,
+          "mastery_category": "attempted",
+          "confidence": 0.55,
+          "evidence_count": 1,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Understands session concepts deeply (forking, resuming) which maps to ClaudeSDKClient patterns. Hasn't used the client API directly. Propagated from session management understanding and query() assessment.",
+          "source": "propagation",
+          "transfer_boost": 0.1,
+          "fsrs_difficulty": 5.5,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.15,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
         }
       },
       {
-        "id": "vertex-sdk-context-management",
-        "label": "Skill",
-        "name": "Context Compaction & Token Management",
-        "description": "Automatic context compaction when approaching token limits, prompt caching for static content (system prompt, tools, CLAUDE.md), cache_control breakpoints, and token budget awareness.",
-        "blooms_level": "apply",
-        "component_type": "core",
-        "confidence": 0.8,
-        "frequency_score": 0.75,
+        "id": "vertex-sdk-options",
+        "label": "Concept",
+        "name": "ClaudeAgentOptions Configuration",
+        "description": "The central configuration dataclass controlling all aspects of agent behavior.",
+        "blooms_level": "understand",
+        "component_type": "non_recurrent",
+        "frequency_score": 1.0,
+        "impact_score": 0.95,
+        "cluster_id": "cluster-core",
+        "learner_state": {
+          "mastery_probability": 0.50,
+          "mastery_category": "familiar",
+          "confidence": 0.75,
+          "evidence_count": 4,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Knows many options conceptually from CLI usage: max_turns, tools, permission modes. Referenced allowed_tools, agents, mcp_servers across multiple answers. Gap: hasn't constructed a ClaudeAgentOptions object or explored the full field set programmatically.",
+          "source": "calibration",
+          "transfer_boost": 0.3,
+          "fsrs_difficulty": 4.0,
+          "fsrs_stability": 2.0,
+          "bkt_p_transit": 0.2,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-sdk-message-types",
+        "label": "Concept",
+        "name": "Message Types & Lifecycle",
+        "description": "The Message union type yielded by query(): UserMessage, AssistantMessage, SystemMessage, ResultMessage, StreamEvent, RateLimitEvent, plus task notification subclasses.",
+        "blooms_level": "understand",
+        "component_type": "recurrent",
+        "frequency_score": 0.95,
         "impact_score": 0.9,
         "cluster_id": "cluster-core",
-        "assessment_criteria": [
-          "Can design agents that handle long conversations without context exhaustion",
-          "Understands cache_control breakpoints and when to trigger compaction",
-          "Knows prompt caching benefits and limitations",
-          "Can monitor token usage and optimize context window allocation"
-        ],
-        "example": "Setting cache_control on system prompt and tools, monitoring context size, triggering compaction before token limit reached",
         "learner_state": {
-          "mastery": 0.75,
-          "mastery_category": "proficient",
-          "confidence": 0.85,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Deep practical experience with compaction and caching in Claude Code. Specific gap on programmatic context control in SDK subprocess sessions."
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.25,
-            "stability": 22.5,
-            "lapses": 0,
-            "reps": 0
-          }
+          "mastery_probability": 0.45,
+          "mastery_category": "familiar",
+          "confidence": 0.8,
+          "evidence_count": 3,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Correctly identified ResultMessage as the key type to check. Knows about AssistantMessage conceptually. Confused StreamEvent with AssistantMessage for streaming. Hasn't written isinstance discrimination chains.",
+          "source": "calibration",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 4.5,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.18,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
         }
       },
       {
-        "id": "vertex-sdk-streaming",
-        "label": "Skill",
-        "name": "Streaming Output & Real-time Updates",
-        "description": "Streaming vs single mode, include_partial_messages for real-time updates, StreamEvent handling, and building real-time UX with streaming agent outputs.",
-        "blooms_level": "apply",
-        "component_type": "core",
-        "confidence": 0.78,
-        "frequency_score": 0.65,
+        "id": "vertex-sdk-content-blocks",
+        "label": "Concept",
+        "name": "Content Blocks",
+        "description": "TextBlock, ThinkingBlock, ToolUseBlock, ToolResultBlock within AssistantMessage.content.",
+        "blooms_level": "remember",
+        "component_type": "recurrent",
+        "frequency_score": 0.85,
         "impact_score": 0.7,
         "cluster_id": "cluster-core",
-        "assessment_criteria": [
-          "Can enable streaming and consume partial messages",
-          "Understands StreamEvent structure and handling",
-          "Can build real-time UI that updates as agent thinks",
-          "Knows performance tradeoffs between streaming and buffering"
-        ],
-        "example": "Yielding partial messages as agent reasons, displaying thinking updates to user, then final results when complete",
         "learner_state": {
-          "mastery": 0.4,
-          "mastery_category": "familiar",
-          "confidence": 0.7,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Propagation from agent-loop (0.55) downward; user said fuzzy on details"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 6.0,
-            "stability": 12.0,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.2
-        }
-      },
-      {
-        "id": "vertex-sdk-builtin-tools",
-        "label": "Skill",
-        "name": "Built-in Tools (Read/Write/Bash/Grep/WebFetch)",
-        "description": "Knowing what built-in tools are available (Read, Write, Bash, Grep, Glob, WebFetch, WebSearch), their APIs, limitations, and when to use each for different task requirements.",
-        "blooms_level": "understand",
-        "component_type": "tools",
-        "confidence": 0.9,
-        "frequency_score": 0.9,
-        "impact_score": 0.85,
-        "cluster_id": "cluster-tools",
-        "assessment_criteria": [
-          "Can list all built-in tools and their core functions",
-          "Knows the appropriate tool for each operation type",
-          "Understands parameter schemas and return formats",
-          "Can explain tool limitations and error modes"
-        ],
-        "example": "Using Grep for code search, Bash for command execution, WebFetch for content retrieval, Write for file creation",
-        "learner_state": {
-          "mastery": 0.9,
-          "mastery_category": "mastered",
-          "confidence": 0.8,
-          "evidence": {
-            "type": "cluster_inference",
-            "count": 0,
-            "summary": "Cluster inference from daily Claude Code usage (uses Read/Write/Bash/Grep/WebFetch constantly)"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 3.5,
-            "stability": 27.0,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.4
+          "mastery_probability": 0.35,
+          "mastery_category": "attempted",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Not directly assessed. Sees these in Claude Code output daily but hasn't programmatically extracted them. Propagated from message-types assessment — if fuzzy on message discrimination, likely fuzzy on content block extraction too.",
+          "source": "propagation",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 3.5,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.2,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
         }
       },
       {
         "id": "vertex-sdk-custom-tools",
         "label": "Skill",
-        "name": "Custom Tool Development (@tool decorator & MCP)",
-        "description": "Building custom tools via @tool decorator, create_sdk_mcp_server() for in-process MCP servers, tool schemas, input/output patterns, and integrating domain-specific logic.",
+        "name": "Custom Tool Creation",
+        "description": "Creating in-process tools using @tool decorator, handler pattern, and MCP content block response format.",
         "blooms_level": "apply",
-        "component_type": "tools",
-        "confidence": 0.85,
-        "frequency_score": 0.85,
+        "component_type": "recurrent",
+        "frequency_score": 0.9,
         "impact_score": 0.95,
         "cluster_id": "cluster-tools",
-        "assessment_criteria": [
-          "Can design and implement custom tools with @tool decorator",
-          "Understands MCP protocol and in-process server creation",
-          "Can write comprehensive tool schemas with proper validation",
-          "Knows tool naming, documentation, and error handling best practices"
-        ],
-        "example": "Creating @tool decorated functions for domain operations (e.g., database queries, API calls), exposing via MCP server",
         "learner_state": {
-          "mastery": 0.65,
+          "mastery_probability": 0.50,
           "mastery_category": "familiar",
           "confidence": 0.8,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Strong tool design instincts (Pydantic validation, feedback loops, skill-based approach); needs SDK-specific wiring (@tool + create_sdk_mcp_server(), mcp_servers option, allowed_tools config)"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.75,
-            "stability": 19.5,
-            "lapses": 0,
-            "reps": 0
-          }
+          "evidence_count": 1,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Knew @tool decorator exists, reasoned architecturally about stored procedures for writes / views for reads (strong DB transfer). Correctly distinguished in-process vs external MCP. Gap: hasn't used the specific handler contract or MCP response format {'content': [{'type': 'text', 'text': '...'}]}.",
+          "source": "calibration",
+          "transfer_boost": 0.2,
+          "fsrs_difficulty": 5.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.18,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
         }
       },
       {
-        "id": "vertex-sdk-external-mcp",
+        "id": "vertex-sdk-mcp-servers",
         "label": "Skill",
-        "name": "External MCP Server Integration",
-        "description": "Integrating external MCP servers via stdio and SSE, mixing internal and external tools, MCP protocol fundamentals, and managing multiple tool ecosystems.",
+        "name": "MCP Server Integration",
+        "description": "create_sdk_mcp_server for in-process, plus stdio/SSE/HTTP external configs. Tool naming: mcp__server__tool.",
         "blooms_level": "apply",
-        "component_type": "tools",
-        "confidence": 0.75,
-        "frequency_score": 0.6,
-        "impact_score": 0.8,
-        "cluster_id": "cluster-tools",
-        "assessment_criteria": [
-          "Can configure external MCP servers for agent use",
-          "Understands stdio vs SSE transport tradeoffs",
-          "Can debug MCP communication issues",
-          "Knows how to mix multiple tool sources in single agent"
-        ],
-        "example": "Configuring stdio MCP server for external service, SSE transport for remote tool provider, combining with built-in tools",
-        "learner_state": {
-          "mastery": 0.55,
-          "mastery_category": "familiar",
-          "confidence": 0.65,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Propagation from custom-tools + MCP familiarity from Claude Code connectors"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 5.25,
-            "stability": 16.5,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.2
-        }
-      },
-      {
-        "id": "vertex-sdk-tool-design",
-        "label": "Skill",
-        "name": "Effective Tool Interface Design",
-        "description": "Designing effective tool interfaces: naming conventions, clear descriptions, parameter schemas, error handling patterns, idempotency, and return formats that agents can reliably use.",
-        "blooms_level": "apply",
-        "component_type": "tools",
-        "confidence": 0.8,
-        "frequency_score": 0.75,
+        "component_type": "non_recurrent",
+        "frequency_score": 0.8,
         "impact_score": 0.85,
         "cluster_id": "cluster-tools",
-        "assessment_criteria": [
-          "Can design tool names and descriptions that guide agent behavior",
-          "Understands parameter schema best practices",
-          "Can design error handling that agents can recover from",
-          "Knows how to structure returns for agent comprehension"
-        ],
-        "example": "Tool with clear verb-noun naming, detailed parameter descriptions, structured error responses, idempotent operations",
         "learner_state": {
-          "mastery": 0.8,
-          "mastery_category": "proficient",
+          "mastery_probability": 0.50,
+          "mastery_category": "familiar",
           "confidence": 0.75,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Propagation from custom-tools answer (Pydantic validation, feedback loops, skill-based design)"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.0,
-            "stability": 24.0,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.3
-        }
-      },
-      {
-        "id": "vertex-sdk-permissions",
-        "label": "Skill",
-        "name": "Permissions & Security Model",
-        "description": "The 4-layer permission system: permission modes, canUseTool callbacks, hooks, and settings.json rules. Priority: deny>ask>allow. Building safe agents with least-privilege.",
-        "blooms_level": "apply",
-        "component_type": "control",
-        "confidence": 0.85,
-        "frequency_score": 0.8,
-        "impact_score": 0.95,
-        "cluster_id": "cluster-control",
-        "assessment_criteria": [
-          "Can configure permission modes appropriately for different contexts",
-          "Understands canUseTool callback pattern and use cases",
-          "Can design least-privilege tool access policies",
-          "Knows deny>ask>allow priority and how layers interact"
-        ],
-        "example": "Using 'ask' mode in production for sensitive operations, 'prevent' mode for prohibited tools, canUseTool for policy enforcement",
-        "learner_state": {
-          "mastery": 0.75,
-          "mastery_category": "proficient",
-          "confidence": 0.85,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Transfer from daily Claude Code permission usage; understands broad-strokes vs fine-grained distinction with hooks; needs SDK 4-layer architecture specifics"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.25,
-            "stability": 22.5,
-            "lapses": 0,
-            "reps": 0
-          }
+          "evidence_count": 1,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Correctly reasoned about external MCP for shared access across instances. Configures MCP in .mcp.json for plugins daily. Gap: create_sdk_mcp_server() API, mcp__server__tool naming convention, McpServerConfig types.",
+          "source": "calibration",
+          "transfer_boost": 0.25,
+          "fsrs_difficulty": 5.0,
+          "fsrs_stability": 1.5,
+          "bkt_p_transit": 0.18,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
         }
       },
       {
         "id": "vertex-sdk-hooks",
         "label": "Skill",
-        "name": "Hooks for Control & Observability",
-        "description": "HookMatcher and HookCallback pattern, hook lifecycle, async hooks, modifying/blocking operations, and running hooks outside context window for safety and observability.",
+        "name": "Hook System",
+        "description": "Programmatic hooks: HookMatcher, HookCallback, 10 hook events. Hooks run in your process, not the agent's context.",
         "blooms_level": "apply",
-        "component_type": "control",
-        "confidence": 0.82,
+        "component_type": "non_recurrent",
         "frequency_score": 0.75,
-        "impact_score": 0.9,
-        "cluster_id": "cluster-control",
-        "assessment_criteria": [
-          "Can write hooks that intercept and modify agent operations",
-          "Understands hook lifecycle and execution context",
-          "Can use hooks for observability and audit logging",
-          "Knows how hooks interact with permissions"
-        ],
-        "example": "Hook that logs all tool calls, hook that prevents file deletion, hook that tracks token usage across subagents",
-        "learner_state": {
-          "mastery": 0.75,
-          "mastery_category": "proficient",
-          "confidence": 0.9,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Demonstrated advanced understanding: hooks as event-driven middleware, differentiating subagent vs delegating agent behavior, post-tool-use hooks, stop message hooks. Strong conceptual grasp."
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.25,
-            "stability": 22.5,
-            "lapses": 0,
-            "reps": 0
-          }
-        }
-      },
-      {
-        "id": "vertex-sdk-cost-management",
-        "label": "Skill",
-        "name": "Cost Tracking & Budget Management",
-        "description": "Setting max_budget_usd limits, tracking token costs across API calls, cost optimization strategies including model mixing (Opus orchestrators + Sonnet workers), and budget alerting.",
-        "blooms_level": "apply",
-        "component_type": "control",
-        "confidence": 0.8,
-        "frequency_score": 0.7,
         "impact_score": 0.85,
         "cluster_id": "cluster-control",
-        "assessment_criteria": [
-          "Can set and monitor budget limits",
-          "Understands token cost calculations for different models",
-          "Can design cost-optimized multi-agent strategies",
-          "Knows when to use cheaper models vs premium models"
-        ],
-        "example": "Using Opus for orchestration decisions, Sonnet for worker subtasks, setting max_budget_usd=10.0, monitoring spend",
         "learner_state": {
-          "mastery": 0.5,
+          "mastery_probability": 0.55,
           "mastery_category": "familiar",
-          "confidence": 0.6,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Propagation from model selection knowledge + ops awareness"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 5.5,
-            "stability": 15.0,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.15
+          "confidence": 0.8,
+          "evidence_count": 1,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Correctly identified PreToolUse for blocking. Knows hook event model from CLI usage. Fuzzy on HookJSONOutput return structure. Strong transfer: daily hook configuration in settings.json. Gap: programmatic callback functions vs shell command hooks.",
+          "source": "calibration",
+          "transfer_boost": 0.35,
+          "fsrs_difficulty": 4.5,
+          "fsrs_stability": 2.0,
+          "bkt_p_transit": 0.2,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
         }
       },
       {
-        "id": "vertex-sdk-error-handling",
+        "id": "vertex-sdk-permissions",
         "label": "Skill",
-        "name": "Error Recovery & Resilience Patterns",
-        "description": "Error recovery patterns, retry logic, graceful degradation, fallback models, and building agents that handle edge cases and API failures robustly.",
+        "name": "Permission System",
+        "description": "Permission modes, allowed/disallowed tools, CanUseTool callback, PermissionUpdate for runtime changes.",
         "blooms_level": "apply",
-        "component_type": "control",
-        "confidence": 0.78,
-        "frequency_score": 0.7,
-        "impact_score": 0.8,
-        "cluster_id": "cluster-control",
-        "assessment_criteria": [
-          "Can implement retry logic with exponential backoff",
-          "Understands when to retry vs fail gracefully",
-          "Can design fallback strategies",
-          "Knows how to handle partial failures in multi-agent systems"
-        ],
-        "example": "Retrying failed tool calls, falling back to alternative tools, gracefully degrading features on API errors",
-        "learner_state": {
-          "mastery": 0.7,
-          "mastery_category": "proficient",
-          "confidence": 0.7,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Transfer from expert Python error handling + backend experience"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.5,
-            "stability": 21.0,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.3
-        }
-      },
-      {
-        "id": "vertex-sdk-subagents",
-        "label": "Skill",
-        "name": "Subagent Spawning & Delegation",
-        "description": "Spawning separate agent instances for focused subtasks, parallel and sequential execution patterns, context isolation, result aggregation, and when to use subagents.",
-        "blooms_level": "apply",
-        "component_type": "multi-agent",
-        "confidence": 0.85,
+        "component_type": "non_recurrent",
         "frequency_score": 0.8,
         "impact_score": 0.9,
-        "cluster_id": "cluster-multi-agent",
-        "assessment_criteria": [
-          "Can spawn subagents for parallel task execution",
-          "Understands context isolation between parent and child",
-          "Can aggregate results from multiple subagents",
-          "Knows performance and cost tradeoffs of parallelization"
-        ],
-        "example": "Spawning 3 subagents in parallel to research different topics, collecting results, synthesizing into parent agent response",
+        "cluster_id": "cluster-control",
         "learner_state": {
-          "mastery": 0.6,
-          "mastery_category": "familiar",
+          "mastery_probability": 0.30,
+          "mastery_category": "attempted",
           "confidence": 0.8,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Strong practical knowledge at Claude Code/plugin level (agent teams, worktrees for parallel). Needs SDK programmatic layer: spawning via query(), asyncio.gather, ResultMessage collection"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 5.0,
-            "stability": 18.0,
-            "lapses": 0,
-            "reps": 0
-          }
+          "evidence_count": 1,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Had incorrect mental model: thought allowed_tools was session-scoped and can_use_tool was subagent-scoped. Actual distinction is static whitelist vs dynamic runtime callback. Uses permission modes daily in CLI. Needs direct instruction on the SDK permission architecture.",
+          "source": "calibration",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 5.5,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.15,
+          "bkt_p_slip": 0.1,
+          "bkt_p_guess": 0.12
         }
       },
       {
-        "id": "vertex-sdk-orchestration",
-        "label": "Skill",
-        "name": "Orchestration Patterns (Decompose\u2192Delegate\u2192Synthesize)",
-        "description": "Orchestrator pattern: decomposing complex tasks, delegating to specialized agents (workers), and synthesizing results. Model mixing (Opus orchestrator + Sonnet workers) for cost optimization.",
-        "blooms_level": "apply",
-        "component_type": "multi-agent",
-        "confidence": 0.82,
-        "frequency_score": 0.75,
-        "impact_score": 0.9,
-        "cluster_id": "cluster-multi-agent",
-        "assessment_criteria": [
-          "Can design orchestrator-worker agent architectures",
-          "Understands task decomposition strategies",
-          "Can optimize cost with model mixing",
-          "Knows when orchestration overhead outweighs benefits"
-        ],
-        "example": "Orchestrator (Opus) decomposes problem, creates Sonnet workers for analysis tasks, synthesizes findings",
-        "learner_state": {
-          "mastery": 0.65,
-          "mastery_category": "familiar",
-          "confidence": 0.75,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Good mental model for decompose\u2192delegate\u2192synthesize, model selection strategy (Opus planning, Sonnet scoped, Haiku exploration). Needs SDK vocabulary to express it programmatically."
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.75,
-            "stability": 19.5,
-            "lapses": 0,
-            "reps": 0
-          }
-        }
-      },
-      {
-        "id": "vertex-sdk-agent-teams",
+        "id": "vertex-sdk-agent-definition",
         "label": "Concept",
-        "name": "Agent Teams & Collaborative Coordination",
-        "description": "Multi-agent coordination where teammates share findings and coordinate independently (vs subagents which report back). TeammateTool for inter-agent communication.",
-        "blooms_level": "understand",
-        "component_type": "multi-agent",
-        "confidence": 0.75,
-        "frequency_score": 0.6,
-        "impact_score": 0.75,
-        "cluster_id": "cluster-multi-agent",
-        "assessment_criteria": [
-          "Understands teams vs subagents distinction",
-          "Can explain peer coordination vs hierarchical delegation",
-          "Knows TeammateTool capabilities and limitations",
-          "Can identify tasks suitable for team-based approach"
-        ],
-        "example": "Three agents (research, analysis, writing) working as team with shared context, each contributing independently",
-        "learner_state": {
-          "mastery": 0.7,
-          "mastery_category": "proficient",
-          "confidence": 0.8,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Actively uses experimental agent teams feature. Understands fresh context windows, direct/group routing, delegating agent context preservation."
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.5,
-            "stability": 21.0,
-            "lapses": 0,
-            "reps": 0
-          }
-        }
-      },
-      {
-        "id": "vertex-sdk-handoff-patterns",
-        "label": "Skill",
-        "name": "Structured Handoffs Between Agents",
-        "description": "Structured JSON payloads between agents, confidence scores, metadata, context preservation across handoffs, and reliable inter-agent communication patterns.",
+        "name": "AgentDefinition & Subagent Configuration",
+        "description": "Programmatic subagent definition: description, prompt, tools, model. Context isolation and delegation patterns.",
         "blooms_level": "apply",
-        "component_type": "multi-agent",
-        "confidence": 0.78,
-        "frequency_score": 0.7,
-        "impact_score": 0.85,
-        "cluster_id": "cluster-multi-agent",
-        "assessment_criteria": [
-          "Can design JSON schemas for inter-agent communication",
-          "Understands how to preserve context in handoffs",
-          "Can implement confidence scoring and quality checks",
-          "Knows how to debug communication failures"
-        ],
-        "example": "Passing structured payload with data, metadata, confidence_score: 0.92, source_references from agent A to agent B",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.65,
+        "impact_score": 0.8,
+        "cluster_id": "cluster-orchestration",
         "learner_state": {
-          "mastery": 0.5,
-          "mastery_category": "familiar",
-          "confidence": 0.6,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Propagation from orchestration (0.65) and structured-output (0.90)"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 5.5,
-            "stability": 15.0,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.15
-        }
-      },
-      {
-        "id": "vertex-sdk-sessions",
-        "label": "Skill",
-        "name": "Session Management & Persistence",
-        "description": "Session creation, automatic persistence to ~/.claude/projects/, resume/continue/fork operations, session IDs in system messages, and disk storage patterns.",
-        "blooms_level": "apply",
-        "component_type": "state",
-        "confidence": 0.82,
-        "frequency_score": 0.75,
-        "impact_score": 0.85,
-        "cluster_id": "cluster-state",
-        "assessment_criteria": [
-          "Can create and manage sessions programmatically",
-          "Understands persist/resume/continue/fork semantics",
-          "Can use session IDs for tracking and debugging",
-          "Knows how to structure agent work for session-based workflows"
-        ],
-        "example": "Creating session, running agent tasks, resuming session later, forking for branch exploration",
-        "learner_state": {
-          "mastery": 0.75,
+          "mastery_probability": 0.70,
           "mastery_category": "proficient",
           "confidence": 0.85,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Actively uses sessions, including programmatic session info access. Specific gap: programmatic context management in subprocess sessions (no /clear /compact equivalent)"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.25,
-            "stability": 22.5,
-            "lapses": 0,
-            "reps": 0
-          }
+          "evidence_count": 1,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Nailed the two key concepts: subagent gets fresh context window, only final response returns to parent. Creates agents in .claude/agents/ daily. Strong transfer from CLI agent usage. Gap: only the programmatic AgentDefinition() syntax.",
+          "source": "calibration",
+          "transfer_boost": 0.35,
+          "fsrs_difficulty": 4.0,
+          "fsrs_stability": 3.0,
+          "bkt_p_transit": 0.2,
+          "bkt_p_slip": 0.06,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-sdk-subagent-lifecycle",
+        "label": "Skill",
+        "name": "Subagent Lifecycle & Task Messages",
+        "description": "TaskStartedMessage, TaskProgressMessage, TaskNotificationMessage. Monitoring and stopping subagents. Resuming subagents.",
+        "blooms_level": "apply",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.55,
+        "impact_score": 0.7,
+        "cluster_id": "cluster-orchestration",
+        "learner_state": {
+          "mastery_probability": 0.40,
+          "mastery_category": "familiar",
+          "confidence": 0.55,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Not directly assessed. Propagated from strong agent-definition understanding. Understands subagent concepts but hasn't tracked TaskNotification messages or used stop_task(). The programmatic monitoring API is new territory.",
+          "source": "propagation",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 5.5,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.15,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-sdk-session-management",
+        "label": "Skill",
+        "name": "Session Management",
+        "description": "Resume, fork, continue sessions. Local JSONL storage, parentUuid chains. list_sessions, get_session_messages, rename, tag.",
+        "blooms_level": "apply",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.6,
+        "impact_score": 0.75,
+        "cluster_id": "cluster-sessions",
+        "learner_state": {
+          "mastery_probability": 0.65,
+          "mastery_category": "familiar",
+          "confidence": 0.85,
+          "evidence_count": 3,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Deep conceptual understanding: asked about forking at specific turns, storing in Postgres, running thousands of sessions, parentUuid tree structure. Explored the JSONL source code with engagement. Gap: hasn't used the API functions (list_sessions, get_session_messages, resume/fork_session options) in actual code.",
+          "source": "calibration",
+          "transfer_boost": 0.2,
+          "fsrs_difficulty": 4.5,
+          "fsrs_stability": 2.5,
+          "bkt_p_transit": 0.2,
+          "bkt_p_slip": 0.06,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-sdk-cost-budget",
+        "label": "Skill",
+        "name": "Cost Control & Rate Limiting",
+        "description": "max_budget_usd, ResultMessage cost tracking, RateLimitEvent handling, model-based cost optimization.",
+        "blooms_level": "apply",
+        "component_type": "recurrent",
+        "frequency_score": 0.75,
+        "impact_score": 0.8,
+        "cluster_id": "cluster-production",
+        "learner_state": {
+          "mastery_probability": 0.45,
+          "mastery_category": "familiar",
+          "confidence": 0.75,
+          "evidence_count": 1,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Right instincts: knows max_turns exists, reasoned there'd be budget caps, identified stop reason mechanism. Asked smart question about partial returns under budget cap. Gap: specific API (max_budget_usd, ResultMessage.subtype values, RateLimitEvent handling).",
+          "source": "calibration",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 4.5,
+          "fsrs_stability": 1.5,
+          "bkt_p_transit": 0.18,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-sdk-context-management",
+        "label": "Concept",
+        "name": "Context Window & Compaction",
+        "description": "What consumes context, automatic compaction, prompt caching, strategies for efficiency. PreCompact hook. CLAUDE.md for persistent instructions.",
+        "blooms_level": "understand",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.7,
+        "impact_score": 0.8,
+        "cluster_id": "cluster-production",
+        "learner_state": {
+          "mastery_probability": 0.75,
+          "mastery_category": "proficient",
+          "confidence": 0.7,
+          "evidence_count": 1,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Deep practical experience with compaction and caching from daily Claude Code usage. Understands context costs, CLAUDE.md persistence, and prompt caching. Transfer validated through dossier assessment. Gap: programmatic PreCompact hooks and setting_sources configuration specifically.",
+          "source": "calibration",
+          "transfer_boost": 0.45,
+          "fsrs_difficulty": 3.5,
+          "fsrs_stability": 5.0,
+          "bkt_p_transit": 0.2,
+          "bkt_p_slip": 0.06,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-sdk-streaming",
+        "label": "Skill",
+        "name": "Streaming & Real-time Output",
+        "description": "include_partial_messages, StreamEvent for real-time UI, difference from AssistantMessage.",
+        "blooms_level": "apply",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.5,
+        "impact_score": 0.6,
+        "cluster_id": "cluster-production",
+        "learner_state": {
+          "mastery_probability": 0.25,
+          "mastery_category": "attempted",
+          "confidence": 0.8,
+          "evidence_count": 1,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Knew streaming exists conceptually but got specifics wrong: named 'streaming_json' instead of include_partial_messages, and AssistantMessage instead of StreamEvent for partial content. Needs direct instruction on the streaming API.",
+          "source": "calibration",
+          "transfer_boost": 0.05,
+          "fsrs_difficulty": 5.5,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.15,
+          "bkt_p_slip": 0.1,
+          "bkt_p_guess": 0.15
         }
       },
       {
         "id": "vertex-sdk-structured-output",
         "label": "Skill",
-        "name": "Structured Output with JSON Schema",
-        "description": "JSON Schema via output_format option, validated JSON responses, and using structured output for reliable agent outputs and downstream processing.",
+        "name": "Structured Output",
+        "description": "output_format with JSON schema, ResultMessage.structured_output, validation retry handling.",
         "blooms_level": "apply",
-        "component_type": "state",
-        "confidence": 0.85,
-        "frequency_score": 0.7,
-        "impact_score": 0.8,
-        "cluster_id": "cluster-state",
-        "assessment_criteria": [
-          "Can define JSON schemas for agent outputs",
-          "Understands schema validation and error handling",
-          "Can use structured outputs for reliable downstream processing",
-          "Knows when structured output is essential vs optional"
-        ],
-        "example": "Defining schema for agent to return {results: [...], confidence: number, reasoning: string} with guaranteed validity",
+        "component_type": "recurrent",
+        "frequency_score": 0.45,
+        "impact_score": 0.55,
+        "cluster_id": "cluster-production",
         "learner_state": {
-          "mastery": 0.9,
-          "mastery_category": "mastered",
-          "confidence": 0.9,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Years of experience with structured output and JSON Schema. Mastered."
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 3.5,
-            "stability": 27.0,
-            "lapses": 0,
-            "reps": 0
-          }
+          "mastery_probability": 0.15,
+          "mastery_category": "attempted",
+          "confidence": 0.4,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Not assessed directly. Knows Claude supports structured output conceptually. Weak prior — the SDK's output_format pattern and ResultMessage.structured_output field are entirely new.",
+          "source": "propagation",
+          "transfer_boost": 0.05,
+          "fsrs_difficulty": 4.5,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.15,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
         }
       },
       {
-        "id": "vertex-sdk-conversation-state",
-        "label": "Skill",
-        "name": "Multi-turn Conversation State Design",
-        "description": "Multi-turn conversation design, state accumulation patterns, when to start fresh vs continue session, and maintaining context across extended interactions.",
-        "blooms_level": "apply",
-        "component_type": "state",
-        "confidence": 0.78,
-        "frequency_score": 0.7,
-        "impact_score": 0.75,
-        "cluster_id": "cluster-state",
-        "assessment_criteria": [
-          "Can design state that accumulates correctly across turns",
-          "Understands context compaction for long conversations",
-          "Can identify when to prune vs retain history",
-          "Knows patterns for resuming conversations after context reset"
-        ],
-        "example": "Managing multi-turn task with state evolving through iterations, compacting old turns before context limit",
-        "learner_state": {
-          "mastery": 0.7,
-          "mastery_category": "proficient",
-          "confidence": 0.7,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Propagation from sessions (0.75) and context-management (0.75)"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.5,
-            "stability": 21.0,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.2
-        }
-      },
-      {
-        "id": "vertex-sdk-agent-skills",
+        "id": "vertex-sdk-thinking-effort",
         "label": "Concept",
-        "name": "Agent Skills (SKILL.md Format & agentskills.io)",
-        "description": "Agent Skills as filesystem-based SKILL.md configuration files, skill discovery patterns, agentskills.io standard (published Dec 2025), and packaging for reuse.",
+        "name": "Thinking & Effort Configuration",
+        "description": "effort levels (low/medium/high/max), ThinkingConfig variants, independence of effort and thinking.",
         "blooms_level": "understand",
-        "component_type": "ecosystem",
-        "confidence": 0.78,
-        "frequency_score": 0.65,
-        "impact_score": 0.75,
-        "cluster_id": "cluster-ecosystem",
-        "assessment_criteria": [
-          "Understands SKILL.md structure and frontmatter",
-          "Can read agentskills.io documentation",
-          "Knows how to discover and use published skills",
-          "Can package agents as reusable skills"
-        ],
-        "example": "SKILL.md with name, description, requirements, usage examples; discoverable on agentskills.io",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.5,
+        "impact_score": 0.5,
+        "cluster_id": "cluster-production",
         "learner_state": {
-          "mastery": 0.85,
-          "mastery_category": "proficient",
-          "confidence": 0.8,
-          "evidence": {
-            "type": "cluster_inference",
-            "count": 0,
-            "summary": "Cluster inference from heavy plugin/skill customization experience"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 3.75,
-            "stability": 25.5,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.4
+          "mastery_probability": 0.40,
+          "mastery_category": "familiar",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Not assessed directly. Uses thinking/extended thinking in Claude Code daily. Knows about thinking modes. Gap: ThinkingConfig programmatic variants, effort parameter, and the fact that effort and thinking are independent.",
+          "source": "propagation",
+          "transfer_boost": 0.25,
+          "fsrs_difficulty": 3.5,
+          "fsrs_stability": 2.0,
+          "bkt_p_transit": 0.18,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
         }
       },
       {
-        "id": "vertex-sdk-claude-code-integration",
-        "label": "Concept",
-        "name": "Claude Code & SDK Integration",
-        "description": "Relationship between Claude Code and SDK, ~/.claude config, CLAUDE.md, hooks in both environments, permissions overlap, plugin architecture, and moving code between contexts.",
-        "blooms_level": "understand",
-        "component_type": "ecosystem",
-        "confidence": 0.8,
-        "frequency_score": 0.7,
-        "impact_score": 0.8,
-        "cluster_id": "cluster-ecosystem",
-        "assessment_criteria": [
-          "Understands Claude Code vs SDK division of responsibility",
-          "Can use ~/.claude config for shared settings",
-          "Knows how plugins relate to SDK tools",
-          "Can move code between Claude Code and SDK contexts"
-        ],
-        "example": "Using ~/.claude/config for API keys, CLAUDE.md for agent guidelines, running same agent logic in Code and SDK",
-        "learner_state": {
-          "mastery": 0.85,
-          "mastery_category": "proficient",
-          "confidence": 0.8,
-          "evidence": {
-            "type": "cluster_inference",
-            "count": 0,
-            "summary": "Cluster inference from ~8h daily Claude Code usage for a year"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 3.75,
-            "stability": 25.5,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.4
-        }
-      },
-      {
-        "id": "vertex-sdk-provider-config",
+        "id": "vertex-sdk-model-routing",
         "label": "Skill",
-        "name": "Multi-Provider Configuration",
-        "description": "Configuring different providers: Anthropic API, AWS Bedrock, Google Vertex AI, Azure AI Foundry. Authentication, model selection, provider switching strategies.",
+        "name": "Model Selection & Routing",
+        "description": "model, fallback_model, per-subagent model overrides, mid-conversation set_model, cost-performance tradeoffs.",
         "blooms_level": "apply",
-        "component_type": "ecosystem",
-        "confidence": 0.75,
-        "frequency_score": 0.6,
-        "impact_score": 0.75,
-        "cluster_id": "cluster-ecosystem",
-        "assessment_criteria": [
-          "Can configure agents for different cloud providers",
-          "Understands authentication patterns for each provider",
-          "Can select appropriate models for each provider",
-          "Knows how to handle provider-specific constraints"
-        ],
-        "example": "Switching between Anthropic API and Bedrock, handling region/auth differences, selecting region-optimal models",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.55,
+        "impact_score": 0.65,
+        "cluster_id": "cluster-production",
         "learner_state": {
-          "mastery": 0.15,
-          "mastery_category": "attempted",
-          "confidence": 0.9,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Only Anthropic API direct. No Bedrock/Vertex/Azure experience."
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 7.25,
-            "stability": 4.5,
-            "lapses": 0,
-            "reps": 0
-          }
-        }
-      },
-      {
-        "id": "vertex-sdk-otel-tracing",
-        "label": "Skill",
-        "name": "OpenTelemetry Instrumentation",
-        "description": "OpenTelemetry integration, spans for tool calls and completions, correlation IDs across subagents, trace context propagation, and building observable agent systems.",
-        "blooms_level": "apply",
-        "component_type": "obs",
-        "confidence": 0.8,
-        "frequency_score": 0.75,
-        "impact_score": 0.85,
-        "cluster_id": "cluster-obs",
-        "assessment_criteria": [
-          "Can enable OpenTelemetry tracing in SDK agents",
-          "Understands span structure for tool calls",
-          "Can correlate traces across subagents",
-          "Knows how to add custom attributes and events"
-        ],
-        "example": "Enabling OTel, viewing spans for each tool invocation, correlating parent-child agent spans via trace ID",
-        "learner_state": {
-          "mastery": 0.1,
-          "mastery_category": "attempted",
-          "confidence": 0.9,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Self-identified as a known gap. No experience with OTel tracing for agents."
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 7.5,
-            "stability": 3.0,
-            "lapses": 0,
-            "reps": 0
-          }
-        }
-      },
-      {
-        "id": "vertex-sdk-observability-platforms",
-        "label": "Skill",
-        "name": "Observability Platforms (Langfuse, Arize, MLflow)",
-        "description": "Integration with Langfuse, Arize Dev-Agent-Lens, MLflow autolog. Zero-instrumentation capture, choosing platforms, configuring dashboards, and analyzing agent behavior.",
-        "blooms_level": "apply",
-        "component_type": "obs",
-        "confidence": 0.78,
-        "frequency_score": 0.7,
-        "impact_score": 0.85,
-        "cluster_id": "cluster-obs",
-        "assessment_criteria": [
-          "Can integrate agents with Langfuse/Arize/MLflow",
-          "Understands auto-instrumentation vs manual configuration",
-          "Can build dashboards for agent monitoring",
-          "Knows how to set up alerts and anomaly detection"
-        ],
-        "example": "Connecting agent to Langfuse, seeing every tool call logged, visualizing traces, setting cost alerts",
-        "learner_state": {
-          "mastery": 0.1,
-          "mastery_category": "attempted",
-          "confidence": 0.9,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Self-identified gap. No Langfuse/Arize/MLflow experience for agent observability."
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 7.5,
-            "stability": 3.0,
-            "lapses": 0,
-            "reps": 0
-          }
-        }
-      },
-      {
-        "id": "vertex-sdk-testing-strategies",
-        "label": "Skill",
-        "name": "Testing Agent Behavior",
-        "description": "Unit testing tool calls, integration testing agent flows, promptfoo evaluations, custom scorers and judges, test-first loops, and strict subagent role definition.",
-        "blooms_level": "apply",
-        "component_type": "obs",
-        "confidence": 0.82,
-        "frequency_score": 0.75,
-        "impact_score": 0.9,
-        "cluster_id": "cluster-obs",
-        "assessment_criteria": [
-          "Can write unit tests for tool behavior",
-          "Can design integration tests for agent flows",
-          "Understands promptfoo evaluation setup",
-          "Can define custom scorers for task-specific evaluation"
-        ],
-        "example": "Using promptfoo to test agent across 50 scenarios, custom scorer for task correctness, integration test for tool interaction",
-        "learner_state": {
-          "mastery": 0.1,
-          "mastery_category": "attempted",
-          "confidence": 0.9,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Self-identified gap. No structured agent testing approach."
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 7.5,
-            "stability": 3.0,
-            "lapses": 0,
-            "reps": 0
-          }
-        }
-      },
-      {
-        "id": "vertex-sdk-production-ops",
-        "label": "Skill",
-        "name": "Production Operations & Monitoring",
-        "description": "Feature flags and staged rollouts, rollback triggers, anomaly detection, cost monitoring, performance baselines, and managing agents at scale.",
-        "blooms_level": "apply",
-        "component_type": "obs",
-        "confidence": 0.8,
-        "frequency_score": 0.7,
-        "impact_score": 0.9,
-        "cluster_id": "cluster-obs",
-        "assessment_criteria": [
-          "Can implement feature flags for agent variations",
-          "Understands staged rollout strategies",
-          "Can set up cost and performance monitoring",
-          "Knows how to detect and respond to anomalies"
-        ],
-        "example": "Canary release new agent version to 5% traffic, monitoring error rates, ramping to 100% on success",
-        "learner_state": {
-          "mastery": 0.25,
-          "mastery_category": "attempted",
+          "mastery_probability": 0.50,
+          "mastery_category": "familiar",
           "confidence": 0.55,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Has backend/systems ops background but hasn't applied to agent systems specifically"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 6.75,
-            "stability": 7.5,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.2
+          "evidence_count": 0,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Not assessed directly. Uses model selection in Claude Code daily. Propagated from agent-definition (knows about per-agent model overrides). Gap: fallback_model, set_model() mid-conversation, and systematic cost-performance routing strategies.",
+          "source": "propagation",
+          "transfer_boost": 0.25,
+          "fsrs_difficulty": 4.0,
+          "fsrs_stability": 2.0,
+          "bkt_p_transit": 0.18,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
         }
       },
       {
-        "id": "vertex-sdk-architecture-patterns",
-        "label": "Skill",
-        "name": "Agent Architecture Patterns",
-        "description": "Common patterns: single agent, orchestrator+workers, pipeline, fan-out/fan-in. Architectural decision framework for choosing patterns based on problem characteristics.",
-        "blooms_level": "apply",
-        "component_type": "arch",
-        "confidence": 0.85,
-        "frequency_score": 0.8,
-        "impact_score": 0.9,
-        "cluster_id": "cluster-arch",
-        "assessment_criteria": [
-          "Can describe common agent architecture patterns",
-          "Understands tradeoffs between patterns",
-          "Can choose appropriate pattern for problem domain",
-          "Can implement chosen pattern effectively"
-        ],
-        "example": "Choosing orchestrator+workers for parallel independent tasks, pipeline for sequential dependencies, fan-out for many-to-one reduction",
+        "id": "vertex-sdk-sandbox",
+        "label": "Concept",
+        "name": "Sandbox & Secure Deployment",
+        "description": "SandboxSettings, network isolation, separation from permission rules. Production deployment patterns.",
+        "blooms_level": "understand",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.4,
+        "impact_score": 0.7,
+        "cluster_id": "cluster-production",
         "learner_state": {
-          "mastery": 0.65,
+          "mastery_probability": 0.45,
           "mastery_category": "familiar",
-          "confidence": 0.65,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Propagation from systems architecture background + LangGraph experience"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.75,
-            "stability": 19.5,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.2
+          "confidence": 0.55,
+          "evidence_count": 1,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Deploys Claude Code in Docker containers via Ansible — strong operational understanding of isolation and credential management. Gap: SandboxSettings programmatic API, the separation between sandbox (bash isolation) and permission rules (filesystem/network).",
+          "source": "calibration",
+          "transfer_boost": 0.25,
+          "fsrs_difficulty": 4.5,
+          "fsrs_stability": 2.0,
+          "bkt_p_transit": 0.18,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
         }
       },
       {
-        "id": "vertex-sdk-evolution-tracking",
-        "label": "Skill",
-        "name": "SDK Evolution & Changelog Management",
-        "description": "Monitoring SDK changelogs, evaluating breaking changes, migration strategies, version pinning approaches, and staying current with rapid evolution.",
-        "blooms_level": "apply",
-        "component_type": "arch",
-        "confidence": 0.75,
-        "frequency_score": 0.65,
-        "impact_score": 0.75,
-        "cluster_id": "cluster-arch",
-        "assessment_criteria": [
-          "Can read and interpret SDK changelogs",
-          "Understands breaking change impact analysis",
-          "Can plan and execute version upgrades",
-          "Knows dependency management best practices"
-        ],
-        "example": "Reviewing changelog, identifying breaking changes in query() signature, planning migration in feature branch, testing before main merge",
+        "id": "vertex-sdk-settings-plugins",
+        "label": "Concept",
+        "name": "Settings Sources & Plugin Integration",
+        "description": "setting_sources for loading CLAUDE.md/skills/hooks. SdkPluginConfig for local plugins. Project-level agent customization.",
+        "blooms_level": "understand",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.55,
+        "impact_score": 0.6,
+        "cluster_id": "cluster-production",
         "learner_state": {
-          "mastery": 0.1,
-          "mastery_category": "attempted",
-          "confidence": 0.9,
-          "evidence": {
-            "type": "calibration",
-            "count": 1,
-            "summary": "Explicitly wants to build a systematic tracking process. Currently no system."
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 7.5,
-            "stability": 3.0,
-            "lapses": 0,
-            "reps": 0
-          }
-        }
-      },
-      {
-        "id": "vertex-sdk-database-integration",
-        "label": "Skill",
-        "name": "Database Integration (Postgres/AGE/pgvector)",
-        "description": "Patterns for connecting agents to databases: MCP tools for queries, vector search integration, graph traversal (AGE), and designing database-backed agent workflows.",
-        "blooms_level": "apply",
-        "component_type": "integration",
-        "confidence": 0.8,
-        "frequency_score": 0.7,
-        "impact_score": 0.85,
-        "cluster_id": "cluster-integration",
-        "assessment_criteria": [
-          "Can design MCP tools for database operations",
-          "Understands pgvector for semantic search",
-          "Can use AGE for graph queries in agents",
-          "Knows patterns for efficient database access"
-        ],
-        "example": "MCP tool for semantic search via pgvector, tool for AGE graph traversal, agent uses both for knowledge graph reasoning",
-        "learner_state": {
-          "mastery": 0.6,
-          "mastery_category": "familiar",
-          "confidence": 0.65,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Propagation from advanced Postgres/AGE/pgvector expertise (DB side is strong; SDK integration patterns are the gap)"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "unlearned"
-          },
-          "fsrs_model": {
-            "difficulty": 5.0,
-            "stability": 18.0,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.2
-        }
-      },
-      {
-        "id": "vertex-sdk-api-design",
-        "label": "Skill",
-        "name": "API Design for Agent Services",
-        "description": "Designing APIs that wrap agent functionality: request/response patterns, async job queues, webhook callbacks, pagination, and error handling for external consumers.",
-        "blooms_level": "apply",
-        "component_type": "integration",
-        "confidence": 0.78,
-        "frequency_score": 0.65,
-        "impact_score": 0.8,
-        "cluster_id": "cluster-integration",
-        "assessment_criteria": [
-          "Can design REST/gRPC APIs for agent tasks",
-          "Understands async job patterns with callbacks",
-          "Can implement pagination for result streaming",
-          "Knows error handling and retry semantics"
-        ],
-        "example": "POST /agent/analyze with async job ID response, webhook callback on completion, pagination for large result sets",
-        "learner_state": {
-          "mastery": 0.7,
+          "mastery_probability": 0.70,
           "mastery_category": "proficient",
-          "confidence": 0.7,
-          "evidence": {
-            "type": "propagation",
-            "count": 0,
-            "summary": "Transfer from backend/systems architecture experience"
-          },
-          "last_assessed": "2026-03-12T13:00:00Z",
-          "bkt_model": {
-            "p_transit": 0.15,
-            "p_slip": 0.08,
-            "p_guess": 0.12,
-            "state": "learned"
-          },
-          "fsrs_model": {
-            "difficulty": 4.5,
-            "stability": 21.0,
-            "lapses": 0,
-            "reps": 0
-          },
-          "transfer_boost": 0.2
+          "confidence": 0.8,
+          "evidence_count": 1,
+          "last_assessed": "2026-03-17T14:00:00Z",
+          "evidence_summary": "Deep operational expertise: packages Claude Code extensions as plugins, deploys via Ansible, manages settings.json across environments, debugged plugin installation marker race condition. Gap: only the specific SDK interface (setting_sources parameter, SdkPluginConfig type).",
+          "source": "calibration",
+          "transfer_boost": 0.45,
+          "fsrs_difficulty": 3.0,
+          "fsrs_stability": 4.0,
+          "bkt_p_transit": 0.2,
+          "bkt_p_slip": 0.06,
+          "bkt_p_guess": 0.12
         }
       }
     ],
+
     "edges": [
-      {
-        "from_id": "vertex-sdk-agent-loop",
-        "to_id": "vertex-sdk-streaming",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-agent-loop",
-        "to_id": "vertex-sdk-context-management",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-agent-loop",
-        "to_id": "vertex-sdk-hooks",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-agent-loop",
-        "to_id": "vertex-sdk-subagents",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-agent-loop",
-        "to_id": "vertex-sdk-sessions",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-builtin-tools",
-        "to_id": "vertex-sdk-custom-tools",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-custom-tools",
-        "to_id": "vertex-sdk-external-mcp",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-permissions",
-        "to_id": "vertex-sdk-hooks",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-subagents",
-        "to_id": "vertex-sdk-orchestration",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-subagents",
-        "to_id": "vertex-sdk-agent-teams",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-system-prompts",
-        "to_id": "vertex-sdk-agent-loop",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-tool-design",
-        "to_id": "vertex-sdk-custom-tools",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-custom-tools",
-        "to_id": "vertex-sdk-database-integration",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-structured-output",
-        "to_id": "vertex-sdk-handoff-patterns",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-hooks",
-        "to_id": "vertex-sdk-otel-tracing",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-orchestration",
-        "to_id": "vertex-sdk-architecture-patterns",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-otel-tracing",
-        "to_id": "vertex-sdk-observability-platforms",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-testing-strategies",
-        "to_id": "vertex-sdk-production-ops",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-agent-skills",
-        "to_id": "vertex-sdk-claude-code-integration",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-sessions",
-        "to_id": "vertex-sdk-conversation-state",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-error-handling",
-        "to_id": "vertex-sdk-production-ops",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-cost-management",
-        "to_id": "vertex-sdk-production-ops",
-        "label": "PREREQUISITE",
-        "strength": 0.5,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-hooks",
-        "to_id": "vertex-sdk-permissions",
-        "label": "RELATED",
-        "strength": 0.8,
-        "transfer_coefficient": 0.8
-      },
-      {
-        "from_id": "vertex-sdk-subagents",
-        "to_id": "vertex-sdk-agent-teams",
-        "label": "RELATED",
-        "strength": 0.75,
-        "transfer_coefficient": 0.75
-      },
-      {
-        "from_id": "vertex-sdk-custom-tools",
-        "to_id": "vertex-sdk-external-mcp",
-        "label": "RELATED",
-        "strength": 0.7,
-        "transfer_coefficient": 0.7
-      },
-      {
-        "from_id": "vertex-sdk-otel-tracing",
-        "to_id": "vertex-sdk-observability-platforms",
-        "label": "RELATED",
-        "strength": 0.8,
-        "transfer_coefficient": 0.8
-      },
-      {
-        "from_id": "vertex-sdk-testing-strategies",
-        "to_id": "vertex-sdk-production-ops",
-        "label": "RELATED",
-        "strength": 0.65,
-        "transfer_coefficient": 0.65
-      },
-      {
-        "from_id": "vertex-sdk-streaming",
-        "to_id": "vertex-sdk-structured-output",
-        "label": "RELATED",
-        "strength": 0.5,
-        "transfer_coefficient": 0.5
-      },
-      {
-        "from_id": "vertex-sdk-sessions",
-        "to_id": "vertex-sdk-conversation-state",
-        "label": "RELATED",
-        "strength": 0.7,
-        "transfer_coefficient": 0.7
-      },
-      {
-        "from_id": "vertex-sdk-architecture-patterns",
-        "to_id": "vertex-sdk-evolution-tracking",
-        "label": "RELATED",
-        "strength": 0.5,
-        "transfer_coefficient": 0.5
-      },
-      {
-        "from_id": "vertex-sdk-handoff-patterns",
-        "to_id": "vertex-sdk-orchestration",
-        "label": "RELATED",
-        "strength": 0.7,
-        "transfer_coefficient": 0.7
-      },
-      {
-        "from_id": "vertex-sdk-custom-tools",
-        "to_id": "vertex-sdk-tool-design",
-        "label": "REINFORCEMENT",
-        "strength": 0.5
-      },
-      {
-        "from_id": "vertex-sdk-testing-strategies",
-        "to_id": "vertex-sdk-error-handling",
-        "label": "REINFORCEMENT",
-        "strength": 0.5
-      },
-      {
-        "from_id": "vertex-sdk-orchestration",
-        "to_id": "vertex-sdk-context-management",
-        "label": "REINFORCEMENT",
-        "strength": 0.5
-      },
-      {
-        "from_id": "vertex-sdk-production-ops",
-        "to_id": "vertex-sdk-evolution-tracking",
-        "label": "REINFORCEMENT",
-        "strength": 0.5
-      },
-      {
-        "from_id": "vertex-sdk-database-integration",
-        "to_id": "vertex-sdk-custom-tools",
-        "label": "REINFORCEMENT",
-        "strength": 0.5
-      },
-      {
-        "from_id": "vertex-sdk-agent-loop",
-        "to_id": "vertex-sdk-provider-config",
-        "label": "PREREQUISITE",
-        "strength": 0.6,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-architecture-patterns",
-        "to_id": "vertex-sdk-api-design",
-        "label": "PREREQUISITE",
-        "strength": 0.7,
-        "prerequisite_type": "soft"
-      },
-      {
-        "from_id": "vertex-sdk-provider-config",
-        "to_id": "vertex-sdk-production-ops",
-        "label": "RELATED",
-        "strength": 0.5,
-        "transfer_coefficient": 0.5
-      },
-      {
-        "from_id": "vertex-sdk-api-design",
-        "to_id": "vertex-sdk-database-integration",
-        "label": "RELATED",
-        "strength": 0.6,
-        "transfer_coefficient": 0.6
-      }
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-query-function", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-client", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
+      {"from_id": "vertex-sdk-message-types", "to_id": "vertex-sdk-query-function", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
+      {"from_id": "vertex-sdk-message-types", "to_id": "vertex-sdk-client", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
+      {"from_id": "vertex-sdk-content-blocks", "to_id": "vertex-sdk-message-types", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "hard"},
+      {"from_id": "vertex-sdk-query-function", "to_id": "vertex-sdk-client", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-custom-tools", "to_id": "vertex-sdk-mcp-servers", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
+      {"from_id": "vertex-sdk-mcp-servers", "to_id": "vertex-sdk-options", "label": "PREREQUISITE", "strength": 0.6, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-hooks", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-message-types", "to_id": "vertex-sdk-hooks", "label": "PREREQUISITE", "strength": 0.6, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-permissions", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-hooks", "to_id": "vertex-sdk-permissions", "label": "RELATED", "strength": 0.8, "transfer_coefficient": 0.7},
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-agent-definition", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-mcp-servers", "to_id": "vertex-sdk-agent-definition", "label": "PREREQUISITE", "strength": 0.5, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-agent-definition", "to_id": "vertex-sdk-subagent-lifecycle", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
+      {"from_id": "vertex-sdk-message-types", "to_id": "vertex-sdk-subagent-lifecycle", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "hard"},
+      {"from_id": "vertex-sdk-client", "to_id": "vertex-sdk-subagent-lifecycle", "label": "PREREQUISITE", "strength": 0.6, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-query-function", "to_id": "vertex-sdk-session-management", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-client", "to_id": "vertex-sdk-session-management", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-message-types", "to_id": "vertex-sdk-cost-budget", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "hard"},
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-cost-budget", "label": "PREREQUISITE", "strength": 0.6, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-context-management", "label": "PREREQUISITE", "strength": 0.6, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-hooks", "to_id": "vertex-sdk-context-management", "label": "RELATED", "strength": 0.5, "transfer_coefficient": 0.4},
+      {"from_id": "vertex-sdk-client", "to_id": "vertex-sdk-streaming", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-message-types", "to_id": "vertex-sdk-streaming", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "hard"},
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-structured-output", "label": "PREREQUISITE", "strength": 0.6, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-query-function", "to_id": "vertex-sdk-structured-output", "label": "PREREQUISITE", "strength": 0.5, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-thinking-effort", "label": "PREREQUISITE", "strength": 0.5, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-model-routing", "label": "PREREQUISITE", "strength": 0.6, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-agent-definition", "to_id": "vertex-sdk-model-routing", "label": "RELATED", "strength": 0.7, "transfer_coefficient": 0.6},
+      {"from_id": "vertex-sdk-client", "to_id": "vertex-sdk-model-routing", "label": "PREREQUISITE", "strength": 0.5, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-sandbox", "label": "PREREQUISITE", "strength": 0.5, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-permissions", "to_id": "vertex-sdk-sandbox", "label": "RELATED", "strength": 0.7, "transfer_coefficient": 0.5},
+      {"from_id": "vertex-sdk-options", "to_id": "vertex-sdk-settings-plugins", "label": "PREREQUISITE", "strength": 0.5, "prerequisite_type": "soft"},
+      {"from_id": "vertex-sdk-context-management", "to_id": "vertex-sdk-settings-plugins", "label": "RELATED", "strength": 0.5, "transfer_coefficient": 0.4},
+      {"from_id": "vertex-sdk-custom-tools", "to_id": "vertex-sdk-permissions", "label": "REINFORCEMENT", "strength": 0.6},
+      {"from_id": "vertex-sdk-hooks", "to_id": "vertex-sdk-subagent-lifecycle", "label": "REINFORCEMENT", "strength": 0.5},
+      {"from_id": "vertex-sdk-session-management", "to_id": "vertex-sdk-subagent-lifecycle", "label": "REINFORCEMENT", "strength": 0.5},
+      {"from_id": "vertex-sdk-cost-budget", "to_id": "vertex-sdk-model-routing", "label": "REINFORCEMENT", "strength": 0.7},
+      {"from_id": "vertex-sdk-context-management", "to_id": "vertex-sdk-cost-budget", "label": "REINFORCEMENT", "strength": 0.6}
     ]
   },
+
   "gap_analysis": {
-    "total_vertices": 30,
-    "total_edges": 40,
+    "total_vertices": 20,
     "coverage_summary": {
-      "mastered": 2,
-      "proficient": 12,
-      "familiar": 10,
-      "attempted": 6,
+      "mastered": 0,
+      "proficient": 3,
+      "familiar": 12,
+      "attempted": 5,
       "not_started": 0,
-      "coverage_percentage": 58.0
+      "coverage_percentage": 44.3
     },
-    "coverage_percentage": 57.95,
     "priority_gaps": [
       {
-        "vertex_id": "vertex-sdk-testing-strategies",
-        "vertex_name": "Testing Agent Behavior",
-        "gap_score": 0.6075,
-        "mastery": 0.1,
-        "frequency": 0.75,
-        "impact": 0.9,
-        "name": "Testing Agent Behavior",
-        "priority_score": 0.6075
+        "vertex_id": "vertex-sdk-query-function",
+        "name": "query() Async Iterator",
+        "priority_score": 0.95,
+        "rationale": "Highest-impact gateway node. You understand the concept but haven't written query() code. This unlocks everything else."
       },
       {
-        "vertex_id": "vertex-sdk-otel-tracing",
-        "vertex_name": "OpenTelemetry Instrumentation",
-        "gap_score": 0.5737,
-        "mastery": 0.1,
-        "frequency": 0.75,
-        "impact": 0.85,
-        "name": "OpenTelemetry Instrumentation",
-        "priority_score": 0.5737
+        "vertex_id": "vertex-sdk-custom-tools",
+        "name": "Custom Tool Creation",
+        "priority_score": 0.90,
+        "rationale": "The SDK's primary value proposition. Strong architectural instincts from DB expertise but need to learn @tool decorator, handler contract, and MCP response format."
       },
       {
-        "vertex_id": "vertex-sdk-observability-platforms",
-        "vertex_name": "Observability Platforms (Langfuse, Arize, MLflow)",
-        "gap_score": 0.5355,
-        "mastery": 0.1,
-        "frequency": 0.7,
-        "impact": 0.85,
-        "name": "Observability Platforms (Langfuse, Arize, MLflow)",
-        "priority_score": 0.5355
+        "vertex_id": "vertex-sdk-permissions",
+        "name": "Permission System",
+        "priority_score": 0.85,
+        "rationale": "Misconception detected: had wrong model for allowed_tools vs can_use_tool. High impact, needs direct instruction to correct the mental model."
       },
       {
-        "vertex_id": "vertex-sdk-production-ops",
-        "vertex_name": "Production Operations & Monitoring",
-        "gap_score": 0.4725,
-        "mastery": 0.25,
-        "frequency": 0.7,
-        "impact": 0.9,
-        "name": "Production Operations & Monitoring",
-        "priority_score": 0.4725
+        "vertex_id": "vertex-sdk-message-types",
+        "name": "Message Types & Lifecycle",
+        "priority_score": 0.82,
+        "rationale": "Gateway node. Conceptual understanding exists but no programmatic experience with isinstance discrimination. Required for all downstream work."
       },
       {
-        "vertex_id": "vertex-sdk-evolution-tracking",
-        "vertex_name": "SDK Evolution & Changelog Management",
-        "gap_score": 0.4388,
-        "mastery": 0.1,
-        "frequency": 0.65,
-        "impact": 0.75,
-        "name": "SDK Evolution & Changelog Management",
-        "priority_score": 0.4388
+        "vertex_id": "vertex-sdk-client",
+        "name": "ClaudeSDKClient Bidirectional Client",
+        "priority_score": 0.78,
+        "rationale": "Needed for interactive patterns, mid-conversation model/permission changes, and MCP management. Currently at attempted level."
       },
       {
-        "vertex_id": "vertex-sdk-agent-loop",
-        "vertex_name": "Agent Loop & Query Mechanics",
-        "gap_score": 0.4275,
-        "mastery": 0.55,
-        "frequency": 0.95,
-        "impact": 1.0,
-        "name": "Agent Loop & Query Mechanics",
-        "priority_score": 0.4275
+        "vertex_id": "vertex-sdk-cost-budget",
+        "name": "Cost Control & Rate Limiting",
+        "priority_score": 0.72,
+        "rationale": "Production essential. Right instincts but needs specific API patterns for budget limits and rate limit event handling."
       },
       {
-        "vertex_id": "vertex-sdk-provider-config",
-        "vertex_name": "Multi-Provider Configuration",
-        "gap_score": 0.3825,
-        "mastery": 0.15,
-        "frequency": 0.6,
-        "impact": 0.75,
-        "name": "Multi-Provider Configuration",
-        "priority_score": 0.3825
+        "vertex_id": "vertex-sdk-content-blocks",
+        "name": "Content Blocks",
+        "priority_score": 0.65,
+        "rationale": "Prerequisite for effective message handling. Currently at attempted — sees blocks in Claude Code but hasn't extracted programmatically."
       },
       {
-        "vertex_id": "vertex-sdk-cost-management",
-        "vertex_name": "Cost Tracking & Budget Management",
-        "gap_score": 0.2975,
-        "mastery": 0.5,
-        "frequency": 0.7,
-        "impact": 0.85,
-        "name": "Cost Tracking & Budget Management",
-        "priority_score": 0.2975
+        "vertex_id": "vertex-sdk-streaming",
+        "name": "Streaming & Real-time Output",
+        "priority_score": 0.58,
+        "rationale": "Got specifics wrong in assessment. Lower frequency than other gaps but important for UI integration use cases."
       },
       {
-        "vertex_id": "vertex-sdk-handoff-patterns",
-        "vertex_name": "Structured Handoffs Between Agents",
-        "gap_score": 0.2975,
-        "mastery": 0.5,
-        "frequency": 0.7,
-        "impact": 0.85,
-        "name": "Structured Handoffs Between Agents",
-        "priority_score": 0.2975
+        "vertex_id": "vertex-sdk-structured-output",
+        "name": "Structured Output",
+        "priority_score": 0.45,
+        "rationale": "Entirely new concept in SDK context. Lower impact than other gaps but useful for pipeline/batch use cases."
       },
       {
-        "vertex_id": "vertex-sdk-subagents",
-        "vertex_name": "Subagent Spawning & Delegation",
-        "gap_score": 0.288,
-        "mastery": 0.6,
-        "frequency": 0.8,
-        "impact": 0.9,
-        "name": "Subagent Spawning & Delegation",
-        "priority_score": 0.288
+        "vertex_id": "vertex-sdk-subagent-lifecycle",
+        "name": "Subagent Lifecycle & Task Messages",
+        "priority_score": 0.42,
+        "rationale": "The programmatic monitoring API (TaskNotification messages, stop_task) is new territory despite strong agent-definition understanding."
       }
     ],
-    "transfer_leverage": {
-      "Python": [
-        "vertex-sdk-custom-tools",
-        "vertex-sdk-error-handling"
-      ],
-      "Claude Code": [
-        "vertex-sdk-agent-loop",
-        "vertex-sdk-hooks",
-        "vertex-sdk-permissions",
-        "vertex-sdk-sessions",
-        "vertex-sdk-claude-code-integration",
-        "vertex-sdk-agent-skills",
-        "vertex-sdk-system-prompts"
-      ],
-      "LangChain": [
-        "vertex-sdk-orchestration",
-        "vertex-sdk-subagents",
-        "vertex-sdk-tool-design"
-      ],
-      "Postgres/AGE/pgvector": [
-        "vertex-sdk-database-integration"
-      ],
-      "Backend/Systems": [
-        "vertex-sdk-production-ops",
-        "vertex-sdk-architecture-patterns",
-        "vertex-sdk-api-design"
-      ]
-    },
-    "effective_scope_estimate": "You already cover ~55% of the impact-weighted graph through existing knowledge. The remaining gaps concentrate in two clusters: (1) observability & testing (almost entirely new), and (2) SDK-specific implementation details for primitives you already understand conceptually. Estimated curriculum: 2 weeks intensive rather than 4+ weeks from scratch.",
-    "research_flags": [
-      "The learner corrected that agent teams and skills work in the SDK, not just Claude Code. The research dossier may have under-represented SDK-native features vs Claude Code features. Recommend re-research with expert sources (Anthropic engineering blog, creator content) before curriculum design."
-    ]
-  },
-  "metadata": {
-    "calibration_method": "diagnostic_questions",
-    "calibration_questions_count": 7,
-    "schema_version": "1.0",
-    "learning_theory": "Bayesian Knowledge Tracing + Spaced Repetition Scheduling System"
+    "transfer_leverage": [
+      {
+        "vertex_id": "vertex-sdk-context-management",
+        "source_skill": "Claude Code daily usage",
+        "transfer_type": "near",
+        "scaffold_description": "Deep practical experience with compaction and caching transfers almost directly. Just need to learn the SDK's PreCompact hook API and setting_sources configuration."
+      },
+      {
+        "vertex_id": "vertex-sdk-settings-plugins",
+        "source_skill": "Claude plugins & skills ecosystem",
+        "transfer_type": "near",
+        "scaffold_description": "Heavy plugin user with Ansible deployment automation. Only needs the specific SDK parameter names (setting_sources, SdkPluginConfig)."
+      },
+      {
+        "vertex_id": "vertex-sdk-agent-definition",
+        "source_skill": "Claude Code daily usage",
+        "transfer_type": "moderate",
+        "scaffold_description": "Creates .claude/agents/ files daily. Nailed context isolation concept. Bridge: 'The markdown frontmatter maps to AgentDefinition fields.'"
+      },
+      {
+        "vertex_id": "vertex-sdk-hooks",
+        "source_skill": "Claude Code daily usage",
+        "transfer_type": "moderate",
+        "scaffold_description": "Configures hooks in settings.json. Correctly identified PreToolUse. Bridge: 'Shell command hooks become async Python callbacks with the same event model.'"
+      },
+      {
+        "vertex_id": "vertex-sdk-sandbox",
+        "source_skill": "Backend / systems architecture",
+        "transfer_type": "moderate",
+        "scaffold_description": "Docker deployment and systems security background provides strong foundation. Bridge from container isolation concepts to SandboxSettings API."
+      }
+    ],
+    "effective_scope_estimate": "You have ~44% weighted coverage of the skill graph, with 3 vertices at proficient and 12 at familiar. Your Claude Code experience provides substantial scaffolding — the concepts are largely in place, the gap is primarily in programmatic API patterns. Estimated curriculum: 2-2.5 weeks intensive (down from 3-4 weeks starting from scratch). The LangChain negative transfer risk is low based on assessment — you didn't exhibit loop-building instincts. The permission misconception is a focused fix, not a deep reteach."
   }
 }

@@ -1,0 +1,464 @@
+{
+  "plan_id": "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+  "created_at": "2026-03-17T16:00:00Z",
+  "updated_at": "2026-03-17T16:00:00Z",
+  "anki_config": {
+    "model_id_basic": 1587234901,
+    "model_id_cloze": 1823456789,
+    "model_id_reversed": 1345678912,
+    "deck_id": 1956789012
+  },
+  "decks": [
+    {
+      "deck_name": "Claude Agent SDK::TC1 Session Storage",
+      "task_class_id": "TC1",
+      "cards": [
+        {
+          "card_id": "c1a1-0001-query-entrypoints",
+          "component_id": "vertex-sdk-query-function",
+          "card_type": "comparison",
+          "front": "Compare the two entry points to the Claude Agent SDK: <code>query()</code> vs <code>ClaudeSDKClient</code>. When would you use each?",
+          "back": "<b>query()</b>: Stateless, one-shot. Send prompt, iterate messages, done. Use for batch processing, scripts, CI/CD.<br><br><b>ClaudeSDKClient</b>: Stateful, bidirectional. Connect, send multiple queries, interrupt, change model mid-conversation. Use for interactive UIs, multi-turn workflows, live monitoring.",
+          "bloom_level": "analyze",
+          "knowledge_type": "mental_model",
+          "topic_tags": ["sdk::core::entry-points"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 1,
+          "design_notes": "Comparison card - learner must distinguish two easily confused entry points"
+        },
+        {
+          "card_id": "c1a1-0002-query-pattern",
+          "component_id": "vertex-sdk-query-function",
+          "card_type": "cloze",
+          "front": "The basic query() usage pattern is:<br><code>{{c1::async for}} message in query(prompt=\"...\", options=ClaudeAgentOptions(...)):<br>&nbsp;&nbsp;if {{c2::isinstance}}(message, ResultMessage):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(message.{{c3::result}})</code>",
+          "back": "async for / isinstance / result - query() returns an AsyncIterator[Message], you discriminate with isinstance, and ResultMessage.result contains the final text output.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::core::query"],
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 1
+        },
+        {
+          "card_id": "c1a1-0003-query-mcp-gotcha",
+          "component_id": "vertex-sdk-query-function",
+          "card_type": "basic",
+          "front": "What's the gotcha when using custom MCP tools with <code>query()</code> (not ClaudeSDKClient)?",
+          "back": "Custom MCP tools require <b>streaming input mode</b> - you must pass an async generator to <code>prompt</code>, not a plain string. ClaudeSDKClient handles this automatically.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["sdk::core::query", "sdk::tools::mcp"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 1,
+          "design_notes": "Common beginner mistake identified in dossier failure points"
+        },
+        {
+          "card_id": "c1a2-0001-tool-decorator",
+          "component_id": "vertex-sdk-custom-tools",
+          "card_type": "cloze",
+          "front": "Create a custom SDK tool:<br><code>@{{c1::tool}}(\"query_db\", \"Run SQL query\", {\"sql\": {{c2::str}}})<br>async def query_db({{c3::args}}: dict) -> dict:<br>&nbsp;&nbsp;result = await db.fetch(args[\"sql\"])<br>&nbsp;&nbsp;return {\"{{c4::content}}\": [{\"type\": \"text\", \"text\": str(result)}]}</code>",
+          "back": "tool / str / args / content - The @tool decorator takes (name, description, input_schema). Handler receives args dict, returns MCP format: {\"content\": [{\"type\": \"text\", \"text\": \"...\"}]}",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::tools::decorator"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 2
+        },
+        {
+          "card_id": "c1a2-0002-tool-error",
+          "component_id": "vertex-sdk-custom-tools",
+          "card_type": "basic",
+          "front": "How does a custom tool signal an error to Claude in the Agent SDK?",
+          "back": "Return <code>{\"content\": [{\"type\": \"text\", \"text\": \"Error: ...\"}], \"is_error\": True}</code><br><br>Claude receives the error message and can adjust its approach.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["sdk::tools::error-handling"],
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 2
+        },
+        {
+          "card_id": "c1a2-0003-tool-schemas",
+          "component_id": "vertex-sdk-custom-tools",
+          "card_type": "comparison",
+          "front": "The @tool decorator accepts two input schema formats. What are they and when would you use each?",
+          "back": "<b>Simple dict</b>: <code>{\"name\": str, \"count\": int}</code> - Quick and readable. Good for most tools.<br><br><b>Full JSON Schema</b>: <code>{\"type\": \"object\", \"properties\": {...}, \"required\": [...]}</code> - For enums, optional fields, nested objects, validation constraints.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "topic_tags": ["sdk::tools::schemas"],
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 2
+        },
+        {
+          "card_id": "c1a3-0001-mcp-create",
+          "component_id": "vertex-sdk-mcp-servers",
+          "card_type": "cloze",
+          "front": "Wire tools into an MCP server:<br><code>server = {{c1::create_sdk_mcp_server}}(name=\"db-tools\", tools=[query_db, insert_record])<br>options = ClaudeAgentOptions(mcp_servers={{c2::{\"db\": server}}}, allowed_tools=[\"{{c3::mcp__db-tools__query_db}}\"])</code>",
+          "back": "create_sdk_mcp_server / {\"db\": server} / mcp__db-tools__query_db - MCP servers are passed as a dict. Tool names follow the mcp__servername__toolname convention.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::tools::mcp-servers"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 3,
+          "design_notes": "Tests the mcp__server__tool naming convention - a common stumbling point"
+        },
+        {
+          "card_id": "c1a3-0002-mcp-types",
+          "component_id": "vertex-sdk-mcp-servers",
+          "card_type": "basic",
+          "front": "What are the 4 MCP server config types in the SDK, and which one runs in-process?",
+          "back": "<b>McpSdkServerConfig</b> (in-process, no IPC overhead)<br>McpStdioServerConfig (external subprocess)<br>McpSSEServerConfig (SSE endpoint)<br>McpHttpServerConfig (HTTP endpoint)<br><br>SDK servers run directly in your Python process - fastest option, direct access to app state.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["sdk::tools::mcp-types"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 3
+        },
+        {
+          "card_id": "c1a4-0001-message-union",
+          "component_id": "vertex-sdk-message-types",
+          "card_type": "basic",
+          "front": "What are the 6 message types in the SDK's <code>Message</code> union, and which one always comes last?",
+          "back": "UserMessage, AssistantMessage, SystemMessage, <b>ResultMessage</b> (always last), StreamEvent, RateLimitEvent.<br><br>ResultMessage carries: subtype (success/error_*), total_cost_usd, usage, session_id, result (text, only on success).",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["sdk::core::messages"],
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 1,
+          "image_svg": "<svg viewBox='0 0 400 200' xmlns='http://www.w3.org/2000/svg'><title>SDK Message Types in Agent Loop</title><rect x='10' y='10' width='380' height='35' rx='6' fill='#dbeafe' stroke='#2563eb'/><text x='200' y='33' text-anchor='middle' font-size='13' fill='#2563eb' font-weight='bold'>SystemMessage (init)</text><rect x='10' y='55' width='180' height='35' rx='6' fill='#fef3c7' stroke='#d97706'/><text x='100' y='78' text-anchor='middle' font-size='13' fill='#d97706'>AssistantMessage</text><rect x='210' y='55' width='180' height='35' rx='6' fill='#dcfce7' stroke='#16a34a'/><text x='300' y='78' text-anchor='middle' font-size='13' fill='#16a34a'>UserMessage</text><text x='200' y='108' text-anchor='middle' font-size='11' fill='#374151'>repeats (turns)</text><rect x='10' y='120' width='380' height='35' rx='6' fill='#fce7f3' stroke='#dc2626'/><text x='200' y='143' text-anchor='middle' font-size='13' fill='#dc2626' font-weight='bold'>ResultMessage (always last)</text><rect x='10' y='165' width='180' height='25' rx='6' fill='#f3f4f6' stroke='#9ca3af'/><text x='100' y='182' text-anchor='middle' font-size='11' fill='#6b7280'>StreamEvent (if enabled)</text><rect x='210' y='165' width='180' height='25' rx='6' fill='#f3f4f6' stroke='#9ca3af'/><text x='300' y='182' text-anchor='middle' font-size='11' fill='#6b7280'>RateLimitEvent (if hit)</text></svg>",
+          "image_placement": "back"
+        },
+        {
+          "card_id": "c1a4-0002-result-subtypes",
+          "component_id": "vertex-sdk-message-types",
+          "card_type": "basic",
+          "front": "What are the ResultMessage.subtype values, and which is the only one with a <code>result</code> text field?",
+          "back": "<b>success</b> - task completed, result field present<br>error_max_turns - hit max_turns limit<br>error_max_budget_usd - hit budget limit<br>error_during_execution - API or runtime failure<br>error_max_structured_output_retries - schema validation failed<br><br>Only <code>success</code> has <code>result</code>. All have cost/usage/session_id.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["sdk::core::messages::result"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 1
+        },
+        {
+          "card_id": "c1a4-0003-task-messages",
+          "component_id": "vertex-sdk-message-types",
+          "card_type": "basic",
+          "front": "What are the 3 SystemMessage subclasses for subagent lifecycle?",
+          "back": "<b>TaskStartedMessage</b> - subagent spawned (task_id, description)<br><b>TaskProgressMessage</b> - subagent working (usage: total_tokens, tool_uses, duration_ms)<br><b>TaskNotificationMessage</b> - subagent done (status: completed/failed/stopped, summary)",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["sdk::core::messages::task"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 9
+        },
+        {
+          "card_id": "c1a5-0001-content-blocks",
+          "component_id": "vertex-sdk-content-blocks",
+          "card_type": "cloze",
+          "front": "Extract text from an AssistantMessage:<br><code>for block in msg.content:<br>&nbsp;&nbsp;if isinstance(block, {{c1::TextBlock}}):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(block.{{c2::text}})<br>&nbsp;&nbsp;elif isinstance(block, {{c3::ToolUseBlock}}):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(f\"Tool: {block.{{c4::name}}}\")</code>",
+          "back": "TextBlock / text / ToolUseBlock / name - ContentBlock union: TextBlock(text), ThinkingBlock(thinking, signature), ToolUseBlock(id, name, input), ToolResultBlock(tool_use_id, content, is_error)",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::core::content-blocks"],
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 1
+        },
+        {
+          "card_id": "c1a6-0001-options-key-fields",
+          "component_id": "vertex-sdk-options",
+          "card_type": "basic",
+          "front": "Name 5 commonly configured fields on ClaudeAgentOptions for a production agent.",
+          "back": "1. <b>allowed_tools</b> - auto-approve specific tools<br>2. <b>mcp_servers</b> - custom tool servers<br>3. <b>max_budget_usd</b> - cost cap<br>4. <b>max_turns</b> - safety limit<br>5. <b>setting_sources</b> - load CLAUDE.md/skills/hooks",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["sdk::core::options"],
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 1
+        },
+        {
+          "card_id": "c1a7-0001-session-storage",
+          "component_id": "vertex-sdk-session-management",
+          "card_type": "basic",
+          "front": "Where does Claude Code store session transcripts, and what's the data structure?",
+          "back": "JSONL files in <code>~/.claude/projects/&lt;sanitized-cwd&gt;/&lt;uuid&gt;.jsonl</code>.<br><br>Each line: JSON with type, uuid, parentUuid, sessionId, message. Conversation is a linked list via parentUuid - actually a DAG/tree supporting branching.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["sdk::sessions::storage"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 1
+        },
+        {
+          "card_id": "c1a7-0002-resume-fork",
+          "component_id": "vertex-sdk-session-management",
+          "card_type": "comparison",
+          "front": "Compare <code>resume</code> vs <code>fork_session</code> in ClaudeAgentOptions.",
+          "back": "<b>resume=session_id</b>: Continues the session - appends to same JSONL, full context restored.<br><br><b>resume + fork_session=True</b>: Creates NEW session branching from original. Original untouched. New UUID, starts with original's context.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "topic_tags": ["sdk::sessions::resume-fork"],
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 4
+        },
+        {
+          "card_id": "c1a7-0003-list-sessions",
+          "component_id": "vertex-sdk-session-management",
+          "card_type": "cloze",
+          "front": "Query session data programmatically:<br><code>from claude_agent_sdk import {{c1::list_sessions}}, {{c2::get_session_messages}}<br>sessions = list_sessions(directory=\"/my/project\")<br>msgs = get_session_messages(sessions[0].{{c3::session_id}})</code>",
+          "back": "list_sessions / get_session_messages / session_id - Returns SDKSessionInfo objects. get_session_messages reconstructs the conversation chain via parentUuid links.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::sessions::api"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 4
+        }
+      ]
+    },
+    {
+      "deck_name": "Claude Agent SDK::TC2 Observability",
+      "task_class_id": "TC2",
+      "cards": [
+        {
+          "card_id": "c2a1-0001-hook-callback",
+          "component_id": "vertex-sdk-hooks",
+          "card_type": "cloze",
+          "front": "SDK hook callback signature:<br><code>async def my_hook({{c1::input}}: HookInput, {{c2::tool_use_id}}: str | None, {{c3::ctx}}: HookContext) -> {{c4::HookJSONOutput}}:</code>",
+          "back": "input / tool_use_id / ctx / HookJSONOutput - Hooks receive typed input (discriminated by hook_event_name), optional tool_use_id, and context. Return dict controls execution.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::control::hooks::callback"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 7
+        },
+        {
+          "card_id": "c2a1-0002-hook-events",
+          "component_id": "vertex-sdk-hooks",
+          "card_type": "basic",
+          "front": "Name the 4 most used hook events and their primary use case.",
+          "back": "<b>PreToolUse</b> - validate/block tool calls<br><b>PostToolUse</b> - audit results, log to DB<br><b>Stop</b> - save state when agent finishes<br><b>SubagentStart/Stop</b> - track subagent lifecycle<br><br>Hooks run in YOUR process, not the agent's context window.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["sdk::control::hooks::events"],
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 7
+        },
+        {
+          "card_id": "c2a1-0003-hook-block",
+          "component_id": "vertex-sdk-hooks",
+          "card_type": "basic",
+          "front": "How does a PreToolUse hook block a tool call, and what does Claude see?",
+          "back": "Return <code>{\"decision\": \"block\", \"reason\": \"Dangerous command\"}</code>.<br><br>The reason is sent to Claude as the tool result. Claude understands the rejection and tries a different approach.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["sdk::control::hooks::blocking"],
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 7
+        },
+        {
+          "card_id": "c2a1-0004-hookmatcher",
+          "component_id": "vertex-sdk-hooks",
+          "card_type": "cloze",
+          "front": "Register hooks:<br><code>options = ClaudeAgentOptions(<br>&nbsp;&nbsp;hooks={<br>&nbsp;&nbsp;&nbsp;&nbsp;\"{{c1::PreToolUse}}\": [HookMatcher(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matcher={{c2::\"Bash\"}},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hooks=[{{c3::bash_security_hook}}]<br>&nbsp;&nbsp;&nbsp;&nbsp;)]<br>&nbsp;&nbsp;}<br>)</code>",
+          "back": "PreToolUse / \"Bash\" / bash_security_hook - HookMatcher(matcher, hooks, timeout). matcher filters by tool name (None for all).",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::control::hooks::registration"],
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 7
+        },
+        {
+          "card_id": "c2a2-0001-perm-static-dynamic",
+          "component_id": "vertex-sdk-permissions",
+          "card_type": "comparison",
+          "front": "Compare <code>allowed_tools</code> vs <code>can_use_tool</code>. What's the key difference?",
+          "back": "<b>allowed_tools</b>: Static whitelist at config time. Cannot inspect input.<br><br><b>can_use_tool</b>: Dynamic callback at runtime. Receives (tool_name, tool_input, context). Can inspect actual input, return Allow (with modified input) or Deny.",
+          "bloom_level": "analyze",
+          "knowledge_type": "mental_model",
+          "topic_tags": ["sdk::control::permissions::static-vs-dynamic"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 6,
+          "design_notes": "Targets misconception identified in calibration"
+        },
+        {
+          "card_id": "c2a2-0002-perm-modes",
+          "component_id": "vertex-sdk-permissions",
+          "card_type": "basic",
+          "front": "What are the 4 permission modes, and which is for isolated containers only?",
+          "back": "<b>default</b> - prompt for unknown tools<br><b>acceptEdits</b> - auto-approve file edits<br><b>plan</b> - no execution, plan only<br><b>bypassPermissions</b> - allow all (containers/CI ONLY)",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["sdk::control::permissions::modes"],
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 6
+        },
+        {
+          "card_id": "c2a2-0003-perm-callback",
+          "component_id": "vertex-sdk-permissions",
+          "card_type": "cloze",
+          "front": "Dynamic permission callback:<br><code>async def can_use(name, input, ctx):<br>&nbsp;&nbsp;if \"rm -rf\" in input.get(\"command\", \"\"):<br>&nbsp;&nbsp;&nbsp;&nbsp;return {{c1::PermissionResultDeny}}(message=\"Blocked\")<br>&nbsp;&nbsp;return {{c2::PermissionResultAllow}}()</code>",
+          "back": "PermissionResultDeny / PermissionResultAllow - Deny takes message + optional interrupt. Allow takes optional updated_input and updated_permissions.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::control::permissions::callback"],
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 6
+        },
+        {
+          "card_id": "c2a3-0001-cost-extract",
+          "component_id": "vertex-sdk-cost-budget",
+          "card_type": "cloze",
+          "front": "Extract cost from a session:<br><code>if isinstance(msg, ResultMessage):<br>&nbsp;&nbsp;cost = msg.{{c1::total_cost_usd}}<br>&nbsp;&nbsp;turns = msg.{{c2::num_turns}}<br>&nbsp;&nbsp;sid = msg.{{c3::session_id}}</code>",
+          "back": "total_cost_usd / num_turns / session_id - Present on every ResultMessage regardless of subtype. May be None on some error paths.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::production::cost"],
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 7
+        },
+        {
+          "card_id": "c2a3-0002-budget-limit",
+          "component_id": "vertex-sdk-cost-budget",
+          "card_type": "basic",
+          "front": "Agent hits max_budget_usd mid-task. What happens to partial work?",
+          "back": "ResultMessage with subtype <code>error_max_budget_usd</code>. The <code>result</code> field is <b>None</b>. To get partial work, capture AssistantMessage content during the loop before the budget ResultMessage arrives.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["sdk::production::cost::budget"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 7
+        },
+        {
+          "card_id": "c2a4-0001-streaming",
+          "component_id": "vertex-sdk-streaming",
+          "card_type": "cloze",
+          "front": "Enable real-time streaming:<br><code>options = ClaudeAgentOptions({{c1::include_partial_messages}}=True)<br>async for msg in query(...):<br>&nbsp;&nbsp;if isinstance(msg, {{c2::StreamEvent}}):<br>&nbsp;&nbsp;&nbsp;&nbsp;process(msg.{{c3::event}})</code>",
+          "back": "include_partial_messages / StreamEvent / event - StreamEvent has raw API deltas. AssistantMessage fires after the COMPLETE turn.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::production::streaming"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 9,
+          "design_notes": "Addresses calibration finding - learner confused StreamEvent with AssistantMessage"
+        },
+        {
+          "card_id": "c2a5-0001-effort-thinking",
+          "component_id": "vertex-sdk-thinking-effort",
+          "card_type": "comparison",
+          "front": "Compare <code>effort</code> vs <code>thinking</code> on ClaudeAgentOptions.",
+          "back": "<b>Independent features.</b><br><b>effort</b> (low/medium/high/max): Reasoning depth per response. Affects tokens/latency.<br><b>thinking</b> (ThinkingConfig): Visible chain-of-thought blocks. ThinkingBlock in content.<br>Can set effort=\"low\" with thinking enabled, or effort=\"max\" without thinking.",
+          "bloom_level": "analyze",
+          "knowledge_type": "mental_model",
+          "topic_tags": ["sdk::production::thinking"],
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 8
+        }
+      ]
+    },
+    {
+      "deck_name": "Claude Agent SDK::TC3 Teams vs Subagents",
+      "task_class_id": "TC3",
+      "cards": [
+        {
+          "card_id": "c3a1-0001-task-notification",
+          "component_id": "vertex-sdk-subagent-lifecycle",
+          "card_type": "cloze",
+          "front": "Monitor subagent completion:<br><code>if isinstance(msg, {{c1::TaskNotificationMessage}}):<br>&nbsp;&nbsp;if msg.{{c2::status}} == \"completed\":<br>&nbsp;&nbsp;&nbsp;&nbsp;print(msg.{{c3::summary}})</code>",
+          "back": "TaskNotificationMessage / status / summary - status: completed|failed|stopped. summary has the subagent's output.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::orchestration::subagent-lifecycle"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 11
+        },
+        {
+          "card_id": "c3a1-0002-detect-subagent",
+          "component_id": "vertex-sdk-subagent-lifecycle",
+          "card_type": "basic",
+          "front": "How do you detect subagent invocation in the message stream?",
+          "back": "Check for ToolUseBlock where <code>name == \"Agent\"</code> in AssistantMessage.content.<br>Messages from WITHIN the subagent have non-None <code>parent_tool_use_id</code>.<br>Note: older versions used \"Task\" - check both.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::orchestration::subagent-detection"],
+          "difficulty_estimate": 0.45,
+          "curriculum_position": 11
+        },
+        {
+          "card_id": "c3a2-0001-client-lifecycle",
+          "component_id": "vertex-sdk-client",
+          "card_type": "cloze",
+          "front": "ClaudeSDKClient lifecycle:<br><code>async with {{c1::ClaudeSDKClient}}(options) as client:<br>&nbsp;&nbsp;await client.{{c2::query}}(\"Analyze this\")<br>&nbsp;&nbsp;async for msg in client.{{c3::receive_response}}():<br>&nbsp;&nbsp;&nbsp;&nbsp;print(msg)</code>",
+          "back": "ClaudeSDKClient / query / receive_response - Context manager handles connect/disconnect. receive_response() yields until ResultMessage.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::core::client"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 10
+        },
+        {
+          "card_id": "c3a2-0002-client-controls",
+          "component_id": "vertex-sdk-client",
+          "card_type": "basic",
+          "front": "Name 4 mid-conversation control methods on ClaudeSDKClient.",
+          "back": "<b>interrupt()</b> - stop processing<br><b>set_permission_mode()</b> - change permissions<br><b>set_model()</b> - switch models<br><b>stop_task(task_id)</b> - halt subagent<br><br>Also: get_mcp_status(), reconnect_mcp_server(), toggle_mcp_server(), rewind_files()",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["sdk::core::client::methods"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 10
+        },
+        {
+          "card_id": "c3a3-0001-model-routing",
+          "component_id": "vertex-sdk-model-routing",
+          "card_type": "basic",
+          "front": "3 ways to control model selection in the Agent SDK?",
+          "back": "1. <b>ClaudeAgentOptions.model</b> - global session<br>2. <b>AgentDefinition.model</b> - per-subagent<br>3. <b>ClaudeSDKClient.set_model()</b> - mid-conversation<br>Plus <b>fallback_model</b> for auto failover.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["sdk::production::model-routing"],
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 14
+        },
+        {
+          "card_id": "c3a4-0001-agent-def",
+          "component_id": "vertex-sdk-agent-definition",
+          "card_type": "cloze",
+          "front": "Programmatic subagent:<br><code>agents={\"reviewer\": {{c1::AgentDefinition}}(<br>&nbsp;&nbsp;description=\"Code reviewer\",<br>&nbsp;&nbsp;prompt=\"Review for security...\",<br>&nbsp;&nbsp;tools=[\"Read\", \"Grep\"],<br>&nbsp;&nbsp;model={{c2::\"sonnet\"}}<br>)}</code>",
+          "back": "AgentDefinition / \"sonnet\" - description drives auto-delegation. tools restricts (omit=inherit all). model per-agent. Agent tool MUST be in allowed_tools.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::orchestration::agent-definition"],
+          "difficulty_estimate": 0.35,
+          "curriculum_position": 13
+        }
+      ]
+    },
+    {
+      "deck_name": "Claude Agent SDK::TC4 Intelligence & Eval",
+      "task_class_id": "TC4",
+      "cards": [
+        {
+          "card_id": "c4a1-0001-structured-output",
+          "component_id": "vertex-sdk-structured-output",
+          "card_type": "cloze",
+          "front": "Get structured JSON:<br><code>options = ClaudeAgentOptions({{c1::output_format}}={<br>&nbsp;&nbsp;\"type\": \"json_schema\",<br>&nbsp;&nbsp;\"schema\": {...}<br>})<br># Result: msg.{{c2::structured_output}}</code>",
+          "back": "output_format / structured_output - Set JSON Schema on options, get parsed result from ResultMessage.structured_output.",
+          "bloom_level": "apply",
+          "knowledge_type": "procedure",
+          "topic_tags": ["sdk::production::structured-output"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 16
+        },
+        {
+          "card_id": "c4a2-0001-session-chain",
+          "component_id": "vertex-sdk-session-management",
+          "card_type": "basic",
+          "front": "How does get_session_messages() reconstruct conversation from JSONL?",
+          "back": "Parses all entries, walks <b>parentUuid</b> chain from leaf to root. Returns chronological order (root to leaf).<br><br>Follows parentUuid (NOT logicalParentUuid) so post-compaction summaries replace earlier messages.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["sdk::sessions::chain-reconstruction"],
+          "difficulty_estimate": 0.55,
+          "curriculum_position": 16
+        }
+      ]
+    }
+  ]
+}

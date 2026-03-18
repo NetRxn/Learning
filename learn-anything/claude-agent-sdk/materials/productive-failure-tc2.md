@@ -1,269 +1,111 @@
-# Productive Failure Scenario 2: Multi-Agent Without Observability
+# Productive Failure: Permissions Architecture
 
-**Target Learner**: Advanced Python developer, 1 year Claude Code experience
-**Learning Objective**: Understand that multi-agent systems require observability hooks to debug failures
-**Misconception to Surface**: "Multi-agent systems are just about spawning agents — I don't need hooks/observability until later"
-
----
-
-## Problem Section
-
-You're building a **collaborative document review system** with three agents:
-
-1. **Validator Agent**: Checks document structure, formatting, and completeness
-2. **Content Agent**: Reviews domain content for accuracy and depth
-3. **Reviewer Agent**: Synthesizes outputs from Validator and Content agents, produces a final review
-
-**The Setup**:
-- Each agent is independent and runs on a subset of the document
-- The Reviewer agent depends on outputs from the other two
-- You have a test batch of 10 documents to validate the system
-
-**Your Task**: Build and test this system end-to-end. When one document fails review unexpectedly, you must identify which agent produced incorrect output.
-
-**Test Case**: Document `report_Q1_2026.md`
-- Expected outcome: Should pass all reviews (it's a clean, well-structured document)
-- Actual outcome: Reviewer rejects it with "Content validation failed"
-- Your job: Figure out which agent is wrong and why
-
-**Constraints**:
-- You cannot add extensive logging or debugging code during development (you assume observability "can be added later")
-- You have 20 minutes to diagnose the failure
+**Target Vertex:** vertex-sdk-permissions
+**Naive Theory to Surface:** "allowed_tools is session-scoped and can_use_tool is for subagents"
+**Actual Model:** allowed_tools is a static whitelist; can_use_tool is a dynamic runtime callback that inspects actual tool input
 
 ---
 
-## Expected Approaches
+## The Challenge
 
-Most developers will attempt these debugging strategies without observability hooks:
+You're building the session storage agent from TC1. Now you need to secure it for production in BHappy. Here are your requirements:
 
-### Approach 1: Manual Print Debugging
-```python
-# Pseudo-code
-def run_review_pipeline(doc):
-    print(f"Document: {doc}")  # Too verbose to track across agents
+1. The agent can always read any JSONL file (Read tool)
+2. The agent can query Postgres via your custom MCP tools
+3. The agent can use Bash, but ONLY for `git log` and `git show` commands — nothing else
+4. If the agent tries to write to any path outside the worktree, it should be blocked with an explanation
+5. The agent should be able to request expanded permissions at runtime if it encounters a file it needs
 
-    validator_result = validator_agent.query(doc)
-    print(f"Validator output: {validator_result}")  # Is this the right format?
+**Design the permission configuration for this agent.** Use any combination of SDK features you think are appropriate. Write the ClaudeAgentOptions configuration.
 
-    content_result = content_agent.query(doc)
-    print(f"Content output: {content_result}")  # Did it actually run?
-
-    final_review = reviewer_agent.query(
-        doc,
-        validator_input=validator_result,
-        content_input=content_result
-    )
-    print(f"Final: {final_review}")
-
-    if "failed" in final_review:
-        # Which agent caused it? No clear signal
-        print("FAILED but no idea where")
-```
-**What happens**: Prints are too granular or too sparse. You can't correlate which agent run produced which output. The Reviewer agent may have gotten malformed input from either Validator or Content, but you can't tell.
-
-### Approach 2: Return Code Inspection
-```python
-# Pseudo-code
-validator_result = validator_agent.query(doc)
-if "PASS" not in validator_result:
-    # Is this a real failure or just unusual formatting?
-    print("Validator failed")
-else:
-    print("Validator passed")
-
-content_result = content_agent.query(doc)
-# How do you know the format? Did the agent change it?
-if "approved" in content_result.lower():
-    print("Content passed")
-```
-**What happens**: Fragile string matching. Agents might phrase results differently. You can't distinguish between a real failure and a formatting issue.
-
-### Approach 3: Intermediate File Dumps
-```python
-# Pseudo-code
-import json
-
-validator_result = validator_agent.query(doc)
-with open("validator_output.json", "w") as f:
-    json.dump(validator_result, f)
-
-content_result = content_agent.query(doc)
-with open("content_output.json", "w") as f:
-    json.dump(content_result, f)
-
-final_review = reviewer_agent.query(doc, validator_input=validator_result, content_input=content_result)
-
-# Manual inspection: which file shows the problem?
-# But what if the Reviewer misinterpreted both inputs?
-```
-**What happens**: Time-consuming manual inspection. You save outputs but can't automatically correlate them with failures. If the Reviewer agent silently misinterprets data, you won't see it in the intermediate files.
-
-### Approach 4: Re-running with Modified Agents
-```python
-# Pseudo-code
-# Try running just the Validator
-validator_result = validator_agent.query(doc)
-print(f"Validator alone: {validator_result}")
-
-# Try running just the Content agent
-content_result = content_agent.query(doc)
-print(f"Content alone: {content_result}")
-
-# Now run the Reviewer with manually approved inputs
-manual_review = reviewer_agent.query(
-    doc,
-    validator_input="MANUALLY_PASSED",
-    content_input="MANUALLY_PASSED"
-)
-
-# Did the Reviewer pass now? If yes, one of the agents is wrong
-# But which? You'd have to swap inputs one at a time
-```
-**What happens**: Tedious permutation testing. You might isolate the buggy agent, but it takes many iterations and doesn't scale to larger systems.
-
-### Approach 5: Instrumented Agent Wrappers
-```python
-# Pseudo-code
-class InstrumentedAgent:
-    def __init__(self, agent, name):
-        self.agent = agent
-        self.name = name
-
-    def query(self, *args, **kwargs):
-        print(f"[{self.name}] Starting")
-        result = self.agent.query(*args, **kwargs)
-        print(f"[{self.name}] Result length: {len(str(result))}")
-        return result
-
-validator = InstrumentedAgent(validator_agent, "Validator")
-content = InstrumentedAgent(content_agent, "Content")
-
-# But you still can't see what Claude is thinking inside each agent
-# or what data it's receiving
-```
-**What happens**: You add wrapper instrumentation, but it's shallow. You log entry/exit, not the actual reasoning or data flow inside the agent.
+**Rules during this phase:**
+- No hints will be given
+- Try multiple approaches if your first doesn't work
+- Think out loud about your reasoning
 
 ---
 
-## Consolidation
+## Expected Learner Approaches
 
-**The misconception**: Multi-agent systems can be debugged after the fact with generic tools. This is true for single agents, but breaks when one agent's failure is masked by another.
+**Approach A (naive — the misconception):** Try to use allowed_tools for the static stuff and assume can_use_tool only applies to subagents. May try to configure different permission sets for the main agent vs subagents.
 
-**The real problem**: When Validator outputs malformed data, the Reviewer agent doesn't fail—it just produces wrong results. Without visibility into *what data the Reviewer received*, you can't pinpoint the root cause.
+**Approach B (partial):** Use allowed_tools correctly for Read and MCP tools, but try to use permission_mode to handle Bash restrictions. Gets stuck because permission_mode is too coarse — it's all-or-nothing for tool categories.
 
-**The SDK's answer**: Use **observability hooks** on each agent to see:
-- What input each agent received
-- What Claude is reasoning about (thinking steps)
-- What tools were called and with what parameters
-- What the final output is
-- Any errors or retries
+**Approach C (closer):** Use allowed_tools for Read and MCP, but struggle with Bash because allowed_tools can't inspect command content. May try scoped rules like `Bash(git:*)`.
 
-### The Better Way
-
-```python
-from anthropic_sdk import Agent
-
-def log_agent_call(agent_name, event_type, event_data):
-    """Observability hook that logs all agent activity"""
-    timestamp = datetime.now().isoformat()
-    log_entry = {
-        "agent": agent_name,
-        "type": event_type,  # "start", "tool_call", "tool_result", "end"
-        "timestamp": timestamp,
-        "data": event_data
-    }
-    print(json.dumps(log_entry))
-    # In production: send to observability backend (DataDog, New Relic, etc.)
-
-# Create agents with observability hooks
-validator_agent = Agent(
-    model="claude-opus-4",
-    tools=validator_tools,
-    on_hook=lambda event: log_agent_call("Validator", event.type, event.data)
-)
-
-content_agent = Agent(
-    model="claude-opus-4",
-    tools=content_tools,
-    on_hook=lambda event: log_agent_call("Content", event.type, event.data)
-)
-
-reviewer_agent = Agent(
-    model="claude-opus-4",
-    tools=reviewer_tools,
-    on_hook=lambda event: log_agent_call("Reviewer", event.type, event.data)
-)
-
-# Run pipeline
-def run_review_pipeline(doc):
-    validator_result = validator_agent.query(
-        f"Validate this document:\n{doc}",
-        metadata={"doc_id": "report_Q1_2026"}
-    )
-
-    content_result = content_agent.query(
-        f"Review content:\n{doc}",
-        metadata={"doc_id": "report_Q1_2026"}
-    )
-
-    final_review = reviewer_agent.query(
-        f"Synthesize reviews:\nValidator: {validator_result}\nContent: {content_result}",
-        metadata={"doc_id": "report_Q1_2026"}
-    )
-
-    return final_review
-
-result = run_review_pipeline("report_Q1_2026.md")
-```
-
-**What you see in logs**:
-```json
-{"agent": "Validator", "type": "start", "timestamp": "...", "data": {"input": "Validate this..."}}
-{"agent": "Validator", "type": "tool_call", "timestamp": "...", "data": {"tool": "parse_structure", "args": {...}}}
-{"agent": "Validator", "type": "tool_result", "timestamp": "...", "data": {"result": "Structure OK but missing sections"}}
-{"agent": "Validator", "type": "end", "timestamp": "...", "data": {"output": "PASS with warnings: missing..."}}
-
-{"agent": "Content", "type": "start", "timestamp": "...", "data": {"input": "Review content..."}}
-{"agent": "Content", "type": "end", "timestamp": "...", "data": {"output": "FAIL: Domain accuracy issue at line 42"}}
-
-{"agent": "Reviewer", "type": "start", "timestamp": "...", "data": {"input": "Synthesize reviews..."}}
-{"agent": "Reviewer", "type": "tool_call", "timestamp": "...", "data": {"tool": "merge_reviews", "args": {"validator": "PASS with warnings...", "content": "FAIL: Domain accuracy..."}}}
-{"agent": "Reviewer", "type": "end", "timestamp": "...", "data": {"output": "REJECT: Content agent flagged accuracy issue"}}
-```
-
-**Now debugging is clear**:
-- Validator said "PASS with warnings"
-- Content agent said "FAIL"
-- Reviewer correctly propagated the failure
-
-You immediately know Content agent is the critical voice. Check its logs: it found a real domain accuracy issue.
-
-### Why Hooks Matter for Multi-Agent
-
-- **Isolation**: Each agent's logs are separate, so you can see where failures originate
-- **Traceability**: Metadata (doc_id) ties all agent runs together, making it easy to correlate across agents
-- **No side effects**: Hooks don't modify behavior; they only observe
-- **Scalability**: As you add more agents, hooks scale automatically
+**Approach D (correct direction):** Realize that input-dependent decisions require a callback. Start designing a can_use_tool function. May not know the exact PermissionResult types.
 
 ---
 
-## Transfer Problem
+## Consolidation Instruction (delivered AFTER struggle)
 
-**Scenario**: You're building a **customer support system** with three agents:
+### The Two-Layer Permission Model
 
-1. **Intake Agent**: Classifies the customer's issue
-2. **Solution Agent**: Generates solutions based on the classification
-3. **Quality Agent**: Reviews the solution for completeness and tone
+The SDK has **two fundamentally different mechanisms** that work together:
 
-The system routes to different teams based on the Intake Agent's classification. One day, 15% of support tickets are being routed to the wrong team, causing delays.
+**Layer 1: Static Configuration (compile-time decisions)**
+```python
+allowed_tools=["Read", "Grep", "Glob",
+               "mcp__session-storage__read_session_jsonl",
+               "mcp__session-storage__ingest_to_postgres"]
+```
+These tools are auto-approved. No callback, no prompting. Use for tools where you don't need to inspect the input.
 
-**Your Task**:
-- Build the system with observability hooks from day one
-- Run the system on a test batch of 50 tickets
-- Use the hook logs to identify: Are Intake miscategorizations causing wrong routing, or is Solution/Quality recommending wrong teams?
+**Layer 2: Dynamic Callback (runtime decisions)**
+```python
+async def can_use(name: str, input: dict, ctx: ToolPermissionContext) -> PermissionResult:
+    if name == "Bash":
+        cmd = input.get("command", "")
+        if cmd.startswith("git log") or cmd.startswith("git show"):
+            return PermissionResultAllow()
+        return PermissionResultDeny(message=f"Only git log/show allowed. Blocked: {cmd}")
 
-**Validation**:
-- Can you produce a single JSON report showing, for each misrouted ticket, which agent's decision caused the error?
-- Without reading code or running manual tests, can you see the failure pattern (e.g., "Intake confuses Bug reports with Feature requests")?
+    if name in ("Write", "Edit"):
+        path = input.get("file_path", "")
+        if not path.startswith("/app/worktrees/"):
+            return PermissionResultDeny(message=f"Write outside worktree blocked: {path}")
+        return PermissionResultAllow()
 
-**Stretch**: Set up a hook that automatically fires an alert if any agent's success rate drops below 95%. Did you catch a potential issue before it reached customers?
+    # Unknown tools — deny by default
+    return PermissionResultDeny(message=f"Tool {name} not authorized")
+```
+
+**Why the naive theory breaks down:** Both layers apply to the SAME agent (and its subagents inherit the same rules). The distinction isn't session vs subagent — it's **"do I need to see the input before deciding?"**
+
+- Don't need input → `allowed_tools` (static, fast)
+- Need to inspect input → `can_use_tool` (dynamic, per-call)
+- Need to block entirely → `disallowed_tools` (static blocklist)
+- Need runtime rule changes → `PermissionUpdate` (mutate rules during session)
+
+### The Complete Configuration
+
+```python
+options = ClaudeAgentOptions(
+    # Static: always allow these without inspection
+    allowed_tools=[
+        "Read", "Grep", "Glob",
+        "mcp__session-storage__read_session_jsonl",
+        "mcp__session-storage__ingest_to_postgres"
+    ],
+    # Static: never allow these
+    disallowed_tools=["WebFetch", "WebSearch"],
+    # Dynamic: inspect input before deciding
+    can_use_tool=can_use,
+    # Base mode
+    permission_mode="default",
+    # MCP servers
+    mcp_servers={"session-storage": session_tools},
+)
+```
+
+---
+
+## Transfer Problem (post-consolidation)
+
+**New scenario:** You're now configuring permissions for BHappy's TeamLauncher. The team lead agent needs:
+- Full read access to the codebase
+- Bash access, but only for npm/pytest commands — no file system manipulation
+- Write access only to files within the feature's worktree
+- The ability to dynamically grant a teammate Write access to a specific test file
+
+Design the permission configuration. Which features would you use for each requirement?

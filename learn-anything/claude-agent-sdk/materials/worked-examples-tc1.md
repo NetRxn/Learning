@@ -1,542 +1,273 @@
-# TC1: SDK Primitives Sprint — Worked Examples with Backward Fading
+# TC1: Session Storage Backend — Worked Examples with Backward Fading
 
 ## Topic Overview
-Building a complete SDK agent with custom database tools, streaming output, and cost limits. This sprint focuses on the foundational SDK primitives: tools, async iteration, streaming, and token budgeting.
+Build a Postgres/AGE session storage layer that replaces Claude Code's file-based JSONL system. Learn SDK foundations (query, tools, messages, options) by building the ingestion pipeline and backend abstraction.
 
 ---
 
-## Full Worked Example: Analytics Agent with Postgres Tools
+## Full Worked Example: JSONL Session Ingester with AGE Graph
 
-**Problem Statement:** Build an agent that connects to a PostgreSQL analytics database, executes queries through tool calls, streams results, and enforces a $0.50 token budget limit.
+**Problem Statement:** Build an agent tool that reads a Claude Code JSONL session file, parses the parentUuid conversation tree, and ingests it into Postgres with AGE graph edges preserving the DAG structure. Use `@tool` + `create_sdk_mcp_server` + `query()` to drive the pipeline.
 
-### Step 1: Define Database Tool with Parameterization
-**Self-explanation prompt:** Why does using a parameterized tool function make the agent safer and more reusable?
+### Step 1: Understand the JSONL Session Format
+**Self-explanation prompt:** Why does Claude Code use parentUuid links instead of a flat message array?
+
+The SDK's `_internal/sessions.py` reveals the format. Each line in `~/.claude/projects/<cwd>/<uuid>.jsonl` is:
+```json
+{"type": "user", "uuid": "abc-123", "parentUuid": null, "sessionId": "sess-001", "message": {"role": "user", "content": "Fix the bug"}}
+{"type": "assistant", "uuid": "def-456", "parentUuid": "abc-123", "sessionId": "sess-001", "message": {"role": "assistant", "content": [...]}}
+```
+
+The parentUuid chain forms a tree (not flat list) — this is what enables forking and branching. `get_session_messages()` walks from leaf to root via these links.
+
+**Why this works:** A tree structure supports conversation branching. When you fork a session, the new messages have parentUuid pointing into the original chain — both branches coexist in the same file.
+
+---
+
+### Step 2: Define the Postgres + AGE Schema
+**Self-explanation prompt:** Why use AGE graph edges for parentUuid relationships instead of a simple foreign key?
+
+```sql
+-- Standard relational table for message data
+CREATE TABLE claude_sessions.messages (
+    id UUID PRIMARY KEY,
+    session_id UUID NOT NULL,
+    parent_uuid UUID,  -- nullable for root messages
+    message_type VARCHAR(20) NOT NULL,  -- user, assistant, system, etc.
+    content JSONB NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    FOREIGN KEY (session_id) REFERENCES claude_sessions.sessions(id)
+);
+
+-- AGE graph for the conversation tree
+SELECT create_graph('session_graph');
+
+-- Vertices: messages
+-- Edges: PARENT_OF (from parent to child)
+-- This enables: path queries, subtree extraction, branch detection
+```
+
+**Why this works:** AGE gives you graph traversal queries that would be complex recursive CTEs in pure SQL. Finding all descendants of a message (for fork extraction) is a simple path query in AGE.
+
+---
+
+### Step 3: Create the @tool Ingestion Functions
+**Self-explanation prompt:** Why do we need separate tools for reading JSONL and writing to Postgres, rather than one monolithic tool?
 
 ```python
+from claude_agent_sdk import tool, create_sdk_mcp_server
+from typing import Any
+import json
 import asyncpg
-from anthropic.types.tool import Tool
-from anthropic.types import ToolParam
 
-async def query_postgres(sql: str, params: list = None) -> str:
-    """Execute a SQL query and return results as formatted text."""
-    conn = await asyncpg.connect(
-        user="analytics_user",
-        password="secure_password",
-        database="analytics_db",
-        host="localhost"
-    )
+@tool(
+    "read_session_jsonl",
+    "Read a Claude Code JSONL session file and return parsed messages",
+    {"session_path": str}
+)
+async def read_session_jsonl(args: dict[str, Any]) -> dict[str, Any]:
+    """Parse a JSONL session file into structured messages."""
+    path = args["session_path"]
+    messages = []
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            entry = json.loads(line)
+            if entry.get("type") in ("user", "assistant", "system"):
+                messages.append({
+                    "uuid": entry.get("uuid"),
+                    "parent_uuid": entry.get("parentUuid"),
+                    "session_id": entry.get("sessionId"),
+                    "type": entry["type"],
+                    "message": entry.get("message", {})
+                })
+    return {
+        "content": [{
+            "type": "text",
+            "text": json.dumps({"count": len(messages), "messages": messages})
+        }]
+    }
+
+@tool(
+    "ingest_to_postgres",
+    "Write parsed session messages to Postgres and create AGE graph edges",
+    {
+        "type": "object",
+        "properties": {
+            "session_id": {"type": "string"},
+            "messages": {"type": "array", "items": {"type": "object"}}
+        },
+        "required": ["session_id", "messages"]
+    }
+)
+async def ingest_to_postgres(args: dict[str, Any]) -> dict[str, Any]:
+    """Ingest messages into Postgres + AGE graph."""
+    conn = await asyncpg.connect(dsn="postgresql://user:pass@localhost/bhappy")
     try:
-        # Use parameterized queries to prevent SQL injection
-        if params:
-            result = await conn.fetch(sql, *params)
-        else:
-            result = await conn.fetch(sql)
+        async with conn.transaction():
+            for msg in args["messages"]:
+                # Insert message row
+                await conn.execute("""
+                    INSERT INTO claude_sessions.messages
+                    (id, session_id, parent_uuid, message_type, content)
+                    VALUES ($1, $2, $3, $4, $5)
+                    ON CONFLICT (id) DO NOTHING
+                """, msg["uuid"], args["session_id"],
+                    msg.get("parent_uuid"), msg["type"],
+                    json.dumps(msg["message"]))
 
-        # Format results as readable text
-        if not result:
-            return "No results found."
+                # Create AGE vertex
+                await conn.execute("""
+                    SELECT * FROM cypher('session_graph', $$
+                        MERGE (m:Message {uuid: $1, session_id: $2, type: $3})
+                    $$) AS (v agtype)
+                """, msg["uuid"], args["session_id"], msg["type"])
 
-        headers = list(result[0].keys())
-        rows = [tuple(row.values()) for row in result]
+                # Create parent edge if parent exists
+                if msg.get("parent_uuid"):
+                    await conn.execute("""
+                        SELECT * FROM cypher('session_graph', $$
+                            MATCH (parent:Message {uuid: $1})
+                            MATCH (child:Message {uuid: $2})
+                            MERGE (parent)-[:PARENT_OF]->(child)
+                        $$) AS (e agtype)
+                    """, msg["parent_uuid"], msg["uuid"])
 
-        formatted = " | ".join(headers) + "\n"
-        formatted += "-" * len(formatted) + "\n"
-        for row in rows:
-            formatted += " | ".join(str(v) for v in row) + "\n"
-
-        return formatted
+        return {"content": [{"type": "text", "text": f"Ingested {len(args['messages'])} messages"}]}
     finally:
         await conn.close()
 
-# Define the tool schema for the agent
-postgres_tool = Tool(
-    name="query_analytics",
-    description="Execute SQL queries against the analytics database",
-    input_schema={
-        "type": "object",
-        "properties": {
-            "sql": {
-                "type": "string",
-                "description": "The SQL query to execute"
-            },
-            "params": {
-                "type": "array",
-                "items": {"type": "string"},
-                "description": "Optional query parameters for safe parameterization"
-            }
-        },
-        "required": ["sql"]
-    }
+# Wire into MCP server
+session_tools = create_sdk_mcp_server(
+    name="session-storage",
+    version="1.0.0",
+    tools=[read_session_jsonl, ingest_to_postgres]
 )
 ```
 
-**Why this works:** Parameterized queries prevent SQL injection. The tool schema explicitly defines inputs, allowing the agent to understand what parameters it can pass and making the contract clear.
+**Why this works:** Separate tools let the agent decide the workflow — read first, validate, then ingest. The agent can inspect the parsed data before committing to Postgres. The @tool decorator handles MCP protocol wrapping automatically.
 
 ---
 
-### Step 2: Create Tool Dispatcher with Error Handling
-**Self-explanation prompt:** Why is wrapping tool execution in a try-except block essential for agent reliability?
+### Step 4: Drive the Pipeline with query()
+**Self-explanation prompt:** Why do we iterate messages from query() even though we only care about the final result?
 
 ```python
-async def handle_tool_call(tool_name: str, tool_input: dict) -> str:
-    """Dispatch tool calls and handle errors gracefully."""
-    if tool_name == "query_analytics":
-        try:
-            sql = tool_input.get("sql")
-            params = tool_input.get("params", [])
-
-            if not sql:
-                return "Error: SQL query is required"
-
-            result = await query_postgres(sql, params)
-            return result
-        except asyncpg.PostgresError as e:
-            return f"Database error: {str(e)}"
-        except Exception as e:
-            return f"Unexpected error: {str(e)}"
-    else:
-        return f"Unknown tool: {tool_name}"
-```
-
-**Why this works:** Tool execution can fail for many reasons (network, malformed SQL, permissions). Catching errors prevents the entire agent from crashing and allows graceful degradation with informative error messages.
-
----
-
-### Step 3: Initialize Anthropic Client with Cost Limits
-**Self-explanation prompt:** Why do we track token usage separately rather than relying solely on API rate limits?
-
-```python
-from anthropic import Anthropic
-
-# Initialize client
-client = Anthropic(api_key="sk-ant-...")
-
-# Cost tracking variables
-TOKEN_LIMIT = 1000  # ~$0.50 at current pricing
-tokens_used = 0
-MAX_TOKENS_PER_CALL = 500
-
-def calculate_cost(input_tokens: int, output_tokens: int) -> float:
-    """Calculate cost based on Claude 3.5 Sonnet pricing."""
-    # Input: $3/million tokens, Output: $15/million tokens
-    input_cost = (input_tokens / 1_000_000) * 3
-    output_cost = (output_tokens / 1_000_000) * 15
-    return input_cost + output_cost
-```
-
-**Why this works:** API providers charge by token usage. Tracking it ourselves allows us to implement custom budgets and prevent runaway costs from failed experiments or infinite loops.
-
----
-
-### Step 4: Build Main Agent Loop with Streaming
-**Self-explanation prompt:** Why does using an async iterator with streaming allow us to process partial results in real-time?
-
-```python
-async def run_analytics_agent(user_query: str) -> str:
-    """Run the agent with streaming and cost limits."""
-    global tokens_used
-
-    messages = [{"role": "user", "content": user_query}]
-    full_response = ""
-
-    while True:
-        # Check budget before making request
-        if tokens_used >= TOKEN_LIMIT:
-            return "Token budget exhausted. Please try again later."
-
-        # Use streaming to process tokens as they arrive
-        with client.messages.stream(
-            model="claude-3-5-sonnet-20241022",
-            max_tokens=MAX_TOKENS_PER_CALL,
-            tools=[postgres_tool],
-            messages=messages
-        ) as stream:
-            # Collect the full response while streaming
-            for text in stream.text_stream:
-                full_response += text
-                print(text, end="", flush=True)  # Real-time output
-
-            # Get final message for tool use detection
-            final_message = stream.get_final_message()
-            tokens_used += (
-                final_message.usage.input_tokens +
-                final_message.usage.output_tokens
-            )
-
-        # Check if agent wants to use a tool
-        tool_calls = [
-            block for block in final_message.content
-            if block.type == "tool_use"
-        ]
-
-        if not tool_calls:
-            # No more tool calls, agent is done
-            break
-
-        # Process each tool call
-        messages.append({"role": "assistant", "content": final_message.content})
-        tool_results = []
-
-        for tool_call in tool_calls:
-            print(f"\n[Calling tool: {tool_call.name}]")
-            result = await handle_tool_call(tool_call.name, tool_call.input)
-            tool_results.append({
-                "type": "tool_result",
-                "tool_use_id": tool_call.id,
-                "content": result
-            })
-
-        messages.append({"role": "user", "content": tool_results})
-
-    return full_response
-```
-
-**Why this works:** Streaming with `messages.stream()` returns an async iterator that yields text tokens as they're generated. This enables real-time feedback to users and allows early interruption if needed. The cost-tracking check prevents budget overruns.
-
----
-
-### Step 5: Add Request Validation and Preprocessing
-**Self-explanation prompt:** Why should we validate user input before sending it to Claude?
-
-```python
-def validate_query(query: str) -> tuple[bool, str]:
-    """Validate user query for safety and relevance."""
-    if not query or len(query.strip()) == 0:
-        return False, "Query cannot be empty"
-
-    if len(query) > 2000:
-        return False, "Query exceeds maximum length (2000 chars)"
-
-    # Reject queries that don't seem database-related
-    dangerous_keywords = ["drop", "delete from", "truncate", "alter table"]
-    query_lower = query.lower()
-
-    for keyword in dangerous_keywords:
-        if keyword in query_lower:
-            return False, f"Query contains dangerous keyword: {keyword}"
-
-    return True, ""
-
-async def run_analytics_agent_safe(user_query: str) -> str:
-    """Wrapper with input validation."""
-    is_valid, error_msg = validate_query(user_query)
-    if not is_valid:
-        return f"Invalid query: {error_msg}"
-
-    return await run_analytics_agent(user_query)
-```
-
-**Why this works:** Validating input early prevents malformed requests from consuming tokens. It also catches obvious safety issues before they reach Claude.
-
----
-
-### Step 6: Implement Session Management with Cost Reports
-**Self-explanation prompt:** Why do we separate session initialization from query execution?
-
-```python
-class AnalyticsSession:
-    """Manages an agent session with cost tracking and history."""
-
-    def __init__(self, session_id: str):
-        self.session_id = session_id
-        self.messages = []
-        self.tokens_used = 0
-        self.cost_so_far = 0.0
-        self.tool_calls_made = []
-
-    async def query(self, user_query: str) -> str:
-        """Execute a query and track session metrics."""
-        is_valid, error = validate_query(user_query)
-        if not is_valid:
-            return f"Validation failed: {error}"
-
-        # Add user message to session history
-        self.messages.append({"role": "user", "content": user_query})
-
-        # Execute agent logic (simplified version)
-        result = await run_analytics_agent(user_query)
-        self.messages.append({"role": "assistant", "content": result})
-
-        return result
-
-    def get_session_report(self) -> str:
-        """Generate a session cost and usage report."""
-        report = f"""
-        Session Report: {self.session_id}
-        ================================
-        Messages exchanged: {len(self.messages)}
-        Tokens used: {self.tokens_used}
-        Estimated cost: ${self.cost_so_far:.4f}
-        Tool calls made: {len(self.tool_calls_made)}
-        Tool calls: {', '.join(self.tool_calls_made) if self.tool_calls_made else 'None'}
-        """
-        return report.strip()
-
-# Usage
-session = AnalyticsSession("session_abc123")
-result = await session.query("What are the top 5 products by revenue?")
-print(session.get_session_report())
-```
-
-**Why this works:** Sessions encapsulate agent state and metrics, making it easy to track cost and performance per user or per conversation. This is essential for multi-user systems.
-
----
-
-### Step 7: Complete Working Example with Context Manager
-**Self-explanation prompt:** Why do we use async context managers to ensure database connections are properly cleaned up?
-
-```python
-from contextlib import asynccontextmanager
-from typing import AsyncGenerator
-
-@asynccontextmanager
-async def managed_analytics_agent(
-    session_id: str,
-    token_budget: int = 1000
-) -> AsyncGenerator[AnalyticsSession, None]:
-    """Context manager for safe agent execution with resource cleanup."""
-    session = AnalyticsSession(session_id)
-    session.tokens_used = 0  # Reset on creation
-
-    try:
-        yield session
-    finally:
-        # Cleanup: close any open connections, log metrics
-        print(f"Session {session_id} ended. Report:\n{session.get_session_report()}")
-
-# Usage pattern
-async def main():
-    async with managed_analytics_agent("user_001") as session:
-        result = await session.query("SELECT COUNT(*) FROM events WHERE date > NOW() - INTERVAL '7 days'")
-        print(result)
-
-        result2 = await session.query("What was the average order value last month?")
-        print(result2)
-
-# Run it
-if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
-```
-
-**Why this works:** Context managers guarantee cleanup code runs even if exceptions occur. This prevents resource leaks and ensures metrics are always logged, making debugging easier in production.
-
----
-
----
-
-## Fading Version 1: Remove Steps 6-7 (Session Management & Context Manager)
-
-**Problem Statement:** Build an agent that connects to a PostgreSQL analytics database, executes queries through tool calls, streams results, and enforces a $0.50 token budget limit.
-
-### Step 1: Define Database Tool with Parameterization
-[Full code as above]
-
-### Step 2: Create Tool Dispatcher with Error Handling
-[Full code as above]
-
-### Step 3: Initialize Anthropic Client with Cost Limits
-[Full code as above]
-
-### Step 4: Build Main Agent Loop with Streaming
-[Full code as above]
-
-### Step 5: Add Request Validation and Preprocessing
-[Full code as above]
-
-**Your Task:** Implement session management and a cost report feature to track tokens used and estimated cost per conversation.
-
----
-
-## Fading Version 2: Remove Steps 5-7 (Validation, Session Mgmt, Context Manager)
-
-**Problem Statement:** Build an agent that connects to a MySQL analytics database, executes queries through tool calls, streams results, and enforces a $0.50 token budget limit.
-
-*(Note: Surface feature change — MySQL instead of PostgreSQL)*
-
-### Step 1: Define Database Tool with Parameterization
-```python
-import aiomysql
-from anthropic.types.tool import Tool
-
-async def query_mysql(sql: str, params: list = None) -> str:
-    """Execute a SQL query against MySQL analytics database."""
-    # Similar structure to postgres version, but using aiomysql
-    # Include parameterization for safety
-    pass
-
-mysql_tool = Tool(
-    name="query_analytics",
-    description="Execute SQL queries against the analytics database",
-    input_schema={
-        "type": "object",
-        "properties": {
-            "sql": {"type": "string", "description": "The SQL query to execute"},
-            "params": {"type": "array", "items": {"type": "string"}}
-        },
-        "required": ["sql"]
-    }
-)
-```
-
-### Step 2: Create Tool Dispatcher with Error Handling
-```python
-async def handle_tool_call(tool_name: str, tool_input: dict) -> str:
-    """Dispatch tool calls and handle errors gracefully."""
-    if tool_name == "query_analytics":
-        try:
-            sql = tool_input.get("sql")
-            params = tool_input.get("params", [])
-            result = await query_mysql(sql, params)
-            return result
-        except Exception as e:
-            return f"Database error: {str(e)}"
-    return f"Unknown tool: {tool_name}"
-```
-
-### Step 3: Initialize Anthropic Client with Cost Limits
-[Full code as Step 3 above]
-
-### Step 4: Build Main Agent Loop with Streaming
-[Full code as Step 4 above]
-
-**Your Task:** Add input validation to reject queries with dangerous SQL keywords, then implement session management with cost reporting.
-
----
-
-## Fading Version 3: Remove Steps 4-7 (Agent Loop, Validation, Session Mgmt, Context Manager)
-
-**Problem Statement:** Build an agent that connects to a Snowflake data warehouse, executes queries through tool calls, streams results, and enforces a $0.50 token budget limit.
-
-*(Note: Surface feature change — Snowflake instead of PostgreSQL/MySQL)*
-
-### Step 1: Define Database Tool with Parameterization
-```python
-import snowflake.connector
-from anthropic.types.tool import Tool
-
-async def query_snowflake(sql: str, params: list = None) -> str:
-    """Execute a SQL query against Snowflake data warehouse."""
-    # Connect to Snowflake
-    conn = snowflake.connector.connect(
-        user="analytics_user",
-        password="password",
-        account="xy12345.us-east-1",
-        warehouse="compute_wh",
-        database="analytics"
+import asyncio
+from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage, AssistantMessage
+
+async def ingest_session(jsonl_path: str):
+    """Use an agent to ingest a session file into Postgres."""
+    options = ClaudeAgentOptions(
+        mcp_servers={"session-storage": session_tools},
+        allowed_tools=[
+            "mcp__session-storage__read_session_jsonl",
+            "mcp__session-storage__ingest_to_postgres"
+        ],
+        system_prompt="You are a data pipeline agent. Read the JSONL session file, then ingest all messages into Postgres.",
+        max_turns=10,
+        max_budget_usd=0.50
     )
-    try:
-        cursor = conn.cursor()
-        if params:
-            cursor.execute(sql, params)
-        else:
-            cursor.execute(sql)
 
-        results = cursor.fetchall()
-        # Format and return results
-        if not results:
-            return "No results found."
+    async for message in query(
+        prompt=f"Ingest the session at {jsonl_path} into Postgres",
+        options=options
+    ):
+        if isinstance(message, AssistantMessage):
+            # Track progress
+            for block in message.content:
+                if hasattr(block, 'text'):
+                    print(f"Agent: {block.text[:100]}...")
+        if isinstance(message, ResultMessage):
+            print(f"Done. Cost: ${message.total_cost_usd:.4f}, Turns: {message.num_turns}")
+            return message
 
-        # Build formatted output
-        formatted = " | ".join(str(d[0]) for d in cursor.description) + "\n"
-        formatted += "-" * 50 + "\n"
-        for row in results:
-            formatted += " | ".join(str(v) for v in row) + "\n"
-
-        return formatted
-    finally:
-        conn.close()
-
-snowflake_tool = Tool(
-    name="query_warehouse",
-    description="Query the Snowflake data warehouse",
-    input_schema={
-        "type": "object",
-        "properties": {
-            "sql": {"type": "string", "description": "SQL query"},
-            "params": {"type": "array", "items": {"type": "string"}}
-        },
-        "required": ["sql"]
-    }
-)
+asyncio.run(ingest_session("/Users/john/.claude/projects/-Users-john-myproject/abc-123.jsonl"))
 ```
 
-### Step 2: Create Tool Dispatcher with Error Handling
-```python
-async def handle_tool_call(tool_name: str, tool_input: dict) -> str:
-    """Dispatch tool calls with error handling."""
-    if tool_name == "query_warehouse":
-        try:
-            sql = tool_input.get("sql")
-            params = tool_input.get("params", [])
-            result = await query_snowflake(sql, params)
-            return result
-        except Exception as e:
-            return f"Error: {str(e)}"
-    return f"Unknown tool: {tool_name}"
-```
-
-### Step 3: Initialize Anthropic Client with Cost Limits
-[Full code as Step 3 above]
-
-**Your Task:** Implement the main agent loop with streaming output and token budget enforcement. Then add input validation and session management.
+**Why this works:** query() manages the entire agent loop — the agent reads the file, parses it, decides to ingest, calls the Postgres tool, and reports results. We just configure and observe.
 
 ---
 
-## Fading Version 4: Remove Steps 3-7 (Cost Limits, Agent Loop, Validation, Session Mgmt, Context Manager)
+### Step 5: Query the Ingested Graph
+**Self-explanation prompt:** Why is finding all descendants of a message useful for implementing fork-at-arbitrary-turn?
 
-**Problem Statement:** Build an agent with custom tools that can query a data warehouse, stream results, and execute tool calls properly.
-
-*(Note: Surface feature change — Generic "data warehouse" tool instead of specific database)*
-
-### Step 1: Define Database Tool with Parameterization
 ```python
-from anthropic.types.tool import Tool
-
-# Define a generic query tool
-query_tool = Tool(
-    name="execute_query",
-    description="Execute analytics queries",
-    input_schema={
-        "type": "object",
-        "properties": {
-            "query": {"type": "string", "description": "The query to execute"},
-            "database": {"type": "string", "description": "Target database"}
-        },
-        "required": ["query"]
-    }
+@tool(
+    "query_conversation_tree",
+    "Query the conversation tree from AGE graph",
+    {"message_uuid": str, "query_type": str}
 )
+async def query_conversation_tree(args: dict[str, Any]) -> dict[str, Any]:
+    """Query conversation structure from AGE graph."""
+    conn = await asyncpg.connect(dsn="postgresql://user:pass@localhost/bhappy")
+    try:
+        if args["query_type"] == "ancestors":
+            # Walk from message to root — reconstruct conversation up to this point
+            result = await conn.fetch("""
+                SELECT * FROM cypher('session_graph', $$
+                    MATCH path = (root:Message)-[:PARENT_OF*]->(target:Message {uuid: $1})
+                    WHERE NOT EXISTS(()-[:PARENT_OF]->(root))
+                    RETURN [n IN nodes(path) | n.uuid] AS chain
+                $$) AS (chain agtype)
+            """, args["message_uuid"])
+        elif args["query_type"] == "descendants":
+            # Find all messages downstream — for fork extraction
+            result = await conn.fetch("""
+                SELECT * FROM cypher('session_graph', $$
+                    MATCH (start:Message {uuid: $1})-[:PARENT_OF*]->(desc:Message)
+                    RETURN desc.uuid AS uuid, desc.type AS type
+                $$) AS (uuid agtype, type agtype)
+            """, args["message_uuid"])
+        elif args["query_type"] == "branches":
+            # Find messages with multiple children — branch points
+            result = await conn.fetch("""
+                SELECT * FROM cypher('session_graph', $$
+                    MATCH (parent:Message)-[:PARENT_OF]->(child:Message)
+                    WITH parent, count(child) AS child_count
+                    WHERE child_count > 1
+                    RETURN parent.uuid AS uuid, child_count
+                $$) AS (uuid agtype, child_count agtype)
+            """, )
 
-async def execute_query(query: str, database: str = "default") -> str:
-    """Execute a query against the specified database."""
-    # Implementation placeholder
-    return "Query executed successfully"
+        return {"content": [{"type": "text", "text": json.dumps([dict(r) for r in result])}]}
+    finally:
+        await conn.close()
 ```
 
-### Step 2: Create Tool Dispatcher with Error Handling
-```python
-async def handle_tool_call(tool_name: str, tool_input: dict) -> str:
-    """Dispatch and execute tool calls."""
-    if tool_name == "execute_query":
-        try:
-            query = tool_input.get("query")
-            db = tool_input.get("database", "default")
-            return await execute_query(query, db)
-        except Exception as e:
-            return f"Error: {str(e)}"
-    return "Tool not found"
-```
+**Why this works:** AGE graph queries make tree operations natural. Finding ancestors = walk to root. Finding descendants = traverse subtree. Finding branches = count children > 1. These are the building blocks for fork/rewind.
 
-**Your Task:** Initialize the Anthropic client with token tracking and cost limits, then implement the main agent loop with streaming. Add validation and session management as final steps.
+---
+
+## Fading Version 1: Remove Step 5 (Graph Queries)
+
+Steps 1-4 provided. **Your Task:** Implement the graph query tool that supports ancestors, descendants, and branch detection queries against the AGE session graph.
+
+---
+
+## Fading Version 2: Remove Steps 4-5 (Pipeline Driver + Graph Queries)
+
+Steps 1-3 provided. **Your Task:** Write the `query()` call that drives the ingestion pipeline, handling message iteration and ResultMessage cost extraction. Then implement the graph query tool.
+
+Surface change: Use a different session path and add error handling for malformed JSONL lines.
+
+---
+
+## Fading Version 3: Remove Steps 3-5 (Tools + Pipeline + Queries)
+
+Steps 1-2 provided (JSONL format understanding + Postgres schema). **Your Task:** Create the @tool functions for reading JSONL and ingesting to Postgres+AGE, wire them into an MCP server, drive the pipeline with query(), and build the graph query tool.
+
+Surface change: Add a `list_sessions` tool that wraps the SDK's `list_sessions()` function to let the agent discover available sessions.
 
 ---
 
 ## Key Takeaways for TC1
 
-- **SDK Primitives:** Tools are defined as structured schema objects; tool execution happens through dispatcher functions
-- **Async/Streaming:** Use `client.messages.stream()` to process tokens in real-time and enable early cancellation
-- **Cost Management:** Track tokens yourself; don't rely solely on API limits
-- **Error Handling:** Always wrap tool calls in try-except; graceful degradation is better than crashes
-- **Session State:** Encapsulate state (messages, metrics) in session objects for multi-turn conversations
-- **Context Managers:** Use async context managers to guarantee cleanup and resource management
-
+- **The SDK manages the loop** — you configure via ClaudeAgentOptions and observe via message iteration
+- **@tool + create_sdk_mcp_server** is how you give Claude custom capabilities — the MCP response format is `{"content": [{"type": "text", "text": "..."}]}`
+- **Tool names follow mcp__servername__toolname** — must match in allowed_tools
+- **ResultMessage is always last** — check subtype before reading result. Cost/session_id always available.
+- **Session JSONL is a parentUuid-linked tree** — AGE graph edges make this queryable for fork/rewind/branch
+- **Separate read from write tools** — let the agent decide the workflow

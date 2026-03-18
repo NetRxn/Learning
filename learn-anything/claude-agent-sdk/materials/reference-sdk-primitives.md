@@ -1,131 +1,138 @@
-# SDK Primitives Quick Reference (TC1)
+# Claude Agent SDK Quick Reference
 
-## Agent Loop & query() Mechanics
+## Architecture
+The SDK wraps the Claude Code CLI as a subprocess. You configure + observe; the CLI manages the agent loop.
 
-1. **Message Types in Agent Loop**
-   - `UserMessage`: Input from user/external system
-   - `AssistantMessage`: Agent response (can trigger tool calls)
-   - `ToolUseBlock`: Request to execute a tool with args
-   - `ToolResultBlock`: Result returned from tool execution
-   - Loop continues until agent returns text without tool use blocks
+## Entry Points
 
-2. **query() Lifecycle**
-   - Agent receives message → searches for matching tools
-   - Generates response (text + optional tool use blocks)
-   - If tool blocks present: execute tools → add results to conversation
-   - Resume query with updated context → repeat until no tool blocks
-   - Return final AssistantMessage to caller
+| Entry Point | Mode | Use When |
+|---|---|---|
+| `query(prompt, options)` | Stateless, one-shot | Scripts, batch, CI/CD, pipelines |
+| `ClaudeSDKClient(options)` | Stateful, bidirectional | Interactive UIs, multi-turn, live monitoring |
 
-3. **Stop Conditions**
-   - Agent generates response without tool use blocks
-   - max_tokens exhausted
-   - max_iterations reached (safety limit)
-   - Explicit agent decision to stop
+## query() Pattern
+```python
+from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage, AssistantMessage
 
----
+async for msg in query(prompt="...", options=ClaudeAgentOptions(...)):
+    if isinstance(msg, AssistantMessage):  # per-turn progress
+        for block in msg.content:
+            if hasattr(block, 'text'): print(block.text)
+    if isinstance(msg, ResultMessage):     # always last
+        if msg.subtype == "success": print(msg.result)
+        print(f"Cost: ${msg.total_cost_usd:.4f}")
+```
 
-## Custom Tools (@tool decorator)
+## ClaudeSDKClient Pattern
+```python
+async with ClaudeSDKClient(options=opts) as client:
+    await client.query("Analyze code")
+    async for msg in client.receive_response(): ...
+    await client.set_model("claude-haiku-4-5")  # mid-conversation
+    await client.query("Summarize")
+    async for msg in client.receive_response(): ...
+```
 
-4. **Tool Definition Pattern**
-   ```python
-   @tool
-   def search_docs(query: str, max_results: int = 5) -> str:
-       """Search documentation. Returns markdown of top results."""
-       # Implementation
-       return results_markdown
-   ```
-   - Docstring required (becomes tool description)
-   - Type hints required (arg types, return type)
-   - Return type hint determines result format (str/list/dict/etc)
+## Message Types
 
-5. **Tool Registration**
-   - Decorated functions auto-register in agent's tool namespace
-   - Tool name = function name (underscores visible in tool UI)
-   - Namespace collision: last decorator wins (use unique names)
-   - Tools available immediately on next query()
+| Type | When | Key Fields |
+|---|---|---|
+| `SystemMessage` | Session init, compaction | subtype ("init", "compact_boundary") |
+| `AssistantMessage` | Each turn | content: list[ContentBlock] |
+| `UserMessage` | Tool results, inputs | content, parent_tool_use_id |
+| `ResultMessage` | Always last | subtype, result, total_cost_usd, session_id |
+| `StreamEvent` | If partial messages on | event (raw API delta) |
+| `RateLimitEvent` | Rate limit changes | rate_limit_info |
+| `TaskStartedMessage` | Subagent spawned | task_id, description |
+| `TaskProgressMessage` | Subagent working | usage (tokens, tool_uses) |
+| `TaskNotificationMessage` | Subagent done | status, summary |
 
-6. **create_sdk_mcp_server Pattern**
-   - For complex tool suites: wrap in MCP server
-   - `create_sdk_mcp_server(tools=[...])` → Server object
-   - Server exposes tools via JSON-RPC interface
-   - Integration: more portable, reusable across agents
+## Content Blocks
+```python
+TextBlock(text)           # Text output
+ThinkingBlock(thinking, signature)  # Extended thinking
+ToolUseBlock(id, name, input)       # Tool call request
+ToolResultBlock(tool_use_id, content, is_error)  # Tool result
+```
 
----
+## Custom Tools
+```python
+from claude_agent_sdk import tool, create_sdk_mcp_server
 
-## Streaming Configuration
+@tool("my_tool", "Description", {"param": str})
+async def my_tool(args: dict) -> dict:
+    return {"content": [{"type": "text", "text": "result"}]}
+    # Error: return {"content": [...], "is_error": True}
 
-7. **Stream vs Buffered**
-   - Default: buffered (query() blocks until complete response)
-   - Stream: `stream=True` returns iterator of chunks
-   - Each chunk is `ToolUseBlock`, text delta, or metadata
-   - Useful for long-running operations, UI responsiveness
+server = create_sdk_mcp_server("my-server", tools=[my_tool])
+# Tool name in allowed_tools: "mcp__my-server__my_tool"
+```
 
-8. **Stream Handling Loop**
-   ```python
-   for chunk in agent.query(msg, stream=True):
-       if isinstance(chunk, TextDelta):
-           print(chunk.text, end='', flush=True)
-       elif isinstance(chunk, ToolUseBlock):
-           # Tool execution logic
-   ```
+## ClaudeAgentOptions Key Fields
 
----
+| Field | Purpose | Example |
+|---|---|---|
+| `allowed_tools` | Static whitelist (auto-approve) | `["Read", "Bash"]` |
+| `disallowed_tools` | Static blocklist | `["WebSearch"]` |
+| `can_use_tool` | Dynamic callback | `async (name, input, ctx) -> PermissionResult` |
+| `mcp_servers` | Custom tool servers | `{"db": server}` |
+| `permission_mode` | Base mode | `"default"`, `"acceptEdits"`, `"bypassPermissions"` |
+| `max_turns` | Safety limit | `30` |
+| `max_budget_usd` | Cost cap | `2.0` |
+| `model` | Model selection | `"claude-sonnet-4-6"` |
+| `fallback_model` | Auto failover | `"claude-haiku-4-5"` |
+| `hooks` | Programmatic hooks | `{"PreToolUse": [HookMatcher(...)]}` |
+| `agents` | Subagent definitions | `{"reviewer": AgentDefinition(...)}` |
+| `setting_sources` | Load CLAUDE.md/skills | `["project"]` |
+| `include_partial_messages` | Enable streaming | `True` |
+| `resume` | Resume session | `"session-uuid"` |
+| `fork_session` | Fork on resume | `True` |
+| `effort` | Reasoning depth | `"low"`, `"high"`, `"max"` |
+| `thinking` | Visible chain-of-thought | `{"type": "enabled", "budget_tokens": 10000}` |
+| `output_format` | Structured output | `{"type": "json_schema", "schema": {...}}` |
+| `sandbox` | Bash isolation | `SandboxSettings(enabled=True)` |
 
-## Cost Management
+## ResultMessage.subtype Values
 
-9. **max_budget_usd Enforcement**
-   - Parameter on query(): `max_budget_usd=1.00`
-   - Tracks token costs during agent loop
-   - Stops execution if budget exceeded (raises error)
-   - Useful for production quotas, cost isolation per tenant
+| Subtype | Meaning | `result` present? |
+|---|---|---|
+| `success` | Task completed | Yes |
+| `error_max_turns` | Hit turn limit | No |
+| `error_max_budget_usd` | Hit budget | No |
+| `error_during_execution` | Runtime/API error | No |
+| `error_max_structured_output_retries` | Schema validation failed | No |
 
-10. **Model Mixing Strategy**
-    - Route complex queries → expensive model (Claude 3.5 Sonnet)
-    - Batch/routine queries → cheaper model (Haiku)
-    - Set via `model=` parameter
-    - Trade-off: latency vs cost vs quality
+## Hook Pattern
+```python
+from claude_agent_sdk import HookMatcher
 
-11. **Cost Monitoring**
-    - Log model, tokens used, estimated cost per query
-    - Track within agent loop via metadata
-    - Set alerts: if monthly_cost > threshold
+async def my_hook(input, tool_use_id, ctx):
+    if input["tool_name"] == "Bash" and "rm" in input["tool_input"]["command"]:
+        return {"decision": "block", "reason": "Destructive command"}
+    return {"continue_": True}  # note: continue_ with underscore
 
----
+options = ClaudeAgentOptions(
+    hooks={"PreToolUse": [HookMatcher(matcher="Bash", hooks=[my_hook])]}
+)
+```
 
-## Tool Search & Programmatic Calling
+## Session Management
+```python
+from claude_agent_sdk import list_sessions, get_session_messages
 
-12. **Tool Matching Mechanism**
-    - Agent uses NLP on docstring to match user intent to tools
-    - Broader docstrings = more match opportunities
-    - Tool naming matters (descriptive > generic)
-    - Explicit prompting improves matching
+sessions = list_sessions(directory="/path/to/project")
+msgs = get_session_messages(sessions[0].session_id)
 
-13. **Explicit Tool Invocation**
-    - Don't rely on NLP matching for critical paths
-    - Pre-select tools: `tools=[search_tool, db_tool]`
-    - Pass smaller tool set if tool explosion likely
-    - Verify tool called via response inspection
+# Resume: options = ClaudeAgentOptions(resume="session-uuid")
+# Fork:   options = ClaudeAgentOptions(resume="session-uuid", fork_session=True)
+```
 
----
+Sessions stored as JSONL in `~/.claude/projects/<sanitized-cwd>/<uuid>.jsonl`. Conversation linked via `parentUuid` — tree structure supporting branching.
 
 ## Common Mistakes
 
-14. **Missing Type Hints**
-    - Tool doesn't register if args lack type hints
-    - Return type required for SDK introspection
-    - String hints (`"str"`) won't work — use actual types
-
-15. **Unbounded Tool Loops**
-    - Tool returns result → agent calls same tool again → infinite loop
-    - Add `max_iterations` to query() as safety net
-    - Inspect tool results: ensure they change state/progress
-
-16. **Cost Surprises**
-    - Model changes (e.g., Claude 3.5 Sonnet) silently increase costs
-    - Long context windows amplify token spend
-    - No budget enforcement by default — set max_budget_usd
-
-17. **Tool Result Format Mismatch**
-    - Tool returns dict, agent expects string
-    - JSON serialization failures on complex objects
-    - Keep results simple: strings, dicts, or lists of primitives
+1. **String prompt with custom MCP tools** → must use async generator with query()
+2. **Wrong tool name format** → must be `mcp__servername__toolname` in allowed_tools
+3. **Reading result before checking subtype** → result is None on error subtypes
+4. **Confusing StreamEvent with AssistantMessage** → StreamEvent = partial deltas, AssistantMessage = complete turn
+5. **Granting all tools to subagents** → wastes context, specify tools on AgentDefinition

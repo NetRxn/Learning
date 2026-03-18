@@ -1,17 +1,17 @@
 {
-  "id": "e7d2a8f1-4c9b-5e3f-8a1d-6b2c4f5e7a9d",
-  "knowledge_graph_id": "192dbae4-fe62-4ac3-9cfe-d37fbaf7986d",
+  "id": "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+  "knowledge_graph_id": "d3e4f5a6-7b8c-9d0e-1f2a-3b4c5d6e7f8a",
   "learner_id": "c4a40ef0-1947-41f9-8b47-898226c079fb",
   "skill_id": "claude-agent-sdk",
   "skill_name": "Claude Agent SDK Mastery",
-  "created_at": "2026-03-12T14:00:00Z",
-  "updated_at": "2026-03-12T14:00:00Z",
-  "dossier_id": "a7e3b2f1-4d89-4c2e-b6a1-8f3d2e1c5a90",
-  "plan_version": "1.0",
+  "created_at": "2026-03-17T15:00:00Z",
+  "updated_at": "2026-03-17T15:00:00Z",
+  "plan_version": "2.0",
   "intensity_level": "intensive",
-  "target_mastery": 0.98,
-  "current_coverage": 0.58,
-  "target_coverage": 0.98,
+  "target_mastery": 0.95,
+  "current_coverage": 0.443,
+  "target_coverage": 0.95,
+
   "learner_profile": {
     "expertise_level": "advanced",
     "daily_commitment_hours": 2.5,
@@ -19,12 +19,11 @@
     "background_skills": [
       "Python (expert level)",
       "Claude Code (advanced, 8h/day for 1 year)",
-      "PostgreSQL (advanced)",
-      "AGE graph database (advanced)",
-      "pgvector (advanced)"
+      "PostgreSQL 17, AGE, pgvector (advanced)",
+      "BHappy orchestration system (creator/maintainer)",
+      "Claude Agent SDK (production user via BHappy workers)"
     ],
-    "learning_style": "project-based with periodic deep dives",
-    "timezone": "UTC",
+    "learning_style": "project-based — every session builds real BHappy infrastructure",
     "constraints": {
       "max_session_duration_minutes": 90,
       "sessions_per_day_max": 2,
@@ -32,1397 +31,474 @@
       "total_weeks": 2.5
     }
   },
-  "schedule": {
-    "extended_roadmap": [
-      {
-        "phase_number": 1,
-        "phase_name": "Advanced Multi-Agent Orchestration",
-        "timeframe": "Month 2",
-        "description": "Complex workflows, agent swarms, error recovery patterns",
-        "target_coverage": 1.0,
-        "key_skills": [
-          "Agent swarm coordination",
-          "Adaptive error recovery",
-          "Dynamic agent spawning",
-          "Emergent agent behaviors"
-        ]
-      },
-      {
-        "phase_number": 2,
-        "phase_name": "Performance & Cost Optimization",
-        "timeframe": "Month 3",
-        "description": "Token efficiency, latency reduction, cost modeling, A/B testing agent configs",
-        "target_coverage": 1.0,
-        "key_skills": [
-          "Token budget optimization",
-          "Latency profiling",
-          "Cost modeling",
-          "Agent configuration A/B testing"
-        ]
-      },
-      {
-        "phase_number": 3,
-        "phase_name": "Ecosystem Contribution",
-        "timeframe": "Ongoing",
-        "description": "Build and publish plugins/tools, contribute to open-source",
-        "target_coverage": 1.0,
-        "key_skills": [
-          "Plugin architecture design",
-          "Open-source contribution workflow",
-          "Community engagement",
-          "Tool ecosystem development"
-        ]
-      }
+
+  "curriculum": {
+    "epitome": {
+      "description": "Build a minimal Postgres-backed session reader: ingest one JSONL session transcript into Postgres tables preserving the parentUuid DAG via AGE, then query it back — proving the dual-backend concept end-to-end. Uses @tool for the DB operations, query() to drive the pipeline, and isinstance message discrimination to capture ResultMessage cost data.",
+      "vertex_ids": [
+        "vertex-sdk-query-function",
+        "vertex-sdk-custom-tools",
+        "vertex-sdk-mcp-servers",
+        "vertex-sdk-message-types",
+        "vertex-sdk-content-blocks",
+        "vertex-sdk-options",
+        "vertex-sdk-session-management"
+      ],
+      "leverages_existing_knowledge": "Uses existing Postgres/AGE expertise for the storage layer, existing Claude Code knowledge for understanding JSONL session format, and existing BHappy WorkerExecutor patterns as reference for SDK usage. The learner already captures session_id in worker_attempts — this extends that to full transcript persistence."
+    },
+
+    "selected_vertices": [
+      {"vertex_id": "vertex-sdk-query-function", "priority_rank": 1, "selection_score": 0.95, "rationale": "Gateway node — drives all pipeline work. Familiar conceptually but needs hands-on."},
+      {"vertex_id": "vertex-sdk-custom-tools", "priority_rank": 2, "selection_score": 0.90, "rationale": "Primary mechanism for Postgres integration tools. Strong DB transfer."},
+      {"vertex_id": "vertex-sdk-message-types", "priority_rank": 3, "selection_score": 0.82, "rationale": "Gateway node — cost tracking requires ResultMessage extraction. Subagent monitoring requires TaskNotification."},
+      {"vertex_id": "vertex-sdk-permissions", "priority_rank": 4, "selection_score": 0.85, "rationale": "Misconception to fix. Needed for CanUseTool callbacks in storage layer security."},
+      {"vertex_id": "vertex-sdk-client", "priority_rank": 5, "selection_score": 0.78, "rationale": "Needed for live session monitoring, mid-conversation model changes, MCP management."},
+      {"vertex_id": "vertex-sdk-hooks", "priority_rank": 6, "selection_score": 0.72, "rationale": "PostToolUse hooks for structured logging. Already familiar from CLI but programmatic callbacks are new."},
+      {"vertex_id": "vertex-sdk-cost-budget", "priority_rank": 7, "selection_score": 0.72, "rationale": "Core deliverable — cost tracking doesn't exist in BHappy yet."},
+      {"vertex_id": "vertex-sdk-streaming", "priority_rank": 8, "selection_score": 0.58, "rationale": "Needed for live session monitoring dashboard integration."},
+      {"vertex_id": "vertex-sdk-subagent-lifecycle", "priority_rank": 9, "selection_score": 0.55, "rationale": "TaskNotification messages are the instrumentation point for Teams vs Subagents comparison."},
+      {"vertex_id": "vertex-sdk-session-management", "priority_rank": 10, "selection_score": 0.50, "rationale": "Deep knowledge needed for storage backend — JSONL format, parentUuid chains, fork/rewind."},
+      {"vertex_id": "vertex-sdk-mcp-servers", "priority_rank": 11, "selection_score": 0.48, "rationale": "create_sdk_mcp_server for Postgres tools. MCP naming convention."},
+      {"vertex_id": "vertex-sdk-structured-output", "priority_rank": 12, "selection_score": 0.45, "rationale": "Useful for eval framework structured results."},
+      {"vertex_id": "vertex-sdk-options", "priority_rank": 13, "selection_score": 0.40, "rationale": "Consolidation — familiar but needs deeper understanding for new configurations."},
+      {"vertex_id": "vertex-sdk-content-blocks", "priority_rank": 14, "selection_score": 0.38, "rationale": "Prerequisite for message handling. Quick to learn given message-types familiarity."},
+      {"vertex_id": "vertex-sdk-model-routing", "priority_rank": 15, "selection_score": 0.35, "rationale": "Extends existing dynamic model selection with cost-aware routing."},
+      {"vertex_id": "vertex-sdk-thinking-effort", "priority_rank": 16, "selection_score": 0.30, "rationale": "Effort-level optimization for eval framework cost control.", "excluded": false},
+      {"vertex_id": "vertex-sdk-agent-definition", "priority_rank": 17, "selection_score": 0.20, "rationale": "Already proficient from BHappy agent definitions. Light consolidation only.", "excluded": false},
+      {"vertex_id": "vertex-sdk-context-management", "priority_rank": 18, "selection_score": 0.15, "rationale": "Already proficient. Reference as needed.", "excluded": true, "exclusion_reason": "Mastery at 0.75 — already proficient from daily usage. Will reference in context but no dedicated instruction."},
+      {"vertex_id": "vertex-sdk-settings-plugins", "priority_rank": 19, "selection_score": 0.10, "rationale": "Already proficient with deep operational expertise.", "excluded": true, "exclusion_reason": "Mastery at 0.70 — deploys plugins via Ansible. No instruction needed."},
+      {"vertex_id": "vertex-sdk-sandbox", "priority_rank": 20, "selection_score": 0.08, "rationale": "Already has 8-layer security stack in BHappy.", "excluded": true, "exclusion_reason": "BHappy already implements comprehensive sandboxing. No instruction needed."}
     ],
+
+    "task_classes": [
+      {
+        "id": "TC1",
+        "name": "Session Storage Backend",
+        "complexity_level": 1,
+        "description": "Build the Postgres/AGE session storage layer that replaces Claude Code's file-based JSONL system. Learn SDK foundations (query, tools, messages, options) by building the ingestion pipeline and backend abstraction.",
+        "vertex_ids": [
+          "vertex-sdk-query-function",
+          "vertex-sdk-custom-tools",
+          "vertex-sdk-mcp-servers",
+          "vertex-sdk-message-types",
+          "vertex-sdk-content-blocks",
+          "vertex-sdk-options",
+          "vertex-sdk-session-management"
+        ],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "session_template": "A_concept_intro",
+            "description": "Worked Example: Anatomy of a Claude Code session. Read the SDK session internals (_internal/sessions.py), understand JSONL format, parentUuid DAG structure. Walk through query() → message iteration → ResultMessage extraction. Build mental model of the complete data flow.",
+            "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-message-types", "vertex-sdk-query-function"]
+          },
+          {
+            "sequence": 2,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Worked Example: Build the session ingestion tool. Create @tool functions for Postgres + AGE operations. Wire into create_sdk_mcp_server. Use query() to drive an agent that reads a JSONL file and ingests it into Postgres, preserving the parentUuid tree as AGE graph edges.",
+            "vertex_ids": ["vertex-sdk-custom-tools", "vertex-sdk-mcp-servers", "vertex-sdk-options"]
+          },
+          {
+            "sequence": 3,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Guided: Build the backend abstraction layer. Design the interface that lets BHappy toggle between file-based and DB-backed session storage. Implement the DB reader (list_sessions, get_session_messages equivalent from Postgres). Test both backends produce identical results.",
+            "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-custom-tools", "vertex-sdk-content-blocks"]
+          },
+          {
+            "sequence": 4,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Conventional: Fork and rewind from DB. Implement fork-at-arbitrary-turn by creating a new branch in the AGE parentUuid tree. Implement rewind by querying the tree up to a specific message UUID. Test with real BHappy worker session transcripts.",
+            "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-query-function"]
+          },
+          {
+            "sequence": 5,
+            "support_level": "independent",
+            "task_type": "whole_task",
+            "session_template": "E_mastery_gate",
+            "description": "Mastery Gate: End-to-end demo. Ingest 5 real BHappy worker sessions, query them from Postgres, fork one at turn 3, rewind another to a specific tool use. Demonstrate file↔DB toggle with identical output. Explain the AGE graph model and query patterns used.",
+            "vertex_ids": ["vertex-sdk-query-function", "vertex-sdk-custom-tools", "vertex-sdk-mcp-servers", "vertex-sdk-message-types", "vertex-sdk-session-management"]
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can ingest JSONL sessions into Postgres/AGE, query them back, fork/rewind at arbitrary points, and toggle between file and DB backends. Can explain parentUuid DAG structure and AGE graph model.",
+          "assessment_vertex_ids": ["vertex-sdk-query-function", "vertex-sdk-custom-tools", "vertex-sdk-session-management"],
+          "bloom_level_required": "apply",
+          "passing_threshold": 0.8,
+          "min_items": 3
+        },
+        "productive_failure_points": [],
+        "interleaving_pool": []
+      },
+
+      {
+        "id": "TC2",
+        "name": "Cost & Observability Instrumentation",
+        "complexity_level": 2,
+        "description": "Add cost tracking, structured tool-use logging, and distributed tracing to BHappy. Fix the permissions misconception. Build the observability layer that's currently missing.",
+        "vertex_ids": [
+          "vertex-sdk-hooks",
+          "vertex-sdk-permissions",
+          "vertex-sdk-cost-budget",
+          "vertex-sdk-streaming",
+          "vertex-sdk-thinking-effort"
+        ],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "productive_failure",
+            "session_template": "D_productive_failure",
+            "description": "Productive Failure: Permissions architecture. Given a scenario where BHappy needs dynamic tool approval (allow Bash for git but block for rm, allow Write only in worktree), design the permission system. Surface the allowed_tools vs can_use_tool misconception, then teach the correct model.",
+            "vertex_ids": ["vertex-sdk-permissions"]
+          },
+          {
+            "sequence": 2,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "session_template": "A_concept_intro",
+            "description": "Worked Example: Cost tracking pipeline. Add total_cost_usd extraction from ResultMessage to BHappy's WorkerExecutor. Build PostToolUse hooks that log every tool invocation with timing, token count, and cost estimate into Postgres. Design the worker_attempts cost columns.",
+            "vertex_ids": ["vertex-sdk-cost-budget", "vertex-sdk-hooks", "vertex-sdk-message-types"]
+          },
+          {
+            "sequence": 3,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Guided: Distributed tracing. Design trace_id propagation: session → worker_attempt → tool_use chain. Implement PostToolUse and SubagentStart/Stop hooks that write structured trace events to Postgres. Build a query that reconstructs the full execution trace for a feature.",
+            "vertex_ids": ["vertex-sdk-hooks", "vertex-sdk-subagent-lifecycle"]
+          },
+          {
+            "sequence": 4,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Conventional: Live session monitoring. Use ClaudeSDKClient with include_partial_messages for streaming progress to BHappy's dashboard via SSE. Track per-turn token usage and cost in real-time. Build cost anomaly detection (alert when session cost exceeds 3x baseline).",
+            "vertex_ids": ["vertex-sdk-streaming", "vertex-sdk-client", "vertex-sdk-cost-budget"]
+          },
+          {
+            "sequence": 5,
+            "support_level": "independent",
+            "task_type": "whole_task",
+            "session_template": "E_mastery_gate",
+            "description": "Mastery Gate: Run a BHappy worker with full instrumentation. Show: per-session cost in worker_attempts, structured tool-use log in Postgres, distributed trace reconstruction, live cost streaming to dashboard. Explain the can_use_tool vs allowed_tools architecture.",
+            "vertex_ids": ["vertex-sdk-hooks", "vertex-sdk-permissions", "vertex-sdk-cost-budget", "vertex-sdk-streaming"]
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can instrument BHappy workers with cost tracking, structured logging, and distributed tracing. Can implement CanUseTool callbacks for dynamic permission decisions. Can build live session monitoring with streaming.",
+          "assessment_vertex_ids": ["vertex-sdk-hooks", "vertex-sdk-permissions", "vertex-sdk-cost-budget", "vertex-sdk-streaming"],
+          "bloom_level_required": "apply",
+          "passing_threshold": 0.8,
+          "min_items": 4
+        },
+        "productive_failure_points": [
+          {
+            "vertex_id": "vertex-sdk-permissions",
+            "rationale": "Calibration revealed incorrect mental model (session vs subagent scope). Productive failure surfaces this before instruction corrects it.",
+            "naive_theory": "allowed_tools is session-scoped and can_use_tool is for subagents. Actually: allowed_tools is a static whitelist, can_use_tool is a dynamic runtime callback that inspects actual tool input."
+          }
+        ],
+        "interleaving_pool": ["vertex-sdk-query-function", "vertex-sdk-custom-tools", "vertex-sdk-session-management"]
+      },
+
+      {
+        "id": "TC3",
+        "name": "Agent Teams vs Subagents — Instrumented Comparison",
+        "complexity_level": 3,
+        "description": "Instrument both TeamLauncher and WorkerExecutor with identical metrics. Build the A/B comparison framework with hard metrics to decide when to use Agent Teams vs sequential subagents. Use AGE for execution graph analysis.",
+        "vertex_ids": [
+          "vertex-sdk-subagent-lifecycle",
+          "vertex-sdk-client",
+          "vertex-sdk-model-routing",
+          "vertex-sdk-agent-definition"
+        ],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "session_template": "A_concept_intro",
+            "description": "Worked Example: Instrumentation parity. Add identical metric capture to both TeamLauncher (Agent Teams) and WorkerExecutor (sequential subagents): wall-clock time, total tokens, total cost, turns, tool uses, context utilization %, rework cycles, quality gate pass/fail. Design the comparison_runs Postgres table.",
+            "vertex_ids": ["vertex-sdk-subagent-lifecycle", "vertex-sdk-cost-budget"]
+          },
+          {
+            "sequence": 2,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Guided: TaskNotification deep dive. Capture TaskStartedMessage, TaskProgressMessage, TaskNotificationMessage from Agent Teams runs. Build the timeline reconstruction: which agents ran when, how long, what they produced. Compare with sequential WorkerExecutor execution profile.",
+            "vertex_ids": ["vertex-sdk-subagent-lifecycle", "vertex-sdk-message-types"]
+          },
+          {
+            "sequence": 3,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Guided: AGE execution graph. Model task dependency chains as AGE graphs: agents as vertices, dependencies/handoffs as edges, with properties for timing/cost/quality. Build queries: critical path analysis, parallelism efficiency, bottleneck identification. Compare Team vs Sequential graph structures.",
+            "vertex_ids": ["vertex-sdk-subagent-lifecycle", "vertex-sdk-session-management"]
+          },
+          {
+            "sequence": 4,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Conventional: A/B decision framework. Run identical feature batches through both orchestration modes. Aggregate metrics. Build the decision matrix: feature size (XS→XL) × complexity × dependency depth → recommended mode. Add cost-aware model routing: when does Haiku-for-simple + Opus-for-complex beat uniform Opus?",
+            "vertex_ids": ["vertex-sdk-model-routing", "vertex-sdk-cost-budget", "vertex-sdk-agent-definition"]
+          },
+          {
+            "sequence": 5,
+            "support_level": "independent",
+            "task_type": "whole_task",
+            "session_template": "E_mastery_gate",
+            "description": "Mastery Gate: Present the comparison results. Show: side-by-side metrics for Teams vs Sequential on real BHappy features, AGE graph visualizations of execution patterns, decision matrix with confidence intervals. Explain when each mode wins and why, backed by data.",
+            "vertex_ids": ["vertex-sdk-subagent-lifecycle", "vertex-sdk-model-routing", "vertex-sdk-client"]
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can instrument both orchestration modes with identical metrics, reconstruct execution timelines from task messages, model execution as AGE graphs, and present a data-driven decision framework for Teams vs Subagents.",
+          "assessment_vertex_ids": ["vertex-sdk-subagent-lifecycle", "vertex-sdk-model-routing", "vertex-sdk-client"],
+          "bloom_level_required": "evaluate",
+          "passing_threshold": 0.8,
+          "min_items": 3
+        },
+        "productive_failure_points": [],
+        "interleaving_pool": ["vertex-sdk-hooks", "vertex-sdk-permissions", "vertex-sdk-cost-budget", "vertex-sdk-custom-tools"]
+      },
+
+      {
+        "id": "TC4",
+        "name": "Cross-Project Intelligence & Eval Framework",
+        "complexity_level": 4,
+        "description": "Build pgvector semantic search over conversations, AGE graph relationships across projects, and the eval framework for measuring agent/skill quality over time. Lifetime replay and introspection.",
+        "vertex_ids": [
+          "vertex-sdk-structured-output",
+          "vertex-sdk-session-management",
+          "vertex-sdk-custom-tools",
+          "vertex-sdk-hooks"
+        ],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "session_template": "A_concept_intro",
+            "description": "Worked Example: pgvector embeddings for conversations. Design the embedding pipeline: extract meaningful chunks from session transcripts (decisions, tool outputs, reasoning), generate embeddings, store in pgvector. Build semantic search: 'what decisions were made about authentication across all projects?'",
+            "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-custom-tools"]
+          },
+          {
+            "sequence": 2,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Guided: AGE cross-project graph. Model the full relationship graph: projects → sessions → agents → tool_uses → decisions → features. Build queries: 'show all sessions that modified auth.py across projects', 'trace the decision chain that led to the current database schema', 'find sessions where QA rejected work and developer fixed it'.",
+            "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-subagent-lifecycle"]
+          },
+          {
+            "sequence": 3,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Guided: Eval framework foundation. Build scorecard-driven agent quality testing: define scorecards (agent-hiring-manager pattern), create trigger test sets (skill-creator pattern), run with/without-skill comparisons, assertion-based grading. Use structured_output for eval results.",
+            "vertex_ids": ["vertex-sdk-structured-output", "vertex-sdk-hooks", "vertex-sdk-custom-tools"]
+          },
+          {
+            "sequence": 4,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Conventional: Benchmark and variance analysis. Run eval batches, aggregate pass rates with mean ± stddev, track quality trends over time. Build the lifetime replay: given any session_id, reconstruct the full execution with tools, decisions, and outcomes. Dashboard integration.",
+            "vertex_ids": ["vertex-sdk-structured-output", "vertex-sdk-session-management"]
+          },
+          {
+            "sequence": 5,
+            "support_level": "independent",
+            "task_type": "whole_task",
+            "session_template": "E_mastery_gate",
+            "description": "Mastery Gate: Full system demo. Semantic search across projects, AGE graph queries, eval framework running against a real BHappy skill, lifetime replay of a multi-session feature development. Present the architecture: how all TC1-TC4 components compose into the complete system.",
+            "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-custom-tools", "vertex-sdk-structured-output", "vertex-sdk-hooks"]
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can build semantic search over sessions with pgvector, model cross-project relationships in AGE, implement scorecard-driven eval framework with trigger testing and benchmarks, and demonstrate lifetime session replay. Can articulate the complete system architecture.",
+          "assessment_vertex_ids": ["vertex-sdk-structured-output", "vertex-sdk-session-management", "vertex-sdk-custom-tools"],
+          "bloom_level_required": "evaluate",
+          "passing_threshold": 0.8,
+          "min_items": 3
+        },
+        "productive_failure_points": [],
+        "interleaving_pool": ["vertex-sdk-subagent-lifecycle", "vertex-sdk-model-routing", "vertex-sdk-hooks", "vertex-sdk-permissions", "vertex-sdk-cost-budget"]
+      }
+    ]
+  },
+
+  "schedule": {
     "short_term_plan": {
       "timeframe": "2.5 weeks (18 days)",
-      "start_date": "2026-03-13",
-      "target_end_date": "2026-03-30",
+      "start_date": "2026-03-18",
+      "target_end_date": "2026-04-04",
       "sessions_per_week": 10,
       "session_duration_minutes": 90,
-      "total_sessions": 26,
+      "total_sessions": 20,
       "milestones": [
         {
-          "milestone_number": 1,
-          "task_class": "TC1",
           "week": 1,
-          "days": "1-3",
-          "title": "SDK Primitives Mastery",
-          "description": "Can build complete SDK agents with custom tools, streaming, and programmatic tool calling",
-          "expected_coverage": 0.72,
-          "completion_criteria": [
-            "Built 5 complete agents with increasing complexity",
-            "Demonstrated message type understanding",
-            "Implemented tool search and programmatic tool calling",
-            "All tasks passed mastery gate"
-          ]
+          "description": "TC1 complete: Postgres session storage with AGE DAG, fork/rewind, backend toggle",
+          "task_class_id": "TC1",
+          "expected_coverage": 0.65
         },
         {
-          "milestone_number": 2,
-          "task_class": "TC2",
+          "week": 1.5,
+          "description": "TC2 complete: Cost tracking, structured logging, distributed tracing, live monitoring",
+          "task_class_id": "TC2",
+          "expected_coverage": 0.78
+        },
+        {
           "week": 2,
-          "days": "4-7",
-          "title": "Multi-Agent Architecture",
-          "description": "Can architect multi-agent systems with hooks, permissions, orchestration, and handoffs",
-          "expected_coverage": 0.8,
-          "completion_criteria": [
-            "Built multi-agent orchestrator with lead+worker pattern",
-            "Implemented hook-based security and monitoring",
-            "Designed subagent pipelines with structured handoffs",
-            "Debugged and reconstructed system with proper patterns"
-          ]
+          "description": "TC3 complete: Agent Teams vs Subagents comparison framework with hard metrics and decision matrix",
+          "task_class_id": "TC3",
+          "expected_coverage": 0.88
         },
         {
-          "milestone_number": 3,
-          "task_class": "TC3",
-          "week": 2,
-          "days": "8-12",
-          "title": "Observability & Testing",
-          "description": "Full observability and testing framework operational",
-          "expected_coverage": 0.9,
-          "completion_criteria": [
-            "Agents instrumented with OTel tracing",
-            "Multi-platform monitoring configured (Langfuse, Arize)",
-            "Unit, integration, and eval test suites written",
-            "Monitoring and alerting in place"
-          ]
+          "week": 2.5,
+          "description": "TC4 complete: pgvector search, AGE cross-project graph, eval framework, lifetime replay",
+          "task_class_id": "TC4",
+          "expected_coverage": 0.95
+        }
+      ]
+    },
+    "extended_roadmap": {
+      "description": "Beyond the 2.5-week sprint, continue building on the infrastructure with advanced capabilities.",
+      "phases": [
+        {
+          "phase_name": "Advanced Agent Orchestration",
+          "timeframe": "Month 2",
+          "focus": "Multi-team orchestration (dependent teams, cascading completions), adaptive model routing based on accumulated metrics, auto-scaling agent teams based on backlog depth",
+          "target_coverage": 1.0
         },
         {
-          "milestone_number": 4,
-          "task_class": "TC4",
-          "week": 3,
-          "days": "13-16",
-          "title": "Production Readiness",
-          "description": "Production architecture patterns and SDK evolution tracking in place",
-          "expected_coverage": 0.95,
-          "completion_criteria": [
-            "Secure Docker deployment with credential management",
-            "Sandbox isolation and multi-provider failover configured",
-            "Long-running agent patterns implemented",
-            "Automated SDK changelog radar operational"
-          ]
+          "phase_name": "Predictive Intelligence",
+          "timeframe": "Month 3",
+          "focus": "Use accumulated data for predictions: feature implementation time estimates, cost forecasting, quality risk scoring. ML models trained on the pgvector embeddings and AGE graph patterns.",
+          "target_coverage": 1.0
         },
         {
-          "milestone_number": 5,
-          "task_class": "TC5",
-          "week": 3,
-          "days": "17-18",
-          "title": "Integration & Synthesis",
-          "description": "Portfolio integration with architecture review",
-          "expected_coverage": 0.98,
-          "completion_criteria": [
-            "Complete end-to-end portfolio agent system",
-            "All components integrated and tested",
-            "System deployed and monitored",
-            "Architecture design documented and presented"
-          ]
+          "phase_name": "Ecosystem Contribution",
+          "timeframe": "Ongoing",
+          "focus": "Open-source the session storage backend, eval framework, and Teams vs Subagents comparison tooling. Contribute patterns back to the Claude Agent SDK ecosystem.",
+          "target_coverage": 1.0
         }
       ]
     },
     "session_design": {
-      "warmup_minutes": 15,
-      "deliberate_practice_minutes": 55,
+      "warmup_minutes": 10,
+      "deliberate_practice_minutes": 60,
       "integration_minutes": 20,
       "spacing_interval_days": 1.0,
-      "overlearning_budget_minutes": 10
-    }
+      "overlearning_budget_minutes": 0
+    },
+    "plateau_protocols": [
+      {
+        "expected_timing": "TC1 session 3-4",
+        "description": "The backend abstraction layer design can feel like yak-shaving. The toggle between file and DB backends requires careful interface design that may feel tedious after the exciting AGE graph work.",
+        "breakthrough_strategy": "Focus on the minimal interface: list_sessions() and get_session_messages() with identical signatures. Don't over-abstract — start with these two functions and extend later.",
+        "affected_task_class": "TC1"
+      },
+      {
+        "expected_timing": "TC3 session 2-3",
+        "description": "Agent Teams instrumentation can be frustrating because the Teams feature is experimental and completion detection is already complex (ADR-046). Adding metrics on top may feel like fighting the infrastructure.",
+        "breakthrough_strategy": "Lean on what exists. BHappy already has ADR-046 completion detection with telemetry. The task is extending it with additional metrics, not rebuilding it. Keep the existing completion_metadata JSONB pattern.",
+        "affected_task_class": "TC3"
+      }
+    ],
+    "srs_export_schedule": [
+      {"task_class_id": "TC1", "export_timing": "After TC1 session 2", "card_count_estimate": 25},
+      {"task_class_id": "TC2", "export_timing": "After TC2 session 2", "card_count_estimate": 30},
+      {"task_class_id": "TC3", "export_timing": "After TC3 session 2", "card_count_estimate": 20},
+      {"task_class_id": "TC4", "export_timing": "After TC4 session 2", "card_count_estimate": 25}
+    ]
   },
+
   "motivation_architecture": {
-    "identity_frame": "You're becoming a Claude Agent SDK architect \u2014 someone who doesn't just use the SDK but understands its design philosophy, evaluates its tradeoffs, and builds systems that evolve with it.",
+    "identity_frame": "You're becoming the architect who bridges Claude's agent infrastructure with production database systems — someone who doesn't just use the SDK but builds the observability and intelligence layer that makes autonomous AI development teams accountable and introspectable.",
     "process_goals": [
-      "Build or extend one working agent component each session",
-      "Write at least one test for every new agent feature",
+      "Build or extend one working component of the session storage / observability system each session",
+      "Write at least one test for every new capability",
+      "Run at least one query against real BHappy session data per session",
       "Document one architectural decision or tradeoff per day",
-      "Review 5 Anki cards before each session",
-      "Check the SDK changelog once per week and evaluate one change"
+      "Review the SDK changelog once per week and evaluate impact on the storage layer"
     ],
     "competence_markers": [
       {
-        "sequence": 1,
-        "marker": "First complete SDK agent with custom Postgres tools",
-        "timing": "Days 1-2",
-        "vertices": [
-          "vertex-sdk-agent-loop",
-          "vertex-sdk-custom-tools"
-        ],
-        "celebration_suggestion": "Demo the agent querying live Postgres data"
+        "description": "First JSONL session ingested into Postgres with AGE graph edges preserved",
+        "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-custom-tools"],
+        "timing": "Day 2"
       },
       {
-        "sequence": 2,
-        "marker": "Multi-agent orchestrator that delegates and synthesizes",
-        "timing": "Days 5-6",
-        "vertices": [
-          "vertex-sdk-orchestration",
-          "vertex-sdk-subagents"
-        ],
-        "celebration_suggestion": "Show orchestrator coordinating 3+ specialized agents"
+        "description": "Fork-at-arbitrary-turn working from Postgres — can branch a conversation at any point",
+        "vertex_ids": ["vertex-sdk-session-management"],
+        "timing": "Day 4"
       },
       {
-        "sequence": 3,
-        "marker": "First traced agent run visible in Langfuse",
-        "timing": "Day 8",
-        "vertices": [
-          "vertex-sdk-otel-tracing"
-        ],
-        "celebration_suggestion": "Share screenshot of full trace with team"
+        "description": "First real BHappy worker session with full cost tracking visible in worker_attempts",
+        "vertex_ids": ["vertex-sdk-cost-budget", "vertex-sdk-hooks"],
+        "timing": "Day 7"
       },
       {
-        "sequence": 4,
-        "marker": "Passing test suite for an agent workflow",
-        "timing": "Day 10",
-        "vertices": [
-          "vertex-sdk-testing-strategies"
-        ],
-        "celebration_suggestion": "Run full test suite and verify coverage"
+        "description": "Distributed trace reconstruction: session → worker → tool_use chain queryable from Postgres",
+        "vertex_ids": ["vertex-sdk-hooks", "vertex-sdk-subagent-lifecycle"],
+        "timing": "Day 9"
       },
       {
-        "sequence": 5,
-        "marker": "Dockerized agent with credential proxy",
-        "timing": "Day 14",
-        "vertices": [
-          "vertex-sdk-secure-deployment"
-        ],
-        "celebration_suggestion": "Deploy to staging and verify operations"
+        "description": "Side-by-side Agent Teams vs Sequential metrics on real features — first data-driven comparison",
+        "vertex_ids": ["vertex-sdk-subagent-lifecycle", "vertex-sdk-model-routing"],
+        "timing": "Day 12"
       },
       {
-        "sequence": 6,
-        "marker": "SDK changelog radar running automatically",
-        "timing": "Day 15",
-        "vertices": [
-          "vertex-sdk-evolution-tracking"
-        ],
-        "celebration_suggestion": "Demonstrate automated tracking of SDK changes"
+        "description": "Semantic search working: 'find all sessions that discussed database migrations' returns relevant results across projects",
+        "vertex_ids": ["vertex-sdk-session-management"],
+        "timing": "Day 15"
       },
       {
-        "sequence": 7,
-        "marker": "Portfolio project: complete, tested, observable, deployable",
-        "timing": "Day 18",
-        "vertices": [
-          "vertex-sdk-api-design",
-          "vertex-sdk-conversation-state"
-        ],
-        "celebration_suggestion": "Architecture review and system demo"
+        "description": "Full system demo: storage + observability + comparison + intelligence composing into the complete platform",
+        "vertex_ids": ["vertex-sdk-query-function", "vertex-sdk-custom-tools", "vertex-sdk-hooks", "vertex-sdk-structured-output"],
+        "timing": "Day 18"
       }
     ],
     "community_resources": [
       {
-        "name": "Anthropic Discord",
+        "name": "Anthropic Discord — #agent-sdk channel",
         "type": "community",
         "url": "https://discord.gg/anthropic",
-        "description": "Official community with SDK-specific channels"
+        "description": "Official community with SDK-specific channels. Good for Agent Teams feedback since it's a research preview."
       },
       {
         "name": "Claude Code GitHub Issues",
         "type": "open_source",
         "url": "https://github.com/anthropics/claude-code/issues",
-        "description": "Real-world SDK issues and feature requests \u2014 great for understanding edge cases"
+        "description": "Track SDK issues and feature requests. Especially relevant for Agent Teams experimental feature feedback."
       },
       {
-        "name": "Claude Agent SDK Demos repo",
-        "type": "open_source",
-        "url": "https://github.com/anthropics/claude-agent-sdk-demos",
-        "description": "Official demo projects showing SDK patterns"
-      },
-      {
-        "name": "Anthropic Engineering Blog",
-        "type": "blog",
-        "url": "https://www.anthropic.com/engineering",
-        "description": "Creator-authored deep dives on agent architecture and SDK design decisions"
+        "name": "Claude Agent SDK Docs",
+        "type": "documentation",
+        "url": "https://platform.claude.com/docs/en/agent-sdk/overview",
+        "description": "Official documentation — primary reference for all SDK patterns."
       }
     ],
-    "stakes_plan": "Not needed \u2014 intrinsic motivation is high. The portfolio project integration provides natural accountability."
+    "stakes_plan": "Not needed — intrinsic motivation is high. BHappy is the user's main project and every session builds real infrastructure they'll use daily."
   },
-  "assessment_strategy": {
-    "mastery_gates": [
-      {
-        "task_class": "TC1",
-        "gate_name": "SDK Primitives Mastery",
-        "assessment_type": "portfolio_review",
-        "criteria": [
-          "Built 5 complete agents with increasing complexity",
-          "Can explain message type lifecycle with examples",
-          "Demonstrates tool search and programmatic calling",
-          "All code is tested and documented"
-        ],
-        "evidence_required": [
-          "5 working agent implementations",
-          "Test suite with >80% coverage",
-          "Architecture documentation"
-        ]
-      },
-      {
-        "task_class": "TC2",
-        "gate_name": "Multi-Agent Architecture",
-        "assessment_type": "design_review",
-        "criteria": [
-          "Multi-agent system with proper isolation",
-          "Can articulate when to use subagents vs teams",
-          "Hook-based observability working",
-          "Structured handoffs between agents"
-        ],
-        "evidence_required": [
-          "Working multi-agent orchestrator",
-          "Architecture decision document",
-          "Live demonstration of system"
-        ]
-      },
-      {
-        "task_class": "TC3",
-        "gate_name": "Observability & Testing",
-        "assessment_type": "operational_review",
-        "criteria": [
-          "OTel traces flowing to observability platform",
-          "Comprehensive test suite operational",
-          "Custom metrics and alerts configured",
-          "Can debug issues using observability data"
-        ],
-        "evidence_required": [
-          "Live Langfuse dashboard with traces",
-          "Test suite running in CI/CD",
-          "Alert configuration document"
-        ]
-      },
-      {
-        "task_class": "TC4",
-        "gate_name": "Production Readiness",
-        "assessment_type": "deployment_review",
-        "criteria": [
-          "Secure deployment in place",
-          "Long-running patterns implemented",
-          "Evolution tracking automated",
-          "Can handle credential management properly"
-        ],
-        "evidence_required": [
-          "Dockerized deployment working",
-          "Staging environment passing all tests",
-          "Evolution tracking dashboard"
-        ]
-      },
-      {
-        "task_class": "TC5",
-        "gate_name": "Architecture & Synthesis",
-        "assessment_type": "synthesis_review",
-        "criteria": [
-          "End-to-end system integrated",
-          "Can articulate all architectural tradeoffs",
-          "System is deployable and observable",
-          "Complete documentation present"
-        ],
-        "evidence_required": [
-          "Running portfolio agent system",
-          "Architecture review presentation",
-          "Complete system documentation"
-        ]
-      }
-    ],
-    "formative_assessment": {
-      "frequency": "per_session",
-      "methods": [
-        "Task completion checklist",
-        "Code review against rubric",
-        "Working system demonstration",
-        "Reflection journaling"
-      ]
-    },
-    "summative_assessment": {
-      "frequency": "per_task_class",
-      "methods": [
-        "Mastery gate review",
-        "Portfolio artifact evaluation",
-        "Live system demonstration",
-        "Architecture defense"
-      ]
-    }
-  },
-  "learning_resources": {
-    "primary_resources": [
-      {
-        "title": "Claude Agent SDK Documentation",
-        "type": "official_docs",
-        "url": "https://docs.anthropic.com/agent-sdk",
-        "coverage": [
-          "vertex-sdk-agent-loop",
-          "vertex-sdk-custom-tools",
-          "vertex-sdk-streaming",
-          "vertex-sdk-cost-management"
-        ]
-      },
-      {
-        "title": "Claude Agent SDK API Reference",
-        "type": "api_reference",
-        "url": "https://docs.anthropic.com/agent-sdk/reference",
-        "coverage": "all_vertices"
-      },
-      {
-        "title": "Claude Agent SDK GitHub Repository",
-        "type": "source_code",
-        "url": "https://github.com/anthropics/claude-agent-sdk",
-        "coverage": "all_vertices"
-      }
-    ],
-    "supplementary_resources": [
-      {
-        "title": "Anthropic Blog: Agent Architecture",
-        "type": "blog",
-        "url": "https://www.anthropic.com/blog",
-        "coverage": [
-          "vertex-sdk-orchestration",
-          "vertex-sdk-architecture-patterns"
-        ]
-      },
-      {
-        "title": "OpenTelemetry Python Documentation",
-        "type": "external_docs",
-        "url": "https://opentelemetry.io/docs/instrumentation/python/",
-        "coverage": [
-          "vertex-sdk-otel-tracing"
-        ]
-      },
-      {
-        "title": "Langfuse Documentation",
-        "type": "external_docs",
-        "url": "https://langfuse.com/docs",
-        "coverage": [
-          "vertex-sdk-observability-platforms"
-        ]
-      },
-      {
-        "title": "pytest Documentation",
-        "type": "external_docs",
-        "url": "https://docs.pytest.org/",
-        "coverage": [
-          "vertex-sdk-testing-strategies"
-        ]
-      }
-    ]
-  },
-  "tracking_and_adaptation": {
-    "progress_tracking": {
-      "frequency": "daily",
-      "metrics": [
-        "session_completion_status",
-        "mastery_score_progression",
-        "task_completion_rate",
-        "code_quality_metrics",
-        "test_coverage_percentage"
-      ]
-    },
-    "adaptation_triggers": [
-      {
-        "condition": "Mastery progression <70% of target at session end",
-        "action": "Add 1 extra practice session before next task class"
-      },
-      {
-        "condition": "Plateau detected (no mastery change for 2+ sessions)",
-        "action": "Switch to productive failure approach or interleave with different vertex"
-      },
-      {
-        "condition": "Task completion time >120% of estimate",
-        "action": "Break into smaller sub-tasks or provide worked example"
-      }
-    ],
-    "check_in_schedule": [
-      {
-        "session": 5,
-        "focus": "TC1 completion and readiness for TC2"
-      },
-      {
-        "session": 11,
-        "focus": "TC2 completion and observability strategy"
-      },
-      {
-        "session": 18,
-        "focus": "TC3 completion and production readiness"
-      },
-      {
-        "session": 23,
-        "focus": "TC4 completion and integration planning"
-      }
-    ]
-  },
+
   "metadata": {
     "plan_status": "ready_for_execution",
-    "created_by": "learning_architect",
-    "creation_timestamp": "2026-03-12T14:00:00Z",
-    "last_modified": "2026-03-12T14:00:00Z",
-    "version": "1.0.0",
-    "notes": "Comprehensive intensive learning plan for Claude Agent SDK mastery. Progresses from core primitives through multi-agent orchestration, observability, production architecture, and synthesis. Designed for expert-level learner with strong Python and database expertise. Includes plateau protocols, competence markers, and detailed assessment strategy."
-  },
-  "curriculum": {
-    "philosophy": "Translate Claude Code operational knowledge to SDK programmatic control through a structured progression: primitives \u2192 orchestration \u2192 observability \u2192 production \u2192 synthesis",
-    "task_classes": [
-      {
-        "number": 1,
-        "name": "SDK Primitives Sprint",
-        "complexity_level": 1,
-        "sessions_allocated": 5,
-        "estimated_days": 3,
-        "timeframe": "Days 1-3",
-        "description": "Translating Claude Code operational knowledge to SDK programmatic control",
-        "vertices_covered": [
-          {
-            "id": "vertex-sdk-agent-loop",
-            "mastery_progression": {
-              "current": 0.55,
-              "target": 0.85
-            }
-          },
-          {
-            "id": "vertex-sdk-custom-tools",
-            "mastery_progression": {
-              "current": 0.65,
-              "target": 0.85
-            }
-          },
-          {
-            "id": "vertex-sdk-streaming",
-            "mastery_progression": {
-              "current": 0.4,
-              "target": 0.75
-            }
-          },
-          {
-            "id": "vertex-sdk-cost-management",
-            "mastery_progression": {
-              "current": 0.5,
-              "target": 0.75
-            }
-          },
-          {
-            "id": "vertex-sdk-database-integration",
-            "mastery_progression": {
-              "current": 0.6,
-              "target": 0.8
-            }
-          },
-          {
-            "id": "vertex-sdk-external-mcp",
-            "mastery_progression": {
-              "current": 0.55,
-              "target": 0.75
-            }
-          },
-          {
-            "id": "vertex-sdk-tool-search",
-            "mastery_progression": {
-              "current": 0.0,
-              "target": 0.7
-            }
-          },
-          {
-            "id": "vertex-sdk-programmatic-tool-calling",
-            "mastery_progression": {
-              "current": 0.0,
-              "target": 0.75
-            }
-          }
-        ],
-        "mastery_gate": "Can build a complete SDK agent with custom tools, streaming, cost limits, and programmatic tool calling. Must demonstrate understanding of message types and when each appears.",
-        "productive_failure_point": "vertex-sdk-agent-loop \u2014 Give them a complex task and ask them to build the agent loop manually before showing query(). Surface the naive theory that 'I need to manage the loop myself like in LangChain' vs the SDK's autonomous loop.",
-        "tasks": [
-          {
-            "sequence": 1,
-            "task_type": "A_concept_intro",
-            "title": "Worked Example: Complete Agent with Postgres via SDK MCP",
-            "description": "Walk through a complete agent that queries Postgres via SDK MCP with streaming and cost limits",
-            "support_level": "worked_example",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Annotated agent code with explanation of query() mechanics, message types, and tool binding"
-          },
-          {
-            "sequence": 2,
-            "task_type": "A_concept_intro",
-            "title": "Completion Task: Add Streaming & Cost Controls",
-            "description": "Given a partial agent, add streaming, cost limits, and a second custom tool",
-            "support_level": "completion",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Working agent with 2 custom tools, streaming enabled, and cost guardrails"
-          },
-          {
-            "sequence": 3,
-            "task_type": "C_skill_drill",
-            "title": "Guided: Tool Search Across 10+ MCP Tools",
-            "description": "Build an agent from scratch with tool search for 10+ MCP tools",
-            "support_level": "guided",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Agent that discovers and uses appropriate tools via tool search API"
-          },
-          {
-            "sequence": 4,
-            "task_type": "C_skill_drill",
-            "title": "Conventional: Programmatic Tool Calling for AGE Queries",
-            "description": "Implement programmatic tool calling to batch-query AGE graph traversals",
-            "support_level": "conventional",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Agent performing structured batch queries with programmatic tool selection"
-          },
-          {
-            "sequence": 5,
-            "task_type": "E_mastery_gate",
-            "title": "Independent: Multi-Tool Postgres/pgvector/AGE Agent",
-            "description": "Build a multi-tool agent connecting Postgres, pgvector similarity search, and AGE graph queries",
-            "support_level": "independent",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Complete working agent demonstrating all TC1 vertices with documented architectural decisions"
-          }
-        ]
-      },
-      {
-        "number": 2,
-        "name": "Control & Multi-Agent",
-        "complexity_level": 2,
-        "sessions_allocated": 6,
-        "estimated_days": 4,
-        "timeframe": "Days 4-7",
-        "description": "Hooks, permissions, subagents, orchestration, and team dynamics",
-        "vertices_covered": [
-          {
-            "id": "vertex-sdk-hooks",
-            "mastery_progression": {
-              "current": 0.75,
-              "target": 0.9
-            }
-          },
-          {
-            "id": "vertex-sdk-permissions",
-            "mastery_progression": {
-              "current": 0.75,
-              "target": 0.9
-            }
-          },
-          {
-            "id": "vertex-sdk-subagents",
-            "mastery_progression": {
-              "current": 0.6,
-              "target": 0.85
-            }
-          },
-          {
-            "id": "vertex-sdk-orchestration",
-            "mastery_progression": {
-              "current": 0.65,
-              "target": 0.85
-            }
-          },
-          {
-            "id": "vertex-sdk-agent-teams",
-            "mastery_progression": {
-              "current": 0.7,
-              "target": 0.85
-            }
-          },
-          {
-            "id": "vertex-sdk-handoff-patterns",
-            "mastery_progression": {
-              "current": 0.5,
-              "target": 0.8
-            }
-          },
-          {
-            "id": "vertex-sdk-sessions",
-            "mastery_progression": {
-              "current": 0.75,
-              "target": 0.85
-            }
-          },
-          {
-            "id": "vertex-sdk-memory-tool",
-            "mastery_progression": {
-              "current": 0.0,
-              "target": 0.7
-            }
-          },
-          {
-            "id": "vertex-sdk-error-handling",
-            "mastery_progression": {
-              "current": 0.7,
-              "target": 0.85
-            }
-          }
-        ],
-        "mastery_gate": "Can architect a multi-agent system with appropriate isolation, permission models, hook-based control, and structured handoffs. Can explain when to use subagents vs agent teams.",
-        "productive_failure_point": "vertex-sdk-orchestration \u2014 Have them build a complex multi-agent workflow without proper handoffs/observability, let it fail, then reconstruct with proper patterns.",
-        "interleaving_pool": [
-          "vertex-sdk-agent-loop",
-          "vertex-sdk-custom-tools",
-          "vertex-sdk-streaming"
-        ],
-        "tasks": [
-          {
-            "sequence": 1,
-            "task_type": "A_concept_intro",
-            "title": "Worked Example: Multi-Agent Orchestrator with Hooks",
-            "description": "Multi-agent orchestrator with Opus lead + Sonnet workers, hooks for logging and monitoring",
-            "support_level": "worked_example",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Fully instrumented multi-agent system with hook-based observability"
-          },
-          {
-            "sequence": 2,
-            "task_type": "A_concept_intro",
-            "title": "Completion: Add Permissions & Error Recovery",
-            "description": "Add permission layers and error recovery to an existing orchestrator",
-            "support_level": "completion",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Multi-agent system with permission boundaries and recovery patterns"
-          },
-          {
-            "sequence": 3,
-            "task_type": "C_skill_drill",
-            "title": "Guided: Subagent Pipeline with Session Persistence",
-            "description": "Build subagent pipeline with structured JSON handoffs and session persistence",
-            "support_level": "guided",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Subagent system with resumable sessions and structured data flow"
-          },
-          {
-            "sequence": 4,
-            "task_type": "D_productive_failure",
-            "title": "Productive Failure: Debug Multi-Agent Without Observability",
-            "description": "Design a multi-agent system without hooks/observability, then debug a failure",
-            "support_level": "productive_failure",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Reconstructed system with proper hook-based instrumentation and lessons learned document"
-          },
-          {
-            "sequence": 5,
-            "task_type": "C_skill_drill",
-            "title": "Conventional: Agent Team Parallel Analysis",
-            "description": "Build an agent team that coordinates parallel database analysis across AGE subgraphs",
-            "support_level": "conventional",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Working agent team with parallel execution and result synthesis"
-          },
-          {
-            "sequence": 6,
-            "task_type": "E_mastery_gate",
-            "title": "Independent: Full Orchestrator with Security & Memory",
-            "description": "Full orchestrator with hooks-based security, permission layering, error recovery, memory tool, and session fork/resume",
-            "support_level": "independent",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Production-grade multi-agent orchestrator with all TC2 features"
-          }
-        ]
-      },
-      {
-        "number": 3,
-        "name": "Observability & Testing",
-        "complexity_level": 3,
-        "sessions_allocated": 7,
-        "estimated_days": 5,
-        "timeframe": "Days 8-12",
-        "description": "The biggest gap cluster \u2014 Tracing, testing frameworks, production ops, and metrics",
-        "vertices_covered": [
-          {
-            "id": "vertex-sdk-otel-tracing",
-            "mastery_progression": {
-              "current": 0.1,
-              "target": 0.8
-            }
-          },
-          {
-            "id": "vertex-sdk-observability-platforms",
-            "mastery_progression": {
-              "current": 0.1,
-              "target": 0.8
-            }
-          },
-          {
-            "id": "vertex-sdk-testing-strategies",
-            "mastery_progression": {
-              "current": 0.1,
-              "target": 0.85
-            }
-          },
-          {
-            "id": "vertex-sdk-production-ops",
-            "mastery_progression": {
-              "current": 0.25,
-              "target": 0.8
-            }
-          }
-        ],
-        "mastery_gate": "Can instrument agents with OTel, configure an observability platform, write unit/integration/eval tests, and design monitoring for production.",
-        "interleaving_pool": [
-          "vertex-sdk-hooks",
-          "vertex-sdk-subagents",
-          "vertex-sdk-custom-tools",
-          "vertex-sdk-agent-loop"
-        ],
-        "tasks": [
-          {
-            "sequence": 1,
-            "task_type": "A_concept_intro",
-            "title": "Worked Example: OTel Tracing & Langfuse Integration",
-            "description": "Instrument an existing agent with OTel tracing, view spans in Langfuse",
-            "support_level": "worked_example",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Agent with full OTel instrumentation streaming to Langfuse"
-          },
-          {
-            "sequence": 2,
-            "task_type": "A_concept_intro",
-            "title": "Worked Example: Testing Framework with promptfoo",
-            "description": "Write unit tests for tool calls, integration tests for agent flows using promptfoo",
-            "support_level": "worked_example",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Complete test suite with unit, integration, and eval tests"
-          },
-          {
-            "sequence": 3,
-            "task_type": "C_skill_drill",
-            "title": "Completion: Add Tracing to Multi-Agent Orchestrator",
-            "description": "Add tracing to the multi-agent orchestrator from TC2, configure Arize monitoring",
-            "support_level": "completion",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Instrumented orchestrator with multi-platform monitoring"
-          },
-          {
-            "sequence": 4,
-            "task_type": "C_skill_drill",
-            "title": "Guided: Comprehensive Test Suite with Scorers",
-            "description": "Design a test suite for a production agent: unit, integration, eval, with custom scorers",
-            "support_level": "guided",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Multi-layer test framework with custom evaluation metrics"
-          },
-          {
-            "sequence": 5,
-            "task_type": "D_productive_failure",
-            "title": "Productive Failure: Deploy Without Monitoring",
-            "description": "Deploy an agent to staging without monitoring, encounter a subtle failure, then add observability",
-            "support_level": "productive_failure",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Debugging analysis and retrofit observability implementation"
-          },
-          {
-            "sequence": 6,
-            "task_type": "C_skill_drill",
-            "title": "Conventional: Full Observability Pipeline",
-            "description": "Build a full observability pipeline: OTel \u2192 Langfuse, custom metrics, anomaly alerts",
-            "support_level": "conventional",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Integrated observability system with alerting"
-          },
-          {
-            "sequence": 7,
-            "task_type": "E_mastery_gate",
-            "title": "Independent: Observability Framework for Portfolio Project",
-            "description": "Comprehensive test + observability framework for the portfolio project agent",
-            "support_level": "independent",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Production-ready observability and testing infrastructure"
-          }
-        ]
-      },
-      {
-        "number": 4,
-        "name": "Production Architecture",
-        "complexity_level": 4,
-        "sessions_allocated": 5,
-        "estimated_days": 4,
-        "timeframe": "Days 13-16",
-        "description": "Secure deployment, long-running patterns, architecture design, and evolution tracking",
-        "vertices_covered": [
-          {
-            "id": "vertex-sdk-secure-deployment",
-            "mastery_progression": {
-              "current": 0.0,
-              "target": 0.8
-            }
-          },
-          {
-            "id": "vertex-sdk-long-running-patterns",
-            "mastery_progression": {
-              "current": 0.0,
-              "target": 0.8
-            }
-          },
-          {
-            "id": "vertex-sdk-architecture-patterns",
-            "mastery_progression": {
-              "current": 0.65,
-              "target": 0.85
-            }
-          },
-          {
-            "id": "vertex-sdk-evolution-tracking",
-            "mastery_progression": {
-              "current": 0.1,
-              "target": 0.8
-            }
-          },
-          {
-            "id": "vertex-sdk-provider-config",
-            "mastery_progression": {
-              "current": 0.15,
-              "target": 0.7
-            }
-          }
-        ],
-        "mastery_gate": "Can design a production deployment architecture, implement long-running patterns, and maintain a systematic SDK evolution tracking process.",
-        "interleaving_pool": [
-          "vertex-sdk-otel-tracing",
-          "vertex-sdk-testing-strategies",
-          "vertex-sdk-hooks",
-          "vertex-sdk-orchestration"
-        ],
-        "tasks": [
-          {
-            "sequence": 1,
-            "task_type": "A_concept_intro",
-            "title": "Worked Example: Docker-Hardened Agent Deployment",
-            "description": "Docker-hardened agent deployment with credential proxy and network isolation",
-            "support_level": "worked_example",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Secure Docker configuration with credential management patterns"
-          },
-          {
-            "sequence": 2,
-            "task_type": "A_concept_intro",
-            "title": "Completion: Multi-Provider & Sandbox Runtime",
-            "description": "Add sandbox-runtime and gVisor to an existing deployment, configure multi-provider fallback",
-            "support_level": "completion",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Deployment with sandbox isolation and provider failover"
-          },
-          {
-            "sequence": 3,
-            "task_type": "C_skill_drill",
-            "title": "Guided: Long-Running Agent Architecture",
-            "description": "Design a long-running agent with initializer+worker split, progress.txt, and session rituals",
-            "support_level": "guided",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Resilient long-running architecture with state management"
-          },
-          {
-            "sequence": 4,
-            "task_type": "C_skill_drill",
-            "title": "Conventional: SDK Changelog Radar System",
-            "description": "Build the 'SDK changelog radar' \u2014 automated tracking workflow for SDK releases",
-            "support_level": "conventional",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Automated system tracking SDK changes and impact assessment"
-          },
-          {
-            "sequence": 5,
-            "task_type": "E_mastery_gate",
-            "title": "Independent: Production Architecture for Portfolio",
-            "description": "Full production architecture for a portfolio project: secure deployment + long-running patterns + evolution tracking + architecture documentation",
-            "support_level": "independent",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Complete production-ready architecture with documentation"
-          }
-        ]
-      },
-      {
-        "number": 5,
-        "name": "Integration & Synthesis",
-        "complexity_level": 5,
-        "sessions_allocated": 3,
-        "estimated_days": 2,
-        "timeframe": "Days 17-18",
-        "description": "Full integration with portfolio project and synthesis of all knowledge",
-        "vertices_covered": [
-          {
-            "id": "vertex-sdk-api-design",
-            "mastery_progression": {
-              "current": 0.7,
-              "target": 0.85
-            }
-          },
-          {
-            "id": "vertex-sdk-conversation-state",
-            "mastery_progression": {
-              "current": 0.7,
-              "target": 0.85
-            }
-          }
-        ],
-        "mastery_gate": "Can architect, build, test, deploy, and explain a complete agent system. Can articulate tradeoffs to technical and non-technical stakeholders.",
-        "tasks": [
-          {
-            "sequence": 1,
-            "task_type": "C_skill_drill",
-            "title": "Guided: API Layer Design",
-            "description": "Design and implement an API layer wrapping agent functionality for a portfolio project",
-            "support_level": "guided",
-            "estimated_duration_minutes": 90,
-            "deliverable": "REST/GraphQL API exposing agent capabilities with proper abstraction"
-          },
-          {
-            "sequence": 2,
-            "task_type": "E_mastery_gate",
-            "title": "Independent: End-to-End Portfolio Integration",
-            "description": "End-to-end portfolio project integration \u2014 full agent system with Postgres/AGE/pgvector, observability, testing, secure deployment, and documentation",
-            "support_level": "independent",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Fully integrated, tested, observable, deployed agent system"
-          },
-          {
-            "sequence": 3,
-            "task_type": "E_mastery_gate",
-            "title": "Synthesis: Architecture Review & Defense",
-            "description": "Present the system design, explain tradeoffs, defend architectural decisions",
-            "support_level": "independent",
-            "estimated_duration_minutes": 90,
-            "deliverable": "Architecture review document and presentation"
-          }
-        ]
-      }
-    ],
-    "selected_vertices": [
-      {
-        "id": "vertex-sdk-agent-loop",
-        "priority_rank": 1,
-        "selection_score": 1.0,
-        "rationale": "Core foundation \u2014 required for all agent patterns. High-impact foundational skill.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.55,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-sdk-custom-tools",
-        "priority_rank": 2,
-        "selection_score": 1.0,
-        "rationale": "Essential for practical agent work with Postgres/AGE. Direct application to learner's database expertise.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.65,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-sdk-streaming",
-        "priority_rank": 3,
-        "selection_score": 0.95,
-        "rationale": "Critical for responsive UX and understanding partial message handling. Bridges Claude Code streaming knowledge.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.4,
-          "target": 0.75
-        }
-      },
-      {
-        "id": "vertex-sdk-cost-management",
-        "priority_rank": 4,
-        "selection_score": 0.9,
-        "rationale": "High practical importance for production systems. Guards against unexpected expenses.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.5,
-          "target": 0.75
-        }
-      },
-      {
-        "id": "vertex-sdk-database-integration",
-        "priority_rank": 5,
-        "selection_score": 1.0,
-        "rationale": "Core to portfolio project. Directly leverages existing Postgres/AGE expertise.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.6,
-          "target": 0.8
-        }
-      },
-      {
-        "id": "vertex-sdk-external-mcp",
-        "priority_rank": 6,
-        "selection_score": 0.85,
-        "rationale": "Enables connection to external services. Expands agent capabilities beyond internal tools.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.55,
-          "target": 0.75
-        }
-      },
-      {
-        "id": "vertex-sdk-tool-search",
-        "priority_rank": 7,
-        "selection_score": 0.9,
-        "rationale": "New skill for SDK. Enables autonomous tool discovery \u2014 critical for large tool ecosystems.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.0,
-          "target": 0.7
-        }
-      },
-      {
-        "id": "vertex-sdk-programmatic-tool-calling",
-        "priority_rank": 8,
-        "selection_score": 0.85,
-        "rationale": "New skill. Enables deterministic tool sequencing \u2014 important for structured agent workflows.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.0,
-          "target": 0.75
-        }
-      },
-      {
-        "id": "vertex-sdk-hooks",
-        "priority_rank": 9,
-        "selection_score": 0.95,
-        "rationale": "Core control mechanism. Essential for observability, security, and multi-agent coordination.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.75,
-          "target": 0.9
-        }
-      },
-      {
-        "id": "vertex-sdk-permissions",
-        "priority_rank": 10,
-        "selection_score": 0.9,
-        "rationale": "Critical for production multi-agent systems. Prevents agent capability leakage.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.75,
-          "target": 0.9
-        }
-      },
-      {
-        "id": "vertex-sdk-subagents",
-        "priority_rank": 11,
-        "selection_score": 0.95,
-        "rationale": "High-impact decomposition pattern. Enables scalable multi-agent architectures.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.6,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-sdk-orchestration",
-        "priority_rank": 12,
-        "selection_score": 1.0,
-        "rationale": "Core multi-agent pattern. Orchestrators are foundation of complex agent workflows.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.65,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-sdk-agent-teams",
-        "priority_rank": 13,
-        "selection_score": 0.85,
-        "rationale": "Alternative to subagents for parallel coordination. Important design choice to master.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.7,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-sdk-handoff-patterns",
-        "priority_rank": 14,
-        "selection_score": 0.9,
-        "rationale": "Critical for structured multi-agent communication. Prevents information loss in handoffs.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.5,
-          "target": 0.8
-        }
-      },
-      {
-        "id": "vertex-sdk-sessions",
-        "priority_rank": 15,
-        "selection_score": 0.8,
-        "rationale": "Important for long-running agents and conversation continuity. Reinforces through integration.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.75,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-sdk-memory-tool",
-        "priority_rank": 16,
-        "selection_score": 0.85,
-        "rationale": "New skill. Essential for agents with extended context requirements.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.0,
-          "target": 0.7
-        }
-      },
-      {
-        "id": "vertex-sdk-error-handling",
-        "priority_rank": 17,
-        "selection_score": 0.9,
-        "rationale": "High practical importance. Separates robust systems from brittle ones.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.7,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-sdk-otel-tracing",
-        "priority_rank": 18,
-        "selection_score": 1.0,
-        "rationale": "Biggest gap. Critical for observability \u2014 currently 0.10 mastery.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.1,
-          "target": 0.8
-        }
-      },
-      {
-        "id": "vertex-sdk-observability-platforms",
-        "priority_rank": 19,
-        "selection_score": 0.95,
-        "rationale": "Highest ROI observability skill. Enables production monitoring and debugging.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.1,
-          "target": 0.8
-        }
-      },
-      {
-        "id": "vertex-sdk-testing-strategies",
-        "priority_rank": 20,
-        "selection_score": 1.0,
-        "rationale": "Critical gap. Testing framework understanding separates professionals from hobbyists.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.1,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-sdk-production-ops",
-        "priority_rank": 21,
-        "selection_score": 0.9,
-        "rationale": "High practical importance for deployment readiness. Bridges development and operations.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.25,
-          "target": 0.8
-        }
-      },
-      {
-        "id": "vertex-sdk-secure-deployment",
-        "priority_rank": 22,
-        "selection_score": 0.95,
-        "rationale": "New skill. Critical for production readiness and security posture.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.0,
-          "target": 0.8
-        }
-      },
-      {
-        "id": "vertex-sdk-long-running-patterns",
-        "priority_rank": 23,
-        "selection_score": 0.9,
-        "rationale": "New skill. Essential for batch processing and background job agents.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.0,
-          "target": 0.8
-        }
-      },
-      {
-        "id": "vertex-sdk-architecture-patterns",
-        "priority_rank": 24,
-        "selection_score": 0.85,
-        "rationale": "Reinforces through application. Architectural thinking is crucial for senior-level work.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.65,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-sdk-evolution-tracking",
-        "priority_rank": 25,
-        "selection_score": 0.75,
-        "rationale": "New skill. Enables systematic SDK upgrade and compatibility management.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.1,
-          "target": 0.8
-        }
-      },
-      {
-        "id": "vertex-sdk-provider-config",
-        "priority_rank": 26,
-        "selection_score": 0.7,
-        "rationale": "Enables multi-provider strategies. Lower priority than core skills but important for robustness.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.15,
-          "target": 0.7
-        }
-      },
-      {
-        "id": "vertex-sdk-api-design",
-        "priority_rank": 27,
-        "selection_score": 0.8,
-        "rationale": "Reinforces through integration. API layer design is essential for exposing agent systems.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.7,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-sdk-conversation-state",
-        "priority_rank": 28,
-        "selection_score": 0.8,
-        "rationale": "Reinforces through integration. State management is crucial for conversational agents.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.7,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-sdk-context-management",
-        "priority_rank": 29,
-        "selection_score": 0.75,
-        "rationale": "Important for complex agents with large token counts. Bridges Claude Code understanding.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.65,
-          "target": 0.8
-        }
-      },
-      {
-        "id": "vertex-sdk-function-calling",
-        "priority_rank": 30,
-        "selection_score": 0.8,
-        "rationale": "Foundation already present but reinforcement valuable. Strengthens tool integration patterns.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.8,
-          "target": 0.88
-        }
-      },
-      {
-        "id": "vertex-sdk-vision-multimodal",
-        "priority_rank": 31,
-        "selection_score": 0.6,
-        "rationale": "Lower priority for this intensive. Valuable but not blocking mastery.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.5,
-          "target": 0.7
-        }
-      },
-      {
-        "id": "vertex-sdk-batch-operations",
-        "priority_rank": 32,
-        "selection_score": 0.7,
-        "rationale": "Important for cost optimization and large-scale agent work.",
-        "excluded": false,
-        "mastery_progression": {
-          "current": 0.55,
-          "target": 0.75
-        }
-      },
-      {
-        "id": "vertex-builtin-tools-and-apis",
-        "priority_rank": 33,
-        "selection_score": 0.0,
-        "rationale": "Already proficient/mastered (0.90); reinforced through integration exercises",
-        "excluded": true,
-        "exclusion_reason": "Already proficient/mastered; reinforced through integration exercises",
-        "mastery_progression": {
-          "current": 0.9,
-          "target": 0.9
-        }
-      },
-      {
-        "id": "vertex-structured-outputs",
-        "priority_rank": 34,
-        "selection_score": 0.0,
-        "rationale": "Already proficient/mastered (0.90); reinforced through integration exercises",
-        "excluded": true,
-        "exclusion_reason": "Already proficient/mastered; reinforced through integration exercises",
-        "mastery_progression": {
-          "current": 0.9,
-          "target": 0.9
-        }
-      },
-      {
-        "id": "vertex-agent-skills",
-        "priority_rank": 35,
-        "selection_score": 0.0,
-        "rationale": "Already proficient/mastered (0.85); reinforced through integration exercises",
-        "excluded": true,
-        "exclusion_reason": "Already proficient/mastered; reinforced through integration exercises",
-        "mastery_progression": {
-          "current": 0.85,
-          "target": 0.85
-        }
-      },
-      {
-        "id": "vertex-claude-code-integration",
-        "priority_rank": 36,
-        "selection_score": 0.0,
-        "rationale": "Already proficient/mastered (0.85); reinforced through integration exercises",
-        "excluded": true,
-        "exclusion_reason": "Already proficient/mastered; reinforced through integration exercises",
-        "mastery_progression": {
-          "current": 0.85,
-          "target": 0.85
-        }
-      }
-    ],
-    "epitome": {
-      "description": "Complete SDK Agent with Postgres Integration: ",
-      "vertex_ids": [
-        "vertex-sdk-agent-loop",
-        "vertex-sdk-custom-tools",
-        "vertex-sdk-streaming",
-        "vertex-sdk-cost-management",
-        "vertex-sdk-database-integration"
-      ],
-      "leverages_existing_knowledge": ""
-    }
+    "created_by": "curriculum_architect",
+    "version": "2.0.0",
+    "notes": "Curriculum redesigned after deep exploration of BHappy codebase. Every task class builds real infrastructure that BHappy currently lacks: session storage backend, cost/observability instrumentation, Agent Teams comparison framework, and cross-project intelligence. Excludes topics where learner is already proficient from BHappy development (sandboxing, settings/plugins, context management). Includes productive failure point for permissions misconception identified in calibration."
   }
 }
