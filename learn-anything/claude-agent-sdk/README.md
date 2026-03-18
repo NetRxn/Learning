@@ -2,7 +2,7 @@
 
 **Goal:** Build Postgres/pgvector/AGE-backed session storage, observability instrumentation, Agent Teams comparison framework, and cross-project intelligence + eval for BHappy.
 
-**Duration:** 20 sessions over 2.5 weeks (90 min/session)
+**Duration:** 24 sessions over 3 weeks (90 min/session)
 
 **Coverage:** Starting at 44% → targeting 95%
 
@@ -10,10 +10,10 @@
 
 | TC | Sessions | Focus | You Build |
 |---|---|---|---|
-| **TC1** | 1–5 | SDK Foundations + Session Storage | Postgres/AGE session tables, JSONL ingestion, fork/rewind, file↔DB toggle |
-| **TC2** | 6–10 | Cost & Observability | Per-session cost, PostToolUse logging, distributed tracing, live monitoring |
-| **TC3** | 11–15 | Teams vs Subagents | Identical instrumentation on both paths, AGE execution graphs, decision matrix |
-| **TC4** | 16–20 | Intelligence & Eval | pgvector search, cross-project AGE graph, scorecard evals, lifetime replay |
+| **TC1** | 1–8 | Full ~/.claude → Postgres Storage | Complete data model: sessions, plans, tasks, todos, teams, subagent transcripts, tool results, file history, debug logs. AGE graph. Fork/rewind. Backend toggle. |
+| **TC2** | 9–13 | Cost & Observability | Per-session cost, PostToolUse logging, distributed tracing, live monitoring, permissions fix |
+| **TC3** | 14–19 | Teams vs Subagents | Identical instrumentation, AGE execution graphs, team inbox analysis, decision matrix |
+| **TC4** | 20–24 | Intelligence & Eval | pgvector search, cross-project AGE graph, scorecard evals, lifetime replay |
 
 ## Files
 
@@ -37,8 +37,9 @@
 | `visual-tool-pipeline.md` | Visual reference | TC1-2 — @tool → MCP → hooks → execution |
 | `visual-options-map.md` | Visual reference | All TCs — option groups, decision guide, BHappy configs |
 | `visual-bhappy-integration.md` | Visual reference | All TCs — current architecture, what you're building, gap map |
-| `worked-examples-tc1.md` | Worked example | TC1 — JSONL ingester with AGE graph + 3 fading versions |
-| `productive-failure-tc1.md` | Productive failure | TC1 — session schema design edge cases |
+| `reference-claude-data-model.md` | Data model reference | TC1 — complete ~/.claude directory map with every file type, format, and linking pattern |
+| `worked-examples-tc1.md` | Worked example | TC1 — multi-layer session ingester (full data model) + 3 fading versions |
+| `productive-failure-tc1.md` | Productive failure | TC1 — schema design surfacing 5+ naive assumptions about the data model |
 | `productive-failure-tc2.md` | Productive failure | TC2 — permissions misconception (allowed_tools vs can_use_tool) |
 | `dependency-graph.md` | Knowledge map | All TCs — Mermaid graph with mastery overlay |
 | `resources.md` | Resource list | All TCs — official docs, source code, BHappy references |

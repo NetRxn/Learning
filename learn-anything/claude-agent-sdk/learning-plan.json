@@ -6,7 +6,7 @@
   "skill_name": "Claude Agent SDK Mastery",
   "created_at": "2026-03-17T15:00:00Z",
   "updated_at": "2026-03-17T15:00:00Z",
-  "plan_version": "2.0",
+  "plan_version": "3.0",
   "intensity_level": "intensive",
   "target_mastery": 0.95,
   "current_coverage": 0.443,
@@ -75,7 +75,7 @@
         "id": "TC1",
         "name": "Session Storage Backend",
         "complexity_level": 1,
-        "description": "Build the Postgres/AGE session storage layer that replaces Claude Code's file-based JSONL system. Learn SDK foundations (query, tools, messages, options) by building the ingestion pipeline and backend abstraction.",
+        "description": "Build the complete Postgres/AGE storage backend for all of ~/.claude — not just session transcripts, but plans, tasks, todos, teams, subagent transcripts, tool results, file history, debug logs, and global history. Learn SDK foundations (query, tools, messages, options) by building the full ingestion pipeline and backend abstraction.",
         "vertex_ids": [
           "vertex-sdk-query-function",
           "vertex-sdk-custom-tools",
@@ -91,50 +91,80 @@
             "support_level": "worked_example",
             "task_type": "whole_task",
             "session_template": "A_concept_intro",
-            "description": "Worked Example: Anatomy of a Claude Code session. Read the SDK session internals (_internal/sessions.py), understand JSONL format, parentUuid DAG structure. Walk through query() → message iteration → ResultMessage extraction. Build mental model of the complete data flow.",
+            "description": "Worked Example: The complete ~/.claude data model. Map every directory and file type: projects/ (JSONL + subagent dirs + tool-results), plans/ (slug-linked markdown), tasks/ (numbered JSON with dependency graphs), todos/ (per session+agent), teams/ (config + inboxes), debug/ (timestamped logs), file-history/ (checkpoints), history.jsonl (global prompts). Understand the linking model: UUID connects most artifacts, slug connects plans. Walk through query() → message iteration → ResultMessage extraction.",
             "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-message-types", "vertex-sdk-query-function"]
           },
           {
             "sequence": 2,
             "support_level": "worked_example",
-            "task_type": "whole_task",
-            "session_template": "C_skill_drill",
-            "description": "Worked Example: Build the session ingestion tool. Create @tool functions for Postgres + AGE operations. Wire into create_sdk_mcp_server. Use query() to drive an agent that reads a JSONL file and ingests it into Postgres, preserving the parentUuid tree as AGE graph edges.",
-            "vertex_ids": ["vertex-sdk-custom-tools", "vertex-sdk-mcp-servers", "vertex-sdk-options"]
+            "task_type": "productive_failure",
+            "session_template": "D_productive_failure",
+            "description": "Productive Failure: Schema design. Design the Postgres + AGE schema for the full ~/.claude data model BEFORE learning all the JSONL edge cases (sidechains, compaction summaries, logicalParentUuid, file-history-snapshot entries, metadata types). Surface naive assumptions about flat message lists and simple joins.",
+            "vertex_ids": ["vertex-sdk-session-management"]
           },
           {
             "sequence": 3,
-            "support_level": "guided",
+            "support_level": "worked_example",
             "task_type": "whole_task",
             "session_template": "C_skill_drill",
-            "description": "Guided: Build the backend abstraction layer. Design the interface that lets BHappy toggle between file-based and DB-backed session storage. Implement the DB reader (list_sessions, get_session_messages equivalent from Postgres). Test both backends produce identical results.",
-            "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-custom-tools", "vertex-sdk-content-blocks"]
+            "description": "Worked Example: Build core ingestion tools. Create @tool functions for: JSONL session parsing (with full entry taxonomy filtering), Postgres inserts (sessions, entries, subagent transcripts), and AGE graph creation (parentUuid edges, session→subagent edges). Wire into create_sdk_mcp_server. Use query() to drive ingestion of a real BHappy session with subagents.",
+            "vertex_ids": ["vertex-sdk-custom-tools", "vertex-sdk-mcp-servers", "vertex-sdk-options"]
           },
           {
             "sequence": 4,
-            "support_level": "conventional",
+            "support_level": "guided",
             "task_type": "whole_task",
             "session_template": "C_skill_drill",
-            "description": "Conventional: Fork and rewind from DB. Implement fork-at-arbitrary-turn by creating a new branch in the AGE parentUuid tree. Implement rewind by querying the tree up to a specific message UUID. Test with real BHappy worker session transcripts.",
-            "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-query-function"]
+            "description": "Guided: Ingest plans, tasks, todos, and teams. Build tools that: parse plans/ and link by slug to sessions, parse tasks/ JSON with dependency graphs into Postgres, ingest todos/ per session+agent, parse teams/ config and inbox messages. Create AGE edges: Session→Plan (HAS_PLAN), Task→Task (BLOCKED_BY), Session→Team (PART_OF_TEAM).",
+            "vertex_ids": ["vertex-sdk-custom-tools", "vertex-sdk-session-management"]
           },
           {
             "sequence": 5,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Guided: Ingest debug logs, file history, and global history. Build tools for: parsing debug/ timestamped logs into structured events, ingesting file-history/ checkpoints (hash@version), importing history.jsonl (10K+ prompts across all projects). Design indexes for efficient querying across all data types.",
+            "vertex_ids": ["vertex-sdk-custom-tools", "vertex-sdk-query-function"]
+          },
+          {
+            "sequence": 6,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Guided: Backend abstraction layer. Design the interface that lets BHappy toggle between file-based and DB-backed storage. Implement DB equivalents of list_sessions() and get_session_messages() from Postgres. Handle the slug→plan and UUID→artifacts linking. Test both backends produce identical results for sessions, plans, and tasks.",
+            "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-custom-tools", "vertex-sdk-content-blocks"]
+          },
+          {
+            "sequence": 7,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Conventional: Fork, rewind, and drill-down from DB. Implement fork-at-arbitrary-turn using AGE parentUuid tree branching. Implement rewind to specific message UUID. Build drill-down: from parent session summary → full subagent transcript → individual tool results. Test with real BHappy Agent Teams sessions (team lead → multiple teammates).",
+            "vertex_ids": ["vertex-sdk-session-management", "vertex-sdk-query-function"]
+          },
+          {
+            "sequence": 8,
             "support_level": "independent",
             "task_type": "whole_task",
             "session_template": "E_mastery_gate",
-            "description": "Mastery Gate: End-to-end demo. Ingest 5 real BHappy worker sessions, query them from Postgres, fork one at turn 3, rewind another to a specific tool use. Demonstrate file↔DB toggle with identical output. Explain the AGE graph model and query patterns used.",
+            "description": "Mastery Gate: Full ~/.claude → Postgres demo. Ingest 5 real BHappy sessions with all artifacts (plans, tasks, todos, subagent transcripts, tool results, debug logs). Fork a session at turn 3. Drill from team lead summary into a teammate's full transcript. Query tasks by dependency chain. Link a plan to its session by slug. Demonstrate file↔DB toggle. Explain the complete data model and AGE graph structure.",
             "vertex_ids": ["vertex-sdk-query-function", "vertex-sdk-custom-tools", "vertex-sdk-mcp-servers", "vertex-sdk-message-types", "vertex-sdk-session-management"]
           }
         ],
         "mastery_gate": {
-          "criteria": "Can ingest JSONL sessions into Postgres/AGE, query them back, fork/rewind at arbitrary points, and toggle between file and DB backends. Can explain parentUuid DAG structure and AGE graph model.",
+          "criteria": "Can ingest the full ~/.claude data model into Postgres/AGE — sessions, plans, tasks, todos, teams, subagent transcripts, tool results, file history, and debug logs. Can fork/rewind/drill-down from DB. Can toggle between file and DB backends. Can explain the complete data model, linking patterns (UUID vs slug), and AGE graph structure.",
           "assessment_vertex_ids": ["vertex-sdk-query-function", "vertex-sdk-custom-tools", "vertex-sdk-session-management"],
           "bloom_level_required": "apply",
           "passing_threshold": 0.8,
-          "min_items": 3
+          "min_items": 5
         },
-        "productive_failure_points": [],
+        "productive_failure_points": [
+          {
+            "vertex_id": "vertex-sdk-session-management",
+            "rationale": "The ~/.claude data model is far richer than just JSONL sessions. Designing the schema before understanding the full taxonomy (13+ entry types, sidechain filtering, compaction summaries, slug-based plan linking, per-session artifact directories) surfaces naive assumptions.",
+            "naive_theory": "JSONL sessions are flat message lists that map cleanly to a Postgres table. Plans, tasks, and subagent data are separate concerns."
+          }
+        ],
         "interleaving_pool": []
       },
 
@@ -213,7 +243,7 @@
         "id": "TC3",
         "name": "Agent Teams vs Subagents — Instrumented Comparison",
         "complexity_level": 3,
-        "description": "Instrument both TeamLauncher and WorkerExecutor with identical metrics. Build the A/B comparison framework with hard metrics to decide when to use Agent Teams vs sequential subagents. Use AGE for execution graph analysis.",
+        "description": "Instrument both TeamLauncher and WorkerExecutor with identical metrics. Leverage the tasks/, teams/, and subagent transcript data from TC1's storage layer. Build the A/B comparison framework with hard metrics to decide when to use Agent Teams vs sequential subagents. Use AGE for execution graph analysis.",
         "vertex_ids": [
           "vertex-sdk-subagent-lifecycle",
           "vertex-sdk-client",
@@ -255,15 +285,23 @@
           },
           {
             "sequence": 5,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "session_template": "C_skill_drill",
+            "description": "Conventional: Mine teams/ and tasks/ data. Query team inbox messages to analyze what the team lead delegated vs what teammates actually delivered. Cross-reference tasks/ dependency chains with actual execution order from subagent transcripts. Build a 'delegation effectiveness' metric: did the team lead's task specs match the implementation?",
+            "vertex_ids": ["vertex-sdk-subagent-lifecycle", "vertex-sdk-session-management"]
+          },
+          {
+            "sequence": 6,
             "support_level": "independent",
             "task_type": "whole_task",
             "session_template": "E_mastery_gate",
-            "description": "Mastery Gate: Present the comparison results. Show: side-by-side metrics for Teams vs Sequential on real BHappy features, AGE graph visualizations of execution patterns, decision matrix with confidence intervals. Explain when each mode wins and why, backed by data.",
+            "description": "Mastery Gate: Present the comparison results. Show: side-by-side metrics for Teams vs Sequential on real BHappy features, AGE graph visualizations of execution patterns, team inbox analysis showing delegation patterns, decision matrix with confidence intervals. Explain when each mode wins and why, backed by data.",
             "vertex_ids": ["vertex-sdk-subagent-lifecycle", "vertex-sdk-model-routing", "vertex-sdk-client"]
           }
         ],
         "mastery_gate": {
-          "criteria": "Can instrument both orchestration modes with identical metrics, reconstruct execution timelines from task messages, model execution as AGE graphs, and present a data-driven decision framework for Teams vs Subagents.",
+          "criteria": "Can instrument both orchestration modes with identical metrics, reconstruct execution timelines from task messages, model execution as AGE graphs, analyze team delegation patterns from inbox data, and present a data-driven decision framework for Teams vs Subagents.",
           "assessment_vertex_ids": ["vertex-sdk-subagent-lifecycle", "vertex-sdk-model-routing", "vertex-sdk-client"],
           "bloom_level_required": "evaluate",
           "passing_threshold": 0.8,
@@ -341,34 +379,34 @@
 
   "schedule": {
     "short_term_plan": {
-      "timeframe": "2.5 weeks (18 days)",
+      "timeframe": "3 weeks (21 days)",
       "start_date": "2026-03-18",
-      "target_end_date": "2026-04-04",
-      "sessions_per_week": 10,
+      "target_end_date": "2026-04-07",
+      "sessions_per_week": 8,
       "session_duration_minutes": 90,
-      "total_sessions": 20,
+      "total_sessions": 24,
       "milestones": [
         {
           "week": 1,
-          "description": "TC1 complete: Postgres session storage with AGE DAG, fork/rewind, backend toggle",
+          "description": "TC1 sessions 1-8: Full ~/.claude → Postgres storage backend — sessions, plans, tasks, todos, teams, subagent transcripts, tool results, file history, debug logs. AGE graph model. Backend toggle. Fork/rewind/drill-down.",
           "task_class_id": "TC1",
           "expected_coverage": 0.65
         },
         {
-          "week": 1.5,
-          "description": "TC2 complete: Cost tracking, structured logging, distributed tracing, live monitoring",
+          "week": 2,
+          "description": "TC2 sessions 9-13: Cost tracking, structured logging, distributed tracing, live session monitoring. Permissions misconception fix.",
           "task_class_id": "TC2",
           "expected_coverage": 0.78
         },
         {
-          "week": 2,
-          "description": "TC3 complete: Agent Teams vs Subagents comparison framework with hard metrics and decision matrix",
+          "week": 2.5,
+          "description": "TC3 sessions 14-19: Agent Teams vs Subagents comparison with identical instrumentation, AGE execution graphs, team inbox analysis, data-driven decision matrix.",
           "task_class_id": "TC3",
           "expected_coverage": 0.88
         },
         {
-          "week": 2.5,
-          "description": "TC4 complete: pgvector search, AGE cross-project graph, eval framework, lifetime replay",
+          "week": 3,
+          "description": "TC4 sessions 20-24: pgvector semantic search, cross-project AGE graph, scorecard-driven eval framework, lifetime replay, full system integration.",
           "task_class_id": "TC4",
           "expected_coverage": 0.95
         }
