@@ -1,0 +1,641 @@
+{
+  "metadata": {
+    "created_at": "2026-03-26",
+    "curriculum_id": "sk-eft-hawking-2026",
+    "assessment_philosophy": "Discussion-based, explanation-requiring, anti-gaming. Feynman-style: explain to a smart friend who doesn't know physics. Assess reasoning, not vocabulary.",
+    "learner_type": "Research program architect. Prefers depth, narrative coherence, honest limitations.",
+    "bloom_progression": "TC1=understand, TC2=analyze, TC3=evaluate, TC4=evaluate, TC5=evaluate"
+  },
+  "assessments": [
+    {
+      "task_class_id": "tc-1-foundations",
+      "gate_name": "Physical Foundations Mastery Gate",
+      "bloom_level": "understand",
+      "description": "Grasp the intuition under your existing vocabulary. Not 'what is a Lagrangian' but 'why does the variational principle work?' Not 'define entropy' but 'why does equilibrium have to be that way?'",
+      "items": [
+        {
+          "id": "tc1-assess-1",
+          "type": "feynman_explanation",
+          "vertex": "vertex-lagrangian-mechanics",
+          "prompt": "You're explaining to a very smart engineer who's never heard of physics. They ask: 'Why does nature follow the action principle? Why not just obey point-by-point rules?' Explain why the fact that nature minimizes action is physically reasonable, using an analogy they'd understand (light, sound, or something from their world).",
+          "surface_features_varied": true,
+          "context_shift": "No equations allowed. Pure intuition.",
+          "rubric": {
+            "excellent": "Clear analogy + explains why local rules fail + shows variational principle picks out actual behavior + acknowledges what we don't know (e.g., 'why does nature do this at all?')",
+            "proficient": "Reasonable analogy + connects to 'middle ground' concept + links to actual physics (light bending, trajectory)",
+            "developing": "Attempts analogy but doesn't justify why variational works + vague connection to physics",
+            "beginning": "Describes principle without explaining why it's reasonable or uses circular logic"
+          },
+          "anti_gaming": "Open-ended. Requires genuine physical intuition, not vocabulary recall. Accepts any valid analogy.",
+          "time_estimate_min": 5,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc1-assess-2",
+          "type": "feynman_explanation",
+          "vertex": "vertex-statistical-mechanics",
+          "prompt": "A colleague says: 'Why does temperature exist? Couldn't we just describe everything with positions and velocities?' Walk them through why treating the microscopic details as a statistical ensemble (rather than tracking every particle) is unavoidable in practice, and why that leads to temperature as a meaningful concept.",
+          "surface_features_varied": true,
+          "context_shift": "Start from their objection, not from 'here's what temperature is.'",
+          "rubric": {
+            "excellent": "Addresses computational tractability AND mentions that coarse-graining is forced (can't track 10^23 particles) AND shows how ensemble averaging leads to T as emergent + acknowledges that T is a summarization, not a fundamental property",
+            "proficient": "Explains ensemble averaging + connects to thermal equilibrium + notes temperature emerges from Boltzmann distribution",
+            "developing": "Mentions ensemble but doesn't fully justify why coarse-graining is necessary or how it forces T to exist",
+            "beginning": "States that 'temperature is thermal energy' without addressing the logical flow"
+          },
+          "anti_gaming": "Cannot be answered by memorizing definition. Requires argument reconstruction.",
+          "time_estimate_min": 6,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc1-assess-3",
+          "type": "feynman_explanation",
+          "vertex": "vertex-quantum-mechanics",
+          "prompt": "Explain why quantum mechanics uses complex amplitudes instead of just probabilities. Start from: 'I have a particle that could go two ways. Why can't I just say 50% chance for each path, and add the probabilities?' Walk through interference as the reason, using a concrete double-slit picture.",
+          "surface_features_varied": true,
+          "context_shift": "Starts from misconception, not from 'here's the Schrödinger equation.'",
+          "rubric": {
+            "excellent": "Constructs path-sum picture + shows why naive probability addition fails (bright & dark fringes) + explains how amplitudes (including phases) must add before squaring + connects to Madelung transform if applicable",
+            "proficient": "Clear double-slit picture + shows destructive interference + explains amplitudes must include phase info",
+            "developing": "Mentions interference but doesn't clearly show why probabilities alone fail to predict fringes",
+            "beginning": "States 'amplitudes have phase' without justifying the necessity"
+          },
+          "anti_gaming": "Requires constructing a specific counterexample (naive probability). Accepts any clear path-sum argument.",
+          "time_estimate_min": 7,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc1-assess-4",
+          "type": "feynman_explanation",
+          "vertex": "vertex-fluid-dynamics",
+          "prompt": "You're showing a colleague a simulation of water flowing around an obstacle. They ask: 'Why are there those spiral patterns (vortices) in the wake?' Explain the Euler equations as conservation laws, and why fluid must form vortices to conserve momentum and energy when forced around an obstacle.",
+          "surface_features_varied": true,
+          "context_shift": "Starts from observation, not from equations.",
+          "rubric": {
+            "excellent": "Connects vorticity to angular momentum conservation + explains why boundary forces fluid to spin + shows trade-off (can't go straight → must go around + create circulation) + may mention viscosity dampens vortices over time",
+            "proficient": "Links vortices to momentum conservation + explains why fluid must go around + gives intuitive picture of angular momentum",
+            "developing": "Mentions vorticity and conservation but connection is loose or incomplete",
+            "beginning": "Describes vortices without explaining why they must form"
+          },
+          "anti_gaming": "Open-ended explanation. Accepts conservation-based or geometric arguments.",
+          "time_estimate_min": 6,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc1-assess-5",
+          "type": "feynman_explanation",
+          "vertex": "vertex-spontaneous-symmetry-breaking",
+          "prompt": "Explain to a colleague why a system (like a magnet or superconductor) can 'choose' a direction and break a symmetry that the underlying laws don't have. Use a concrete picture: ferromagnet at T < T_c or a pencil balanced on its tip. Why does the system have to pick one direction, and what does it mean that it's 'spontaneous'?",
+          "surface_features_varied": true,
+          "context_shift": "Uses mechanical analogy, not field theory language.",
+          "rubric": {
+            "excellent": "Explains unstable equilibrium (top of hill) + shows why system must 'fall' in some direction + notes that all directions are equivalent in energy + connects to free energy minimization + touches on vacuum degeneracy in field theory if relevant",
+            "proficient": "Clear picture of symmetry and instability + explains why one direction is chosen + notes symmetry is broken in ground state",
+            "developing": "Mentions symmetry breaking but connection to actual dynamics is unclear",
+            "beginning": "Describes the phenomenon without explaining the mechanism"
+          },
+          "anti_gaming": "Requires reconstructing physical logic, not formula application.",
+          "time_estimate_min": 7,
+          "mastery_threshold_percent": 75
+        }
+      ],
+      "delayed_retention_items": [
+        {
+          "id": "tc1-retention-1",
+          "type": "feynman_explanation",
+          "prompt": "Three weeks later, explain to a new colleague: 'Why does the action principle work? If I wanted to predict how light bends near a massive star, how does knowing that light takes the path of extremal action help me?'",
+          "same_deep_structure": "Variational principle. Different surface: general relativity context instead of mechanics.",
+          "time_from_gate_days": 21
+        },
+        {
+          "id": "tc1-retention-2",
+          "type": "feynman_explanation",
+          "prompt": "In a different context: 'Why can we model a gas using temperature and pressure instead of tracking every molecule? What would we lose if we tried to keep all the details?'",
+          "same_deep_structure": "Coarse-graining and ensemble averaging. Different surface: ideal gas law instead of Boltzmann distribution.",
+          "time_from_gate_days": 21
+        }
+      ],
+      "transfer_tasks": {
+        "near_transfer": [
+          {
+            "id": "tc1-transfer-near-1",
+            "type": "feynman_explanation",
+            "prompt": "Apply variational thinking: In the SK-EFT context, the action includes both forward and backward time contours. Using the action principle, explain why we need both contours and what would be missing if we only had the forward path.",
+            "vertex": "vertex-sk-contour",
+            "requires_background": ["tc1-assess-1"],
+            "difficulty_jump": "small"
+          }
+        ],
+        "far_transfer": [
+          {
+            "id": "tc1-transfer-far-1",
+            "type": "conceptual_analogy",
+            "prompt": "In software engineering (your background), you might use a 'test coverage metric' that weights different test scenarios. Explain how that's analogous to the partition function in statistical mechanics. What does 'partition' mean in both contexts?",
+            "vertex": "vertex-statistical-mechanics",
+            "requires_background": ["tc1-assess-2"],
+            "difficulty_jump": "large"
+          }
+        ]
+      }
+    },
+    {
+      "task_class_id": "tc-2-eft-hawking-pipeline",
+      "gate_name": "EFT-to-Hawking Pipeline Mastery Gate",
+      "bloom_level": "analyze",
+      "description": "Trace the derivation chain in Paper 1. Understand why each step is necessary, what assumptions enable it, and what would break if you changed one step.",
+      "items": [
+        {
+          "id": "tc2-assess-1",
+          "type": "derivation_logic_chain",
+          "paper_section": "Paper 1: Hawking Radiation from EFT",
+          "prompt": "Paper 1 starts with the acoustic metric for a flowing fluid. Map out the assumptions at each stage: (1) Why does the fluidsderive an effective metric? (2) Why can we treat the fluid as a 'spacetime' at all? (3) What breaks if viscosity becomes large? Walk through the chain: fluid dynamics → acoustic metric → Hawking radiation threshold.",
+          "surface_features_varied": true,
+          "context_shift": "Focus on assumptions, not equations.",
+          "rubric": {
+            "excellent": "Identifies all 3+ key assumptions + explains why each is necessary + identifies what would fail (e.g., 'if viscosity >> sound speed, acoustic metric breaks down') + notes that Hawking radiation requires trans-sonic flow (specific assumption about background flow)",
+            "proficient": "Identifies 2-3 assumptions + explains necessity of most + notes failure modes",
+            "developing": "Lists assumptions but doesn't fully justify why each is required",
+            "beginning": "Vague or missing assumptions"
+          },
+          "anti_gaming": "Open-ended chain. Must reconstruct logic, not memorize.",
+          "time_estimate_min": 10,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc2-assess-2",
+          "type": "variable_replacement_reasoning",
+          "paper_concept": "Perturbation around transonic background",
+          "prompt": "Paper 1 linearizes perturbations around a transonic background flow. Why is the transonic condition (v = c_s at some point) crucial? What changes if you analyzed a subsonic flow? Write out the dispersion relation for sound waves in subsonic vs. transonic flow, and explain physically why the transonic case allows Hawking radiation.",
+          "surface_features_varied": true,
+          "requires_math": true,
+          "context_shift": "Starts from 'what if we change the background' rather than 'here's the background.'",
+          "rubric": {
+            "excellent": "Dispersion relation correct for both cases + notes that transonic has a turning point (horizon analog) + explains why subsonic has no event horizon + connects to Hawking as tunneling through horizon",
+            "proficient": "Correct dispersion relations + notes transonic allows turning point + explains physical difference",
+            "developing": "Attempts dispersion relations but with errors or incomplete physical explanation",
+            "beginning": "Missing or incorrect relations"
+          },
+          "anti_gaming": "Requires reconstruction of derivation logic. Cannot be guessed from vocabulary.",
+          "time_estimate_min": 12,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc2-assess-3",
+          "type": "assumption_breakdown_test",
+          "prompt": "The Hawking temperature in Paper 1 depends on derivatives of the background fluid flow at the sonic point. Explain why the temperature must depend on the background (not just on universal constants like c_s or ρ). If we changed the flow profile u(x), how would the Hawking temperature change? What does this tell you about the dependence of Hawking radiation on the 'background geometry'?",
+          "surface_features_varied": true,
+          "context_shift": "Asks you to vary a parameter and predict outcome.",
+          "rubric": {
+            "excellent": "Explains that surface gravity (analog of κ = κ(∂u/∂x at horizon)) sets temperature + shows how changing background changes κ + notes this is analogous to changing GR spacetime geometry + concludes Hawking radiation is background-dependent",
+            "proficient": "Connects background gradients to temperature + shows how changing flow changes radiation",
+            "developing": "Notes background dependence but reasoning is incomplete",
+            "beginning": "Missing or incorrect reasoning"
+          },
+          "anti_gaming": "Open-ended. Cannot be answered by memorization.",
+          "time_estimate_min": 8,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc2-assess-4",
+          "type": "feynman_derivation_step",
+          "prompt": "Paper 1 introduces a 'dissipative correction' δ_diss to the effective action. Walk through the logic: (1) Why is dissipation necessary (what physical effect does it model)? (2) Why does dissipation matter near the horizon (where gradients are steep)? (3) How does δ_diss modify the Hawking rate? Connect to the fluctuation-dissipation theorem if applicable.",
+          "surface_features_varied": true,
+          "context_shift": "Focuses on physical meaning of a mathematical term.",
+          "rubric": {
+            "excellent": "Explains viscous dissipation of sound waves + notes gradients are steep at horizon → dissipation large + shows how δ_diss enters action + connects to FDR (small fluctuations ↔ dissipation) + predicts effect on Hawking rate (likely suppression)",
+            "proficient": "Explains dissipation + connects to gradients at horizon + shows how it affects the action",
+            "developing": "Mentions dissipation but connection to horizon or FDR is unclear",
+            "beginning": "Treats δ_diss as black-box correction"
+          },
+          "anti_gaming": "Requires physics reasoning about dissipation and its role.",
+          "time_estimate_min": 8,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc2-assess-5",
+          "type": "chain_breakdown",
+          "prompt": "One of the key results of Paper 1 is the derivation of Hawking temperature using the SK contour. Trace the logical chain: (1) SK contour is defined to include both forward and backward time evolution. (2) This allows insertion of KMS conditions (thermal properties). (3) From KMS, the temperature emerges. For each link, explain what would go wrong if we skipped it. If you used only the forward contour (standard field theory), why wouldn't you get the temperature?",
+          "surface_features_varied": true,
+          "context_shift": "Why is SK special? What does forward path miss?",
+          "rubric": {
+            "excellent": "Explains SK as enforcing thermal boundary conditions + notes forward path only has causal evolution → no thermal info + shows how KMS pins down T + understands that closed-time-path encodes both retarded and advanced correlators",
+            "proficient": "Notes SK includes both time directions + connects to thermal conditions + explains forward path is insufficient",
+            "developing": "Mentions SK and thermal but connection is loose",
+            "beginning": "Treats SK as arbitrary choice, not logically necessary"
+          },
+          "anti_gaming": "Open-ended. Cannot be answered without understanding the derivation structure.",
+          "time_estimate_min": 10,
+          "mastery_threshold_percent": 75
+        }
+      ],
+      "delayed_retention_items": [
+        {
+          "id": "tc2-retention-1",
+          "type": "derivation_logic_chain",
+          "prompt": "Three weeks later, explain to a colleague: 'Why does the Hawking radiation depend on the background flow? Start from the acoustic metric and trace the chain to the final temperature formula.' Reconstruct the logic without notes.",
+          "same_deep_structure": "Transonic background → dispersion relation → Hawking temperature. Different surface: new background profile.",
+          "time_from_gate_days": 21
+        },
+        {
+          "id": "tc2-retention-2",
+          "type": "assumption_check",
+          "prompt": "One of your colleagues tries to apply Hawking radiation to a subsonic flow. Walk them through why this doesn't work and what must change in the derivation.",
+          "same_deep_structure": "Necessity of transonic condition. Different surface: subsonic counterexample.",
+          "time_from_gate_days": 21
+        }
+      ],
+      "transfer_tasks": {
+        "near_transfer": [
+          {
+            "id": "tc2-transfer-near-1",
+            "type": "derivation_logic_chain",
+            "prompt": "Apply the same chain-of-logic reasoning to Paper 2 or 3: Start from the extended system, identify the background assumption, trace to the physical prediction. How does the chain change compared to Paper 1?",
+            "requires_background": ["tc2-assess-1", "tc2-assess-5"],
+            "difficulty_jump": "small"
+          }
+        ],
+        "far_transfer": [
+          {
+            "id": "tc2-transfer-far-1",
+            "type": "code_walkthrough",
+            "prompt": "In the SK-EFT codebase, find a section where the SK contour is implemented or where the acoustic metric is set up. Trace through the code and match it to the Paper 1 logic. Where do assumptions become code constraints?",
+            "requires_background": ["tc2-assess-5"],
+            "difficulty_jump": "large"
+          }
+        ]
+      }
+    },
+    {
+      "task_class_id": "tc-3-higher-order",
+      "gate_name": "Higher-Order & Non-Perturbative Extensions Mastery Gate",
+      "bloom_level": "evaluate",
+      "description": "Judge what each extension (Papers 2, 3, etc.) adds to the theory. What new physics becomes visible? What assumptions from Paper 1 are relaxed? What new limitations appear?",
+      "items": [
+        {
+          "id": "tc3-assess-1",
+          "type": "extension_evaluation",
+          "prompt": "Paper 2 (or whichever introduces the next layer) extends beyond Paper 1's analysis. For the key new feature (e.g., non-linear corrections, higher-form symmetries, or topological order), answer: (1) What physical effect was missing in Paper 1? (2) Why does including this effect require new mathematics? (3) What is the trade-off in complexity vs. insight?",
+          "surface_features_varied": true,
+          "context_shift": "Not 'what does Paper 2 say' but 'what deficit in Paper 1 does it fill?'",
+          "rubric": {
+            "excellent": "Clearly identifies a limitation of Paper 1 + shows why that limit must be addressed + explains new mathematics required + acknowledges cost (complexity, computational overhead) and benefit (new phenomena, accuracy)",
+            "proficient": "Identifies limitation + explains mathematical extension + notes trade-off",
+            "developing": "Mentions new feature but rationale for its necessity is unclear",
+            "beginning": "Describes Paper 2 without evaluating it against Paper 1"
+          },
+          "anti_gaming": "Requires comparative judgment. Cannot be answered from Paper 2 alone.",
+          "time_estimate_min": 10,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc3-assess-2",
+          "type": "assumption_relaxation",
+          "prompt": "For one key assumption in Paper 1 (e.g., weak dissipation, low-order derivatives, specific symmetry structure), explain: (1) What happens if you drop or relax this assumption? (2) Which paper or result in the program addresses this? (3) What new physics or new constraints emerge? Is the theory more predictive or less?",
+          "surface_features_varied": true,
+          "context_shift": "Starts from 'what if we relax X?' rather than 'here's what Paper N does.'",
+          "rubric": {
+            "excellent": "Picks a concrete assumption + explains physical consequences of relaxing it + identifies where in the program it's addressed + judges predictivity change (more theory space, fewer fixed points, or vice versa)",
+            "proficient": "Identifies assumption + explains consequences + locates where addressed",
+            "developing": "Mentions assumption but analysis is incomplete",
+            "beginning": "Vague or missing analysis"
+          },
+          "anti_gaming": "Open-ended. Requires synthesis across multiple papers.",
+          "time_estimate_min": 12,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc3-assess-3",
+          "type": "hierarchy_reasoning",
+          "prompt": "The SK-EFT program likely contains a hierarchy: 'easier' or 'lower-order' results that build to 'harder' or 'higher-order' results. Explain the hierarchy you see. For two consecutive levels (or Papers), answer: (1) What assumptions did the first level make? (2) What does the second level relax or extend? (3) Is this a natural hierarchy (i.e., would you expect the second level to follow from the first)? What's the logical structure?",
+          "surface_features_varied": true,
+          "context_shift": "Focuses on the overall logic of the program, not individual results.",
+          "rubric": {
+            "excellent": "Identifies clear logical progression (e.g., perturbative → non-perturbative, low-order → all-order, weak coupling → strong coupling) + explains why hierarchy is natural + notes what's unknown or speculative",
+            "proficient": "Identifies progression + explains most transitions clearly",
+            "developing": "Sees some hierarchy but reasoning for ordering is weak",
+            "beginning": "No clear picture of hierarchy"
+          },
+          "anti_gaming": "Requires big-picture synthesis.",
+          "time_estimate_min": 15,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc3-assess-4",
+          "type": "prediction_consequence",
+          "prompt": "Imagine a hypothetical extension to the SK-EFT program: 'Include quantum back-reaction of Hawking radiation onto the background flow.' (1) What would have to change mathematically? (2) Which results or assumptions from Papers 1-3 would likely break? (3) Do you expect the final temperature or radiation rate to change? Why or why not?",
+          "surface_features_varied": true,
+          "context_shift": "Speculative. Asks you to extrapolate.",
+          "rubric": {
+            "excellent": "Identifies that back-reaction introduces a new feedback loop + explains what equations must couple + predicts that some results (e.g., Hawking temperature formula) might change or remain robust + gives reasoning (e.g., temperature is 'universal' from thermodynamics vs. rate depends on dissipation details)",
+            "proficient": "Notes feedback loop + identifies equations to couple + makes reasonable prediction about outcome",
+            "developing": "Attempts to trace consequences but incomplete",
+            "beginning": "Speculates without justification"
+          },
+          "anti_gaming": "Open-ended. Rewards physical intuition over formula knowledge.",
+          "time_estimate_min": 12,
+          "mastery_threshold_percent": 70
+        },
+        {
+          "id": "tc3-assess-5",
+          "type": "competing_theories_comparison",
+          "prompt": "If the SK-EFT program is one approach to deriving/understanding Hawking radiation, are there other approaches (e.g., traditional GR derivation, other EFT frameworks, or experimental analogues)? For the SK-EFT approach, what are its advantages and disadvantages compared to one alternative? What does SK-EFT make possible that the alternative doesn't?",
+          "surface_features_varied": true,
+          "context_shift": "Comparative evaluation of research strategies.",
+          "rubric": {
+            "excellent": "Identifies a genuine alternative + clearly explains SK-EFT's unique advantages (e.g., transparent EFT logic, connection to dissipation, tractability) + acknowledges where it might be weaker + concludes thoughtfully about research program value",
+            "proficient": "Compares approaches + identifies key differences in SK-EFT + evaluates fairly",
+            "developing": "Attempts comparison but missing depth or fairness",
+            "beginning": "No real comparison; mostly advocates for SK-EFT"
+          },
+          "anti_gaming": "Requires genuine evaluation, not just promotion.",
+          "time_estimate_min": 12,
+          "mastery_threshold_percent": 70
+        }
+      ],
+      "delayed_retention_items": [
+        {
+          "id": "tc3-retention-1",
+          "type": "extension_evaluation",
+          "prompt": "Three weeks later: 'If someone asks you what Paper 2 (or 3) adds to the theory beyond Paper 1, what's your elevator pitch? What was missing before, and why does the new result matter?'",
+          "same_deep_structure": "Evaluating a research extension. Different surface: pick a different paper or extension.",
+          "time_from_gate_days": 21
+        },
+        {
+          "id": "tc3-retention-2",
+          "type": "assumption_check",
+          "prompt": "A colleague suggests dropping one of the assumptions that Paper 2 relaxes compared to Paper 1. Explain whether that makes sense and what would break.",
+          "same_deep_structure": "Judging necessity of an extension. Different surface: focus on consequence prediction.",
+          "time_from_gate_days": 21
+        }
+      ],
+      "transfer_tasks": {
+        "near_transfer": [
+          {
+            "id": "tc3-transfer-near-1",
+            "type": "extension_evaluation",
+            "prompt": "Apply the same evaluation framework to a different paper in the program or a newly published related work. What does it add? What does it relax or strengthen?",
+            "requires_background": ["tc3-assess-1"],
+            "difficulty_jump": "small"
+          }
+        ],
+        "far_transfer": [
+          {
+            "id": "tc3-transfer-far-1",
+            "type": "research_strategy_judgment",
+            "prompt": "In your software engineering background, you've likely seen a library or framework evolve over versions. Compare the SK-EFT program's evolution (across Papers 1, 2, 3, ...) to how a software project grows. What parallels do you see? How is a research program's 'growth trajectory' different?",
+            "requires_background": ["tc3-assess-3"],
+            "difficulty_jump": "large"
+          }
+        ]
+      }
+    },
+    {
+      "task_class_id": "tc-4-gauge-gravity",
+      "gate_name": "Gauge Structure & Emergent Gravity Mastery Gate",
+      "bloom_level": "evaluate",
+      "description": "Evaluate the claims about gauge erasure, ADW mechanism, and emergent gravity. What is the strength of these claims? What assumptions underpin them? What are honest limitations?",
+      "items": [
+        {
+          "id": "tc4-assess-1",
+          "type": "mechanism_strength_evaluation",
+          "prompt": "The 'gauge erasure' claim (e.g., U(1) → ∅ or SU(3) → singlets) is a key part of the program's logic. Evaluate this claim: (1) Under what conditions is gauge erasure expected? (2) What evidence supports it in the SK-EFT context? (3) What are the gaps or assumptions? (4) What would convince you it's robust or fragile?",
+          "surface_features_varied": true,
+          "context_shift": "Focused on skeptical evaluation, not acceptance.",
+          "rubric": {
+            "excellent": "Identifies conditions for gauge erasure (e.g., hydrodynamic limit, strong dissipation) + cites specific results or derivations + acknowledges gaps (e.g., 'assumes thermalization' or 'requires strong coupling') + proposes tests + shows balanced judgment",
+            "proficient": "Explains mechanism + notes conditions + identifies some gaps or uncertainties",
+            "developing": "Describes gauge erasure but evaluation is one-sided or incomplete",
+            "beginning": "Accepts or rejects claim without analysis"
+          },
+          "anti_gaming": "Demands critical thinking, not belief.",
+          "time_estimate_min": 12,
+          "mastery_threshold_percent": 70
+        },
+        {
+          "id": "tc4-assess-2",
+          "type": "mechanism_assumption_unpack",
+          "prompt": "The 'Automatic Darwinism' (ADW) mechanism claims that GL(4,R) [or the general gauge group] naturally breaks to SO(3,1) [or Lorentz]. Unpack this claim: (1) What is the mechanism that drives the breaking? (2) What assumptions does it depend on (e.g., thermalization, specific coupling structure)? (3) Is the breaking 'inevitable' or 'preferred'? (4) What are alternative outcomes if assumptions change?",
+          "surface_features_varied": true,
+          "context_shift": "Asks for a detailed mechanism breakdown, not acceptance.",
+          "rubric": {
+            "excellent": "Explains the dynamical mechanism (e.g., entropy maximization, stability, vacuum structure) + identifies all major assumptions + distinguishes 'inevitable' from 'natural' + proposes alternative if assumptions change",
+            "proficient": "Explains mechanism + identifies key assumptions + notes alternatives",
+            "developing": "Describes ADW but mechanism or assumptions are vague",
+            "beginning": "Treats ADW as black-box or dogma"
+          },
+          "anti_gaming": "Open-ended. Rewards depth of understanding.",
+          "time_estimate_min": 14,
+          "mastery_threshold_percent": 70
+        },
+        {
+          "id": "tc4-assess-3",
+          "type": "emergence_claim_evaluation",
+          "prompt": "A central claim is that gravity (spacetime geometry, curvature, Einstein equations) emerges from the SK-EFT system. Evaluate this claim: (1) In what sense does gravity 'emerge'? (2) What degrees of freedom or effects from the microscopic theory map to spacetime geometry? (3) Which aspects of gravity are reproduced accurately, and which are missing or approximate? (4) Is 'emergent gravity' here analogous to other emergence claims (e.g., thermodynamics from statistical mechanics) or qualitatively different?",
+          "surface_features_varied": true,
+          "context_shift": "Focuses on what 'emergence' means operationally.",
+          "rubric": {
+            "excellent": "Defines emergence clearly (e.g., coarse-grained effective description, thermodynamic limit) + maps microscopic degrees of freedom to spacetime (e.g., entropy density → energy-momentum tensor) + acknowledges accurate limits and breakdown regions + compares to other emergence paradigms",
+            "proficient": "Explains emergent gravity + identifies mapped quantities + notes limits",
+            "developing": "Describes gravity emergence but definition or mapping is unclear",
+            "beginning": "Vague claim of 'gravity emerges'"
+          },
+          "anti_gaming": "Requires precise thinking about what 'emergence' means.",
+          "time_estimate_min": 14,
+          "mastery_threshold_percent": 70
+        },
+        {
+          "id": "tc4-assess-4",
+          "type": "limitation_identification",
+          "prompt": "Every theoretical claim has limitations or regimes where it breaks. For one of the key mechanisms in TC4 (gauge erasure, ADW, or emergent gravity), identify: (1) The regime where it's expected to work. (2) What happens at the boundaries (e.g., weak coupling, low density, short times). (3) Are there experiments or observations that could test or falsify it? (4) What fundamental assumptions might be wrong?",
+          "surface_features_varied": true,
+          "context_shift": "Focuses on falsifiability and testability.",
+          "rubric": {
+            "excellent": "Clearly defines valid regime (e.g., 'strong coupling, long-time hydrodynamics, thermalized') + predicts breakdown mode (e.g., 'non-equilibrium fluctuations dominate' or 'quantum corrections matter') + proposes experimental or observational tests + identifies fundamental assumptions (e.g., 'assumes weak back-reaction', 'assumes weak intrinsic curvature')",
+            "proficient": "Defines regime + predicts breakdown + identifies tests",
+            "developing": "Notes limitations but not fully fleshed out",
+            "beginning": "Weak or missing analysis of limits"
+          },
+          "anti_gaming": "Rewards critical thinking about robustness.",
+          "time_estimate_min": 12,
+          "mastery_threshold_percent": 70
+        },
+        {
+          "id": "tc4-assess-5",
+          "type": "competing_frameworks_evaluation",
+          "prompt": "Other frameworks also claim to show gauge structure or gravity emergence (e.g., AdS/CFT, holography, other EFT programs). For one alternative, compare: (1) What does it claim? (2) What assumptions underpin it? (3) What does SK-EFT do differently or better? (4) What does the alternative do that SK-EFT might miss? (5) Could they be complementary?",
+          "surface_features_varied": true,
+          "context_shift": "Comparative evaluation of competing frameworks.",
+          "rubric": {
+            "excellent": "Fairly represents alternative + identifies key differences in assumptions and methods + honestly evaluates SK-EFT's strengths and gaps vs. alternative + considers complementarity + avoids advocacy",
+            "proficient": "Compares approaches + identifies strengths of each + notes differences",
+            "developing": "Attempts comparison but incomplete or biased",
+            "beginning": "No real comparison; mostly dismisses alternative"
+          },
+          "anti_gaming": "Requires genuine, balanced thinking.",
+          "time_estimate_min": 14,
+          "mastery_threshold_percent": 70
+        }
+      ],
+      "delayed_retention_items": [
+        {
+          "id": "tc4-retention-1",
+          "type": "mechanism_strength_evaluation",
+          "prompt": "Three weeks later, someone challenges a key claim (gauge erasure, ADW, emergent gravity). Defend it or critique it honestly, referencing the evidence and assumptions.",
+          "same_deep_structure": "Evaluating mechanism strength. Different surface: different mechanism or new challenger.",
+          "time_from_gate_days": 21
+        },
+        {
+          "id": "tc4-retention-2",
+          "type": "limitation_identification",
+          "prompt": "In a new context (e.g., new data, new observation), explain where you'd expect the mechanisms to hold and where they might break.",
+          "same_deep_structure": "Identifying regime boundaries. Different surface: applied to new situation.",
+          "time_from_gate_days": 21
+        }
+      ],
+      "transfer_tasks": {
+        "near_transfer": [
+          {
+            "id": "tc4-transfer-near-1",
+            "type": "mechanism_evaluation",
+            "prompt": "A new mechanism or claim is proposed in the SK-EFT literature. Using the same evaluation framework, assess its strength and limitations.",
+            "requires_background": ["tc4-assess-1"],
+            "difficulty_jump": "small"
+          }
+        ],
+        "far_transfer": [
+          {
+            "id": "tc4-transfer-far-1",
+            "type": "software_analogy",
+            "prompt": "In software engineering, you evaluate architectural claims (e.g., 'using a microservices architecture will improve scalability'). Compare that evaluation process to evaluating claims in SK-EFT. What parallels do you see in how to test claims, identify assumptions, and find limits?",
+            "requires_background": ["tc4-assess-4"],
+            "difficulty_jump": "large"
+          }
+        ]
+      }
+    },
+    {
+      "task_class_id": "tc-5-synthesis",
+      "gate_name": "Synthesis & Big Picture Mastery Gate",
+      "bloom_level": "evaluate",
+      "description": "Present the SK-EFT research program as a coherent narrative. What is the big picture? How do the pieces fit? What are the honest limitations and open questions?",
+      "items": [
+        {
+          "id": "tc5-assess-1",
+          "type": "program_narrative",
+          "prompt": "Tell the story of the SK-EFT program as if explaining to a physicist who knows QFT and GR but is new to the program. Start from: 'Why did we need SK-EFT? What problem were we solving?' Then trace: the key insights (Hawking from fluids, gauge structure, emerging gravity), the main results, and where we stand. End with: 'What's the significance?'",
+          "surface_features_varied": true,
+          "context_shift": "Narrative, not lecture. Emphasize logical flow and motivation.",
+          "rubric": {
+            "excellent": "Clear motivation (gap in existing theories or new insight) + traces major results in logical order + shows how each piece supports the narrative + ends with honest assessment of significance and open questions",
+            "proficient": "Tells coherent story + connects key insights + explains significance",
+            "developing": "Describes results but narrative is disconnected or hard to follow",
+            "beginning": "Lists results without clear story"
+          },
+          "anti_gaming": "Open-ended narrative. Rewards synthesis and communication.",
+          "time_estimate_min": 15,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc5-assess-2",
+          "type": "assumptions_and_scope",
+          "prompt": "Every theory rests on a foundation of assumptions. For SK-EFT, identify: (1) The 'core' assumptions (without which the program doesn't work). (2) The 'architectural' assumptions (that shape the program's flavor or scope). (3) The 'convenience' assumptions (that simplify the math but could be relaxed). For each, assess: Is it justified? Could it be weakened or removed? What would be lost or gained?",
+          "surface_features_varied": true,
+          "context_shift": "Focuses on transparency about what's foundational.",
+          "rubric": {
+            "excellent": "Clearly separates assumption types + justifies core assumptions + explains trade-offs + identifies which could be relaxed and at what cost + distinguishes 'fundamental' from 'conventional' limitations",
+            "proficient": "Identifies major assumptions + separates types + assesses most + explains some trade-offs",
+            "developing": "Lists assumptions but categorization or analysis is incomplete",
+            "beginning": "Vague or missing assumption analysis"
+          },
+          "anti_gaming": "Open-ended critical thinking.",
+          "time_estimate_min": 15,
+          "mastery_threshold_percent": 75
+        },
+        {
+          "id": "tc5-assess-3",
+          "type": "open_questions_and_gaps",
+          "prompt": "What are the major unsolved problems or gaps in the SK-EFT program? For 2-3 open questions, explain: (1) Why is it open? (2) What would solving it require (new techniques, new insights, new experiments)? (3) How central is it to the program's goals? (4) Could the program be 'complete' without solving it?",
+          "surface_features_varied": true,
+          "context_shift": "Asks you to identify and characterize unknowns.",
+          "rubric": {
+            "excellent": "Identifies 2-3 genuine open problems (not just 'test in experiment') + explains why they're hard + assesses centrality + distinguishes 'essential for the program to work' from 'nice to know'",
+            "proficient": "Identifies open questions + explains why they're open + assesses importance",
+            "developing": "Notes some gaps but analysis is incomplete",
+            "beginning": "No clear picture of open questions"
+          },
+          "anti_gaming": "Requires honest assessment of unknowns.",
+          "time_estimate_min": 14,
+          "mastery_threshold_percent": 70
+        },
+        {
+          "id": "tc5-assess-4",
+          "type": "program_positioning",
+          "prompt": "Where does SK-EFT fit in the broader landscape of theoretical physics? Is it a new foundation (like QFT or GR), a tool for specific problems (like statistical mechanics is for many domains), or something else? How might it evolve in 5-10 years? What could make it transformative? What could cause it to be superseded or absorbed into something larger?",
+          "surface_features_varied": true,
+          "context_shift": "Big-picture vision. Asks for prediction and assessment.",
+          "rubric": {
+            "excellent": "Positions SK-EFT clearly (e.g., 'powerful tool for hydrodynamic limits and emergent phenomena', 'foundational insight about gauge and gravity') + gives thoughtful scenario for evolution + identifies transformative possibilities + acknowledges alternate futures without nostalgia",
+            "proficient": "Positions program + discusses evolution scenarios + balances optimism and criticism",
+            "developing": "Attempts positioning but thinking is vague",
+            "beginning": "No clear vision of program's place"
+          },
+          "anti_gaming": "Rewards big-picture thinking and foresight.",
+          "time_estimate_min": 15,
+          "mastery_threshold_percent": 70
+        },
+        {
+          "id": "tc5-assess-5",
+          "type": "honest_limitations_synthesis",
+          "prompt": "What are the most honest criticisms of SK-EFT? Not 'what could be improved' (that's always true) but 'what might be fundamentally limited or wrong about this approach?' State 2-3 serious criticisms, then for each: Is it valid? Is it serious? What would address it? How does it change your assessment of the program's value?",
+          "surface_features_varied": true,
+          "context_shift": "Asks you to argue against your own field of study.",
+          "rubric": {
+            "excellent": "Identifies genuine critiques (e.g., 'relies on hydrodynamic limit which is restrictive', 'no clear experimental test', 'assumes certain symmetry structures') + judges validity fairly + avoids strawman + assesses impact + shows intellectual honesty about program's scope and value",
+            "proficient": "Identifies real criticisms + judges them fairly + assesses impact",
+            "developing": "Attempts criticism but weak or one-sided",
+            "beginning": "Avoids or dismisses all criticism"
+          },
+          "anti_gaming": "Requires intellectual honesty and courage.",
+          "time_estimate_min": 15,
+          "mastery_threshold_percent": 70
+        }
+      ],
+      "delayed_retention_items": [
+        {
+          "id": "tc5-retention-1",
+          "type": "program_narrative",
+          "prompt": "Three weeks later, tell the SK-EFT story again, but to a different audience (e.g., philosophers of science, experimental physicists, or a funding committee). How does the narrative change? What aspects do you emphasize?",
+          "same_deep_structure": "Coherent narrative of the program. Different surface: different audience.",
+          "time_from_gate_days": 21
+        },
+        {
+          "id": "tc5-retention-2",
+          "type": "open_questions_and_gaps",
+          "prompt": "Six weeks later, new results are published in the program. Reassess: Which open questions does it address? What new gaps does it reveal?",
+          "same_deep_structure": "Identifying and updating open problems. Different surface: new papers/results.",
+          "time_from_gate_days": 42
+        }
+      ],
+      "transfer_tasks": {
+        "near_transfer": [
+          {
+            "id": "tc5-transfer-near-1",
+            "type": "program_narrative",
+            "prompt": "In a research meeting or paper, present the SK-EFT program (or a subset of it) to a skeptical but open-minded colleague. What do you emphasize? How do you acknowledge limitations? How do you make the case for the program's value?",
+            "requires_background": ["tc5-assess-1"],
+            "difficulty_jump": "small"
+          }
+        ],
+        "far_transfer": [
+          {
+            "id": "tc5-transfer-far-1",
+            "type": "meta_research_strategy",
+            "prompt": "Compare the SK-EFT program's structure and strategy to a major software architecture effort you've been involved in (e.g., API design, system refactor, new framework). How are research programs and software programs similar in their logic, assumptions, and evolution? What's fundamentally different?",
+            "requires_background": ["tc5-assess-4"],
+            "difficulty_jump": "large"
+          }
+        ]
+      }
+    }
+  ]
+}

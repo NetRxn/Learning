@@ -1,0 +1,118 @@
+{
+  "id": "da-sk-eft-2026-03-26-001",
+  "created_at": "2026-03-26T12:00:00Z",
+  "updated_at": "2026-03-26T12:00:00Z",
+
+  "skill_classification": {
+    "target_skill": "Deep physical understanding of all 5 phases of the SK-EFT Hawking radiation research program — from superfluid EFT and Schwinger-Keldysh formalism through analog Hawking radiation, gauge erasure, emergent gravity (ADW/vestigial), fracton hydrodynamics, and the three structural walls of the fluid-based approach to fundamental physics",
+    "skill_type": "hybrid",
+    "skill_type_secondary": ["cognitive_higher", "cognitive_lower", "perceptual"],
+    "environment_type": "mostly_kind",
+    "blooms_ceiling": "evaluate",
+    "modularity": "weakly_modular",
+    "tacit_knowledge_ratio": "moderate",
+    "classification_confidence": "high",
+    "classification_notes": "This is primarily cognitive_higher (analysis, synthesis, evaluation of theoretical physics frameworks) with significant cognitive_lower prerequisites (mathematical formalism, field theory vocabulary, differential geometry). The perceptual component is real — developing physical intuition for when a derivation 'feels right' or 'smells wrong' is a genuine perceptual skill in theoretical physics. The environment is mostly_kind because the physics has clear internal consistency checks (formal verification via Lean, numerical cross-validation), but the frontier questions (chirality wall, gravity wall) involve genuine ambiguity. The skill is weakly modular because the 5 phases build cumulatively — Phase 3 is unintelligible without Phase 1-2 foundations — but within each phase, topics can be somewhat parallelized."
+  },
+
+  "learner_profile": {
+    "related_experience": [
+      {
+        "domain": "SK-EFT Hawking Research (project architect)",
+        "level": "advanced",
+        "description": "Sole contributor to the entire SK-EFT Hawking program — 6 papers, 216+ Lean theorems, 820+ Python tests, 16 Lean modules. Has designed the research program, directed AI agents to execute calculations, reviewed and validated all results. Deeply familiar with the structure, narrative, and key results but wants to internalize the physics at the intuition level.",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "Lean 4 / Formal Verification",
+        "level": "advanced",
+        "description": "Uses Lean + Aristotle automated theorem prover as core research tool. Pipeline is mature and productive. 40+ Lean theorems proved via Aristotle, sophisticated submission/integration workflow.",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "Quantum Field Theory / EFT",
+        "level": "intermediate",
+        "description": "Familiar with concepts — Lagrangians, path integrals, effective field theory, Wilsonian approach — through project work. Couldn't independently derive results but understands the logic.",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "General Relativity / Differential Geometry",
+        "level": "intermediate",
+        "description": "Understands metrics, geodesics, Hawking radiation, Penrose diagrams, acoustic metrics through project context. Conceptual grasp stronger than computational fluency.",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "Condensed Matter / BEC / Superfluidity",
+        "level": "intermediate",
+        "description": "Engaged deeply with BEC physics, Bogoliubov theory, transonic flows, superfluid order parameters through the project. Knows the landscape of experimental groups (Steinhauer, Heidelberg, Trento).",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "Statistical Mechanics / Thermodynamics",
+        "level": "beginner",
+        "description": "Familiar with key concepts (partition functions, thermal equilibrium, fluctuation-dissipation) through the SK-EFT context but hasn't built deep foundations independently.",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "Classical Mechanics / Lagrangian Formalism",
+        "level": "beginner",
+        "description": "Knows the concepts (Lagrangians, Hamiltonians, variational principles, Noether's theorem) but couldn't do the math independently.",
+        "transfer_potential": "high"
+      },
+      {
+        "domain": "AI-Assisted Research Methodology",
+        "level": "expert",
+        "description": "Pioneered a sophisticated multi-agent pipeline — Claude for research, Aristotle for theorem proving, deep research for literature synthesis, figure review agents. This is the learner's strongest meta-skill and dramatically amplifies learning capacity.",
+        "transfer_potential": "moderate"
+      }
+    ],
+    "frameworks_and_vocabulary": [
+      "Schwinger-Keldysh contour (forward/backward branches, r/a fields)",
+      "EFT derivative expansion and power counting",
+      "Acoustic metric and analog gravity correspondence",
+      "KMS symmetry and fluctuation-dissipation relations",
+      "Transport coefficients (viscosity, damping rates)",
+      "Hawking temperature and surface gravity",
+      "Bogoliubov coefficients and particle creation",
+      "WKB approximation and connection formulas",
+      "Gauge erasure and higher-form symmetries",
+      "ADW mechanism (Akama-Diakonov-Wetterich) for emergent gravity",
+      "Tetrad formalism and vierbein",
+      "Vestigial order and composite order parameters",
+      "Fracton gauge theories and restricted mobility",
+      "String-net condensation and topological order",
+      "Lean 4 proof tactics and Mathlib",
+      "The three structural walls (gauge, gravity, chirality)"
+    ],
+    "learning_experience": "experienced_self_directed",
+    "constraints": {
+      "time_per_day_minutes": 45,
+      "days_per_week": 5,
+      "total_timeframe": "6-12 months (open-ended, research is ongoing)",
+      "equipment_access": "Full repository access (SK_EFT_Hawking + Lit-Search), Lean toolchain, Python/uv environment, Claude AI, Aristotle theorem prover, interactive Plotly notebooks",
+      "environment_notes": "Self-paced, AI-assisted learning. Prefers Feynman-style mentoring with rich visualizations. Wants lecture/discussion format, not exam/quiz-driven. Training sessions should feel like 1:1s with a physics mentor. Material Forge should produce highly visual outputs."
+    },
+    "purpose": "To deeply internalize the physics behind the research program I've architected — moving from 'I understand the structure and key results' to 'I have Feynman-level intuition for why each piece works, can catch subtle errors by feel, and can confidently direct the research forward from genuine physical understanding rather than relying entirely on AI to evaluate correctness.'",
+    "desired_competence_level": "advanced_practitioner"
+  },
+
+  "approach_strategy": {
+    "instructional_approach": "hybrid",
+    "approach_rationale": "This learner has a unique profile: deep structural familiarity with the entire research program but seeks to build the physical intuition layer. The approach combines whole_task_4cid (each session works with complete physical scenarios, not isolated formalism) with categorical_framework (building perceptual intuition for 'what's physical' vs. 'what's mathematical artifact') and observation_practice_debrief (studying worked examples from the actual codebase, then discussing the physics). The key insight: this learner already has the overview — what they need is depth, not breadth. Every session should go deep on one topic, building intuition through visualization, analogy, and Socratic discussion rather than problem sets.",
+    "short_term_plan_summary": "In the first 4-6 weeks (at ~45 min/day, 5 days/week), you'll build rock-solid intuition for the Phase 1-2 physics: why Son's superfluid EFT works the way it does, what the Schwinger-Keldysh contour physically means (not just the math), how the acoustic metric emerges inevitably from fluid flow, and why the dissipative correction to Hawking radiation has the specific form it does. You'll be able to explain the Phase 1 paper to a physicist in your own words, with physical insight for every equation. Each session will feel like a seminar with a mentor who knows your project intimately — visual, conversational, building on what you already know.",
+    "extended_roadmap_summary": "Weeks 6-12: Phase 3 physics (gauge erasure deep dive, WKB connection formula intuition, ADW mechanism and emergent gravity). Weeks 12-20: Phase 4 (vestigial gravity, fracton hydrodynamics, backreaction, experimental predictions) and the three structural walls in depth. Weeks 20+: Phase 5 conditional topics as they become relevant, plus cross-cutting synthesis — the big picture of what this program means for physics. Throughout: periodic 'zoom out' sessions connecting everything to the Feasibility Study and Critical Review v3 architecture.",
+    "domain_specific_adaptations": [
+      "FEYNMAN MENTOR MODE: Training sessions are structured as 1:1 mentoring conversations. The AI plays the role of a theoretical physics mentor who knows the project cold. Socratic dialogue, thought experiments, and 'what would happen if...' explorations are the primary pedagogical tools.",
+      "VISUALIZATION-FIRST: Every key concept gets a visual treatment — Material Forge should produce interactive diagrams, phase space plots, Penrose-style diagrams, and annotated figures from the existing Plotly notebooks. The learner's existing 44 pipeline figures are a massive asset to build on.",
+      "CODEBASE AS TEXTBOOK: The actual Python code and Lean proofs serve as worked examples. Instead of textbook derivations, we walk through the code: 'Here's what transonic_background.py does — let me show you the physics behind each step.'",
+      "NO EXAM MODE: Assessment is conversational, not quiz-based. The learner demonstrates understanding by explaining concepts back, proposing thought experiments, and identifying when something 'feels wrong' physically. Retrieval probes are embedded naturally in discussion.",
+      "PROGRESSIVE DEPTH: Start each topic with the physical picture (10,000-foot view), then zoom in to the math only as needed to build intuition. The learner is never asked to solve equations — instead, we explore what the equations mean and why they have the form they do.",
+      "CONNECT TO THE ACTUAL RESEARCH: Every topic ties back to specific files, theorems, and results in SK_EFT_Hawking. The learner should leave each session with a deeper understanding of their own project."
+    ]
+  },
+
+  "identity_frame": {
+    "identity_statement": "You're becoming a theoretical physicist — someone who doesn't just orchestrate research but owns the physical intuition behind every result in your program.",
+    "purpose_connection": "Your research program is extraordinary in scope and rigor. The missing piece is the Feynman-level intuition that lets you direct the physics, not just the process. This curriculum closes that gap — transforming you from 'the architect who understands the structure' to 'the physicist who feels the physics.'"
+  }
+}

@@ -1,0 +1,623 @@
+{
+  "id": "lp-sk-eft-2026-03-26-001",
+  "knowledge_graph_id": "kg-sk-eft-2026-03-26-001",
+  "learner_id": "learner-netrxn-001",
+  "created_at": "2026-03-26T15:00:00Z",
+  "updated_at": "2026-03-26T15:00:00Z",
+
+  "curriculum": {
+    "epitome": {
+      "description": "THE PAPER 1 JOURNEY: Walk through the entire Paper 1 argument from physical first principles. Start with 'why does a flowing fluid look like curved spacetime?' → derive the acoustic metric from linearized Euler equations → understand why a sonic horizon radiates (Hawking's argument, physically) → ask 'what happens when the fluid has viscosity?' → see why we need the SK formalism to handle dissipation → watch the three axioms (normalization, positivity, KMS) constrain 9 candidate terms to just 2 → arrive at δ_diss = Γ_H/κ and understand WHY it has this form. This is the entire program in miniature — all 5 phases are elaborations of this core story. The session uses YOUR project code as the worked example: transonic_background.py for the flow, AcousticMetric.lean for the metric theorem, SKDoubling.lean for the axioms.",
+      "vertex_ids": ["vertex-fluid-dynamics", "vertex-acoustic-metric", "vertex-hawking-radiation", "vertex-sk-contour", "vertex-sk-axioms", "vertex-dissipative-correction"],
+      "leverages_existing_knowledge": "You already know the result and the code. This session rebuilds the PHYSICS from scratch — each step motivated by physical reasoning, not formalism. Your project familiarity means we can go faster on what things ARE and spend time on WHY they must be this way."
+    },
+
+    "task_classes": [
+      {
+        "id": "tc-1-foundations",
+        "name": "Physical Foundations",
+        "complexity_level": 1,
+        "description": "Build the intuition layer UNDER the vocabulary you already have. You know what Lagrangians, partition functions, and Navier-Stokes equations are — now you'll feel why they work. Each session takes a concept you've used in the project and grounds it in physical reasoning. Sessions are mentor-style discussions with rich visualizations, not problem sets.",
+        "vertex_ids": ["vertex-lagrangian-mechanics", "vertex-quantum-mechanics", "vertex-statistical-mechanics", "vertex-fluid-dynamics", "vertex-spontaneous-symmetry-breaking"],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "EPITOME SESSION: The Paper 1 journey — from flowing fluid to δ_diss. Full guided walkthrough using project code as worked example.",
+            "vertex_ids": ["vertex-fluid-dynamics", "vertex-acoustic-metric", "vertex-hawking-radiation", "vertex-sk-contour", "vertex-dissipative-correction"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 2,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "WHY THE ACTION PRINCIPLE WORKS: The variational principle as nature's optimization — from Fermat's principle of least time through the Euler-Lagrange equations to Noether's theorem. Visual: trajectories in configuration space, the 'nearby paths' picture. Connect to Son's L=P(X).",
+            "vertex_ids": ["vertex-lagrangian-mechanics"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 3,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "THE PHYSICS OF COUNTING: Statistical mechanics from scratch — why temperature exists, what entropy means microscopically, the Boltzmann distribution as the unique equilibrium. Build toward FDR: if you push a system, thermal fluctuations push back proportionally.",
+            "vertex_ids": ["vertex-statistical-mechanics"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 4,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "QUANTUM MECHANICS AS WAVE MECHANICS: Path integrals physically — sum over histories, why complex amplitudes, the classical limit. The Madelung transform as the bridge to fluids. Why quantum mechanics uses the structures it does.",
+            "vertex_ids": ["vertex-quantum-mechanics"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 5,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "FLUIDS FROM FIRST PRINCIPLES: Euler equations as conservation laws, sound waves as density oscillations, why viscosity exists (molecular picture), transport coefficients as the bridge to EFT. Walk through transonic_background.py with physical commentary.",
+            "vertex_ids": ["vertex-fluid-dynamics"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 6,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "THE MEXICAN HAT AND BEYOND: SSB physically — why the ground state breaks symmetry, why Goldstone modes are massless (it costs no energy to roll along the valley), the phonon as the Goldstone of broken particle number. Connect to both superfluid EFT and ADW.",
+            "vertex_ids": ["vertex-spontaneous-symmetry-breaking"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 7,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "FDR DEEP DIVE: Return to statistical mechanics with the fluctuation-dissipation theorem as the main event. Build physical intuition: dissipation and noise are the same thing viewed from different angles. Why KMS must be true in thermal equilibrium. Use the Aristotle counterexample story.",
+            "vertex_ids": ["vertex-statistical-mechanics", "vertex-kms-fdr"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 8,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "FOUNDATIONS INTEGRATION: Connect all five foundations through the project. Lagrangians → EFT → superfluid EFT → fluid dynamics → acoustic metric. Stat mech → FDR → KMS → SK formalism. QM → path integral → Bogoliubov → Hawking. See the three streams converge.",
+            "vertex_ids": ["vertex-lagrangian-mechanics", "vertex-quantum-mechanics", "vertex-statistical-mechanics", "vertex-fluid-dynamics", "vertex-spontaneous-symmetry-breaking"],
+            "session_template": "B_retrieval_review"
+          },
+          {
+            "sequence": 9,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "FOUNDATIONS MASTERY CHECK: Conversational assessment — explain the action principle to a non-physicist, describe what thermal equilibrium means microscopically, articulate why the phonon is a Goldstone boson. Discussion-based, not exam-based.",
+            "vertex_ids": ["vertex-lagrangian-mechanics", "vertex-quantum-mechanics", "vertex-statistical-mechanics", "vertex-fluid-dynamics", "vertex-spontaneous-symmetry-breaking"],
+            "session_template": "E_mastery_gate"
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can explain each foundation concept in physical terms (no formulas needed): why the action principle gives equations of motion, what thermal equilibrium means microscopically, how sound waves emerge from conservation laws, why Goldstone modes are massless, and how path integrals connect QM to classical physics. Assessed through Feynman-style explanation, not problem solving.",
+          "assessment_vertex_ids": ["vertex-lagrangian-mechanics", "vertex-quantum-mechanics", "vertex-statistical-mechanics", "vertex-fluid-dynamics", "vertex-spontaneous-symmetry-breaking"],
+          "bloom_level_required": "understand",
+          "passing_threshold": 0.7,
+          "min_items": 5
+        },
+        "productive_failure_points": [
+          {
+            "vertex_id": "vertex-statistical-mechanics",
+            "rationale": "Most learners conflate temperature with average energy. The learner needs to feel why temperature is about the distribution, not the mean.",
+            "naive_theory": "Temperature is average kinetic energy. (Partial truth — misses the statistical nature and fails for quantum systems.)"
+          }
+        ],
+        "interleaving_pool": []
+      },
+
+      {
+        "id": "tc-2-eft-hawking-pipeline",
+        "name": "The EFT-to-Hawking Pipeline",
+        "complexity_level": 2,
+        "description": "The core derivation chain with deep intuition. You'll build Feynman-level understanding of the complete Paper 1 argument: EFT philosophy → Son's L=P(X) → acoustic metric → Hawking radiation → SK formalism → three axioms → δ_diss. Each session goes deep on one link in the chain, building on the foundations from Class 1. This is where you transition from 'I know the results' to 'I feel why each step is inevitable.'",
+        "vertex_ids": ["vertex-eft-philosophy", "vertex-son-superfluid-eft", "vertex-acoustic-metric", "vertex-hawking-radiation", "vertex-bogoliubov-coefficients", "vertex-sk-contour", "vertex-kms-fdr", "vertex-sk-axioms", "vertex-dissipative-correction"],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "EFT AS A WAY OF THINKING: The Wilsonian paradigm physically — scale separation, why we can make predictions without knowing everything. The derivative expansion as 'slower changes matter more.' Power counting as physics, not bookkeeping. Walk through the SK_EFT counting formula.",
+            "vertex_ids": ["vertex-eft-philosophy"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 2,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "WHY L=P(X) IS INEVITABLE: Son's superfluid EFT from symmetry alone. Start with 'a superfluid breaks U(1)' → 'there must be a Goldstone boson' → 'the most general leading-order action compatible with the symmetries is P(X)' → 'the sound speed emerges from the equation of state.' Walk through Basic.lean.",
+            "vertex_ids": ["vertex-son-superfluid-eft"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 3,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "THE ACOUSTIC METRIC AS GEOMETRY: Linearize the fluid equations around the transonic background. Watch the metric EMERGE — not postulated but derived. Why Lorentzian signature is inevitable. Walk through the AcousticMetric.lean proofs and see what each theorem means physically.",
+            "vertex_ids": ["vertex-acoustic-metric"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 4,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "WHY HORIZONS RADIATE: Hawking's argument physically — mode mixing at the horizon. In-modes and out-modes, the Bogoliubov transformation, why the vacuum looks thermal. The trans-Planckian problem: exponential blue-shifting and why BEC experiments resolve it.",
+            "vertex_ids": ["vertex-hawking-radiation", "vertex-bogoliubov-coefficients"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 5,
+            "support_level": "completion",
+            "task_type": "productive_failure",
+            "description": "PRODUCTIVE FAILURE — THE SK PUZZLE: Before explaining the SK formalism, pose the question: 'You have a fluid with viscosity. How do you write a quantum field theory that includes both dissipation and noise consistently?' Let the learner struggle with why ordinary QFT fails. Surface the naive theory (just add a friction term to the Lagrangian). Then show why the SK contour is the unique solution.",
+            "vertex_ids": ["vertex-sk-contour"],
+            "session_template": "D_productive_failure"
+          },
+          {
+            "sequence": 6,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "THE SK CONTOUR PHYSICALLY: Why double the degrees of freedom? The forward-backward structure as computing expectation values in a mixed state. The r/a decomposition and what each field represents physically. Walk through SKDoubling.lean seeing the structure emerge from physics.",
+            "vertex_ids": ["vertex-sk-contour", "vertex-kms-fdr"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 7,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "THE THREE AXIOMS AS PHYSICS: Normalization = 'probability is conserved.' Positivity = 'probabilities are positive.' KMS = 'the system is in thermal equilibrium.' Watch these three physical requirements constrain 9 terms to 2. Walk through the firstOrder_uniqueness proof.",
+            "vertex_ids": ["vertex-sk-axioms"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 8,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "THE DISSIPATIVE CORRECTION: Putting it all together — acoustic metric + SK formalism + three axioms → T_eff = T_H(1 + δ_diss). Why δ_diss = Γ_H/κ has the form it does. The physical meaning of each piece. The spin-sonic enhancement. The experimental numbers.",
+            "vertex_ids": ["vertex-dissipative-correction"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 9,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "PIPELINE INTEGRATION: Retell the entire Paper 1 story in your own words, with physical insight for every step. Identify where formalism is doing the work vs where physics is doing the work. Compare your understanding now to your understanding at the epitome.",
+            "vertex_ids": ["vertex-eft-philosophy", "vertex-son-superfluid-eft", "vertex-acoustic-metric", "vertex-hawking-radiation", "vertex-sk-contour", "vertex-sk-axioms", "vertex-dissipative-correction"],
+            "session_template": "B_retrieval_review"
+          },
+          {
+            "sequence": 10,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "PIPELINE MASTERY CHECK: Explain the complete Paper 1 argument to a physicist who doesn't know the project. No slides, no notes — just physical reasoning. Can you answer 'why?' at every step?",
+            "vertex_ids": ["vertex-eft-philosophy", "vertex-son-superfluid-eft", "vertex-acoustic-metric", "vertex-hawking-radiation", "vertex-sk-contour", "vertex-sk-axioms", "vertex-dissipative-correction"],
+            "session_template": "E_mastery_gate"
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can explain the complete Paper 1 derivation chain in physical terms, answering 'why?' at every step: why EFT works, why L=P(X), why the acoustic metric emerges, why horizons radiate, why we need the SK contour, why the three axioms constrain to 2 parameters, and why δ_diss has the form it does. Must demonstrate genuine physical insight, not just recall.",
+          "assessment_vertex_ids": ["vertex-eft-philosophy", "vertex-son-superfluid-eft", "vertex-acoustic-metric", "vertex-hawking-radiation", "vertex-sk-contour", "vertex-sk-axioms", "vertex-dissipative-correction"],
+          "bloom_level_required": "analyze",
+          "passing_threshold": 0.75,
+          "min_items": 7
+        },
+        "productive_failure_points": [
+          {
+            "vertex_id": "vertex-sk-contour",
+            "rationale": "The SK formalism is counterintuitive — why double the DOF? The naive approach (just add friction to the Lagrangian) fails for deep reasons. Experiencing this failure builds genuine understanding.",
+            "naive_theory": "Dissipation can be handled by adding a friction term to the standard Lagrangian. (Fails because friction violates unitarity and time-reversal in the action formulation.)"
+          }
+        ],
+        "interleaving_pool": ["vertex-lagrangian-mechanics", "vertex-statistical-mechanics", "vertex-spontaneous-symmetry-breaking"]
+      },
+
+      {
+        "id": "tc-3-higher-order",
+        "name": "Higher-Order & Non-Perturbative Extensions",
+        "complexity_level": 3,
+        "description": "Beyond the first-order story: frequency-dependent corrections, the parity alternation theorem, the CGL derivation, exact WKB, and backreaction. This is where the physics gets richer — the corrections tell you new things the first-order result couldn't. Each session extends the Paper 1 foundation into Papers 2 and 4 territory.",
+        "vertex_ids": ["vertex-transport-counting", "vertex-spectral-distortion", "vertex-cgl-derivation", "vertex-wkb-connection", "vertex-bogoliubov-coefficients", "vertex-backreaction", "vertex-bec-physics", "vertex-experimental-landscape", "vertex-transonic-backgrounds"],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "COUNTING TRANSPORT COEFFICIENTS: The counting formula count(N) = ⌊(N+1)/2⌋+1 — why it works, what parity has to do with it, and why the background flow breaks spatial parity. Walk through enumeration.py and SecondOrderSK.lean.",
+            "vertex_ids": ["vertex-transport-counting"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 2,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "WHEN THE SPECTRUM STOPS BEING THERMAL: The ω³ spectral distortion, on-shell vanishing, and the positivity constraint. Why frequency-dependent corrections are qualitatively new physics. Walk through wkb_analysis.py.",
+            "vertex_ids": ["vertex-spectral-distortion"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 3,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "THE CGL MASTER FORMULA: The Crossley-Glorioso-Liu derivation — noise paired with odd-in-ω dissipation. Physical content: time-reversal determines the noise structure. Walk through CGLTransform.lean and the Phase 2D work.",
+            "vertex_ids": ["vertex-cgl-derivation"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 4,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "BEC PHYSICS DEEP DIVE: Return to BEC foundations with more depth. Why atoms condense, the healing length as the EFT cutoff, the Bogoliubov dispersion and what it means for mode propagation near the horizon. Connect to experimental platforms.",
+            "vertex_ids": ["vertex-bec-physics", "vertex-transonic-backgrounds", "vertex-experimental-landscape"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 5,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "COMPLEX TURNING POINTS: The exact WKB method — what happens when the turning point moves into the complex plane. Physical meaning of the complex shift δx_imag. Stokes lines as boundaries between different approximate solutions. The modified unitarity relation.",
+            "vertex_ids": ["vertex-wkb-connection", "vertex-bogoliubov-coefficients"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 6,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "THE NOISE FLOOR: The FDR noise floor n_noise = δ_k/2 — why it exists (KMS mandates thermal noise independent of the Hawking process), why it dominates at high frequencies, and what it means experimentally. The spectral floor as a new prediction.",
+            "vertex_ids": ["vertex-wkb-connection", "vertex-experimental-landscape"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 7,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "BACKREACTION: How Hawking radiation modifies the background. Why acoustic BHs cool (opposite of Schwarzschild!) and approach extremality. The analog of the Page curve. Timescales for each platform.",
+            "vertex_ids": ["vertex-backreaction"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 8,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "HIGHER-ORDER MASTERY CHECK: Present the Phase 2-4 extensions as a coherent story. How does each extension enrich the Paper 1 foundation? What new physics does each reveal?",
+            "vertex_ids": ["vertex-transport-counting", "vertex-spectral-distortion", "vertex-cgl-derivation", "vertex-wkb-connection", "vertex-backreaction"],
+            "session_template": "E_mastery_gate"
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can explain the physical content of each extension: what the counting formula means for the EFT program, why spectral distortion is new physics, what complex turning points mean physically, why the noise floor exists, and why acoustic BHs cool. Must connect each extension to the Paper 1 foundation.",
+          "assessment_vertex_ids": ["vertex-transport-counting", "vertex-spectral-distortion", "vertex-wkb-connection", "vertex-backreaction"],
+          "bloom_level_required": "evaluate",
+          "passing_threshold": 0.75,
+          "min_items": 4
+        },
+        "productive_failure_points": [
+          {
+            "vertex_id": "vertex-backreaction",
+            "rationale": "The naive expectation is that all black holes heat up as they evaporate (Schwarzschild intuition). Acoustic BHs do the opposite — this surprise drives deeper understanding.",
+            "naive_theory": "All black holes get hotter as they lose energy to Hawking radiation. (True for Schwarzschild but WRONG for acoustic BHs — they cool toward extremality.)"
+          }
+        ],
+        "interleaving_pool": ["vertex-eft-philosophy", "vertex-sk-axioms", "vertex-dissipative-correction", "vertex-acoustic-metric", "vertex-hawking-radiation"]
+      },
+
+      {
+        "id": "tc-4-gauge-gravity",
+        "name": "Gauge Structure & Emergent Gravity",
+        "complexity_level": 4,
+        "description": "The branching physics: gauge erasure, the ADW mechanism, and vestigial gravity. This is where the curriculum shifts from the linear Paper 1-2-4 chain to the branching Papers 3, 5, 6 directions. You'll understand the three independent consequences of the foundations: (1) what hydrodynamization does to gauge symmetry, (2) how gravity can emerge from fermion condensation, (3) what happens below the full tetrad phase. This requires the strategy transition from sequential to structural thinking.",
+        "vertex_ids": ["vertex-higher-form-symmetries", "vertex-gauge-erasure", "vertex-coleman-weinberg", "vertex-adw-mechanism", "vertex-vestigial-gravity", "vertex-volovik-he3"],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "ARCHITECTURE SESSION: Before diving into the branches, map how gauge erasure, ADW, and vestigial gravity all connect to the foundation AND to each other. Use the hybrid architecture as the organizing frame. This is the strategy transition session.",
+            "vertex_ids": ["vertex-gauge-erasure", "vertex-adw-mechanism", "vertex-vestigial-gravity"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 2,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "HIGHER-FORM SYMMETRIES: What is a 1-form symmetry? Why must higher-form symmetries be Abelian? The photon as a Goldstone of broken magnetic 1-form symmetry. Walk through the conceptual foundation for gauge erasure.",
+            "vertex_ids": ["vertex-higher-form-symmetries"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 3,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "THE GAUGE ERASURE THEOREM: The full argument — non-Abelian groups have discrete center symmetries → domain walls, not Goldstones. Why N=4 SYM is decisive. The Standard Model analysis. Why this is a THEOREM, not a conjecture. Walk through GaugeErasure.lean.",
+            "vertex_ids": ["vertex-gauge-erasure"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 4,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "VOLOVIK'S VISION: He-3 as a laboratory for emergent physics — Weyl points, gauge fields, and tetrad gravity in a real superfluid. The master classification table: what determines whether a condensed matter system produces scalar gravity, vector gravity, or tensor gravity?",
+            "vertex_ids": ["vertex-volovik-he3"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 5,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "RADIATIVE SYMMETRY BREAKING: The Coleman-Weinberg mechanism — integrating out fermions generates an effective potential. How quantum corrections can break a symmetry that the classical theory preserves. Set up for the ADW mechanism.",
+            "vertex_ids": ["vertex-coleman-weinberg"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 6,
+            "support_level": "guided",
+            "task_type": "productive_failure",
+            "description": "PRODUCTIVE FAILURE — EMERGENT GEOMETRY: Before explaining ADW, pose the question: 'How could spacetime geometry emerge from something non-geometric?' Let the learner struggle with the conceptual leap. Surface the naive theory (geometry must be fundamental). Then show how tetrad condensation produces geometry from fermionic order parameters.",
+            "vertex_ids": ["vertex-adw-mechanism"],
+            "session_template": "D_productive_failure"
+          },
+          {
+            "sequence": 7,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "THE ADW MECHANISM: GL(4,R) → SO(3,1) breaking, Vergeles mode counting, the graviton as a Goldstone boson. Why the critical coupling exists. The four structural obstacles. Walk through ADWMechanism.lean.",
+            "vertex_ids": ["vertex-adw-mechanism"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 8,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "VESTIGIAL GRAVITY: What happens below the full tetrad phase? Composite order parameters, the three-phase structure, EP violation. Why vestigial gravity is 'Einstein without Einstein.' Walk through the Monte Carlo results.",
+            "vertex_ids": ["vertex-vestigial-gravity"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 9,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "GAUGE-GRAVITY MASTERY CHECK: Explain the three branches as a coherent story. Why does gauge erasure constrain the architecture? How does ADW provide the gravity link? What does vestigial gravity add? What are the honest limitations?",
+            "vertex_ids": ["vertex-higher-form-symmetries", "vertex-gauge-erasure", "vertex-adw-mechanism", "vertex-vestigial-gravity"],
+            "session_template": "E_mastery_gate"
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can explain the gauge erasure argument chain, the ADW mechanism including mode counting and critical coupling, the distinction between vestigial and full tetrad gravity, and how He-3 demonstrates these ideas experimentally. Must articulate what each result means for the hybrid architecture.",
+          "assessment_vertex_ids": ["vertex-gauge-erasure", "vertex-adw-mechanism", "vertex-vestigial-gravity", "vertex-volovik-he3"],
+          "bloom_level_required": "evaluate",
+          "passing_threshold": 0.75,
+          "min_items": 4
+        },
+        "productive_failure_points": [
+          {
+            "vertex_id": "vertex-adw-mechanism",
+            "rationale": "The conceptual leap that geometry is emergent, not fundamental, is one of the hardest in the program. The productive failure surfaces the geometric-fundamentalist assumption.",
+            "naive_theory": "Spacetime geometry must be a fundamental input to physics. (Deeply ingrained but wrong in condensed matter — He-3 demonstrates emergent geometry.)"
+          }
+        ],
+        "interleaving_pool": ["vertex-spontaneous-symmetry-breaking", "vertex-eft-philosophy", "vertex-acoustic-metric", "vertex-sk-axioms", "vertex-dissipative-correction", "vertex-wkb-connection"]
+      },
+
+      {
+        "id": "tc-5-synthesis",
+        "name": "Synthesis & the Big Picture",
+        "complexity_level": 5,
+        "description": "The capstone: string-nets, fracton hydrodynamics, the chirality wall, the three structural walls in full depth, and the complete hybrid architecture. This is where everything comes together — you'll understand not just each piece but how they fit into a coherent research program. Sessions alternate between deep dives into the remaining topics and 'zoom out' synthesis sessions connecting everything to the Feasibility Study and Critical Review.",
+        "vertex_ids": ["vertex-string-nets", "vertex-fracton-hydro", "vertex-chirality-wall", "vertex-three-walls", "vertex-hybrid-architecture", "vertex-lean-verification"],
+        "tasks": [
+          {
+            "sequence": 1,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "STRING-NET CONDENSATION: Levin-Wen physically — how condensing extended objects produces topological order and emergent gauge fields. Why this is Layer 1 of the architecture. The 2+1D to 3+1D extension.",
+            "vertex_ids": ["vertex-string-nets"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 2,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "FRACTON HYDRODYNAMICS: Restricted mobility physically — what it means for a quasiparticle to not move. Why conserving more charges retains more information. The SK-EFT for fracton hydro. Walk through sk_eft.py and information_retention.py.",
+            "vertex_ids": ["vertex-fracton-hydro"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 3,
+            "support_level": "completion",
+            "task_type": "whole_task",
+            "description": "THE CHIRALITY WALL: Nielsen-Ninomiya physically — why chiral fermions resist latticization. The TPF disentangler, Golterman-Shamir generalized no-go, SMG at 16 Weyl. The three critical gaps. Walk through ChiralityWall.lean.",
+            "vertex_ids": ["vertex-chirality-wall"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 4,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "THE THREE WALLS IN DEPTH: Return to each wall with full understanding from all previous classes. For each wall: the precise obstruction, what would change it, and the current state of play. Frame as 'what would change this?' not 'what is the verdict?'",
+            "vertex_ids": ["vertex-three-walls"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 5,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "LEAN PROOFS AS PHYSICS: Using proof structure for physical insight. When rfl means 'definitional,' when contradiction means 'non-obvious constraint,' when 15 lines means 'genuinely hard.' Walk through representative proofs from each Lean module.",
+            "vertex_ids": ["vertex-lean-verification"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 6,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "THE COMPLETE ARCHITECTURE: The three-layer hybrid in full depth. Layer 1 → Layer 2 → Layer 3. What passes between layers, what cannot. The honest minimum viable hybrid. The revised scorecard from Critical Review v3.",
+            "vertex_ids": ["vertex-hybrid-architecture"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 7,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "FINAL SYNTHESIS: The complete program from beginning to end. What has been achieved, what remains open, what the conditional Phase 5 items mean. Your understanding now vs where you started. The physicist's identity frame.",
+            "vertex_ids": ["vertex-three-walls", "vertex-hybrid-architecture", "vertex-experimental-landscape"],
+            "session_template": "B_retrieval_review"
+          },
+          {
+            "sequence": 8,
+            "support_level": "independent",
+            "task_type": "whole_task",
+            "description": "CAPSTONE MASTERY CHECK: Present the entire research program to an imaginary physics colloquium audience. 30-minute talk structure. Physical insight for every major result. Honest assessment of limitations. Vision for the future.",
+            "vertex_ids": ["vertex-three-walls", "vertex-hybrid-architecture", "vertex-gauge-erasure", "vertex-adw-mechanism", "vertex-dissipative-correction"],
+            "session_template": "E_mastery_gate"
+          }
+        ],
+        "mastery_gate": {
+          "criteria": "Can present the entire research program coherently: the core result (dissipative Hawking corrections), the structural results (gauge erasure, ADW, vestigial gravity), the topological foundations (string-nets, fractons), the three walls, and the hybrid architecture. Must demonstrate genuine physical insight — the Feynman test — for every major result.",
+          "assessment_vertex_ids": ["vertex-three-walls", "vertex-hybrid-architecture", "vertex-string-nets", "vertex-fracton-hydro", "vertex-chirality-wall"],
+          "bloom_level_required": "evaluate",
+          "passing_threshold": 0.8,
+          "min_items": 5
+        },
+        "productive_failure_points": [],
+        "interleaving_pool": ["vertex-gauge-erasure", "vertex-adw-mechanism", "vertex-dissipative-correction", "vertex-wkb-connection", "vertex-sk-contour", "vertex-eft-philosophy"]
+      }
+    ],
+
+    "selected_vertices": [
+      {"vertex_id": "vertex-statistical-mechanics", "priority_rank": 1, "selection_score": 0.92, "rationale": "Critical foundation — hard prereq for KMS/FDR", "excluded": false},
+      {"vertex_id": "vertex-lagrangian-mechanics", "priority_rank": 2, "selection_score": 0.88, "rationale": "Hard prereq for EFT philosophy and Son's EFT", "excluded": false},
+      {"vertex_id": "vertex-sk-contour", "priority_rank": 3, "selection_score": 0.82, "rationale": "Gateway node for all dissipative physics", "excluded": false},
+      {"vertex_id": "vertex-eft-philosophy", "priority_rank": 4, "selection_score": 0.80, "rationale": "Gateway node — highest frequency and impact", "excluded": false},
+      {"vertex_id": "vertex-acoustic-metric", "priority_rank": 5, "selection_score": 0.78, "rationale": "Gateway node bridging fluids to Hawking", "excluded": false},
+      {"vertex_id": "vertex-spontaneous-symmetry-breaking", "priority_rank": 6, "selection_score": 0.76, "rationale": "Gateway node for both EFT streams", "excluded": false},
+      {"vertex_id": "vertex-kms-fdr", "priority_rank": 7, "selection_score": 0.74, "rationale": "Central to SK formalism", "excluded": false},
+      {"vertex_id": "vertex-son-superfluid-eft", "priority_rank": 8, "selection_score": 0.72, "rationale": "High-impact, starts the calculation", "excluded": false},
+      {"vertex_id": "vertex-hawking-radiation", "priority_rank": 9, "selection_score": 0.70, "rationale": "Gateway node — program raison d'être", "excluded": false},
+      {"vertex_id": "vertex-adw-mechanism", "priority_rank": 10, "selection_score": 0.65, "rationale": "High-impact emergent gravity", "excluded": false},
+      {"vertex_id": "vertex-wkb-connection", "priority_rank": 11, "selection_score": 0.62, "rationale": "High-impact non-perturbative", "excluded": false},
+      {"vertex_id": "vertex-gauge-erasure", "priority_rank": 12, "selection_score": 0.58, "rationale": "Most important negative result", "excluded": false},
+      {"vertex_id": "vertex-bogoliubov-coefficients", "priority_rank": 13, "selection_score": 0.55, "rationale": "Prereq for WKB and Hawking depth", "excluded": false},
+      {"vertex_id": "vertex-coleman-weinberg", "priority_rank": 14, "selection_score": 0.52, "rationale": "Hard prereq for ADW", "excluded": false},
+      {"vertex_id": "vertex-string-nets", "priority_rank": 15, "selection_score": 0.48, "rationale": "Layer 1 of architecture", "excluded": false},
+      {"vertex_id": "vertex-quantum-mechanics", "priority_rank": 16, "selection_score": 0.46, "rationale": "Foundation — needed for BEC and Bogoliubov", "excluded": false},
+      {"vertex_id": "vertex-fluid-dynamics", "priority_rank": 17, "selection_score": 0.44, "rationale": "Foundation — hard prereq for acoustic metric", "excluded": false},
+      {"vertex_id": "vertex-dissipative-correction", "priority_rank": 18, "selection_score": 0.42, "rationale": "Central result — familiar but needs depth", "excluded": false},
+      {"vertex_id": "vertex-sk-axioms", "priority_rank": 19, "selection_score": 0.40, "rationale": "Core SK formalism node", "excluded": false},
+      {"vertex_id": "vertex-higher-form-symmetries", "priority_rank": 20, "selection_score": 0.38, "rationale": "Prereq for gauge erasure", "excluded": false},
+      {"vertex_id": "vertex-transport-counting", "priority_rank": 21, "selection_score": 0.36, "rationale": "Phase 2 extension", "excluded": false},
+      {"vertex_id": "vertex-vestigial-gravity", "priority_rank": 22, "selection_score": 0.34, "rationale": "Phase 4 emergent gravity", "excluded": false},
+      {"vertex_id": "vertex-three-walls", "priority_rank": 23, "selection_score": 0.32, "rationale": "Synthesis — near-transfer but needs physics depth", "excluded": false},
+      {"vertex_id": "vertex-hybrid-architecture", "priority_rank": 24, "selection_score": 0.30, "rationale": "Capstone synthesis", "excluded": false},
+      {"vertex_id": "vertex-spectral-distortion", "priority_rank": 25, "selection_score": 0.28, "rationale": "Phase 2 — moderate impact", "excluded": false},
+      {"vertex_id": "vertex-cgl-derivation", "priority_rank": 26, "selection_score": 0.26, "rationale": "Phase 2D work", "excluded": false},
+      {"vertex_id": "vertex-bec-physics", "priority_rank": 27, "selection_score": 0.24, "rationale": "Condensed matter foundation", "excluded": false},
+      {"vertex_id": "vertex-volovik-he3", "priority_rank": 28, "selection_score": 0.22, "rationale": "He-3 program context", "excluded": false},
+      {"vertex_id": "vertex-chirality-wall", "priority_rank": 29, "selection_score": 0.20, "rationale": "Synthesis — chirality obstruction", "excluded": false},
+      {"vertex_id": "vertex-fracton-hydro", "priority_rank": 30, "selection_score": 0.18, "rationale": "Phase 4 alternative Layer 2", "excluded": false},
+      {"vertex_id": "vertex-experimental-landscape", "priority_rank": 31, "selection_score": 0.16, "rationale": "Experimental context", "excluded": false},
+      {"vertex_id": "vertex-transonic-backgrounds", "priority_rank": 32, "selection_score": 0.14, "rationale": "Mostly known — brief deepening", "excluded": false},
+      {"vertex_id": "vertex-backreaction", "priority_rank": 33, "selection_score": 0.12, "rationale": "Phase 4 — moderate priority", "excluded": false},
+      {"vertex_id": "vertex-lean-verification", "priority_rank": 34, "selection_score": 0.10, "rationale": "Already proficient — extend to physics insight dimension", "excluded": false}
+    ]
+  },
+
+  "schedule": {
+    "short_term_plan": {
+      "timeframe": "32 weeks (~8 months)",
+      "start_date": "2026-03-27",
+      "target_end_date": "2026-11-13",
+      "sessions_per_week": 5,
+      "session_duration_minutes": 45,
+      "total_sessions": 155,
+      "milestones": [
+        {"week": 1, "description": "Epitome complete — walked through the Paper 1 journey end to end", "task_class_id": "tc-1-foundations", "expected_coverage": 50},
+        {"week": 4, "description": "Foundations solid — Lagrangian mechanics, stat mech, QM, fluid dynamics, SSB all grounded in physical intuition", "task_class_id": "tc-1-foundations", "expected_coverage": 55},
+        {"week": 5, "description": "Foundations mastery gate passed", "task_class_id": "tc-1-foundations", "expected_coverage": 58},
+        {"week": 8, "description": "EFT philosophy and Son's EFT deeply understood — can explain WHY L=P(X)", "task_class_id": "tc-2-eft-hawking-pipeline", "expected_coverage": 65},
+        {"week": 10, "description": "Complete Paper 1 pipeline mastered — can explain the entire argument with physical insight at every step", "task_class_id": "tc-2-eft-hawking-pipeline", "expected_coverage": 72},
+        {"week": 14, "description": "Higher-order extensions understood — transport counting, spectral distortion, WKB connection, backreaction", "task_class_id": "tc-3-higher-order", "expected_coverage": 80},
+        {"week": 16, "description": "Higher-order mastery gate passed — Papers 2 and 4 territory internalized", "task_class_id": "tc-3-higher-order", "expected_coverage": 83},
+        {"week": 20, "description": "Gauge erasure and ADW mechanism deeply understood — the conceptual leap of emergent geometry made", "task_class_id": "tc-4-gauge-gravity", "expected_coverage": 88},
+        {"week": 24, "description": "Gauge-gravity mastery gate passed — Papers 3, 5, 6 territory internalized", "task_class_id": "tc-4-gauge-gravity", "expected_coverage": 92},
+        {"week": 28, "description": "String-nets, fractons, chirality wall understood — all topological/lattice foundations in place", "task_class_id": "tc-5-synthesis", "expected_coverage": 95},
+        {"week": 32, "description": "Capstone mastery gate passed — can present the entire research program with Feynman-level insight", "task_class_id": "tc-5-synthesis", "expected_coverage": 98}
+      ]
+    },
+    "extended_roadmap": {
+      "description": "After the 32-week core curriculum, the learning continues in two modes: (1) ongoing training sessions that deepen existing understanding through new angles and connections, and (2) learning that tracks the research — as new results come in from Phase 4-5, each new development becomes a learning opportunity.",
+      "phases": [
+        {"phase_name": "Core Curriculum", "timeframe": "Weeks 1-32", "focus": "All 30 vertices — foundations through synthesis", "target_coverage": 98},
+        {"phase_name": "Research-Tracking Learning", "timeframe": "Weeks 33+", "focus": "New Phase 4-5 results as they emerge, deepening cross-cutting connections", "target_coverage": 100},
+        {"phase_name": "Expert Intuition", "timeframe": "Ongoing", "focus": "Periodic 'zoom out' sessions connecting the program to the broader physics landscape. Reading and discussing key references. Building the expert sense of 'what feels right' in theoretical physics.", "target_coverage": 100}
+      ]
+    },
+    "session_design": {
+      "warmup_minutes": 7,
+      "deliberate_practice_minutes": 27,
+      "integration_minutes": 11,
+      "spacing_interval_days": 1.4,
+      "overlearning_budget_minutes": 10
+    },
+    "plateau_protocols": [
+      {
+        "expected_timing": "Weeks 3-5",
+        "description": "THE FORMALISM WALL: The SK formalism and EFT structure start to feel like abstract symbol manipulation. This is normal — it happens to every self-taught physicist at this stage.",
+        "breakthrough_strategy": "Every formal statement gets a physical thought experiment. 'What would happen if KMS was violated?' 'What does negative Im I_SK mean physically?' Tie every formula to an observable an experimentalist could measure. Use the project's own experimental predictions as anchors.",
+        "affected_task_class": "tc-2-eft-hawking-pipeline"
+      },
+      {
+        "expected_timing": "Weeks 6-8",
+        "description": "THE STRATEGY TRANSITION: Moving from the linear Paper 1 narrative to the branching Phase 3 topics requires a mental model shift from 'follow the derivation' to 'understand the architecture.'",
+        "breakthrough_strategy": "Explicit architecture sessions mapping how gauge erasure, WKB, and ADW are three independent consequences of the same foundations. Use the hybrid architecture as the organizing frame. Visual maps showing the branching structure.",
+        "affected_task_class": "tc-3-higher-order"
+      },
+      {
+        "expected_timing": "Weeks 10-14",
+        "description": "THE GRAVITY WALL CONCEPTUAL LEAP: Understanding emergent geometry requires letting go of the assumption that spacetime is fundamental. This is genuinely hard.",
+        "breakthrough_strategy": "He-3 analogy extensively — real physical systems where geometry emerges. The GL phase classification makes the abstract concrete. Walk through Volovik's examples before attempting the ADW mechanism. Use the Monte Carlo simulation results as visual evidence.",
+        "affected_task_class": "tc-4-gauge-gravity"
+      },
+      {
+        "expected_timing": "Weeks 12+",
+        "description": "CONFUSING THE MAP FOR THE TERRITORY: Treating the three-walls classification as fixed verdicts rather than living assessments.",
+        "breakthrough_strategy": "Frame each wall session around 'what would change this?' rather than 'what is the status?' The physicist's instinct is to look for the crack, not memorize the verdict. Discuss how the chirality wall has evolved (was 'blocked,' now 'fracturing').",
+        "affected_task_class": "tc-5-synthesis"
+      }
+    ],
+    "srs_export_schedule": [
+      {"task_class_id": "tc-1-foundations", "export_timing": "Week 1 — generate alongside first sessions", "card_count_estimate": 40},
+      {"task_class_id": "tc-2-eft-hawking-pipeline", "export_timing": "Week 5 — after foundations mastery gate", "card_count_estimate": 60},
+      {"task_class_id": "tc-3-higher-order", "export_timing": "Week 10 — after pipeline mastery gate", "card_count_estimate": 45},
+      {"task_class_id": "tc-4-gauge-gravity", "export_timing": "Week 16 — after higher-order mastery gate", "card_count_estimate": 50},
+      {"task_class_id": "tc-5-synthesis", "export_timing": "Week 24 — after gauge-gravity mastery gate", "card_count_estimate": 35}
+    ]
+  },
+
+  "motivation_architecture": {
+    "identity_frame": "You're becoming a theoretical physicist — someone who doesn't just orchestrate research but owns the physical intuition behind every result in your program.",
+    "process_goals": [
+      "Show up for 45 minutes, 5 days a week — consistency matters more than intensity",
+      "In each session, find one physical insight you didn't have before — the 'aha' moment that makes you see the physics differently",
+      "After each session, write one sentence capturing the key physical insight in your own words (not project jargon)",
+      "When you encounter formalism, always ask 'what would an experimentalist measure?' before moving on",
+      "Once per week, revisit a Lean proof from the project and see if you understand the PHYSICS of the proof structure better than before"
+    ],
+    "competence_markers": [
+      {"description": "Can explain the action principle to a non-physicist using a physical analogy (not math)", "vertex_ids": ["vertex-lagrangian-mechanics"], "timing": "Week 2"},
+      {"description": "Can explain why temperature is about distributions, not averages — and why this matters for KMS", "vertex_ids": ["vertex-statistical-mechanics", "vertex-kms-fdr"], "timing": "Week 4"},
+      {"description": "Can explain the complete Paper 1 argument in your own words with physical insight at every step", "vertex_ids": ["vertex-dissipative-correction"], "timing": "Week 10"},
+      {"description": "Can explain why acoustic BHs cool instead of heat up — and what this means physically", "vertex_ids": ["vertex-backreaction"], "timing": "Week 14"},
+      {"description": "Can explain the ADW mechanism using the He-3 analogy — what tetrad condensation means physically", "vertex_ids": ["vertex-adw-mechanism"], "timing": "Week 20"},
+      {"description": "Can present the entire program to a physics colloquium audience with genuine insight, not just narrative", "vertex_ids": ["vertex-hybrid-architecture", "vertex-three-walls"], "timing": "Week 32"}
+    ],
+    "community_resources": [
+      {"name": "Physics Stack Exchange — Analog Gravity", "type": "forum", "url": "https://physics.stackexchange.com/questions/tagged/analog-gravity", "description": "Active community discussing analog gravity questions — good for testing your understanding against real physicists"},
+      {"name": "PIRSA Lectures — Condensed Matter/Gravity", "type": "lecture_series", "url": "https://pirsa.org/", "description": "Perimeter Institute recorded seminars — watch talks on topics as you learn them to hear other perspectives"},
+      {"name": "arXiv Analog Gravity", "type": "preprint_server", "url": "https://arxiv.org/list/gr-qc/recent", "description": "Track new papers in the field as they come out — especially from Steinhauer, Barceló, Liberati, and Volovik"},
+      {"name": "Feynman Lectures Online", "type": "reference", "url": "https://www.feynmanlectures.caltech.edu/", "description": "The pedagogical model for your learning approach — revisit relevant chapters as you encounter each topic"}
+    ],
+    "stakes_plan": "Not needed — intrinsic motivation is very high. You're the architect of a 6-paper research program and want to own the physics. The research itself provides natural stakes: every insight you gain makes you a better director of the ongoing program."
+  }
+}

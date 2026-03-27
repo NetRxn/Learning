@@ -1,0 +1,433 @@
+{
+  "plan_id": "lp-sk-eft-2026-03-26-001",
+  "created_at": "2026-03-26T16:00:00Z",
+  "updated_at": "2026-03-26T16:00:00Z",
+  "anki_config": {
+    "model_id_basic": 1585293847,
+    "model_id_cloze": 1692847361,
+    "model_id_reversed": 1734926183,
+    "deck_id": 1847293651
+  },
+  "decks": [
+    {
+      "deck_name": "SK-EFT Hawking::1 Physical Foundations",
+      "task_class_id": "tc-1-foundations",
+      "cards": [
+        {
+          "card_id": "card-001",
+          "component_id": "vertex-lagrangian-mechanics",
+          "card_type": "open_ended",
+          "front": "Why does nature 'choose' the path that extremizes the action? Explain the physical intuition behind the principle of least action — don't use equations.",
+          "back": "Nature doesn't 'choose' — the action principle emerges from quantum mechanics. In the path integral picture, all paths contribute, but paths near the extremum have similar phases and constructively interfere, while far-away paths have rapidly varying phases and cancel. The classical path is simply the one where nearby paths all agree. The variational principle is the classical shadow of quantum interference.",
+          "bloom_level": "understand",
+          "knowledge_type": "principle",
+          "topic_tags": ["foundations::lagrangian-mechanics::action-principle"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 1,
+          "design_notes": "Tests physical intuition for the action principle — the learner knows the formalism but needs the 'why'"
+        },
+        {
+          "card_id": "card-002",
+          "component_id": "vertex-lagrangian-mechanics",
+          "card_type": "basic",
+          "front": "What is Noether's theorem, and why does it matter for the SK-EFT program?",
+          "back": "Every continuous symmetry of the action corresponds to a conserved quantity. Time translation → energy conservation. Spatial translation → momentum conservation. U(1) phase rotation → particle number conservation (which, when spontaneously broken in a superfluid, gives rise to the phonon Goldstone boson). Noether's theorem is why symmetries are the organizing principle of EFT — they determine what terms are allowed in the action.",
+          "bloom_level": "understand",
+          "knowledge_type": "principle",
+          "topic_tags": ["foundations::lagrangian-mechanics::noether"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 2,
+          "design_notes": "Connects Noether's theorem to the project — the learner should see why this foundation matters"
+        },
+        {
+          "card_id": "card-003",
+          "component_id": "vertex-statistical-mechanics",
+          "card_type": "open_ended",
+          "front": "Explain why temperature is NOT 'average kinetic energy' — what IS it, physically?",
+          "back": "Temperature characterizes the DISTRIBUTION of energy, not the average. Specifically, 1/T = ∂S/∂E — temperature measures how quickly the number of accessible microstates grows with energy. Two systems are in thermal equilibrium when they have the same temperature (same rate of microstate growth), not necessarily the same energy. This statistical definition is what makes the KMS condition work: thermal equilibrium isn't about a specific energy but about a specific distribution over ALL energies.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["foundations::stat-mech::temperature"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 3,
+          "design_notes": "Addresses the productive failure point — naive theory that T = average KE"
+        },
+        {
+          "card_id": "card-004",
+          "component_id": "vertex-statistical-mechanics",
+          "card_type": "basic",
+          "front": "What is the fluctuation-dissipation theorem, in physical terms?",
+          "back": "If you push a system at thermal equilibrium, the same microscopic processes that cause it to resist (dissipation) also cause it to jiggle spontaneously (fluctuations). They're the same physics viewed from different angles. Quantitatively: the noise spectrum equals the dissipative response times temperature. In the SK-EFT context: the KMS condition IS the FDR — it forces the noise kernel to be proportional to the dissipative kernel times β₀ω, meaning you cannot have friction without thermal noise.",
+          "bloom_level": "understand",
+          "knowledge_type": "principle",
+          "topic_tags": ["foundations::stat-mech::fluctuation-dissipation"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 4,
+          "design_notes": "Critical bridge concept — stat mech → KMS → SK formalism"
+        },
+        {
+          "card_id": "card-005",
+          "component_id": "vertex-quantum-mechanics",
+          "card_type": "open_ended",
+          "front": "Explain the path integral formulation of quantum mechanics as if you were Feynman explaining it to a smart undergraduate. Why 'sum over histories'?",
+          "back": "Every possible trajectory from A to B contributes to the quantum amplitude. Each path carries a phase factor exp(iS/ℏ), where S is the classical action for that path. Paths with wildly different actions have rapidly oscillating phases and cancel each other out. Paths near the classical trajectory have similar actions, so their phases add up — constructive interference. The classical path 'wins' not because nature chose it, but because it's where the quantum contributions agree. When ℏ → 0, only the classical path survives. This is the foundation for QFT (sum over field configurations) and the SK formalism (two copies of the path integral, one forward and one backward).",
+          "bloom_level": "understand",
+          "knowledge_type": "mental_model",
+          "topic_tags": ["foundations::quantum-mechanics::path-integral"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 5,
+          "design_notes": "Tests Feynman-style explanation ability — the learner's core skill gap"
+        },
+        {
+          "card_id": "card-006",
+          "component_id": "vertex-fluid-dynamics",
+          "card_type": "basic",
+          "front": "Why do sound waves exist? Explain from first principles — what physical mechanism creates them?",
+          "back": "Sound waves are density oscillations maintained by the interplay of two conservation laws: mass conservation (if you compress a region, matter must flow in) and momentum conservation (pressure gradients accelerate fluid elements). Compress a region → pressure increases → pushes neighboring fluid outward → rarefaction → pressure drops → fluid flows back → repeat. The speed of sound c_s = √(∂P/∂ρ) measures how stiff the fluid is — how strongly pressure responds to compression. In the EFT context, the phonon IS the sound wave, and c_s² = P'/(P' + 2μ²P'') in Son's L=P(X).",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["foundations::fluid-dynamics::sound-waves"],
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 6,
+          "design_notes": "Grounds the phonon/acoustic metric in physical fluid dynamics"
+        },
+        {
+          "card_id": "card-007",
+          "component_id": "vertex-fluid-dynamics",
+          "card_type": "open_ended",
+          "front": "What does viscosity physically DO to a fluid? And why does it matter for the SK-EFT program?",
+          "back": "Viscosity converts organized fluid motion into heat — it's the dissipative mechanism that turns macroscopic kinetic energy into microscopic thermal energy. Physically: neighboring fluid layers moving at different speeds exert friction on each other, transferring momentum across layers. This is EXACTLY what the SK-EFT captures: the transport coefficients γ₁, γ₂ in the dissipative action are viscosity coefficients for the phonon field. Without viscosity, there's no dissipation, no δ_diss, and the Hawking temperature would be uncorrected. Viscosity is the bridge between ideal fluid (acoustic metric) and real fluid (dissipative corrections).",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["foundations::fluid-dynamics::viscosity"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 7,
+          "design_notes": "Connects viscosity to the core research question"
+        },
+        {
+          "card_id": "card-008",
+          "component_id": "vertex-spontaneous-symmetry-breaking",
+          "card_type": "comparison",
+          "front": "Compare: explicit symmetry breaking vs spontaneous symmetry breaking. Why does the distinction matter for the phonon?",
+          "back": "EXPLICIT: The symmetry is broken by the laws themselves (e.g., adding a magnetic field breaks rotational symmetry). The symmetry is genuinely gone. SPONTANEOUS: The laws respect the symmetry perfectly, but the ground state doesn't. The symmetry is 'hidden,' not broken — it manifests as a massless Goldstone boson. For the phonon: U(1) particle number symmetry is exact in the Lagrangian but spontaneously broken by the BEC ground state (which has a definite phase). The phonon IS the Goldstone boson of this breaking. If the breaking were explicit (not spontaneous), the phonon would be massive and the acoustic metric wouldn't have Lorentzian signature.",
+          "bloom_level": "analyze",
+          "knowledge_type": "concept",
+          "topic_tags": ["foundations::ssb::goldstone"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 8,
+          "design_notes": "Critical distinction that comes up in both superfluid EFT and ADW"
+        },
+        {
+          "card_id": "card-009",
+          "component_id": "vertex-spontaneous-symmetry-breaking",
+          "card_type": "basic",
+          "front": "Why are Goldstone bosons massless? Give the physical picture, not the proof.",
+          "back": "Think of the Mexican hat potential. The ground state sits at the bottom of the brim. There are two kinds of perturbations: (1) Radial — pushing up the hill. This costs energy ∝ displacement², so it has a restoring force → massive mode (the Higgs). (2) Tangential — rolling along the brim. The potential is flat in this direction — no energy cost for infinitesimal displacement → no restoring force → no gap → massless mode. The Goldstone boson is the tangential mode. It's massless because moving along the degenerate vacuum manifold costs zero energy. In a superfluid, the Goldstone is the phase mode — changing the overall phase of the condensate costs nothing.",
+          "bloom_level": "understand",
+          "knowledge_type": "mental_model",
+          "topic_tags": ["foundations::ssb::goldstone-massless"],
+          "difficulty_estimate": 0.4,
+          "curriculum_position": 9,
+          "design_notes": "The Mexican hat picture — needs to be visceral"
+        }
+      ]
+    },
+    {
+      "deck_name": "SK-EFT Hawking::2 EFT-to-Hawking Pipeline",
+      "task_class_id": "tc-2-eft-hawking-pipeline",
+      "cards": [
+        {
+          "card_id": "card-010",
+          "component_id": "vertex-eft-philosophy",
+          "card_type": "open_ended",
+          "front": "Explain the EFT philosophy to a non-physicist: why can we make predictions about low-energy physics without knowing the complete theory?",
+          "back": "The key insight is SCALE SEPARATION. Physics at different energy scales largely decouples — you don't need to know about quarks to predict how a bridge stands. The EFT approach: write down the most general theory compatible with the symmetries of your system, organized by a derivative expansion (slower variations = more important terms). Higher-derivative terms are suppressed by powers of (energy/cutoff). You don't know the coefficients from first principles — you measure them. But the STRUCTURE is completely determined by symmetries. In the SK-EFT: the symmetries (normalization, positivity, KMS) plus the derivative expansion determine that at first order there are exactly 2 free transport coefficients. The specific values of γ₁, γ₂ depend on microscopic BEC physics, but the fact that there are exactly 2 is universal.",
+          "bloom_level": "understand",
+          "knowledge_type": "principle",
+          "topic_tags": ["eft-core::philosophy::scale-separation"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 10,
+          "design_notes": "Gateway concept — must become intuitive"
+        },
+        {
+          "card_id": "card-011",
+          "component_id": "vertex-eft-philosophy",
+          "card_type": "basic",
+          "front": "What does the derivative expansion physically mean? Why are higher-order terms 'smaller physics'?",
+          "back": "Each derivative ∂ corresponds to a factor of (frequency/cutoff) or (wavenumber/cutoff). More derivatives = more powers of this small ratio. Physically: more derivatives mean faster spatial or temporal variation — physics at shorter wavelengths or higher frequencies. Since EFT describes long-wavelength physics, these fast variations are suppressed. First order: 1 derivative → O(ω/Λ) → leading dissipation. Second order: 2 derivatives → O(ω²/Λ²) → frequency-dependent correction. The counting formula count(N) = ⌊(N+1)/2⌋ + 1 tells you how many independent terms survive the symmetry constraints at each order.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["eft-core::philosophy::derivative-expansion"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 11,
+          "design_notes": "Must make the derivative expansion feel physical, not procedural"
+        },
+        {
+          "card_id": "card-012",
+          "component_id": "vertex-son-superfluid-eft",
+          "card_type": "open_ended",
+          "front": "Why is L = P(X) the unique leading-order EFT for a superfluid? Walk through the logic step by step.",
+          "back": "Step 1: A superfluid spontaneously breaks U(1) particle number symmetry → there must be a Goldstone boson ψ. Step 2: At leading order in the derivative expansion, the most general Lorentz-invariant scalar built from ψ and its first derivatives is X = g^μν ∂_μψ ∂_νψ = (∂ψ)². Step 3: The action must be a function of X only (not ψ directly, because of the shift symmetry ψ → ψ + const that protects the Goldstone). Step 4: So L = P(X) for some function P. Step 5: P is determined by the equation of state of the superfluid — P(X) literally IS the pressure as a function of the chemical potential. The sound speed c_s² = P'/(P' + 2μ²P'') follows from expanding around the background ψ = μt.",
+          "bloom_level": "analyze",
+          "knowledge_type": "principle",
+          "topic_tags": ["eft-core::son-eft::uniqueness"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 12,
+          "design_notes": "Step-by-step logical chain — must feel inevitable, not arbitrary"
+        },
+        {
+          "card_id": "card-013",
+          "component_id": "vertex-acoustic-metric",
+          "card_type": "open_ended",
+          "front": "How does the acoustic metric emerge from fluid equations? Why is this a theorem and not just an analogy?",
+          "back": "Start with the continuity and Euler equations for a moving fluid. Linearize: write ρ = ρ₀ + δρ and v = v₀ + δv. Combine the linearized equations to get a single equation for the perturbation δρ (or equivalently the phonon field π). This equation has EXACTLY the form □_g π = 0, where □_g is the d'Alembertian of a curved spacetime with metric g_μν = (ρ/c_s)[matrix involving v₀ and c_s]. This is not an analogy — it's a mathematical identity. The phonon literally propagates on a curved spacetime. The acoustic metric has Lorentzian signature (one time dimension, three space dimensions) whenever the background flow is well-defined. AcousticMetric.lean proves: det g = -ρ², the inverse identity, Lorentzian signature, and □_g π = phonon EOM.",
+          "bloom_level": "analyze",
+          "knowledge_type": "principle",
+          "topic_tags": ["analog-gravity::acoustic-metric::emergence"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 13,
+          "design_notes": "Must feel the inevitability — metric EMERGES, not postulated"
+        },
+        {
+          "card_id": "card-014",
+          "component_id": "vertex-hawking-radiation",
+          "card_type": "open_ended",
+          "front": "Why does a horizon radiate? Explain the physical mechanism, not just the formula T_H = ℏκ/2πk_B.",
+          "back": "At the horizon, the flow speed equals the sound speed. Modes propagating against the flow get 'stuck' — they can't escape. The key physics: a mode that starts as a high-frequency wave far from the horizon gets exponentially blue-shifted as it approaches the horizon (traced backward in time). This blue-shifting mixes positive and negative frequency modes. In quantum mechanics, mixing positive and negative frequencies means PARTICLE CREATION — the vacuum of the infalling observer contains particles from the perspective of the outgoing observer. The Boltzmann factor e^{-ω/T_H} emerges because the blue-shifting is exponential in the surface gravity κ = dv/dx|_H. The result is thermal radiation at T_H = ℏκ/2π. The trans-Planckian problem: this exponential blue-shifting traces modes back to arbitrarily high energies — does UV physics change the answer?",
+          "bloom_level": "analyze",
+          "knowledge_type": "mental_model",
+          "topic_tags": ["analog-gravity::hawking::mechanism"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 14,
+          "design_notes": "The conceptual heart of the program — must be deeply understood"
+        },
+        {
+          "card_id": "card-015",
+          "component_id": "vertex-sk-contour",
+          "card_type": "open_ended",
+          "front": "Why can't you just 'add friction' to a quantum field theory? What problem does the SK contour solve?",
+          "back": "In standard QFT, the action is real and the path integral gives unitary time evolution. Adding a friction term (imaginary part to the action) breaks unitarity — probabilities no longer sum to 1. You've also violated the fluctuation-dissipation theorem: friction without noise violates the second law of thermodynamics. The SK contour solves this by DOUBLING the degrees of freedom: one copy evolves forward in time, one backward. The physical field ψ_r = (ψ₁+ψ₂)/2 represents the actual field; the noise field ψ_a = ψ₁-ψ₂ represents statistical fluctuations. This structure automatically enforces: (1) normalization when ψ_a = 0, (2) positive probability (positivity), and (3) the FDR through the KMS condition. The SK contour is the UNIQUE way to do dissipative QFT consistently.",
+          "bloom_level": "analyze",
+          "knowledge_type": "principle",
+          "topic_tags": ["sk-formalism::contour::motivation"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 15,
+          "design_notes": "Addresses the productive failure point directly"
+        },
+        {
+          "card_id": "card-016",
+          "component_id": "vertex-kms-fdr",
+          "card_type": "basic",
+          "front": "What is the KMS condition, and why is it the correct way to encode thermal equilibrium in the SK formalism?",
+          "back": "The KMS condition is the transformation ψ_a → ψ_a + iβ∂_t ψ_r (where β = 1/T). An action that's invariant under this transformation automatically satisfies the FDR — dissipation and noise are linked by temperature. Why it works: KMS is the field-theory version of detailed balance. In equilibrium, the rate of energy absorption equals the rate of emission times the Boltzmann factor. The shift ψ_a → ψ_a + iβ∂_t ψ_r encodes this balance at every frequency simultaneously. The key discovery from the project: the ORIGINAL KMSSymmetry was wrong — Aristotle found a counterexample c=(0,0,0,0,0,0,0,1,0). The CORRECTED FirstOrderKMS (from the CGL derivation) properly constrains the 9 candidate first-order terms to 2 free parameters.",
+          "bloom_level": "analyze",
+          "knowledge_type": "principle",
+          "topic_tags": ["sk-formalism::kms::thermal-equilibrium"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 16,
+          "design_notes": "Connects abstract KMS to physical detailed balance"
+        },
+        {
+          "card_id": "card-017",
+          "component_id": "vertex-sk-axioms",
+          "card_type": "comparison",
+          "front": "The three SK axioms — normalization, positivity, KMS — each have a physical meaning. What is each one REALLY saying?",
+          "back": "NORMALIZATION (I_SK = 0 when ψ_a = 0): 'If you don't probe the system, you don't see anything.' The generating functional must equal 1 when there are no sources — total probability is 1. POSITIVITY (Im I_SK ≥ 0): 'Probabilities are positive.' The path integral weight exp(iI_SK) must have magnitude ≤ 1, ensuring the density matrix has non-negative eigenvalues. This requires the dissipative coefficients γ₁, γ₂ ≥ 0. TOGETHER: Normalization kills terms linear in ψ_a (constant shift). KMS links the quadratic ψ_a² terms to the ψ_r·ψ_a terms. Positivity constrains the remaining free parameters to be non-negative. Result: 9 candidate terms → 2 free transport coefficients.",
+          "bloom_level": "analyze",
+          "knowledge_type": "principle",
+          "topic_tags": ["sk-formalism::axioms::physical-meaning"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 17,
+          "design_notes": "The 9→2 reduction is the key result — must feel like physics, not algebra"
+        },
+        {
+          "card_id": "card-018",
+          "component_id": "vertex-dissipative-correction",
+          "card_type": "basic",
+          "front": "What is the physical meaning of δ_diss = Γ_H/κ in the Hawking temperature correction?",
+          "back": "δ_diss is the ratio of the phonon damping rate Γ_H at the horizon to the surface gravity κ. Physically: κ measures how quickly the horizon 'peels apart' modes (the Hawking process), while Γ_H measures how quickly the fluid absorbs modes (the dissipative process). If Γ_H ≪ κ, dissipation is a small perturbation to the Hawking process — the thermal spectrum is nearly perfect. If Γ_H ~ κ, dissipation significantly modifies the spectrum. For real BEC experiments: δ_diss ~ 10⁻⁵ to 10⁻³, meaning the Hawking temperature is robust to ~0.1% level. This is GOOD NEWS for the trans-Planckian problem — UV physics (dissipation) barely affects the result.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "principle",
+          "topic_tags": ["phase1-2::dissipative-correction::meaning"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 18,
+          "design_notes": "Central result — must understand physically, not just numerically"
+        }
+      ]
+    },
+    {
+      "deck_name": "SK-EFT Hawking::3 Higher-Order Extensions",
+      "task_class_id": "tc-3-higher-order",
+      "cards": [
+        {
+          "card_id": "card-019",
+          "component_id": "vertex-transport-counting",
+          "card_type": "basic",
+          "front": "Why does the parity alternation theorem exist? What physical feature of the system makes odd-order EFT terms parity-preserving?",
+          "back": "The transonic background flow breaks spatial parity — v(x) distinguishes 'upstream' from 'downstream.' But this breaking enters at different powers depending on the EFT order. At odd orders, the available tensor structures (with an odd number of derivatives) can be constructed entirely from parity-even combinations. At even orders, genuinely parity-odd structures appear because the extra derivative allows coupling to the background flow direction. Physically: first-order dissipation (viscosity) doesn't care which direction the flow goes — it's the same friction upstream and downstream. Second-order corrections CAN distinguish direction because they involve the spatial structure of the flow profile.",
+          "bloom_level": "analyze",
+          "knowledge_type": "principle",
+          "topic_tags": ["phase1-2::transport-counting::parity"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 19,
+          "design_notes": "Physical reasoning for a result that can feel purely algebraic"
+        },
+        {
+          "card_id": "card-020",
+          "component_id": "vertex-wkb-connection",
+          "card_type": "open_ended",
+          "front": "What does it mean physically for a turning point to move into the complex plane? Why does dissipation cause this?",
+          "back": "In the standard WKB analysis, the turning point is where the mode frequency equals the local Doppler-shifted frequency — the mode transitions from oscillating to evanescent. This is a real position in space. Adding dissipation gives the modes a finite lifetime — they decay as they propagate. Mathematically, the effective frequency becomes complex: ω_eff → ω_eff + iΓ_H/2. The turning point (where ω_eff = 0) shifts off the real axis into the complex plane by an amount δx_imag = Γ_H/(κ·c_s). Physically: the mode doesn't transition sharply from oscillating to evanescent — it fades over a finite region whose width is set by the dissipation. This smearing of the turning point modifies the Bogoliubov coefficients and breaks unitarity: |α|² - |β|² = 1 - δ_k instead of exactly 1.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "mental_model",
+          "topic_tags": ["phase3-wkb::complex-turning-point"],
+          "difficulty_estimate": 0.7,
+          "curriculum_position": 20,
+          "design_notes": "Conceptually demanding — the complex plane picture needs to be visual"
+        },
+        {
+          "card_id": "card-021",
+          "component_id": "vertex-wkb-connection",
+          "card_type": "basic",
+          "front": "What is the FDR noise floor, and why does it represent genuinely new physics?",
+          "back": "The noise floor n_noise = δ_k/2 is a minimum particle number at every frequency, mandated by the KMS condition independently of the Hawking process. It exists because dissipation at any finite temperature must be accompanied by thermal noise (FDR). Even if there were no horizon, a dissipative fluid at temperature T would have this noise floor. For frequencies ω ≲ 6T_H, the Hawking contribution dominates. For ω ≳ 6T_H, the noise floor dominates — the spectrum has a floor rather than falling exponentially. This is new physics because the standard Hawking spectrum goes to zero at high frequencies, while the dissipative spectrum has a finite floor. It's a specific, falsifiable prediction.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "topic_tags": ["phase3-wkb::noise-floor"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 21,
+          "design_notes": "A concrete prediction — connects formalism to observable"
+        },
+        {
+          "card_id": "card-022",
+          "component_id": "vertex-backreaction",
+          "card_type": "comparison",
+          "front": "Schwarzschild black holes get HOTTER as they evaporate. Acoustic black holes get COLDER. Why the opposite behavior?",
+          "back": "SCHWARZSCHILD: T_H = ℏc³/(8πGMk_B). As the BH radiates, M decreases, so T INCREASES — positive feedback → runaway evaporation. This is because the gravitational horizon area decreases as mass is lost. ACOUSTIC: T_H = ℏκ/2πk_B where κ depends on the flow profile. As the acoustic BH radiates, it loses the energy that maintains the supersonic flow. The flow slows down, κ decreases, and T DECREASES — negative feedback → approach to extremality (v → c_s everywhere). The acoustic BH cools toward a state where the flow barely exceeds the sound speed. This is fundamentally different from Schwarzschild and is a concrete prediction: acoustic BH Hawking radiation should weaken over time, not strengthen.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "topic_tags": ["phase3-wkb::backreaction::cooling"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 22,
+          "design_notes": "Addresses the productive failure point — naive Schwarzschild intuition"
+        }
+      ]
+    },
+    {
+      "deck_name": "SK-EFT Hawking::4 Gauge Structure & Emergent Gravity",
+      "task_class_id": "tc-4-gauge-gravity",
+      "cards": [
+        {
+          "card_id": "card-023",
+          "component_id": "vertex-higher-form-symmetries",
+          "card_type": "basic",
+          "front": "What is a 1-form symmetry, and why must higher-form symmetries be Abelian?",
+          "back": "A 1-form symmetry has conserved charges that live on 1-dimensional submanifolds (loops, Wilson lines) rather than at points. The conserved quantity is the integral of a 1-form over a loop, not a 0-form at a point. WHY ABELIAN: The charged objects (line operators) live on codimension-2 submanifolds. When two such objects are moved past each other, they can always be deformed to avoid intersection (unlike point particles in 2+1D). Since they can always avoid each other, their algebra must be commutative — they commute. Commutative = Abelian. This is why non-Abelian gauge symmetry cannot survive as a higher-form symmetry in the hydrodynamic limit — it has no genuine 1-form symmetry, only a discrete Z_N center.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["gauge-structure::higher-form::abelian"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 23,
+          "design_notes": "Foundation for gauge erasure — the 'why Abelian' is the key insight"
+        },
+        {
+          "card_id": "card-024",
+          "component_id": "vertex-gauge-erasure",
+          "card_type": "open_ended",
+          "front": "Explain the gauge erasure theorem in plain physical terms. Why is non-Abelian gauge information INEVITABLY lost in a fluid?",
+          "back": "The argument: (1) In the hydrodynamic limit, only symmetries with conserved CURRENTS survive — everything else thermalizes away. (2) For a symmetry to produce a conserved current in the fluid, it needs a genuine higher-form symmetry (a conserved quantity on extended objects that couple to the hydro fields). (3) Higher-form symmetries must be Abelian (codimension argument). (4) Non-Abelian gauge theories (SU(2), SU(3)) have at most discrete Z_N center symmetries, not continuous higher-form symmetries. (5) Therefore: non-Abelian gauge information MUST be erased in the hydrodynamic limit. Only U(1) survives — it has a genuine magnetic 1-form symmetry whose Goldstone IS the photon. This is why the fluid-based approach CANNOT produce the Standard Model's SU(3)×SU(2) from Layer 2 — it must come from Layer 1 (string-nets).",
+          "bloom_level": "evaluate",
+          "knowledge_type": "principle",
+          "topic_tags": ["gauge-structure::erasure::argument"],
+          "difficulty_estimate": 0.7,
+          "curriculum_position": 24,
+          "design_notes": "Most important negative result — must feel inevitable"
+        },
+        {
+          "card_id": "card-025",
+          "component_id": "vertex-adw-mechanism",
+          "card_type": "open_ended",
+          "front": "How does the graviton emerge as a Goldstone boson in the ADW mechanism? Walk through the symmetry breaking.",
+          "back": "Start with fermions on a lattice with a 4-fermion interaction. At strong enough coupling (G > G_c), the fermion bilinear E^a_μ = ⟨ψ̄ γ^a ∂_μ ψ⟩ develops a nonzero VEV — the TETRAD. This VEV breaks the internal GL(4,ℝ) symmetry (arbitrary frame rotations) down to SO(3,1) (Lorentz transformations that preserve the tetrad structure). The breaking pattern GL(4,ℝ)/SO(3,1) has 16 - 6 = 10 broken generators. Vergeles counting: 6 become massive spin-connection modes (eaten by the spin connection via a Higgs-like mechanism), 2 are massless spin-2 modes (the graviton!), and 2 are eaten. The graviton is massless for the same reason the phonon is: it's the Goldstone of a spontaneously broken continuous symmetry. Spacetime geometry IS the order parameter.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "principle",
+          "topic_tags": ["emergent-gravity::adw::mechanism"],
+          "difficulty_estimate": 0.7,
+          "curriculum_position": 25,
+          "design_notes": "The conceptual leap of emergent geometry — must feel physical, not abstract"
+        },
+        {
+          "card_id": "card-026",
+          "component_id": "vertex-vestigial-gravity",
+          "card_type": "comparison",
+          "front": "What is the difference between vestigial gravity (Level 1) and full tetrad gravity (Level 2)?",
+          "back": "FULL TETRAD (Level 2): The tetrad E^a_μ itself has a nonzero VEV. This gives full Einstein gravity with tetrads — spin-2 gravitons, spin connection, and the ability to couple to fermions (which need a tetrad, not just a metric). VESTIGIAL (Level 1): The tetrad VEV is zero (⟨E^a_μ⟩ = 0), but the COMPOSITE metric g_μν = η_ab ⟨E^a_μ E^b_ν⟩ can still have Lorentzian signature. This is 'Einstein without tetrads' — bosonic gravity only. Like liquid crystal phases where individual molecules are disordered but their pairwise orientations have long-range order. Key prediction: vestigial gravity VIOLATES the equivalence principle because different particle species couple differently to the composite metric. The three phases (pre-geometric, vestigial, full tetrad) are analogous to paramagnetic, nematic, and ferromagnetic phases.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "concept",
+          "topic_tags": ["emergent-gravity::vestigial::vs-full"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 26,
+          "design_notes": "Composite order parameter intuition via liquid crystal analogy"
+        }
+      ]
+    },
+    {
+      "deck_name": "SK-EFT Hawking::5 Synthesis",
+      "task_class_id": "tc-5-synthesis",
+      "cards": [
+        {
+          "card_id": "card-027",
+          "component_id": "vertex-string-nets",
+          "card_type": "basic",
+          "front": "What is topological order, and how does string-net condensation produce emergent gauge fields?",
+          "back": "Topological order: a quantum phase where the ground state degeneracy depends on the TOPOLOGY of space (torus vs sphere), not on any local order parameter. No symmetry breaking needed — it's a fundamentally new kind of order. String-net condensation (Levin-Wen): start with a lattice model where string-like objects (labeled by representations of some mathematical structure) fluctuate and condense. When specific strings condense, the low-energy excitations are: (1) emergent gauge fields (from the string fluctuations), (2) emergent fermions (from string endpoints), and (3) emergent anyons (from string crossings). This is Layer 1 of the hybrid architecture — it provides non-Abelian gauge structure that CANNOT come from the fluid layer (gauge erasure). In 3+1D, the construction extends to string-membrane-nets.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["fracton-topological::string-nets::topological-order"],
+          "difficulty_estimate": 0.7,
+          "curriculum_position": 27,
+          "design_notes": "Conceptually rich — needs the 'ground state degeneracy' hook"
+        },
+        {
+          "card_id": "card-028",
+          "component_id": "vertex-fracton-hydro",
+          "card_type": "basic",
+          "front": "Why does fracton hydrodynamics retain more UV information than standard Navier-Stokes?",
+          "back": "Standard Navier-Stokes conserves charge, momentum, and energy — 5 conserved quantities. Everything else thermalizes away (including non-Abelian gauge information — gauge erasure). Fracton hydrodynamics conserves charge + DIPOLE MOMENT + QUADRUPOLE + ... (multipole hierarchy). Each additional conservation law means one more piece of UV information that survives to long distances. The restricted mobility of fractons (a single fracton cannot move — only dipoles/quadrupoles can) is the physical reason: if particles can't move freely, their positional information is partially preserved. Quantitatively: fracton hydro retains exponentially more information (O(N^d) conserved charges on an N^d lattice) vs standard hydro (O(1) charges). This makes fracton hydro a potential alternative Layer 2 that could carry more gauge structure than standard fluids.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["fracton-topological::fracton-hydro::information"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 28,
+          "design_notes": "Connects restricted mobility to information retention — the key physics"
+        },
+        {
+          "card_id": "card-029",
+          "component_id": "vertex-three-walls",
+          "card_type": "open_ended",
+          "front": "Describe the three structural walls of the fluid-based approach. For each, state: the precise obstruction, the current status, and what would change the picture.",
+          "back": "GAUGE WALL: Non-Abelian gauge DOF are universally erased by hydrodynamization (gauge erasure theorem). Status: STRUCTURALLY IMPOSSIBLE at the fluid layer. What changes it: nothing at Layer 2. The workaround is Layer 1 (string-nets provide gauge structure directly from topological order). GRAVITY WALL: Bosonic fluids can only produce Nordström (scalar) gravity, not Einstein (tensor). Status: BLOCKED without fermions. The ADW mechanism requires fermionic constituents for tetrad condensation. What changes it: vestigial gravity (Level 1) works for bosonic systems but violates EP. Full Einstein requires fermions + ADW. CHIRALITY WALL: Nielsen-Ninomiya theorem blocks chiral fermions on a lattice. Status: FRACTURING. The TPF symmetry disentangler (Jan 2026) evades the no-go using infinite-dim Hilbert spaces. Three critical gaps remain: 4+1D conjecture, gauging step, 2D→4D. What changes it: proof of the TPF gapped interface conjecture would unblock the full UV-complete path (Phase 5A).",
+          "bloom_level": "evaluate",
+          "knowledge_type": "mental_model",
+          "topic_tags": ["synthesis::three-walls::assessment"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 29,
+          "design_notes": "Capstone card — must demonstrate physicist-level nuance, not just classification"
+        },
+        {
+          "card_id": "card-030",
+          "component_id": "vertex-hybrid-architecture",
+          "card_type": "open_ended",
+          "front": "Describe the three-layer hybrid architecture. What does each layer provide? What CANNOT pass between layers?",
+          "back": "LAYER 1 (UV — Quantum Order): String-net condensation on a lattice provides non-Abelian gauge fields, emergent fermions, and topological protection. This is the ONLY source of non-Abelian gauge structure (by gauge erasure). LAYER 2 (Mesoscopic — Fluid Dynamics): Landau hydrodynamics of the emergent fermions. Provides: U(1) electromagnetism (photonization), transport physics, dissipative corrections to Hawking radiation. CANNOT carry: non-Abelian gauge info (erased), chirality (Nielsen-Ninomiya), full tensor gravity without fermions. LAYER 3 (IR — SM + GR): The observed physics. U(1)_EM from Layer 2 photonization. SU(3)×SU(2) from Layer 1 directly. Einstein gravity from ADW tetrad condensation of Layer 1 fermions (bypasses Layer 2 for gravity). The honest minimum viable hybrid: fermionic p-wave superfluid → Landau hydro → Diakonov tetrad gravity.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "mental_model",
+          "topic_tags": ["synthesis::hybrid-architecture::layers"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 30,
+          "design_notes": "The big picture — tests ability to see the whole program as a coherent structure"
+        }
+      ]
+    }
+  ]
+}
