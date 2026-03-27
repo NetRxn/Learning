@@ -711,6 +711,73 @@ graph TD
 
 ---
 
+## 15. Phase 4 Completion: The Vestigial Gravity Story (Paper 6)
+
+This diagram maps the complete Phase 4 results — from the ADW mechanism through vestigial gravity to the definitive fracton obstructions.
+
+```mermaid
+graph TD
+    subgraph ADW ["ADW Mechanism (Paper 5)"]
+        TETRAD["Tetrad field E^a_μ<br/>GL(4,R) gauge freedom"]
+        CW["Coleman-Weinberg<br/>V_eff from fermion loops"]
+        CRIT["Critical coupling G_c<br/>Phase transition"]
+    end
+
+    subgraph VESTIGIAL ["Vestigial Gravity (Paper 6)"]
+        PREG["Pre-geometric phase<br/>⟨E⟩ = 0, no metric"]
+        VEST["Vestigial phase<br/>⟨E⟩ = 0, but g_μν ≠ 0<br/>(composite order)"]
+        FULL["Full tetrad phase<br/>⟨E⟩ ≠ 0, EP exact"]
+        EP["EP violation<br/>m_i/m_g ≠ 1<br/>TESTABLE prediction"]
+    end
+
+    subgraph FRACTON ["Fracton Results (Phase 4)"]
+        FHYDRO["Fracton Hydro<br/>17 Lean theorems<br/>Multipole conservation"]
+        FGRAV["Fracton-Gravity<br/>20 Lean theorems<br/>Bootstrap GAP (2 vs 5 DOF)"]
+        FNA["Non-Abelian Fracton<br/>14 Lean theorems<br/>DEFINITIVE negative"]
+    end
+
+    subgraph VERIFIED ["Verification Status"]
+        LEAN["216 theorems + 1 axiom<br/>16 Lean modules<br/>ZERO sorry"]
+        TESTS["822 pytest tests<br/>ALL passing"]
+        ARIST["56 Aristotle-proved<br/>18 runs, Wave 5 QA"]
+    end
+
+    TETRAD --> CW
+    CW --> CRIT
+    CRIT --> PREG
+    CRIT --> VEST
+    CRIT --> FULL
+    VEST --> EP
+    FHYDRO --> FGRAV
+    FGRAV --> FNA
+
+    ADW --> VESTIGIAL
+    VESTIGIAL --> VERIFIED
+    FRACTON --> VERIFIED
+
+    style ADW fill:#2E86AB,color:#fff
+    style TETRAD fill:#2E86AB,color:#fff
+    style CW fill:#2E86AB,color:#fff
+    style CRIT fill:#2E86AB,color:#fff
+    style VESTIGIAL fill:#A23B72,color:#fff
+    style PREG fill:#666,color:#fff
+    style VEST fill:#A23B72,color:#fff
+    style FULL fill:#F18F01,color:#111
+    style EP fill:#FF6B6B,color:#111
+    style FRACTON fill:#4ECDC4,color:#111
+    style FHYDRO fill:#4ECDC4,color:#111
+    style FGRAV fill:#4ECDC4,color:#111
+    style FNA fill:#FF6B6B,color:#111
+    style VERIFIED fill:#66bb6a,color:#111
+    style LEAN fill:#66bb6a,color:#111
+    style TESTS fill:#66bb6a,color:#111
+    style ARIST fill:#66bb6a,color:#111
+```
+
+**What to look for:** The three-phase structure is the central result of Paper 6. The vestigial phase is physically analogous to a nematic liquid crystal — orientational order without positional order. The fracton results are informative negatives: fracton hydro retains more information than Navier-Stokes, but the bootstrap gap (2 vs 5 DOF) and non-Abelian obstruction show that fractons cannot bridge to full gravity or carry non-Abelian gauge info. The verification column shows the complete program status: 216 theorems, 822 tests, 56 Aristotle-proved.
+
+---
+
 ## Integration Notes
 
 These visualizations are designed to work together as a learning system:

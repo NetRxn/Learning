@@ -32,6 +32,14 @@ The SK-EFT framework reconstructs Hawking radiation (and quantum corrections) fr
 - Dissipative correction: $\delta_{\text{diss}} = \Gamma_H / \kappa$ (from viscosity)
 - Area law: $S = A/4$ (acoustic black hole entropy)
 - Gravitons: 2 massless spin-2 modes from GL(4,R)/SO(3,1) breaking
+- Vestigial gravity: 3-phase hierarchy (pre-geometric → vestigial → full tetrad), EP violation prediction
+- Fracton information retention: multipole conservation retains exponentially more UV info than Navier-Stokes
+
+### Verification Status (Phase 4 Complete — March 2026)
+- **6 papers** (Papers 1-6): PRL (2) + PRD (4) format, submission-ready
+- **216 theorems + 1 axiom** across 16 Lean modules, zero sorry
+- **822 tests** across 16 test files, all passing
+- **56 Aristotle-proved** theorems across 18 runs (Wave 5 QA complete)
 
 ---
 
@@ -170,7 +178,8 @@ Why non-Abelian gauge structure erases in Layer 2, but spacetime geometry emerge
 2. **Only the center survives.** For $SU(3)$, the $Z_3$ center (which commutes with everything) persists as a discrete symmetry.
 3. **Abelian symmetries are robust.** U(1) survives as a 1-form symmetry; photons emerge as Nambu-Goldstone bosons of broken magnetic symmetry.
 4. **Tetrad condensation produces gravity.** Breaking GL(4,R) to SO(3,1) yields 10 NG modes; after Higgs absorption and gauge fixing, 2 remain (the gravitons).
-5. **Four obstacles block full unification.** Chirality, anomalies, spin-statistics, unitarity—each is fundamental.
+5. **Vestigial gravity exists below full tetrad.** Composite metric g_μν = η_ab⟨E^a_μ E^b_ν⟩ can have Lorentzian signature without coherent tetrad VEV — "Einstein without Einstein" (Paper 6).
+6. **Four obstacles block full unification.** Chirality, anomalies, spin-statistics, unitarity—each is fundamental.
 
 ### Key Equations
 **Higher-form commutativity**:
@@ -213,8 +222,10 @@ Three-layer information flow. What passes through each sieve; what gets blocked 
 1. **Each layer is an abstraction.** Layer 1 has full microscopic detail; Layer 2 loses gauge + chiral structure; Layer 3 loses dissipation mechanism.
 2. **Entropy measures information loss.** At each coarse-graining, the number of distinct microstates compatible with macroscopic observables grows; entropy encodes this.
 3. **Three sieves filter information.** Gauge sieve (non-Abelian erased), chiral sieve (left-right scrambled), quantum sieve (loops hidden in entropy).
-4. **Three walls are fundamental.** Not technical problems to be solved, but topological/structural constraints.
+4. **Three walls are fundamental.** Not technical problems to be solved, but topological/structural constraints. All three now formally verified in Lean.
 5. **The honest minimum works.** p-wave superfluid with Diakonov gravity avoids the three walls and reproduces Hawking radiation + dissipative corrections.
+6. **Fracton hydro retains more information.** Multipole conservation (charge + dipole + higher) retains exponentially more UV info than Navier-Stokes, but cannot carry non-Abelian gauge info (definitive negative: FractonNonAbelian.lean).
+7. **Vestigial gravity fills the gap.** Between pre-geometric disorder and full tetrad order, a vestigial metric phase with EP violation exists (Paper 6, Monte Carlo confirmed).
 
 ### Key Concepts
 **Information flow**:
@@ -262,7 +273,9 @@ Three-layer information flow. What passes through each sieve; what gets blocked 
 | **Sieve 1→2** | Gauge sieve (non-Abelian erased) | Topological: non-Abelian 1-forms forbidden |
 | **Sieve 2→3** | Dissipation sieve (mechanism hidden) | Pragmatic: keep symmetry structure, lose details |
 | **Key Result** | $T_{\text{eff}} = T_H(1 + \Gamma_H/\kappa)$ | Hawking temperature has dissipative correction |
-| **Five Walls** | Gauge, Gravity, Chirality (+ Four obstacles) | Honest accounting of limits |
+| **Five Walls** | Gauge, Gravity, Chirality (+ Four obstacles) | Honest accounting of limits — all formally verified |
+| **Vestigial Phase** | Pre-geometric → vestigial → full tetrad | Paper 6: EP violation, Monte Carlo confirmed |
+| **Fracton Layer** | Multipole conservation retains UV info | Negative: non-Abelian fracton obstruction definitive |
 | **Honest Minimum** | p-wave SF + Diakonov gravity | Works: reproducible, avoids walls |
 
 **Mastery checklist**:

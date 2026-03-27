@@ -279,13 +279,29 @@ Given the three walls, what's the most complete theory you can build?
 
 ---
 
-## Connection to Project Files
+## Connection to Project Files (Phase 4 Complete — 216 Theorems, Zero Sorry)
 
-- **`Critical_Review_v3.lean`**: The official scorecard. For each wall, what's proven, what's circumvented, what's open.
+**Lean Modules (16 total, all verified):**
+- **`GaugeErasure.lean`** (11 + 1 axiom): The gauge wall — non-Abelian erasure theorem
+- **`ADWMechanism.lean`** (21): The gravity wall — tetrad condensation, Vergeles counting
+- **`VestigialGravity.lean`** (18): Paper 6 — three-phase hierarchy, EP violation
+- **`ChiralityWall.lean`** (17): The chirality wall — GS conditions, TPF evasion
+- **`FractonHydro.lean`** (17): Multipole conservation, information retention bounds
+- **`FractonGravity.lean`** (20): Bootstrap gap, DOF mismatch (informative negative)
+- **`FractonNonAbelian.lean`** (14): Non-Abelian fracton obstruction (definitive negative)
 
-- **`HybridArchitecture.lean`**: The full three-layer structure formalized. You can read the exact definitions of what "passes through" each sieve.
+**Python Modules (Phase 4):**
+- `src/vestigial/` (5 files): Lattice model, mean-field, Monte Carlo, phase diagram, finite-size scaling
+- `src/fracton/` (4 files): SK-EFT transport, information retention, gravity connection, non-Abelian analysis
+- `src/chirality/tpf_gs_analysis.py`: GS conditions vs TPF evasion
+- `src/experimental/predictions.py`: Platform tables, detector requirements, kappa-scaling
 
-- **`VortexHawking.lean`**: The concrete vortex example worked through all three layers. This is where theory meets hydrodynamic simulation.
+**Papers:**
+- Paper 3 (gauge erasure, PRL): Universal structural theorem
+- Paper 5 (ADW gap, PRD): Qualified positive — G > G_c gives graviton modes
+- Paper 6 (vestigial gravity, PRD): Lattice evidence, 3-phase structure, EP violation
+
+**Key Document:** `Fluid-Based Approach to Fundamental Physics: Consolidated Critical Review v3` — The honest assessment driving the three-wall framework
 
 ---
 

@@ -205,11 +205,19 @@ The result: **the effective theory is non-unitary** in the IR.
 
 ## Connection to Project Files
 
-- **`GaugeErasure.lean`**: Formal proof that non-Abelian higher-form symmetries are forbidden. The proof is purely topological.
+- **`GaugeErasure.lean`** (11 theorems + 1 axiom): Formal proof that non-Abelian higher-form symmetries are forbidden. The proof is purely topological. The single axiom encodes the topological classification of defects.
 
-- **`ADWMechanism.lean`**: Verification that breaking GL(4,R) → SO(3,1) produces 2 massless spin-2 gravitons. Includes the Higgs mechanism and the Vergelis decomposition.
+- **`ADWMechanism.lean`** (21 theorems): Verification that breaking GL(4,R) → SO(3,1) produces 2 massless spin-2 gravitons. Includes the Higgs mechanism and the Vergeles decomposition. Phase classification (pre-geometric/condensed/broken).
 
-- **`CriticalReview_v3.lean`**: Scorecard of which obstacles are resolved, which are bypassed, which remain open. This is the honest assessment of what works and what doesn't.
+- **`VestigialGravity.lean`** (18 theorems): **Paper 6 — now complete.** Formalizes the three-phase hierarchy: pre-geometric → vestigial → full tetrad. Proves that composite metric g_μν = η_ab⟨E^a_μ E^b_ν⟩ can have Lorentzian signature without coherent tetrad VEV. EP violation prediction formalized.
+
+- **`ChiralityWall.lean`** (17 theorems): GS conditions vs TPF evasion fully classified. Three critical gaps identified and formalized.
+
+- **Python**: `src/adw/gap_equation.py` (Coleman-Weinberg V_eff, critical coupling), `src/adw/fluctuations.py` (SSB pattern, NG modes), `src/vestigial/` (5 files: lattice_model.py, mean_field.py, monte_carlo.py, phase_diagram.py, finite_size.py).
+
+- **Paper 5** (ADW gap equation, PRD format): Qualified positive result — nontrivial Lorentzian solution for G > G_c, 2 massless graviton modes as Higgs bosons. Four structural obstacles for emergent fermion bootstrap.
+
+- **Paper 6** (vestigial gravity, PRD format): Lattice evidence for vestigial metric phase. Monte Carlo + mean-field confirm three-phase structure. EP violation prediction is the key experimental signature.
 
 ---
 

@@ -305,11 +305,12 @@ graph TD
     style END fill:#FFB6C1,color:#111
 ```
 
-**Critical Path Analysis:**
+**Critical Path Analysis (Updated March 27, 2026 — Phase 4 Complete):**
 - **Essential Sequence Length:** 13 concepts (shortest viable learning path)
-- **High Priority Gaps:** Statistical Mechanics (30%), Vestigial Gravity (30%), String Nets (20%)
+- **High Priority Gaps:** Statistical Mechanics (30%), String Nets (20%), Coleman-Weinberg (20%)
 - **Recommended Focus:** Consolidate developing (yellow) concepts before advancing
 - **Bottlenecks:** SK Axioms and Phase 1-2 Results unlock synthesis (TW/HA)
+- **Phase 4 Status:** All 5 new Lean modules verified (ChiralityWall, VestigialGravity, FractonHydro, FractonGravity, FractonNonAbelian). Paper 6 written. 216 total theorems, zero sorry.
 
 ---
 

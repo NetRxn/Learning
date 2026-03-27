@@ -426,6 +426,84 @@
           "difficulty_estimate": 0.6,
           "curriculum_position": 30,
           "design_notes": "The big picture — tests ability to see the whole program as a coherent structure"
+        },
+        {
+          "card_id": "card-031",
+          "component_id": "vertex-vestigial-gravity",
+          "card_type": "open_ended",
+          "front": "Explain what 'vestigial gravity' means physically. How can you have a metric without a coherent tetrad VEV?",
+          "back": "Vestigial gravity occurs when the composite metric g_μν = η_ab⟨E^a_μ E^b_ν⟩ acquires Lorentzian signature even though the individual tetrad fields ⟨E^a_μ⟩ = 0. It's like how a liquid crystal can have orientational order (nematic phase) without positional order. The tetrad fluctuations are correlated enough to produce a metric, but not coherent enough to define a full frame field. This creates a three-phase hierarchy: pre-geometric (no metric), vestigial (metric but no tetrad), and full tetrad (both metric and frame). Paper 6 confirms this with Monte Carlo simulation.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["synthesis::vestigial-gravity::composite-order"],
+          "difficulty_estimate": 0.7,
+          "curriculum_position": 41,
+          "design_notes": "Phase 4 synthesis — composite order parameter intuition"
+        },
+        {
+          "card_id": "card-032",
+          "component_id": "vertex-vestigial-gravity",
+          "card_type": "basic",
+          "front": "What experimental signature distinguishes vestigial gravity from full GR?",
+          "back": "Equivalence Principle (EP) violation. In the vestigial phase, the composite metric couples differently to different matter sectors because the tetrad averaging is species-dependent. The inertial-to-gravitational mass ratio deviates from 1 — typically m_i/m_g ~ 1.001 to 1.05 depending on coupling strength. In the full tetrad phase, EP is exact. This is the key prediction of Paper 6 and would be testable in precision EP experiments.",
+          "bloom_level": "apply",
+          "knowledge_type": "principle",
+          "topic_tags": ["synthesis::vestigial-gravity::ep-violation"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 42,
+          "design_notes": "Phase 4 synthesis — experimental falsifiability"
+        },
+        {
+          "card_id": "card-033",
+          "component_id": "vertex-fracton-hydro",
+          "card_type": "open_ended",
+          "front": "Why does fracton hydrodynamics retain more UV information than standard Navier-Stokes? What physical mechanism makes the difference?",
+          "back": "Standard Navier-Stokes conserves only charge and momentum — all other UV information is exponentially scrambled by diffusion. Fracton hydro additionally conserves the dipole moment (and higher multipoles), which constrains how charges can redistribute. A fracton literally cannot move in isolation — it must create a dipole pair. This restricted mobility means the system cannot efficiently thermalize multipole information, retaining exponentially more UV structure at late times. The tradeoff: this extra retention comes at the cost of unusual transport (subdiffusive rather than diffusive).",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["synthesis::fracton-hydro::information-retention"],
+          "difficulty_estimate": 0.7,
+          "curriculum_position": 43,
+          "design_notes": "Phase 4 synthesis — conservation and information retention"
+        },
+        {
+          "card_id": "card-034",
+          "component_id": "vertex-fracton-hydro",
+          "card_type": "basic",
+          "front": "Can fracton hydrodynamics carry non-Abelian gauge information? What is the definitive result?",
+          "back": "No — this is a definitive negative result (FractonNonAbelian.lean, 14 theorems). Higher-rank tensor charges (the kind fractons carry) are necessarily Abelian. The fundamental reason: a rank-2 symmetric traceless tensor charge transforms under a representation of the rotation group, and the commutator structure of such charges is constrained to be Abelian. Non-Abelian internal symmetries would require the tensor indices to mix with internal indices in a way that's algebraically impossible. So while fracton hydro retains MORE information than Navier-Stokes, it cannot retain non-Abelian gauge information — the gauge wall holds even for fractons.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "principle",
+          "topic_tags": ["synthesis::fracton::non-abelian-obstruction"],
+          "difficulty_estimate": 0.8,
+          "curriculum_position": 44,
+          "design_notes": "Phase 4 synthesis — gauge erasure persists at the algebraic level"
+        },
+        {
+          "card_id": "card-035",
+          "component_id": "vertex-lean-verification",
+          "card_type": "basic",
+          "front": "What is the complete verification status of the SK-EFT program as of Phase 4 completion?",
+          "back": "216 theorems + 1 axiom across 16 Lean 4 modules, zero sorry. 822 pytest tests across 16 test files, all passing. 56 theorems proved by the Aristotle AI assistant across 18 runs. 6 papers (2 PRL + 4 PRD format). The single axiom (in GaugeErasure.lean) encodes the topological classification of defects — it's a mathematical fact that Lean's type theory cannot express natively. Wave 5 quality hardening verified cross-module consistency.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["synthesis::verification::phase4-status"],
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 45,
+          "design_notes": "Phase 4 synthesis — final verification metrics"
+        },
+        {
+          "card_id": "card-036",
+          "component_id": "vertex-vestigial-gravity",
+          "card_type": "open_ended",
+          "front": "Draw (in words) the complete phase diagram for the ADW tetrad model. What are the three phases, what order parameter distinguishes them, and what physical picture corresponds to each?",
+          "back": "Phase 1 — Pre-geometric: Both ⟨E^a_μ⟩ = 0 and ⟨g_μν⟩ has no Lorentzian signature. No spacetime, no geometry. Like a paramagnetic phase. Phase 2 — Vestigial metric: ⟨E^a_μ⟩ = 0 still, but the composite g_μν = η_ab⟨E^a_μ E^b_ν⟩ acquires Lorentzian signature via correlated fluctuations. Geometry exists but has no preferred frame. Like a nematic liquid crystal. Phase 3 — Full tetrad: ⟨E^a_μ⟩ ≠ 0, coherent frame field. Full GR with exact EP. Like a crystalline solid. The transitions are at G = G_c1 (pre-geometric → vestigial) and G = G_c2 (vestigial → full tetrad), with G_c1 < G_c2. Paper 6's Monte Carlo confirms both transitions.",
+          "bloom_level": "analyze",
+          "knowledge_type": "mental_model",
+          "topic_tags": ["synthesis::vestigial-gravity::three-phase"],
+          "difficulty_estimate": 0.8,
+          "curriculum_position": 46,
+          "design_notes": "Phase 4 synthesis — capstone card on symmetry breaking phases"
         }
       ]
     }

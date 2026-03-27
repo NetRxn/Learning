@@ -3,7 +3,7 @@
   "knowledge_graph_id": "kg-sk-eft-2026-03-26-001",
   "learner_id": "learner-netrxn-001",
   "created_at": "2026-03-26T15:00:00Z",
-  "updated_at": "2026-03-26T15:00:00Z",
+  "updated_at": "2026-03-27T12:00:00Z",
 
   "curriculum": {
     "epitome": {
@@ -460,7 +460,7 @@
             "sequence": 7,
             "support_level": "conventional",
             "task_type": "whole_task",
-            "description": "FINAL SYNTHESIS: The complete program from beginning to end. What has been achieved, what remains open, what the conditional Phase 5 items mean. Your understanding now vs where you started. The physicist's identity frame.",
+            "description": "FINAL SYNTHESIS: The complete program from beginning to end. How the complete Phase 4 results (Paper 6, 5 new Lean modules, 216 total theorems) fit together, and what Phase 5 research directions remain open. Your understanding now vs where you started. The physicist's identity frame.",
             "vertex_ids": ["vertex-three-walls", "vertex-hybrid-architecture", "vertex-experimental-landscape"],
             "session_template": "B_retrieval_review"
           },
@@ -549,7 +549,7 @@
       "description": "After the 32-week core curriculum, the learning continues in two modes: (1) ongoing training sessions that deepen existing understanding through new angles and connections, and (2) learning that tracks the research — as new results come in from Phase 4-5, each new development becomes a learning opportunity.",
       "phases": [
         {"phase_name": "Core Curriculum", "timeframe": "Weeks 1-32", "focus": "All 30 vertices — foundations through synthesis", "target_coverage": 98},
-        {"phase_name": "Research-Tracking Learning", "timeframe": "Weeks 33+", "focus": "New Phase 4-5 results as they emerge, deepening cross-cutting connections", "target_coverage": 100},
+        {"phase_name": "Research-Tracking Learning", "timeframe": "Weeks 33+", "focus": "Phase 4 results are now complete (6 papers, 216 theorems); Phase 5 directions remain open for future research-tracking learning", "target_coverage": 100},
         {"phase_name": "Expert Intuition", "timeframe": "Ongoing", "focus": "Periodic 'zoom out' sessions connecting the program to the broader physics landscape. Reading and discussing key references. Building the expert sense of 'what feels right' in theoretical physics.", "target_coverage": 100}
       ]
     },
