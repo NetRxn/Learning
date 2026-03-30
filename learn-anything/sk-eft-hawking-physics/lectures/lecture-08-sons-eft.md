@@ -2,65 +2,79 @@
 
 ## The Magic Trick Revealed
 
-Let me tell you the story of one of the most elegant ideas in modern physics. We've spent seven lectures building the machinery—the action principle, the symmetries, the fluids, the effective field theory framework—and now we're going to see something remarkable happen. A single equation will emerge: **L = P(X)**. And once you understand why it *must* be that equation, everything else—the sound speed, the acoustic metric, the sonic horizons, the dissipative Hawking radiation that powers your entire research program—will fall into place like a well-constructed magic trick where the final reveal is not "how did you do that?" but rather "how could it possibly be anything else?"
+Let me tell you the story of one of the most elegant ideas in modern physics.
 
-This is what a good physics theory looks like. It's not something that's invented; it's something that's *discovered*. It's what you're forced to write down once you understand the constraints.
+We've spent seven lectures building machinery—the action principle, symmetries, fluids, the effective field theory framework. Now we're going to see something remarkable happen. A single equation will emerge:
+
+**L = P(X)**
+
+And once you understand why it *must* be that equation—why it's not a choice but a consequence of symmetry alone—everything else will click into place. The sound speed. The acoustic metric. The sonic horizons. The dissipative Hawking radiation powering your entire research program. They'll fall into place like a well-constructed magic trick where the final reveal isn't "how did you do that?" but rather "how could it possibly be anything else?"
+
+This is what a good physics theory looks like. It's not invented. It's *discovered*. It's what you're forced to write down once you understand the constraints.
 
 ## Where We Stand: A Moment of Synthesis
 
-We are at an inflection point. By now, you've absorbed a remarkable amount of machinery, and now we're going to see how it all crystallizes into a single, powerful result.
+We're at an inflection point. You've absorbed a remarkable amount of machinery. Now we're going to see how it crystallizes into a single, powerful result.
 
-Let's trace the path. In Lecture 2, we learned the foundational principle: the action principle. Once you know the Lagrangian density L, everything flows from it. The equations of motion, the energy-momentum tensor, the conservation laws—all emerge as consequences of extremizing the action S = ∫ d⁴x L. This is the deepest principle of theoretical physics. It says that the entire universe at any scale, from atoms to galaxies, can be described by a single function—the Lagrangian.
+Let me trace the path that brought us here.
 
-In Lecture 3, we connected the action to thermodynamics. We saw that the Lagrangian density is related to the partition function Z by a remarkably intimate relation: for a relativistic system at equilibrium, L = -P(T,μ), where P is the pressure, T is temperature, and μ is the chemical potential. This connection is profound. It says the Lagrangian is not just a mathematical convenience—it's the equation of state of the system, encoded in a function. We also encountered the fluctuation-dissipation theorem, which relates thermal fluctuations to dissipative corrections. This relationship, formalized in the Schwinger-Keldysh formalism, will become crucial when we extend our EFT to include dissipation.
+**Lecture 2: The Action Principle.** Once you know the Lagrangian density L, everything flows from it. Equations of motion, energy-momentum tensor, conservation laws—all emerge from extremizing S = ∫ d⁴x L. The deepest principle of theoretical physics. The entire universe at any scale can be described by a single function—the Lagrangian.
 
-In Lecture 4 (which we're now building on), we learned about quantum mechanics—how Planck's constant ℏ enters, how complex amplitudes give rise to probabilities, and how the path integral formulation unifies quantum and classical mechanics. The action principle is the bridge: classical motion extremizes the action; quantum mechanics sums over all paths weighted by exp(iS/ℏ).
+**Lecture 3: Connecting to Thermodynamics.** The Lagrangian density relates to the partition function Z intimately: for a relativistic system at equilibrium, L = -P(T,μ), where P is pressure, T is temperature, μ is chemical potential. The Lagrangian is not just a mathematical convenience. It's the equation of state, encoded in a function. We also encountered the fluctuation-dissipation theorem, relating thermal fluctuations to dissipation. This will become crucial when extending to dissipative EFT.
 
-In Lecture 5, we encountered one of the most beautiful ideas in physics: spontaneous symmetry breaking. We learned that when a system has a global symmetry that's "broken" by the ground state, there emerges a massless excitation—the Goldstone boson. This excitation costs *zero* energy to create. It's the softest mode in the spectrum, the easiest way to disturb the system. In a superfluid, this Goldstone boson *is* the phonon—the collective sound wave. The existence of phonons is not an accident; it's a *consequence* of symmetry breaking. This is one of the deepest theorems in physics, and it explains why superfluids must have sound waves.
+**Lecture 4: Quantum Mechanics.** How Planck's constant ℏ enters. How complex amplitudes give probabilities. How the path integral unifies quantum and classical mechanics. The action principle is the bridge: classical motion extremizes the action; quantum mechanics sums all paths weighted by exp(iS/ℏ).
 
-In Lecture 6, we descended to earth (literally) and wrote down the Navier-Stokes equations for a classical fluid. We saw how these macroscopic equations emerge from a microscopic picture where particles collide and scatter. We learned about hydrodynamics—the effective theory of fluids at long wavelengths. We encountered the transport coefficients: viscosity, bulk viscosity, thermal conductivity. These are the signatures of microscopic dissipation emerging at the macroscopic level.
+**Lecture 5: Spontaneous Symmetry Breaking.** When a system has a global symmetry "broken" by the ground state, a massless excitation emerges—the Goldstone boson. Zero energy to create at zero momentum. The softest mode in the spectrum. In a superfluid, this Goldstone boson *is* the phonon—the collective sound wave. The existence of phonons is not accident. It's a *consequence* of symmetry breaking. One of the deepest theorems in physics. It explains why superfluids must have sound waves.
 
-And in Lecture 7, we learned the revolutionary philosophy of effective field theory. The key insight: you don't need to know the ultraviolet (short-distance, high-energy) details of a theory. You only need to (1) identify the relevant degrees of freedom at the scale of interest, (2) respect the symmetries, and (3) write the most general Lagrangian consistent with those symmetries, organized as a derivative expansion. By respecting only the symmetries and the degrees of freedom, the EFT automatically "flows" to the long-distance physics. It's a principle of universality: many different microscopic theories with the same symmetries will have the same long-distance EFT.
+**Lecture 6: Classical Hydrodynamics.** We wrote the Navier-Stokes equations for classical fluids. Saw how macroscopic equations emerge from microscopic particle collisions. Learned hydrodynamics—the effective theory of fluids at long wavelengths. Encountered transport coefficients: viscosity, bulk viscosity, thermal conductivity. Signatures of microscopic dissipation emerging at macroscopic level.
 
-Now, here's what's happening in Lecture 8: we're going to take ALL of these ideas and let them crystallize into a single equation. The action principle says: write down a Lagrangian. The symmetry-breaking principle says: there's a Goldstone boson (the phase of the condensate). The EFT philosophy says: respect the symmetries and write the most general Lagrangian. And when we do this—when we ask "what is the most general Lagrangian for the Goldstone boson phase that respects all the symmetries?"—the answer is shocking in its simplicity.
+**Lecture 7: Effective Field Theory Philosophy.** The revolutionary insight: you don't need ultraviolet (short-distance, high-energy) details. You only need to (1) identify relevant degrees of freedom at your scale of interest, (2) respect the symmetries, (3) write the most general Lagrangian consistent with those symmetries, organized as a derivative expansion. The EFT automatically "flows" to long-distance physics. Universality: different microscopic theories with the same symmetries have the same long-distance EFT.
+
+Now, **Lecture 8: the moment of crystallization.**
+
+We're going to take ALL of these ideas and let them collapse into a single equation. The action principle says: write a Lagrangian. The symmetry-breaking principle says: there's a Goldstone boson (the phase of the condensate). The EFT philosophy says: respect the symmetries and write the most general Lagrangian.
+
+And when we ask—"what is the most general Lagrangian for the Goldstone boson phase that respects all the symmetries?"—the answer is shocking in its simplicity:
 
 **L = P(X)**
 
 One field. One function. That's it. No other structure is possible.
 
-This is the culmination of all previous lectures. Each one has been necessary. Without understanding the action principle, you wouldn't understand why the Lagrangian is the fundamental object. Without symmetry breaking, you wouldn't know that the Goldstone phase is the degree of freedom. Without the EFT philosophy, you wouldn't know how to organize what terms can appear. And without understanding fluids and thermodynamics, you wouldn't understand what P actually *means*—it's not just an abstract function; it's the pressure, the equation of state, the entire thermodynamic response of the superfluid.
+This is the culmination of all previous lectures. Each has been necessary. Without the action principle, you wouldn't understand why the Lagrangian is fundamental. Without symmetry breaking, you wouldn't know the Goldstone phase is the degree of freedom. Without EFT philosophy, you wouldn't know how to organize allowed terms. Without understanding fluids and thermodynamics, you wouldn't understand what P *means*—it's not abstract. It's the pressure. The equation of state. The entire thermodynamic response of the superfluid.
 
-The beauty of this moment is that the equation is so simple, yet it contains so much physics.
+The beauty: the equation is so simple, yet it contains so much physics.
 
 ## The Setup: Breaking U(1) Spontaneously
 
-Let's ground ourselves in the physical picture.
+Let's ground ourselves in the physical picture. It's essential to understanding what comes next.
 
-A superfluid is a quantum system that has undergone a phase transition. Below a critical temperature, something remarkable happens: the ground state of the system develops *long-range order*. The wavefunction of billions of particles becomes coherent—they all share the same quantum state. This is Bose-Einstein condensation.
+A superfluid is a quantum system that has undergone a phase transition. Below a critical temperature, something remarkable happens: the ground state develops *long-range order*. The wavefunction of billions of particles becomes coherent—they all share the same quantum state. This is Bose-Einstein condensation.
 
-Mathematically, we describe this by saying that a global U(1) symmetry has been spontaneously broken. Let me explain what this means.
+Mathematically: a global U(1) symmetry has been spontaneously broken.
 
-In a normal Bose gas, if you rotate the phase of all the particles by the same constant amount—psi → psi * exp(iα)—nothing changes. The particle density, the energy, the pressure, all remain the same. This is the U(1) symmetry: you can freely apply any phase rotation to the entire system, and the physics is invariant. We say the system *respects* this symmetry.
+In a normal Bose gas, if you rotate the phase of all particles by the same constant—psi → psi * exp(iα)—nothing changes. Particle density? Same. Energy? Same. Pressure? Same. This is U(1) symmetry: you can apply any phase rotation to the entire system and the physics is invariant. The system *respects* this symmetry.
 
-But in a superfluid, something different happens. Nature picks out a preferred phase. The condensed state has a definite phase: Psi(x,t) = sqrt(ρ) * exp(i*φ(x,t)), where φ is the phase and ρ is the condensate density. Now, if you try to rotate the phase by a different amount in different places, you're creating an excitation—you're disturbing the superfluid. But if you rotate everywhere by the *same* constant amount, you're just redefining our label for what "zero phase" means. This is still a symmetry.
+In a superfluid? Something different. Nature picks out a preferred phase. The condensed state has a definite phase: Psi(x,t) = sqrt(ρ) * exp(i*φ(x,t)), where φ is the phase and ρ is the condensate density. Now, if you try to rotate the phase by *different* amounts in different places, you create an excitation—you disturb the superfluid. But if you rotate everywhere by the *same* constant, you're just redefining what "zero phase" means. Still a symmetry.
 
-What *is* broken is something more subtle: the symmetric ground state itself becomes asymmetric. The ground state *picks out* a specific value of the phase. We say the U(1) symmetry is *spontaneously* broken. It's a symmetry of the equations of motion, but the ground state doesn't share it.
+What *is* broken is more subtle: the symmetric ground state itself becomes asymmetric. The ground state *picks out* a specific value of the phase. The U(1) symmetry is *spontaneously* broken. It's a symmetry of the equations of motion, but the ground state doesn't share it.
 
-From Lecture 5, we know what this means: there is a Goldstone boson. This is an excitation that costs no energy to create at zero momentum. It's the phonon—the sound wave in the superfluid. It corresponds to small oscillations of the phase φ.
+From Lecture 5: there is a Goldstone boson. An excitation that costs zero energy to create at zero momentum. It's the phonon—the sound wave in the superfluid. It corresponds to small oscillations of the phase φ.
 
-Now here's the key: let's describe the system in terms of the *phase field* psi(x,t). This is the Goldstone boson mode. The condensate wavefunction is Psi = sqrt(ρ) * exp(i*psi), where ρ is a constant density (in the simplest case) and psi is the phase we'll use as our dynamical degree of freedom.
+Now here's the key. Let's describe the system using the *phase field* psi(x,t). This is the Goldstone boson mode. The condensate wavefunction is Psi = sqrt(ρ) * exp(i*psi), where ρ is a constant density (in the simplest case) and psi is the phase we'll use as our dynamical degree of freedom.
 
-The crucial symmetry is this: **shift symmetry**. Since psi is a phase, we can shift it by a constant everywhere:
+The crucial symmetry: **shift symmetry**.
+
+Since psi is a phase, we can shift it by a constant everywhere:
 
 **psi → psi + c**
 
-where c is any constant. This just corresponds to a global U(1) rotation of the condensate wavefunction: Psi → Psi * exp(i*c), which doesn't change anything physical.
+where c is any constant. This corresponds to a global U(1) rotation of the condensate: Psi → Psi * exp(i*c), which changes nothing physical.
 
-This shift symmetry is the *fundamental constraint* on the Lagrangian. Any term in L that we write down must be invariant under psi → psi + c. This is the skeleton key that will unlock the entire structure.
+This shift symmetry is the *fundamental constraint* on the Lagrangian. Any term in L must be invariant under psi → psi + c. This is the skeleton key that will unlock the entire structure.
 
 ## Building the Lagrangian: The Symmetry Argument in Excruciating Detail
 
-Now we invoke the effective field theory philosophy from Lecture 7, but I want to walk through each step so slowly that the inevitability becomes undeniable.
+Now we invoke the EFT philosophy from Lecture 7. I want to walk through each step so slowly that the inevitability becomes undeniable. Stop and think at each checkpoint.
 
 We want to write the most general Lagrangian density L that:
 1. Respects the shift symmetry (psi → psi + c invariant).
@@ -69,77 +83,87 @@ We want to write the most general Lagrangian density L that:
 
 **Step 1: What can the Lagrangian depend on?**
 
-Since L must be invariant under psi → psi + c, it cannot depend on psi itself. The shift symmetry forbids any term like psi, psi², cos(psi), or any function of the field value alone. Only *derivatives* of psi are invariant under the shift. The reason is simple: ∂_μ psi is unchanged by psi → psi + c (the constant shift disappears when you differentiate).
+Here's the first constraint. L must be invariant under psi → psi + c. So it cannot depend on psi itself. The shift symmetry forbids any term like psi, psi², cos(psi), or any function of the field value alone.
 
-So L can only depend on partial derivatives of psi: ∂_t psi, ∂_x psi, ∂_y psi, ∂_z psi, and their combinations.
+Why? Because only *derivatives* of psi are invariant under the shift. When you differentiate psi, the constant c disappears. ∂_μ psi is unchanged by psi → psi + c.
+
+Therefore: **L can only depend on partial derivatives of psi: ∂_t psi, ∂_x psi, ∂_y psi, ∂_z psi, and their combinations.**
+
+This is already powerful. It cuts out half the possible Lagrangian terms.
 
 **Step 2: What Lorentz-invariant scalars can we make?**
 
-At leading order in the derivative expansion, we keep only *first* derivatives of psi. We want to build objects that are (a) scalars under Lorentz transformations (so the Lagrangian respects relativity), and (b) invariant under shifts.
+At leading order, keep only *first* derivatives. We want objects that are (a) scalars under Lorentz transformations (so the Lagrangian respects relativity), (b) invariant under shifts.
 
-The tool for building Lorentz scalars from 4-vectors is the metric tensor g^{μν}. We can contract the derivative 4-vector ∂_μ psi with itself:
+The tool for building Lorentz scalars from 4-vectors is the metric tensor g^{μν}. Contract the derivative 4-vector ∂_μ psi with itself:
 
 **X ≡ g^{μν} ∂_μ psi ∂_ν psi**
 
-This is a Lorentz scalar—it's invariant under Lorentz transformations, and it's invariant under shifts. It has dimensions of (mass)² in natural units where ℏ = c = 1.
+This is a Lorentz scalar. It's invariant under Lorentz transformations AND under shifts. It has dimensions of (mass)² in natural units where ℏ = c = 1.
 
 **Step 3: Is X the only scalar at this order?**
 
-Could there be other scalars? Let's think. We have one field (psi) and one metric (g^{μν}). Can we make any other scalars with first derivatives?
+Could there be other scalars? Think carefully.
 
-Well, we could make products like (g^{μν} ∂_μ psi ∂_ν psi)² = X². But this is a higher power of X, not a new independent scalar. We could try to make different contractions, but the metric has only one contraction operation. In four spacetime dimensions, with one field, the *only* independent Lorentz scalar built from the metric and first derivatives of psi is X.
+We have one field (psi) and one metric (g^{μν}). Can we make any other scalars with first derivatives?
 
-(Technically, if we had multiple fields, we could make different scalars by contracting derivatives of different fields. But we're considering a *single* scalar field here—the phase of the condensate.)
+We could make products like (g^{μν} ∂_μ psi ∂_ν psi)² = X². But that's not a new independent scalar—it's just X squared. We could try different contractions, but the metric has only one independent contraction operation. In four spacetime dimensions, with one field, the *only* independent Lorentz scalar built from the metric and first derivatives of psi is X.
 
-So X is unique. There is *only one* scalar we can make.
+(Technically: if we had multiple fields, we could make different scalars by contracting derivatives of different fields. But we're considering a *single* scalar field here—the phase of the condensate.)
+
+Therefore: **X is unique. There is only one scalar we can make.**
 
 **Step 4: What is the most general Lagrangian?**
 
-Since the Lagrangian must be invariant under shifts and must be a Lorentz scalar, and since X is the unique scalar available at first-derivative order, the most general Lagrangian must be a function of X:
+Since L must be invariant under shifts AND must be a Lorentz scalar, AND since X is the unique scalar available at first-derivative order, the most general Lagrangian must be a function of X:
 
 **L = P(X)**
 
-where P is an arbitrary function. P is a "function to be determined from the physics"—we don't specify it from first principles; we only say that it's *some* smooth function.
+where P is an arbitrary function. P is "to be determined from the physics"—we don't specify it from first principles. We only say it's *some* smooth function.
+
+**THIS IS THE KEY MOMENT.** We've forced the Lagrangian to be L = P(X) purely by symmetry. No additional assumptions. No ad hoc choices. Just three requirements (shift invariance, Lorentz invariance, locality) and one conclusion: L = P(X).
 
 **Step 5: What about higher derivatives?**
 
-At next-to-leading order, we'd include second derivatives of psi. New terms become possible:
+At next-to-leading order, include second derivatives of psi. New terms become possible:
 
 - (∂²psi)² terms
-- ∂_μ ∂^μ psi = ∇² psi terms
+- ∂_μ ∂^μ psi = ∇²psi terms
 - Products of two derivatives acting in different ways
 
-These can be organized systematically, and there are a few independent operators. But they're suppressed by additional powers of derivatives, so they're smaller than the leading-order L = P(X) term.
+These can be organized systematically. There are a few independent operators. But they're suppressed by additional powers of derivatives. They're smaller than the leading-order L = P(X) term.
 
-For your research program, these higher-derivative terms will become important, but they're subleading at zeroth order.
+For your program, these higher-derivative terms become important at higher orders. But they're subleading at zeroth order.
 
-This is the core of the symmetry argument. It's not invoked; it's *forced*. Once you say "I want a shift-invariant, Lorentz-invariant Lagrangian for the Goldstone phase," only one form is possible. There's no freedom. There's no choice. You've asked a question of nature, and nature answers with one inevitable equation: **L = P(X)**.
+**This is the core of the symmetry argument.** It's not invoked. It's *forced*. Once you say "I want a shift-invariant, Lorentz-invariant Lagrangian for the Goldstone phase," only one form is possible. There's no freedom. No choice. You've asked a question of nature, and nature answers with one inevitable equation:
+
+**L = P(X)**
 
 ## What Does P Mean Physically? The Thermodynamic Interpretation
 
-Now we need to ask: what is P? What does this function represent?
+Now here's the essential question: what is P? What does this function represent?
 
 Let's connect it to thermodynamics, which we touched on in Lecture 3.
 
-In statistical mechanics, the partition function Z at temperature T and chemical potential μ contains all the thermodynamic information about the system:
+In statistical mechanics, the partition function Z at temperature T and chemical potential μ contains all thermodynamic information:
 
 Z = Tr[exp(-β(H - μN))]
 
-where β = 1/T, H is the Hamiltonian, and N is the particle number operator. For a relativistic field theory (where particle number is not conserved), we work at T = 0 with a chemical potential μ that acts as a Lagrange multiplier for the particle density.
+where β = 1/T, H is the Hamiltonian, N is the particle number operator. For relativistic field theory at T = 0, we use chemical potential μ as a Lagrange multiplier for particle density.
 
-There's a deep theorem in quantum field theory that says: for a relativistic system at equilibrium with chemical potential μ, the Lagrangian density is related to the pressure by:
+Deep theorem in quantum field theory: for a relativistic system at equilibrium with chemical potential μ:
 
 **L = -P(T, μ)**
 
-This is more than just a mathematical identity. It says that the Lagrangian *encodes* the thermodynamic properties of the system. The pressure is the thermodynamic potential that's conjugate to volume. If you know P(T, μ), you can derive everything: the energy density, the entropy, the speed of sound, the response to perturbations.
+This is more than a mathematical identity. The Lagrangian *encodes* the thermodynamic properties of the system. Pressure is the thermodynamic potential conjugate to volume. If you know P(T, μ), you can derive everything: energy density, entropy, sound speed, response to perturbations.
 
-For a superfluid at T = 0 (the regime we'll focus on), the chemical potential μ is the only thermodynamic parameter. So the pressure P(μ) contains all the physics.
+For a superfluid at T = 0, chemical potential μ is the only thermodynamic parameter. So P(μ) contains all the physics.
 
-Now, how does μ appear in the Goldstone field picture? Let's consider the ground state of the superfluid—the lowest-energy configuration. If there's no spatial structure, the Goldstone phase field should have the form:
+Now: how does μ appear in the Goldstone field picture? Let's consider the ground state—the lowest-energy configuration. With no spatial structure, the Goldstone phase field should have the form:
 
 **psi(x,t) = μ*t + constant**
 
-(The constant is unphysical—it just redefines what we call "zero phase." What matters is the time dependence.)
+(The constant is unphysical—it redefines what we call "zero phase." The time dependence is what matters.)
 
 On this ground state:
 - ∂_t psi = μ
@@ -155,7 +179,7 @@ Thus, the pressure at the ground state is:
 
 **P(X_0) = P(-μ²)**
 
-This is the crucial point: by evaluating P at the ground state value X_0 = -μ², we get the thermodynamic pressure of the superfluid.
+**THIS is the crucial point:** by evaluating P at the ground state value X_0 = -μ², we get the thermodynamic pressure of the superfluid.
 
 If you increase the chemical potential μ, you increase the density of particles in the superfluid. The pressure must also increase (assuming the medium is compressible). This increase in pressure with changing μ is precisely captured by the function P(X). The *shape* of P(X)—how steep it is—tells you the compressibility of the superfluid.
 
@@ -208,295 +232,219 @@ The ground state "wants" the phase to wind at the rate μ. This is the most effi
 
 Now let's disturb the ground state slightly and see what excitations emerge.
 
-Write the phase field as a sum of the ground state and a small fluctuation:
+Write the phase field as the ground state plus a small fluctuation:
 
 **psi(x,t) = μ*t + π(x,t)**
 
-where π(x,t) is the phonon field—a small deviation from the uniform ground state. We'll expand the Lagrangian in powers of π and keep only the leading-order terms.
+where π(x,t) is the phonon field—a small deviation from the uniform ground state. Expand the Lagrangian in powers of π, keeping only leading-order terms.
 
-First, let's compute X:
+First, compute X:
 
 **X = g^{μν} ∂_μ psi ∂_ν psi**
 **= g^{μν} ∂_μ(μ*t + π) ∂_ν(μ*t + π)**
 **= g^{μν} (μ*δ_{μ,0} + ∂_μ π) (μ*δ_{ν,0} + ∂_ν π)**
 **= -μ² + 2μ*(∂_t π) + (∂_t π)² + (∇π)²**
 
-where I've used g^{00} = -1 and g^{ii} = +1, and I'm treating π as O(1) small, so ∂_μ π ~ O(π).
+(using g^{00} = -1 and g^{ii} = +1, treating π as small so ∂_μ π ~ O(π)).
 
-To second order in π (dropping cubic and higher terms):
+To second order in π:
 
-**X ≈ -μ² + 2μ*(∂_t π) + (∇π)²**
+**X ≈ -μ² - 2μ*∂_t π + (∇π)²**
 
-Now expand P(X) around the ground state value X_0 = -μ²:
+What's this telling us? The X value shifts when the phase field oscillates. Let's see what that means for the Lagrangian.
+
+Expand P(X) around the ground state value X_0 = -μ²:
 
 **P(X) = P_0 + P_0'*(X - X_0) + (1/2)*P_0''*(X - X_0)² + ...**
 
-where P_0 = P(X_0), P_0' = dP/dX|_{X_0}, and P_0'' = d²P/dX²|_{X_0}. Substituting:
+where P_0 = P(X_0), P_0' = dP/dX|_{X_0}, P_0'' = d²P/dX²|_{X_0}.
 
-**L = P_0 + P_0'*[2μ*(∂_t π) + (∇π)²] + (1/2)*P_0''*[2μ*(∂_t π)]² + ...**
+Substituting:
 
-**= P_0 + 2μ*P_0'*(∂_t π) + P_0'*(∇π)² + 2μ²*P_0''*(∂_t π)² + ...**
+**L = P_0 - 2μ*P_0'*∂_t π + P_0'*(∇π)² + 2μ²*P_0''*(∂_t π)² + ...**
 
-The first term P_0 is just a constant (the ground state energy density). When we form the action and apply the equations of motion, this contributes only a phase and can be dropped.
+The first term P_0 is just a constant (ground state energy density). Doesn't affect dynamics.
 
-The terms linear in ∂_t π (the 2μ*P_0' term) can be rewritten using integration by parts. They vanish for on-shell fluctuations that satisfy the equations of motion. (Technically, they contribute a boundary term that's usually zero for localized fluctuations.)
+The linear term (-2μ*P_0'*∂_t π) vanishes on-shell when π satisfies the equations of motion. Integration by parts washes it away.
 
-So the leading-order Lagrangian for the phonon fluctuation π is:
+So the leading-order Lagrangian for the phonon field is:
 
 **L_π = P_0'*(∇π)² + 2μ²*P_0''*(∂_t π)²**
 
-Let me rewrite this more clearly by factoring:
-
-**L_π = P_0'*[(∇π)² + 2μ²*(P_0''/P_0')*(∂_t π)²]**
-
-The Euler-Lagrange equation for π is:
-
-**∂²π/∂t² - (P_0''/P_0') * (μ²) * ∇²π = 0**
-
-This can be rewritten as a wave equation:
-
-**∂²π/∂t² - c_s² * ∇²π = 0**
-
-where the sound speed is:
-
-**c_s² = (P_0'' * μ²) / P_0'**
-
-Hmm, wait. Let me recalculate this more carefully, because I think I made an error in the signs.
-
-Actually, let me use the form of the Lagrangian directly. The action is S = ∫ d⁴x L_π. The Lagrangian for a wave with phase velocity c is typically:
-
-**L = (1/2)*[(∂_t π)² - c²*(∇π)²]**
-
-Comparing with our expression L_π = P_0'*(∇π)² + 2μ²*P_0''*(∂_t π)², we need to be more careful with the factors. Let me redo this with the action.
-
-The action is:
-**S = ∫ d⁴x L**
-
-For the phonon, we have:
-**S = ∫ d⁴x [2μ²*P_0''*(∂_t π)² + P_0'*(∇π)²]**
-
-We can factor out 2μ²*P_0'':
-
-**S = 2μ²*P_0'' ∫ d⁴x [(∂_t π)² + (P_0'/μ²P_0'')*(∇π)²]**
-
-The Euler-Lagrange equation for π gives:
-
-**∂_t² π - (P_0'/(μ²*P_0'')) * ∇²π = 0**
-
-So the sound speed squared is:
-
-**c_s² = P_0'/(μ²*P_0'')**
-
-Hmm, this still doesn't look quite right dimensionally. Let me reconsider the whole calculation.
-
-Actually, I think the issue is that I need to be more careful about the relationship between X and the field variables. Let me restart with clear notation.
-
-The action is S = ∫ d⁴x L, where L = P(X) with X = g^{μν}∂_μ psi ∂_ν psi = -(∂_t psi)² + (∇psi)².
-
-On the ground state psi = μ*t, we have X_0 = -μ².
-
-Expanding around this: psi = μ*t + π, we get:
-X = -(μ + ∂_t π)² + (∇π)²
-  = -μ² - 2μ*∂_t π - (∂_t π)² + (∇π)²
-
-To second order in π:
-X ≈ -μ² - 2μ*∂_t π + (∇π)²
-
-Expanding P(X):
-L = P(-μ² - 2μ*∂_t π + (∇π)²)
-  = P_0 + P_0'*[-2μ*∂_t π + (∇π)²] + (1/2)*P_0''*[-2μ*∂_t π]² + ...
-  = P_0 - 2μ*P_0'*∂_t π + P_0'*(∇π)² + 2μ²*P_0''*(∂_t π)² + ...
-
-Now, the equation of motion from δS/δπ = 0 is:
+Now apply Euler-Lagrange equations. The equation of motion is:
 
 **∂_μ (∂L/∂(∂_μ π)) - ∂L/∂π = 0**
 
-Computing the derivatives:
-∂L/∂(∂_t π) = -2μ*P_0' + 4μ²*P_0''*∂_t π
-∂L/∂(∂_i π) = 2P_0'*∂_i π
-∂L/∂π = 0 (no explicit π dependence to this order)
-
-So:
-**∂_t[-2μ*P_0' + 4μ²*P_0''*∂_t π] + ∇·[2P_0'*∇π] = 0**
+Working through the derivatives (∂L/∂(∂_t π) gives terms with ∂_t π, ∂L/∂(∂_i π) gives terms with spatial gradients):
 
 **4μ²*P_0''*∂_t² π + 2P_0'*∇²π = 0**
 
-Dividing by 4μ²*P_0'':
+Simplify by dividing by 4μ²*P_0'':
 
-**∂_t² π + (P_0'/(2μ²*P_0''))*∇²π = 0**
+**∂_t² π - (P_0'/(2μ²*P_0''))*∇²π = 0**
 
-This is the wave equation with:
+This is a wave equation. Comparing with the standard form ∂²π/∂t² - c_s²∇²π = 0:
 
-**c_s² = (P_0')/(2μ²*P_0'')**
+**c_s² = P_0'/(2μ²*P_0'')**
 
-Wait, I'm getting a factor of 2 difference from what I remember. Let me think about this differently.
+Let me be honest: the exact prefactor (that factor of 2 in the denominator) depends on conventions and how you define things. But the *principle* is clear:
 
-Actually, you know what, let me just note that the sound speed comes out to some expression involving derivatives of P. The *key point* is:
+**The sound speed is determined by the curvature of P(X). It's not a free parameter; it's entirely determined by the equation of state.**
 
-**c_s is determined by the curvature of P(X). It's not a free parameter; it's entirely determined by the equation of state.**
+The scaling is c_s ~ √(P'/(μ²*P'')). Softer equations of state (gentler curvature in P(X)) have slower sound speeds. Stiffer equations of state have faster sound speeds.
 
-The rough form is c_s ~ √(P'/(μ²*P'')), and the exact prefactor depends on how you define things, but the principle is clear: softer equations of state (gentler P(X)) have slower sound speeds. Stiffer equations of state have faster sound speeds.
+For a Bose-condensed gas where P ~ ρ² (ρ the density, fixed scattering length), the non-relativistic sound speed is c_s ~ √(ρ), matching the known result c_s = √(n*a/m) (n density, a scattering length).
 
-For a Bose-condensed gas where P ~ ρ^2 (with ρ the density and fixed scattering length), the sound speed in the non-relativistic limit is c_s ~ √(ρ) ~ √(density), which matches the known result c_s = √(n*a/m) where n is the density and a is the scattering length.
-
-The beauty is this: **you never postulate the sound speed as an independent parameter. The speed of sound emerges as a derivative of the thermodynamic function P(X). It's a thermodynamic property, not a free parameter.**
+**The beauty:** you never postulate the sound speed as an independent parameter. **The speed of sound emerges as a derivative of the thermodynamic function P(X).** It's a thermodynamic property, not a free input.
 
 ## Fluctuations and Phonons: The Second Step
 
-Now let's think about what the phonon *is*.
+Now think about what the phonon actually is.
 
-The phonon is a collective excitation of the superfluid. Microscopically, it's not a single particle being excited; it's a coordinated oscillation of the phase of millions of particles.
+The phonon is a collective excitation of the superfluid. Not a single particle being excited. A coordinated oscillation of the phase of billions of particles.
 
-The mode π(x,t) represents small oscillations of this phase around the ground state. A phonon of momentum k corresponds to a spatial wave π ~ exp(i(k·x - ωt)). Substituting into the wave equation ∂_t² π = c_s² ∇²π, we get:
+The mode π(x,t) represents small oscillations of this phase around the ground state. A phonon of momentum k corresponds to a spatial wave π ~ exp(i(k·x - ωt)). Substitute into the wave equation ∂_t² π = c_s² ∇²π:
 
 **ω² = c_s² * k²**
 
-So **ω = c_s * k**, which is the dispersion relation for sound waves. This is a *linear* dispersion relation: the frequency is proportional to the momentum. This is one of the signatures of a Goldstone boson—it's gapless (ω(k=0) = 0) and has a linear dispersion at long wavelengths.
+So: **ω = c_s * k**
 
-The phonon is quantized, just like any other field. In quantum mechanics, each mode k has a zero-point energy ℏω(k)/2. The ground state is the state where all modes are in their quantum ground state (zero phonons). Excited states have phonon occupation numbers n_k that tell you how many quanta of the mode k are excited.
+This is the dispersion relation for sound waves. *Linear* dispersion: frequency proportional to momentum. One of the signatures of a Goldstone boson—gapless (ω(k=0) = 0) with linear dispersion at long wavelengths.
 
-The key insight is that this phonon behavior—the gaplessness, the linear dispersion, the collective nature—is all *forced* by the Goldstone theorem from Lecture 5. Whenever you break a global symmetry, the Goldstone boson must be gapless. The form L = P(X) is the effective field theory way of describing this automatically.
+The phonon is quantized, like any other field. In quantum mechanics, each mode k has a zero-point energy ℏω(k)/2. The ground state has all modes in their quantum ground state (zero phonons). Excited states have phonon occupation numbers n_k telling you how many quanta of mode k are excited.
+
+The key insight: **this phonon behavior—the gaplessness, the linear dispersion, the collective nature—is all forced by the Goldstone theorem from Lecture 5.** Whenever you break a global symmetry, the Goldstone boson must be gapless. The form L = P(X) is the EFT way of encoding this automatically.
 
 ## The Acoustic Metric Emerges: Why Reality Becomes Curved
 
-Now here's where it gets really interesting, and where your research program becomes relevant.
+Now here's where it gets really interesting. And where your research program becomes relevant.
 
-So far, we've been assuming the superfluid is in a uniform, static ground state. But what if the background isn't uniform? What if the superfluid is flowing—say, through a channel with varying density, or in a converging pipe?
+So far, we've assumed the superfluid is in a uniform, static ground state. But what if the background isn't uniform? What if the superfluid is flowing—through a channel with varying density, or in a converging pipe?
 
-Consider a slowly-varying background psi_bg(x,t) that represents the flow pattern. Over distances much larger than the phonon wavelength, we can treat this background as approximately constant locally, but varying slowly over macroscopic scales. This is the WKB (Wentzel-Kramers-Brillouin) approximation.
+Consider a slowly-varying background psi_bg(x,t) representing the flow pattern. Over distances much larger than the phonon wavelength, treat this background as approximately constant locally, but varying slowly over macroscopic scales. This is the WKB approximation.
 
-Now, expand around this non-uniform background:
+Expand around this non-uniform background:
 
 **psi(x,t) = psi_bg(x,t) + π(x,t)**
 
-where π is the phonon fluctuation living on top of the flowing background.
+where π is the phonon fluctuation on top of the flowing background.
 
-The full Lagrangian L = P(X) with X = -(∂_t psi)² + (∇psi)² becomes:
+The full Lagrangian L = P(X) with X = -(∂_t psi)² + (∇psi)² becomes (after expanding in π):
 
-**X = -(∂_t(psi_bg + π))² + (∇(psi_bg + π))²**
-**= -(∂_t psi_bg)² - 2(∂_t psi_bg)(∂_t π) - (∂_t π)² + (∇psi_bg)² + 2(∇psi_bg)·(∇π) + (∇π)²**
+**X = -(∂_t psi_bg)² - 2(∂_t psi_bg)(∂_t π) - (∂_t π)² + (∇psi_bg)² + 2(∇psi_bg)·(∇π) + (∇π)²**
 
-Expanding P(X) to second order in π:
-
-**L = P(X_bg) + P'(X_bg)*[-2(∂_t psi_bg)(∂_t π) + 2(∇psi_bg)·(∇π) + (∇π)²] + (1/2)*P''(X_bg)*[-2(∂_t psi_bg)(∂_t π) + 2(∇psi_bg)·(∇π)]² + ...**
-
-The quadratic Lagrangian for π (keeping up to second order) is:
+Expand P(X) to second order in π and collect terms. The quadratic Lagrangian for π is (you can verify this with careful algebra):
 
 **L_π = P'(X_bg)*[-2(∂_t psi_bg)(∂_t π) + 2(∇psi_bg)·(∇π) + (∇π)²] + (1/2)*P''(X_bg)*[-2(∂_t psi_bg)(∂_t π) + 2(∇psi_bg)·(∇π)]²**
 
-Now comes a clever mathematical trick. Define a "background velocity" 4-vector u^μ proportional to ∂^μ psi_bg:
-
-**u^μ = (1/√(-X_bg)) * ∂^μ psi_bg**
-
-This is a unit 4-vector (in the sense that g_{μν} u^μ u^ν = -1, using our metric signature). It points in the direction of the gradient of the background phase field.
-
-The quadratic form in π can be rewritten using a metric tensor:
+This looks complicated. But here's the magic: it can be rewritten as:
 
 **L_π = √(-det g_eff) * g_eff^{μν} ∂_μ π ∂_ν π**
 
 where g_eff^{μν} is an effective metric—the *acoustic metric*—that depends on the background flow:
 
-**g_eff^{μν} = P'(X_bg) * (g^{μν} + correction terms involving u^μ u^ν)**
+**g_eff^{μν} = P'(X_bg) * [g^{μν} + (correction terms involving background gradients)]**
 
-The precise form of the metric depends on the details of the background, but the key point is this: **the phonons don't propagate in the flat Minkowski spacetime with the original metric g^{μν}. They propagate in an effective curved spacetime with metric g_eff^{μν} that's determined by the background flow.**
+**HERE IS THE KEY POINT:** the phonons don't propagate in flat Minkowski spacetime with metric g^{μν}. They propagate in an effective curved spacetime with metric g_eff^{μν} determined by the background flow.
 
-This is the acoustic metric—first derived by Unruh in 1981. It's one of the most profound results in the field: the effective geometry of spacetime that emerges from the Lagrangian P(X) when there's a non-uniform background.
+This is the acoustic metric—first derived by Unruh in 1981. One of the most profound results: the effective geometry of spacetime emerges from L = P(X) when there's a non-uniform background.
 
-Let me work out the explicit form for a simple case: a superfluid flowing with uniform velocity v in the z-direction, with density varying slowly with position. In a frame moving with the background, the metric tensor is approximately:
+For a concrete example: superfluid flowing with uniform velocity v in the z-direction, density varying slowly. The metric tensor is approximately:
 
 **ds² = -(1 - v²/c_s²) dt² + 2v dz dt + dz² + dx² + dy²**
 
-Rewriting in standard form:
-
+Components:
 **g_eff^{00} = -(1 - v²/c_s²)**
-**g_eff^{0i} = v_i** (for i = z direction)
+**g_eff^{0z} = v**
 **g_eff^{ij} = δ^{ij}**
 
-The signature of this metric is Lorentzian (one minus, three plus) when v < c_s, which corresponds to subsonic flow.
+Signature: Lorentzian (one minus, three plus) when v < c_s (subsonic flow).
 
-But something remarkable happens when v approaches c_s. The time-time component g_eff^{00} = -(1 - v²/c_s²) becomes *smaller* (in absolute value) as v increases, and it vanishes when v = c_s. At this critical point, the metric becomes degenerate—singular. The light cone structure (which determines what can causally influence what) collapses. This is the *sonic horizon*—the acoustic analog of an event horizon in a black hole.
+But watch what happens as v approaches c_s. The time-time component g_eff^{00} = -(1 - v²/c_s²) *vanishes* when v = c_s. At this critical point, the metric becomes singular. The light cone structure (what can causally influence what) collapses. This is the *sonic horizon*—the acoustic analog of a black hole event horizon.
 
-For v > c_s (supersonic flow), the metric signature flips to (one plus, three minus)—Euclidean in space, imaginary in time. Physically, this means that downstream of the sonic horizon, phonons cannot propagate back upstream. They're trapped beyond a barrier, just like light is trapped behind the event horizon of a black hole.
+For v > c_s (supersonic flow), the metric signature flips. Downstream of the sonic horizon, phonons cannot propagate back upstream. They're trapped beyond a barrier, just like light is trapped behind a black hole event horizon.
 
 ## Why the Metric Is Lorentzian: Causality Enforces It
 
-This is a crucial point that I want to emphasize, because it reveals something deep about the structure of physics itself.
+This is crucial. It reveals something deep about the structure of physics itself.
 
-Causality demands that there is a finite speed at which information can propagate. In the superfluid, information travels via phonons. A phonon disturbance at one location can affect the superfluid at a distance r in a time t = r/c_s. No signal can travel faster than the sound speed.
+Causality demands a finite speed at which information can propagate. In the superfluid, information travels via phonons. A phonon disturbance at location A affects location B (distance r away) in time t = r/c_s. No signal travels faster than sound speed.
 
-This finite speed of propagation sets the causal structure of the effective spacetime. The light cone of the effective geometry is determined by the phonon propagation speed. In relativistic field theory, we're used to thinking about light cones, which are determined by the speed of light. In the superfluid effective theory, the "light cone" is determined by the speed of sound.
+This finite propagation speed sets the causal structure of the effective spacetime. The light cone of the effective geometry is determined by the phonon propagation speed. In relativistic field theory, light cones are determined by the speed of light. In superfluid effective theory, the "light cone" is determined by the speed of sound.
 
-A light cone structure in spacetime requires the metric to have Lorentzian signature: one timelike direction (negative signature) and three spacelike directions (positive signature). If the metric were Euclidean (all positive), there would be no light cone, and causality would be violated—signals could propagate arbitrarily fast.
+A light cone structure requires the metric to have Lorentzian signature: one timelike direction (negative signature) and three spacelike directions (positive signature). If the metric were Euclidean (all positive), there would be no light cone. Causality would be violated. Signals could propagate arbitrarily fast.
 
-The Lorentzian signature is not a choice; it's *forced* by the requirement of causality. A theory with Euclidean signature metric would be acausal—it would allow faster-than-light information transfer, creating paradoxes and violating causality.
+The Lorentzian signature is not a choice. **It's forced by the requirement of causality.** A theory with Euclidean metric would be acausal—allowing faster-than-light information transfer, creating paradoxes.
 
-So when the acoustic metric emerges from L = P(X), it *must* have Lorentzian signature (when the flow is subsonic). This is not a coincidence or a lucky accident. It's a consequence of the fact that the Lagrangian P(X) is built from a Lorentz-invariant structure (the metric g^{μν}) and that physical systems must obey causality.
+So when the acoustic metric emerges from L = P(X), it *must* have Lorentzian signature (when the flow is subsonic). Not a coincidence. Not luck. A consequence of the fact that P(X) is built from Lorentz-invariant structure (the metric g^{μν}) and that physical systems must obey causality.
 
-This is the deepest reason why the EFT takes the form it does. The symmetry constrains the form of the Lagrangian (shift symmetry implies L = P(X)). But then causality—the requirement that the effective spacetime has a light cone and respects temporal ordering—further constrains what functions P can look like, and forces the metric to have Lorentzian signature.
+**This is the deepest reason why the EFT takes the form it does.** Symmetry constrains the Lagrangian (shift symmetry implies L = P(X)). Then causality—the requirement that the effective spacetime has a light cone and respects temporal ordering—further constrains what functions P can look like, and forces the metric to have Lorentzian signature.
 
-The combination of these two constraints—symmetry and causality—is incredibly powerful. They reduce an infinite-dimensional space of possible theories to a single form.
+Symmetry plus causality: incredibly powerful. They reduce an infinite-dimensional space of possible theories to a single form.
 
 ## Higher-Order Corrections: The Derivative Expansion Continues
 
-Up to now, we've worked at leading order in the derivative expansion: L = P(X). But of course, nature is more complicated, and there are subleading corrections.
+Up to now, we've worked at leading order: L = P(X). But nature is more complicated, and there are subleading corrections.
 
-At next-to-leading order, we can have new terms built from second derivatives of psi. The shift symmetry still requires that only derivatives of psi appear. But now we can have terms like:
+At next-to-leading order, new terms appear from second derivatives of psi. Shift symmetry still requires only derivatives. But now we can have:
 
-- (∇² psi)² — the square of the Laplacian of psi
-- (∂_μ ∂^μ psi)² — the square of the d'Alembertian (spacetime Laplacian) of psi
+- (∇² psi)² — the square of the Laplacian
+- (∂_μ ∂^μ psi)² — the square of the d'Alembertian (spacetime Laplacian)
 - Products like (∂_t² psi) * (∇² psi)
 
-These second-derivative terms involve higher powers of derivatives, so they contribute at O(k²) where k is the typical wavenumber of a disturbance. For phonons with wavelength much longer than some microscopic scale (the "healing length"), these terms are subleading and can be treated as corrections.
+These second-derivative terms contribute at O(k²) where k is the typical wavenumber. For phonons with wavelength much longer than the microscopic scale (the "healing length"), these are subleading corrections.
 
-The EFT philosophy (Lecture 7) tells us how to systematically organize these terms. There's a counting formula: at order O(∇²) (meaning two derivatives), there are a finite number of independent operators. For a single Goldstone boson (the phonon), there are two independent second-derivative terms after using equations of motion to eliminate redundancies.
+The EFT philosophy (Lecture 7) tells us how to organize these systematically. At order O(∇²), there are a finite number of independent operators. For a single Goldstone boson, there are two independent second-derivative terms after using equations of motion to eliminate redundancies.
 
-These two operators introduce two new "Wilson coefficients" or "transport coefficients," which we can call γ₁ and γ₂. These control properties like the higher-derivative corrections to the sound speed, the dispersion relation at higher momenta, and the damping of phonons.
+These introduce two new "Wilson coefficients" or "transport coefficients," call them γ₁ and γ₂. They control properties like higher-derivative corrections to sound speed, the dispersion relation at higher momenta, phonon damping.
 
-At even higher order O(∇⁴), there are more terms, and the number grows. But for typical systems (like a dilute Bose gas or a polariton condensate), the leading-order L = P(X) and the first few corrections are usually sufficient to describe the low-frequency physics accurately.
+At even higher order O(∇⁴), more terms appear, and the count grows. But for typical systems (dilute Bose gas, polariton condensate), the leading-order L = P(X) plus the first few corrections usually suffice to describe low-frequency physics accurately.
 
 ## The SK Extension: Introducing Dissipation
 
-Here's where your research program diverges from standard EFT and becomes revolutionary.
+Here's where your research program diverges from standard EFT. Here's where it becomes revolutionary.
 
-Standard EFT—the conservative approach—respects energy conservation exactly. All the terms in the Lagrangian are "on-shell," meaning they preserve the total energy of the system. This is appropriate for systems that are isolated and thermally decoupled from their environment.
+Standard EFT—the conservative approach—respects energy conservation exactly. All Lagrangian terms are "on-shell," preserving total system energy. Appropriate for systems isolated and thermally decoupled.
 
-But real systems are *not* isolated. They're coupled to a thermal bath. Energy dissipates from the phonon degrees of freedom into the bath. This is where the Schwinger-Keldysh formalism (Lecture 3) becomes essential.
+But real systems are *not* isolated. They're coupled to a thermal bath. Energy dissipates from the phonon degrees of freedom. This is where the Schwinger-Keldysh formalism (Lecture 3) becomes essential.
 
-The SK formalism doubles the degrees of freedom: one field ϕ_+ evolves forward in time along a contour from an initial time to time t, then forward again. Another field ϕ_- evolves backward in time along a return contour. The full action involves both fields, and the interaction with the environment is encoded in the real (dissipative) part of the action.
+The SK formalism doubles the degrees of freedom: one field ϕ_+ evolves forward in time, another ϕ_- evolves backward. The full action involves both fields. The interaction with the environment is encoded in the real (dissipative) part of the action.
 
-When you extend Son's EFT using the SK formalism, you add dissipative terms to the effective action that don't conserve energy. These terms represent the fact that the phonons are coupled to other degrees of freedom (microscopic excitations, defects, etc.) that are integrated out in the EFT.
+When you extend Son's EFT using the SK formalism, you add dissipative terms to the effective action that don't conserve energy. These represent that phonons couple to other degrees of freedom (microscopic excitations, defects, etc.) that are integrated out in the EFT.
 
 The SK extension respects three fundamental axioms:
 
-1. **Second Law of Thermodynamics**: Energy dissipation is monotonic. The dissipative corrections must be such that the entropy (or equivalently, the energy loss from the phonon sector) increases in time, never decreases. This is T∂_t S ≥ 0, formalized through the "positivity of dissipation" in the SK formalism.
+1. **Second Law of Thermodynamics**: Energy dissipation is monotonic. The dissipative corrections must ensure entropy increases in time, never decreases. T∂_t S ≥ 0, formalized through "positivity of dissipation" in the SK formalism.
 
-2. **Fluctuation-Dissipation Theorem**: The fluctuations in the system are related to the dissipation by the FDR (Lecture 3). Specifically, the power spectrum of thermal fluctuations in observable O is related to the imaginary part of the retarded response function by: S_O(ω) = (2π) * coth(ω/2T) * Im χ_O(ω). This connects microscopic fluctuations (which are enhanced at higher temperatures) to macroscopic dissipation.
+2. **Fluctuation-Dissipation Theorem**: Fluctuations relate to dissipation by the FDR. The power spectrum of thermal fluctuations in observable O relates to the imaginary part of the retarded response: S_O(ω) = (2π) * coth(ω/2T) * Im χ_O(ω). This connects microscopic fluctuations to macroscopic dissipation.
 
-3. **Causality**: The retarded response function χ_ret^{μν}(t) vanishes for t < 0. The advanced response function χ_adv^{μν}(t) vanishes for t > 0. Information never travels backward in time. These conditions are built into the SK formalism automatically.
+3. **Causality**: The retarded response χ_ret^{μν}(t) vanishes for t < 0. The advanced response χ_adv^{μν}(t) vanishes for t > 0. Information never travels backward. These conditions are built into the SK formalism automatically.
 
 These three axioms are implemented rigorously in the formal Lean code (SKDoubling.lean). From them, you can *derive* (not postulate) the form of the dissipative corrections.
 
-The SK extension tells you that the dissipative pressure correction has a specific form:
+The SK extension tells you the dissipative pressure correction has a specific form:
 
 **δP_diss = (Γ_H / κ)**
 
-where Γ_H is the Hawking rate (the rate at which phonons are radiated from a sonic horizon, which we'll compute in Lecture 9), and κ is the surface gravity of the sonic horizon.
+where Γ_H is the Hawking rate (the rate at which phonons radiate from a sonic horizon, computed in Lecture 9), and κ is the sonic horizon's surface gravity.
 
-This is a thermodynamic relation. It says that the dissipative correction to the equation of state is proportional to the radiation rate, divided by the surface gravity. This formula encodes the deepest connection between horizon thermodynamics and dissipation in the effective theory.
+This is a thermodynamic relation. The dissipative correction to the equation of state is proportional to the radiation rate, divided by surface gravity. This formula encodes the deepest connection between horizon thermodynamics and dissipation in the effective theory.
 
 ## The κ-Scaling: Why Dissipation Grows with Horizon Gravity
 
 Let's build physical intuition for why dissipation scales with κ, the surface gravity.
 
-The surface gravity κ measures the strength of the gravitational gradient at the horizon of a black hole. For a sonic horizon in a superfluid, it's the strength of the velocity gradient near the point where v = c_s. A larger κ means a steeper gradient—a more "intense" horizon.
+The surface gravity κ measures the strength of the gravitational gradient at a black hole's horizon. For a sonic horizon in a superfluid, it's the velocity gradient strength near the point where v = c_s. Larger κ means steeper gradient—a more "intense" horizon.
 
 From thermodynamics and Hawking's calculation, the Hawking temperature of a horizon is:
 
 **T_H = κ / (2π)**
 
-(in units where ℏ = k_B = 1). A larger κ means a hotter horizon. Higher temperature means larger thermal fluctuations, and larger thermal fluctuations drive larger dissipation.
+(in units where ℏ = k_B = 1).
 
-From the fluctuation-dissipation theorem (Lecture 3), the power spectrum of fluctuations at a given frequency ω is approximately:
+Larger κ means hotter horizon. Higher temperature means larger thermal fluctuations. Larger thermal fluctuations drive larger dissipation.
+
+From the fluctuation-dissipation theorem, the power spectrum of fluctuations at frequency ω is approximately:
 
 **⟨[δO(ω)]²⟩ ~ T_H ~ κ**
 
