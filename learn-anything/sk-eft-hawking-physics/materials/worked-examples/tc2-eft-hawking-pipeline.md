@@ -123,9 +123,22 @@ $$T_{\text{eff}} = T_H \left(1 + \frac{\Gamma_H}{\kappa}\right)$$
 
 To leading order:
 
-$$\boxed{\delta_{\text{diss}} = \frac{\Gamma_H}{\kappa} \propto \frac{\gamma_1}{\kappa}}$$
+$$\boxed{\delta_{\text{diss}} = \frac{\Gamma_H}{\kappa} \propto \gamma_1 \kappa}$$
 
-This is the **dissipative correction to emergent gravity**: the effective temperature of Hawking radiation is shifted by an amount proportional to the viscosity (encoded in $\gamma_1$) and inversely proportional to the surface gravity (steepness of the horizon).
+**Phase 5 Discovery**: The dissipative correction exhibits **LINEAR κ-scaling**, not the constant correction originally assumed. Specifically:
+
+$$\delta_{\text{diss}} = \alpha \gamma_1 \kappa$$
+
+where $\alpha$ is a dimensionless constant from the horizon structure. This reveals a crucial **crossover** between two regimes:
+
+$$\kappa_{\text{cross}} = \frac{6(\gamma_1 + \gamma_2)}{\pi \xi^2}$$
+
+where $\xi$ is the sonic healing length. The physical interpretation:
+
+- **Dissipative-dominated regime** ($\kappa < \kappa_{\text{cross}}$): Dissipative corrections dominate the Hawking spectrum. The horizon is "gentle" and viscous effects reshape the thermal distribution.
+- **Dispersive-dominated regime** ($\kappa > \kappa_{\text{cross}}$): Dispersive (higher-order) corrections dominate. The horizon is "steep" and quantum pressure effects take over.
+
+This is the **dissipative correction to emergent gravity**: the effective temperature of Hawking radiation is shifted by an amount proportional to both the viscosity (encoded in $\gamma_1$) and the surface gravity's steepness ($\kappa$). See **KappaScaling.lean** for the formal proof of this scaling relation and regime classification (11 theorems).
 
 ---
 
@@ -156,6 +169,30 @@ $$\Gamma_H \sim \gamma_1 \times (\text{typical phonon energy})$$
 This multiplies $\partial_t^2 \phi_A \phi_R$, a higher-order damping term. It's suppressed by powers of the sound speed. For most systems, $\gamma_1 \gg \gamma_2$.
 
 > **Physical Insight**: The hierarchy $\gamma_1 \gg \gamma_2$ reflects a separation of scales. Low-energy (long-wavelength) physics is dominated by first-order terms. Higher-order terms kick in only at higher energies, where microscopic structure becomes visible. This is the essence of the **power-counting** in effective field theory.
+
+---
+
+### Step 7: Experimental Platforms and Temperature Scaling
+
+**Bose-Einstein Condensate (BEC):**
+
+In superfluid $^4\text{He}$ or dilute atomic BECs, the Hawking temperature is set by $T_H = \hbar\kappa/(2\pi k_B)$. Typical surface gravities are $\kappa \sim 10^3$ s$^{-1}$, giving:
+
+$$T_H \sim \frac{\hbar \times 10^3}{2\pi k_B} \sim 0.35 \, \text{nK}$$
+
+This is extraordinarily cold—difficult to measure, because thermal noise at lab temperatures (~1 K) overwhelms the signal.
+
+**Polariton Platforms (Tier 1):**
+
+A remarkable new opportunity emerges in exciton-polariton condensates in semiconductors. The polariton dispersion is much *steeper* than phonon dispersion, leading to surface gravities $\kappa \sim 10^{12}$ s$^{-1}$ or higher. This increases the Hawking temperature to:
+
+$$T_H^{\text{pol}} \sim 0.8\text{--}4 \, \text{K}$$
+
+**This is 10$^{10}$ times hotter than BEC**, bringing Hawking radiation into the realm of standard cryogenic measurements. The κ-scaling discovery (Phase 5) shows exactly why this enhancement occurs: the dissipative correction $\delta_{\text{diss}} \propto \kappa$ also scales up, but the baseline $T_H$ grows even faster.
+
+See **PolaritonTier1.lean** for the formal validity bounds and **src/experimental/polariton_predictions.py** for predicted spectra.
+
+> **Experimental Outlook**: Polariton platforms transform Hawking radiation from a theoretical curiosity to an accessible quantum optics measurement. This is why Phase 5's κ-scaling is so important: it explains *why* different platforms have vastly different thermal signatures, and predicts which platforms are experimentally tractable.
 
 ---
 
@@ -253,6 +290,14 @@ This multiplies $\partial_t^2 \phi_A \phi_R$, a higher-order damping term. It's 
 - **`SKDoubling.lean`**: The Schwinger-Keldysh contour structure. Reading this shows exactly how retarded and advanced fields are distinct mathematical objects, and why they must satisfy KMS.
 
 - **`HawkingCorrection.lean`**: Computation of $\delta_{\text{diss}}$ as a function of $\gamma_1$ and $\kappa$. You can verify the formula algebraically.
+
+- **`KappaScaling.lean`** (11 theorems): Formal verification of the LINEAR κ-scaling relation for $\delta_{\text{diss}}$, the crossover formula $\kappa_{\text{cross}} = 6(\gamma_1+\gamma_2)/(\pi\xi^2)$, and classification of dissipative vs. dispersive regimes. This is the Phase 5 discovery that overturned the constant-correction assumption.
+
+- **`PolaritonTier1.lean`** (6 theorems): Validity bounds and thermal properties for polariton platforms. Establishes that polariton Hawking temperatures reach $T_H \sim 0.8$--4 K, enabling 10$^{10}$× more accessible detection compared to BEC's ~0.35 nK.
+
+- **`src/experimental/kappa_scaling.py`**: Platform-specific parameter sweeps for κ-scaling. Computes dissipative-to-dispersive crossover location for BEC, polariton, and flowing water systems.
+
+- **`src/experimental/polariton_predictions.py`**: Generates Hawking radiation spectra for Tier 1 polariton platforms, showing temperature enhancement and testable deviations from BEC predictions.
 
 ---
 

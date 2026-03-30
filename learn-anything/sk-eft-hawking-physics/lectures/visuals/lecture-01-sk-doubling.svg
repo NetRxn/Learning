@@ -1,0 +1,49 @@
+<svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+  <title>The Schwinger-Keldysh Doubling Mechanism</title>
+
+  <!-- Background -->
+  <rect width="700" height="300" fill="#ffffff"/>
+
+  <!-- Defs for arrow markers -->
+  <defs>
+    <marker id="arrowhead-blue-sk" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowhead-red-sk" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="50" y="30" font-family="Arial, sans-serif" font-size="14" fill="#374151" font-weight="bold">Schwinger-Keldysh Time Contour</text>
+
+  <!-- Horizontal time axis -->
+  <line x1="80" y1="120" x2="620" y2="120" stroke="#374151" stroke-width="2"/>
+
+  <!-- Time direction labels -->
+  <text x="85" y="105" font-family="Arial, sans-serif" font-size="11" fill="#374151">t_i</text>
+  <text x="600" y="105" font-family="Arial, sans-serif" font-size="11" fill="#374151">t_f</text>
+
+  <!-- Forward branch (ket evolution) - solid blue line going right -->
+  <line x1="100" y1="120" x2="350" y2="120" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowhead-blue-sk)"/>
+  <text x="220" y="95" font-family="Arial, sans-serif" font-size="12" fill="#2563eb" font-weight="bold">Forward: |ψ⟩ evolution</text>
+
+  <!-- Turnaround point -->
+  <circle cx="350" cy="120" r="6" fill="#9333ea" stroke="#9333ea" stroke-width="2"/>
+  <text x="340" y="155" font-family="Arial, sans-serif" font-size="11" fill="#9333ea" font-weight="bold">Turnaround</text>
+
+  <!-- Backward branch (bra evolution) - dashed red line going left -->
+  <line x1="350" y1="120" x2="100" y2="120" stroke="#dc2626" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrowhead-red-sk)"/>
+  <text x="220" y="155" font-family="Arial, sans-serif" font-size="12" fill="#dc2626" font-weight="bold">Backward: ⟨ψ| evolution</text>
+
+  <!-- Initial state mark -->
+  <circle cx="100" cy="120" r="4" fill="#374151"/>
+
+  <!-- Annotation box -->
+  <rect x="50" y="210" width="600" height="70" rx="6" fill="rgba(147,51,234,0.08)" stroke="#9333ea" stroke-width="2"/>
+
+  <text x="70" y="235" font-family="Arial, sans-serif" font-size="12" fill="#374151" font-weight="bold">Key Insight:</text>
+  <text x="70" y="255" font-family="Arial, sans-serif" font-size="11" fill="#374151">Doubling the fields (forward + backward) enables dissipation in quantum formalism.</text>
+  <text x="70" y="272" font-family="Arial, sans-serif" font-size="11" fill="#374151">Physical observables are measured at the turnaround point (t_f).</text>
+
+</svg>

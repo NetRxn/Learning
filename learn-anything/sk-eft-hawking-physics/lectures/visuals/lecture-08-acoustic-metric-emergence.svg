@@ -1,0 +1,87 @@
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Acoustic Metric Emergence from L=P(X)</title>
+
+  <!-- Background -->
+  <rect width="900" height="300" fill="#ffffff"/>
+
+  <!-- PANEL 1: Condensate and fluctuation -->
+  <g>
+    <!-- Panel background -->
+    <rect x="20" y="20" width="240" height="240" rx="8" fill="rgba(37,99,235,0.08)" stroke="#2563eb" stroke-width="2"/>
+
+    <!-- Title -->
+    <text x="140" y="45" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">L = P(X)</text>
+    <text x="140" y="62" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="middle">ψ = ψ₀ + φ</text>
+
+    <!-- Condensate wave (smooth blue curve) -->
+    <path d="M 40 140 Q 80 100 120 140 Q 160 180 200 140 Q 240 100 260 140"
+          stroke="#2563eb" stroke-width="3" fill="none"/>
+    <text x="140" y="170" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="middle">ψ₀ (ground state)</text>
+
+    <!-- Small fluctuation ripple on top -->
+    <path d="M 80 135 Q 90 130 100 135 Q 110 140 120 135"
+          stroke="#dc2626" stroke-width="2" fill="none"/>
+    <text x="140" y="190" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="middle">φ (small fluctuation)</text>
+
+    <!-- Arrow down -->
+    <path d="M 140 235 L 140 255" stroke="#374151" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+
+  <!-- PANEL 2: Quadratic action -->
+  <g>
+    <!-- Panel background -->
+    <rect x="330" y="20" width="240" height="240" rx="8" fill="rgba(22,163,74,0.08)" stroke="#16a34a" stroke-width="2"/>
+
+    <!-- Title -->
+    <text x="450" y="45" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">Expand to 2nd order</text>
+
+    <!-- Action formula -->
+    <rect x="345" y="70" width="210" height="120" rx="4" fill="#ffffff" stroke="#16a34a" stroke-width="1"/>
+    <text x="450" y="95" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">S₂[φ] = ½∫ φ G⁻¹ φ</text>
+    <text x="450" y="115" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">Quadratic action</text>
+
+    <text x="450" y="145" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">G⁻¹ involves spatial</text>
+    <text x="450" y="160" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">derivatives of ψ₀ (velocity)</text>
+    <text x="450" y="175" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">and P', P'' (sound speed)</text>
+
+    <!-- Arrow down -->
+    <path d="M 450 235 L 450 255" stroke="#374151" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+
+  <!-- PANEL 3: Acoustic metric -->
+  <g>
+    <!-- Panel background -->
+    <rect x="640" y="20" width="240" height="240" rx="8" fill="rgba(147,51,234,0.08)" stroke="#9333ea" stroke-width="2"/>
+
+    <!-- Title -->
+    <text x="760" y="45" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">Acoustic Metric</text>
+
+    <!-- Metric tensor box -->
+    <rect x="660" y="75" width="200" height="100" rx="4" fill="#ffffff" stroke="#9333ea" stroke-width="1.5"/>
+
+    <!-- Matrix notation -->
+    <text x="695" y="100" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#374151">g^μν =</text>
+
+    <!-- Metric entries -->
+    <text x="730" y="100" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">⎡ -v²c_s²  -v ⎤</text>
+    <text x="730" y="118" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">⎢           ⎥</text>
+    <text x="730" y="136" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">⎣  -v     c_s² ⎦</text>
+
+    <!-- Interpretation -->
+    <text x="760" y="190" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#374151" text-anchor="middle">v: background flow</text>
+    <text x="760" y="207" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#374151" text-anchor="middle">c_s: sound speed</text>
+
+    <!-- Conclusion -->
+    <text x="760" y="235" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#9333ea" text-anchor="middle">Sound curves spacetime</text>
+  </g>
+
+  <!-- Global arrow markers -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <!-- Bottom conclusion -->
+  <text x="450" y="280" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="middle" font-style="italic">Gravity emerges: fluctuations propagate on curved acoustic spacetime</text>
+</svg>

@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 880" font-family="Georgia, serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#dc2626"/>
+    </marker>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#16a34a"/>
+    </marker>
+    <linearGradient id="bec-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#bfdbfe" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="fluid-zone" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#dcfce7" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#dcfce7" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#dcfce7" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="quantum-zone" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#fef3c7" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#fef3c7" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="480" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#1e293b">Healing Length: Where Fluid Becomes Quantum</text>
+
+  <!-- ====== PANEL 1: The Wavefunction Healing ====== -->
+  <rect x="20" y="48" width="920" height="250" rx="8" fill="#fafafa" stroke="#d1d5db"/>
+  <text x="480" y="72" text-anchor="middle" font-size="15" font-weight="bold" fill="#374151">Panel 1: Poking a Hole in the Condensate</text>
+
+  <!-- Axes -->
+  <line x1="80" y1="250" x2="900" y2="250" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="80" y1="250" x2="80" y2="88" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="910" y="255" font-size="12" fill="#333">x</text>
+  <text x="68" y="88" font-size="12" fill="#333">|ψ|²</text>
+  <text x="68" y="105" font-size="11" fill="#666">(density)</text>
+
+  <!-- Bulk density line -->
+  <line x1="80" y1="120" x2="900" y2="120" stroke="#94a3b8" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="910" y="124" font-size="11" fill="#94a3b8">n₀</text>
+
+  <!-- BEC wavefunction with hole healing -->
+  <!-- Left flat region -->
+  <path d="M 80,120 L 300,120" stroke="#2563eb" stroke-width="2.5" fill="none"/>
+  <!-- Healing dip -->
+  <path d="M 300,120 C 340,120 370,122 400,135 C 430,150 445,195 460,240 C 475,195 490,150 510,135 C 540,122 570,120 610,120" stroke="#2563eb" stroke-width="2.5" fill="none"/>
+  <!-- Right flat region -->
+  <path d="M 610,120 L 900,120" stroke="#2563eb" stroke-width="2.5" fill="none"/>
+
+  <!-- Fill under curve -->
+  <path d="M 80,120 L 300,120 C 340,120 370,122 400,135 C 430,150 445,195 460,240 C 475,195 490,150 510,135 C 540,122 570,120 610,120 L 900,120 L 900,250 L 80,250 Z" fill="url(#bec-fill)" opacity="0.4"/>
+
+  <!-- Hole label -->
+  <text x="460" y="225" text-anchor="middle" font-size="12" fill="#dc2626" font-weight="bold">hole</text>
+  <text x="460" y="240" text-anchor="middle" font-size="10" fill="#dc2626">(atoms removed)</text>
+
+  <!-- Healing length bracket left side -->
+  <line x1="370" y1="272" x2="460" y2="272" stroke="#dc2626" stroke-width="2"/>
+  <line x1="370" y1="266" x2="370" y2="278" stroke="#dc2626" stroke-width="2"/>
+  <line x1="460" y1="266" x2="460" y2="278" stroke="#dc2626" stroke-width="2"/>
+  <text x="415" y="288" text-anchor="middle" font-size="13" fill="#dc2626" font-weight="bold">ξ</text>
+
+  <!-- Healing length bracket right side -->
+  <line x1="460" y1="272" x2="550" y2="272" stroke="#dc2626" stroke-width="2"/>
+  <line x1="550" y1="266" x2="550" y2="278" stroke="#dc2626" stroke-width="2"/>
+  <text x="505" y="288" text-anchor="middle" font-size="13" fill="#dc2626" font-weight="bold">ξ</text>
+
+  <!-- Annotations -->
+  <rect x="640" y="130" width="250" height="90" rx="5" fill="#fff" stroke="#93c5fd" opacity="0.95"/>
+  <text x="765" y="150" text-anchor="middle" font-size="12" fill="#1e40af" font-weight="bold">The condensate heals over</text>
+  <text x="765" y="167" text-anchor="middle" font-size="12" fill="#1e40af" font-weight="bold">distance ξ — not instantly.</text>
+  <text x="765" y="190" text-anchor="middle" font-size="11" fill="#475569">Sharp edge → high kinetic energy</text>
+  <text x="765" y="206" text-anchor="middle" font-size="11" fill="#475569">Smooth edge → low kinetic energy</text>
+  <text x="765" y="218" text-anchor="middle" font-size="11" fill="#475569">ξ is where they balance.</text>
+
+  <!-- ====== PANEL 2: The Two Competing Energies ====== -->
+  <rect x="20" y="310" width="440" height="250" rx="8" fill="#fafafa" stroke="#d1d5db"/>
+  <text x="240" y="335" text-anchor="middle" font-size="15" font-weight="bold" fill="#374151">Panel 2: The Competition</text>
+
+  <!-- Interaction energy bar -->
+  <rect x="60" y="360" width="170" height="60" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="145" y="383" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">Interaction Energy</text>
+  <text x="145" y="400" text-anchor="middle" font-size="11" fill="#3b82f6">gn² (atoms repel)</text>
+  <text x="145" y="415" text-anchor="middle" font-size="10" fill="#3b82f6">"Make density uniform!"</text>
+
+  <!-- vs -->
+  <text x="240" y="395" text-anchor="middle" font-size="18" font-weight="bold" fill="#374151">vs</text>
+
+  <!-- Kinetic energy bar -->
+  <rect x="270" y="360" width="170" height="60" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+  <text x="355" y="383" text-anchor="middle" font-size="13" font-weight="bold" fill="#991b1b">Kinetic Energy</text>
+  <text x="355" y="400" text-anchor="middle" font-size="11" fill="#dc2626">ℏ²/2mξ² (QM pressure)</text>
+  <text x="355" y="415" text-anchor="middle" font-size="10" fill="#dc2626">"Don't bend me sharply!"</text>
+
+  <!-- Balance point -->
+  <text x="240" y="450" text-anchor="middle" font-size="14" fill="#374151">Balance at:</text>
+  <rect x="120" y="460" width="240" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="240" y="485" text-anchor="middle" font-size="16" font-weight="bold" fill="#166534" font-family="monospace">ξ = 1/√(2mgn)</text>
+
+  <!-- Parameter effects -->
+  <text x="100" y="525" font-size="11" fill="#475569">Stronger g → shorter ξ (stiffer condensate)</text>
+  <text x="100" y="541" font-size="11" fill="#475569">Higher n → shorter ξ (denser = more rigid)</text>
+
+  <!-- ====== PANEL 3: The Dispersion Relation ====== -->
+  <rect x="500" y="310" width="440" height="250" rx="8" fill="#fafafa" stroke="#d1d5db"/>
+  <text x="720" y="335" text-anchor="middle" font-size="15" font-weight="bold" fill="#374151">Panel 3: Dispersion Relation</text>
+
+  <!-- Axes -->
+  <line x1="550" y1="520" x2="900" y2="520" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="550" y1="520" x2="550" y2="350" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="910" y="525" font-size="12" fill="#333">k (wavenumber)</text>
+  <text x="540" y="350" font-size="12" fill="#333">ω</text>
+
+  <!-- k = 1/ξ marker -->
+  <line x1="720" y1="520" x2="720" y2="355" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="720" y="540" text-anchor="middle" font-size="12" fill="#dc2626" font-weight="bold">k ~ 1/ξ</text>
+
+  <!-- Zone labels -->
+  <!-- Fluid zone (left of 1/ξ) -->
+  <rect x="555" y="355" width="160" height="160" fill="url(#fluid-zone)"/>
+  <text x="635" y="375" text-anchor="middle" font-size="11" fill="#16a34a" font-weight="bold">FLUID REGIME</text>
+  <text x="635" y="390" text-anchor="middle" font-size="10" fill="#16a34a">k &lt;&lt; 1/ξ</text>
+  <text x="635" y="405" text-anchor="middle" font-size="10" fill="#16a34a">EFT works here</text>
+
+  <!-- Quantum zone (right of 1/ξ) -->
+  <rect x="725" y="355" width="170" height="160" fill="url(#quantum-zone)"/>
+  <text x="810" y="375" text-anchor="middle" font-size="11" fill="#b45309" font-weight="bold">QUANTUM REGIME</text>
+  <text x="810" y="390" text-anchor="middle" font-size="10" fill="#b45309">k &gt;&gt; 1/ξ</text>
+  <text x="810" y="405" text-anchor="middle" font-size="10" fill="#b45309">EFT breaks down</text>
+
+  <!-- Linear dispersion (phonon) -->
+  <line x1="550" y1="520" x2="720" y2="400" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="610" y="480" font-size="12" fill="#16a34a" font-weight="bold" transform="rotate(-35,610,480)">ω = c_s k</text>
+  <text x="588" y="500" font-size="10" fill="#16a34a" transform="rotate(-35,588,500)">(phonon: linear)</text>
+
+  <!-- Actual Bogoliubov dispersion curving up -->
+  <path d="M 550,520 L 680,420 Q 720,395 760,365 Q 800,335 870,290" stroke="#7c3aed" stroke-width="2.5" fill="none"/>
+  <text x="870" y="285" font-size="11" fill="#7c3aed" font-weight="bold">ω ~ k²/2m</text>
+  <text x="870" y="300" font-size="10" fill="#7c3aed">(free particle)</text>
+
+  <!-- Arrow showing departure -->
+  <path d="M 735,390 Q 745,375 755,370" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr-red)"/>
+  <text x="770" y="420" font-size="10" fill="#dc2626">curves away</text>
+  <text x="770" y="433" font-size="10" fill="#dc2626">from linear</text>
+
+  <!-- ====== PANEL 4: Healing Length at the Horizon ====== -->
+  <rect x="20" y="575" width="920" height="290" rx="8" fill="#fafafa" stroke="#d1d5db"/>
+  <text x="480" y="600" text-anchor="middle" font-size="15" font-weight="bold" fill="#374151">Panel 4: Healing Length at the Sonic Horizon</text>
+
+  <!-- Flow profile -->
+  <!-- Axes -->
+  <line x1="80" y1="770" x2="550" y2="770" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="80" y1="770" x2="80" y2="620" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="560" y="775" font-size="12" fill="#333">x</text>
+  <text x="65" y="625" font-size="12" fill="#333">speed</text>
+
+  <!-- Horizon line -->
+  <line x1="300" y1="770" x2="300" y2="625" stroke="#dc2626" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="300" y="790" text-anchor="middle" font-size="12" fill="#dc2626" font-weight="bold">x_H (horizon)</text>
+
+  <!-- Speed of sound (horizontal) -->
+  <line x1="80" y1="700" x2="540" y2="700" stroke="#16a34a" stroke-width="2"/>
+  <text x="545" y="705" font-size="12" fill="#16a34a" font-weight="bold">c_s</text>
+
+  <!-- Flow velocity (increasing left to right, crossing c_s at horizon) -->
+  <path d="M 80,750 Q 180,740 300,700 Q 420,660 540,640" stroke="#2563eb" stroke-width="2.5" fill="none"/>
+  <text x="545" y="645" font-size="12" fill="#2563eb" font-weight="bold">v(x)</text>
+
+  <!-- Labels: subsonic / supersonic -->
+  <text x="180" y="650" text-anchor="middle" font-size="12" fill="#475569">v &lt; c_s</text>
+  <text x="180" y="665" text-anchor="middle" font-size="11" fill="#475569">(subsonic)</text>
+  <text x="430" y="650" text-anchor="middle" font-size="12" fill="#475569">v &gt; c_s</text>
+  <text x="430" y="665" text-anchor="middle" font-size="11" fill="#475569">(supersonic)</text>
+
+  <!-- Healing length zone around horizon -->
+  <rect x="260" y="625" width="80" height="140" fill="#fef2f2" opacity="0.4" rx="3"/>
+  <line x1="260" y1="760" x2="260" y2="755" stroke="#dc2626" stroke-width="1.5"/>
+  <line x1="340" y1="760" x2="340" y2="755" stroke="#dc2626" stroke-width="1.5"/>
+  <line x1="260" y1="757" x2="340" y2="757" stroke="#dc2626" stroke-width="2"/>
+  <text x="300" y="750" text-anchor="middle" font-size="12" fill="#dc2626" font-weight="bold">~ ξ</text>
+
+  <!-- c_s/κ zone (wider) -->
+  <line x1="170" y1="775" x2="430" y2="775" stroke="#7c3aed" stroke-width="2"/>
+  <line x1="170" y1="770" x2="170" y2="780" stroke="#7c3aed" stroke-width="1.5"/>
+  <line x1="430" y1="770" x2="430" y2="780" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="300" y="800" text-anchor="middle" font-size="12" fill="#7c3aed" font-weight="bold">~ c_s / κ  (horizon scale)</text>
+
+  <!-- Right side: The key parameter -->
+  <rect x="580" y="620" width="340" height="230" rx="8" fill="#fff" stroke="#e5e7eb"/>
+  <text x="750" y="648" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">The Key Ratio</text>
+
+  <rect x="620" y="660" width="260" height="45" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="750" y="688" text-anchor="middle" font-size="18" font-weight="bold" fill="#166534" font-family="monospace">D = κξ / c_s</text>
+
+  <text x="750" y="725" text-anchor="middle" font-size="12" fill="#374151" font-weight="bold">= healing length / horizon scale</text>
+
+  <rect x="620" y="740" width="260" height="48" rx="5" fill="#dbeafe" stroke="#93c5fd"/>
+  <text x="750" y="758" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">D &lt;&lt; 1: fat horizon, EFT trustworthy</text>
+  <text x="750" y="775" text-anchor="middle" font-size="11" fill="#1e40af">ξ is tiny compared to horizon → fluid picture holds</text>
+
+  <rect x="620" y="795" width="260" height="48" rx="5" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="750" y="813" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="bold">D ~ 1: thin horizon, EFT breaks down</text>
+  <text x="750" y="830" text-anchor="middle" font-size="11" fill="#991b1b">ξ comparable to horizon → quantum effects dominate</text>
+
+  <!-- Caption -->
+  <text x="480" y="870" text-anchor="middle" font-size="12" fill="#64748b" font-style="italic">ξ is the boundary between "fluid" and "quantum." D tells you where the horizon sits relative to that boundary.</text>
+</svg>

@@ -1,0 +1,75 @@
+<svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+  <title>Sound Cone Tilting as Flow Velocity Increases</title>
+
+  <!-- Background -->
+  <rect width="800" height="350" fill="#ffffff"/>
+
+  <!-- Central axis line -->
+  <line x1="50" y1="175" x2="750" y2="175" stroke="#374151" stroke-width="2"/>
+
+  <!-- Position markers on axis -->
+  <circle cx="100" cy="175" r="4" fill="#374151"/>
+  <circle cx="200" cy="175" r="4" fill="#374151"/>
+  <circle cx="300" cy="175" r="4" fill="#374151"/>
+  <circle cx="450" cy="175" r="4" fill="#374151"/>
+  <circle cx="600" cy="175" r="4" fill="#374151"/>
+  <circle cx="700" cy="175" r="4" fill="#374151"/>
+
+  <!-- Defs for markers -->
+  <defs>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <!-- Position 1: No flow (symmetric cone) -->
+  <g>
+    <line x1="100" y1="175" x2="100" y2="100" stroke="#2563eb" stroke-width="2.5"/>
+    <line x1="100" y1="175" x2="100" y2="250" stroke="#2563eb" stroke-width="2.5"/>
+    <text x="85" y="295" font-family="Arial, sans-serif" font-size="11" fill="#374151">v = 0</text>
+  </g>
+
+  <!-- Position 2: Light tilt -->
+  <g>
+    <line x1="200" y1="175" x2="165" y2="100" stroke="#2563eb" stroke-width="2.5"/>
+    <line x1="200" y1="175" x2="165" y2="250" stroke="#2563eb" stroke-width="2.5"/>
+    <text x="185" y="295" font-family="Arial, sans-serif" font-size="11" fill="#374151">v &lt; c_s</text>
+  </g>
+
+  <!-- Position 3: More tilt -->
+  <g>
+    <line x1="300" y1="175" x2="230" y2="100" stroke="#2563eb" stroke-width="2.5"/>
+    <line x1="300" y1="175" x2="230" y2="250" stroke="#2563eb" stroke-width="2.5"/>
+    <text x="280" y="295" font-family="Arial, sans-serif" font-size="11" fill="#374151">Increasing</text>
+  </g>
+
+  <!-- Horizon marker -->
+  <line x1="450" y1="100" x2="450" y2="250" stroke="#dc2626" stroke-width="3" stroke-dasharray="8,4"/>
+  <text x="425" y="315" font-family="Arial, sans-serif" font-size="12" fill="#dc2626" font-weight="bold">v = c_s</text>
+
+  <!-- Position 4: At horizon - one edge is vertical -->
+  <g>
+    <line x1="450" y1="175" x2="450" y2="100" stroke="#2563eb" stroke-width="2.5"/>
+    <line x1="450" y1="175" x2="330" y2="250" stroke="#2563eb" stroke-width="2.5"/>
+    <text x="430" y="50" font-family="Arial, sans-serif" font-size="10" fill="#2563eb">Critical</text>
+  </g>
+
+  <!-- Position 5: Supersonic - both edges tilt past vertical -->
+  <g>
+    <line x1="600" y1="175" x2="530" y2="100" stroke="#2563eb" stroke-width="2.5"/>
+    <line x1="600" y1="175" x2="470" y2="250" stroke="#2563eb" stroke-width="2.5"/>
+    <text x="585" y="295" font-family="Arial, sans-serif" font-size="11" fill="#374151">v &gt; c_s</text>
+  </g>
+
+  <!-- Position 6: Very supersonic - cones very tilted -->
+  <g>
+    <line x1="700" y1="175" x2="580" y2="100" stroke="#2563eb" stroke-width="2.5"/>
+    <line x1="700" y1="175" x2="550" y2="250" stroke="#2563eb" stroke-width="2.5"/>
+    <text x="685" y="295" font-family="Arial, sans-serif" font-size="11" fill="#374151">v ≫ c_s</text>
+  </g>
+
+  <!-- Title and explanation -->
+  <text x="50" y="25" font-family="Arial, sans-serif" font-size="14" fill="#374151" font-weight="bold">Sound Cones Tilt with Flow Velocity</text>
+  <text x="50" y="45" font-family="Arial, sans-serif" font-size="11" fill="#374151">Left edge shows acoustic signal propagating upstream; right edge downstream.</text>
+
+</svg>

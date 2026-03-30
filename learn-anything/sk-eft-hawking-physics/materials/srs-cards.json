@@ -252,6 +252,32 @@
           "difficulty_estimate": 0.5,
           "curriculum_position": 18,
           "design_notes": "Central result — must understand physically, not just numerically"
+        },
+        {
+          "card_id": "card-037",
+          "component_id": "vertex-dissipative-correction",
+          "card_type": "basic",
+          "front": "What is the κ-scaling relation for the dissipative correction, and how does it differ from the original assumption?",
+          "back": "Phase 5 discovered that δ_diss ∝ κ (LINEAR scaling with surface gravity), not the constant correction originally assumed. The full picture: at low κ, dissipative corrections dominate (δ ∝ κ). At high κ, dispersive corrections dominate (δ ∝ κ²). The crossover occurs at κ_cross = 6(γ₁+γ₂)/(πξ²). This means different experimental platforms live in different regimes: Heidelberg is dissipative-dominated (0.04×κ_cross), Steinhauer is near crossover (1.3×κ_cross), and Trento is dispersive-dominated (5.7×κ_cross). KappaScaling.lean formalizes this with 11 theorems.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["eft-pipeline::kappa-scaling::linear-correction"],
+          "difficulty_estimate": 0.6,
+          "curriculum_position": 47,
+          "design_notes": "Phase 5 discovery — platform-dependent scaling regimes"
+        },
+        {
+          "card_id": "card-038",
+          "component_id": "vertex-hawking-radiation",
+          "card_type": "open_ended",
+          "front": "Why are polariton systems 10^10 times hotter than BEC for Hawking radiation, and what makes them experimentally tractable?",
+          "back": "Polariton systems (exciton-polaritons in semiconductor microcavities) have T_H ~ 0.8-4 K compared to ~0.35 nK for BEC analogs. The enormous enhancement comes from the polariton effective mass being ~10⁻⁵ times the atom mass, combined with much larger sound speeds and steeper velocity profiles. The κ-scaling discovery explains why: since δ_diss ∝ κ, and polariton κ values are orders of magnitude larger, the thermal signal scales up dramatically. Tier 1 validity requires Γ_pol/κ < 0.1, achievable with cavity lifetimes >100 ps. The polariton dissipation is frequency-independent (unlike EFT phonon dissipation), providing a distinct spectral signature.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "principle",
+          "topic_tags": ["eft-pipeline::polariton::experimental-landscape"],
+          "difficulty_estimate": 0.7,
+          "curriculum_position": 48,
+          "design_notes": "Phase 5 platform — polariton temperature enhancement"
         }
       ]
     },
@@ -483,8 +509,8 @@
           "card_id": "card-035",
           "component_id": "vertex-lean-verification",
           "card_type": "basic",
-          "front": "What is the complete verification status of the SK-EFT program as of Phase 4 completion?",
-          "back": "216 theorems + 1 axiom across 16 Lean 4 modules, zero sorry. 822 pytest tests across 16 test files, all passing. 56 theorems proved by the Aristotle AI assistant across 18 runs. 6 papers (2 PRL + 4 PRD format). The single axiom (in GaugeErasure.lean) encodes the topological classification of defects — it's a mathematical fact that Lean's type theory cannot express natively. Wave 5 quality hardening verified cross-module consistency.",
+          "front": "What was the verification status after Phase 4 (before the Phase 5 expansion)?",
+          "back": "216 theorems + 1 axiom across 16 Lean 4 modules, zero sorry. 822 pytest tests across 16 test files, all passing. 56 theorems proved by the Aristotle AI assistant across 18 runs. 6 papers (2 PRL + 4 PRD format). The single axiom (in GaugeErasure.lean) encodes the topological classification of defects — it's a mathematical fact that Lean's type theory cannot express natively. Wave 5 quality hardening verified cross-module consistency. Note: Phase 5 expanded this to 429 theorems + 2 axioms, 30 modules, 1001 tests, 7 papers. See card-044 for current status.",
           "bloom_level": "remember",
           "knowledge_type": "fact",
           "topic_tags": ["synthesis::verification::phase4-status"],
@@ -504,6 +530,84 @@
           "difficulty_estimate": 0.8,
           "curriculum_position": 46,
           "design_notes": "Phase 4 synthesis — capstone card on symmetry breaking phases"
+        },
+        {
+          "card_id": "card-039",
+          "component_id": "vertex-string-nets",
+          "card_type": "open_ended",
+          "front": "State and explain the gauge emergence theorem Z(Vec_G) ≅ Rep(D(G)). What does it physically mean for the hybrid architecture?",
+          "back": "The center of the category Vec_G (G-graded vector spaces with Day convolution monoidal structure) is isomorphic to Rep(D(G)) — the representations of the Drinfeld double of G. Physically: start with a string-net condensate built from G-labeled strings (Layer 1). The excitations of this condensate (anyons) are classified by the center construction Z(Vec_G). The theorem says these anyons are EXACTLY the same as the representations of D(G), which are the particle content of discrete gauge theory with gauge group G. Example: for G = Z/2, D(Z/2) gives the toric code with 4 anyons (1, e, m, ε). This is the formal proof that string-net condensation → gauge theory emergence, establishing the Layer 1 → Layer 2 connection in the hybrid architecture. GaugeEmergence.lean proves this with 14 theorems.",
+          "bloom_level": "analyze",
+          "knowledge_type": "mental_model",
+          "topic_tags": ["synthesis::categorical::gauge-emergence"],
+          "difficulty_estimate": 0.9,
+          "curriculum_position": 49,
+          "design_notes": "Phase 5 synthesis — categorical proof of gauge emergence"
+        },
+        {
+          "card_id": "card-040",
+          "component_id": "vertex-chirality-wall",
+          "card_type": "basic",
+          "front": "What is the chirality limitation for string-net models, and why is it fundamental?",
+          "back": "String-net models based on fusion categories always produce topological field theories with chiral central charge c ≡ 0 (mod 8). This means they are intrinsically NON-CHIRAL — they cannot produce the chiral fermions needed for the Standard Model. The proof follows from the Gauss sum formula: the global dimension D² determines the topological central charge via exp(2πic/8) = (1/D²)Σ_a d_a² θ_a, and for string-nets built from fusion categories, the twist factors θ_a conspire to make c a multiple of 8. This is a structural limitation, not a technical one — it's another face of the chirality wall. GaugeEmergence.lean formalizes this constraint.",
+          "bloom_level": "understand",
+          "knowledge_type": "principle",
+          "topic_tags": ["synthesis::categorical::chirality-limitation"],
+          "difficulty_estimate": 0.8,
+          "curriculum_position": 50,
+          "design_notes": "Phase 5 synthesis — fusion category chirality bound"
+        },
+        {
+          "card_id": "card-041",
+          "component_id": "vertex-chirality-wall",
+          "card_type": "open_ended",
+          "front": "What did Paper 7 achieve regarding the chirality wall, and why is it a 'first' in the literature?",
+          "back": "Paper 7 is the first formal verification result in the lattice chiral fermion literature. It mechanically proved that all 9 Golterman-Shamir (GS) conditions for lattice chiral fermions are mathematically incompatible with the Twist-Projection-Free (TPF) construction. Specifically: 6 explicit conditions (C1-C6: translation invariance, fermion-only, finite-dimensional, nearest-neighbor, single-flavor, ultralocal) and 3 implicit conditions (I1-I3: finite-dimensional Hilbert space, bounded operators, spectral gap) were formalized as Lean propositions. Then 5 independent TPF violations were proved mechanically: C1 (round() discontinuous), C2 (bosonic fields present), I3 (ℓ²(ℤ) infinite-dimensional), extra bulk dimension, and C3 conditional (spectral gap weakened). Three Lean modules: LatticeHamiltonian (28+1), GoltermanShamir (14+1), TPFEvasion (12) — total 54 theorems + 1 axiom.",
+          "bloom_level": "evaluate",
+          "knowledge_type": "principle",
+          "topic_tags": ["synthesis::chirality-wall::formal-verification"],
+          "difficulty_estimate": 0.8,
+          "curriculum_position": 51,
+          "design_notes": "Phase 5 synthesis — first formal lattice chiral fermion verification"
+        },
+        {
+          "card_id": "card-042",
+          "component_id": "vertex-string-nets",
+          "card_type": "basic",
+          "front": "What categorical structures were formalized for the first time in any proof assistant during Phase 5, and why do they matter?",
+          "back": "Phase 5 created three FIRST-EVER formalizations: (1) PivotalCategory (SphericalCategory.lean, 18 theorems) — categories with categorical traces and pivotal structure, essential for defining topological invariants. (2) FusionCategory (FusionCategory.lean + FusionExamples.lean, 44 theorems) — semisimple rigid monoidal categories with finitely many simple objects and pentagon equation, the mathematical foundation of anyonic excitations. Concrete examples: Vec_Z2, Vec_Z3, Rep_S3, Fibonacci. (3) Drinfeld Double (DrinfeldDouble.lean, 15 theorems) — D(G) with twisted multiplication and conjugation action, the algebraic structure underlying discrete gauge theory. Together (101 theorems) they formalize Layer 1 of the hybrid architecture: how topological order produces gauge fields and anyonic excitations.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["synthesis::categorical::first-ever"],
+          "difficulty_estimate": 0.5,
+          "curriculum_position": 52,
+          "design_notes": "Phase 5 synthesis — categorical formalizations milestone"
+        },
+        {
+          "card_id": "card-043",
+          "component_id": "vertex-vestigial-gravity",
+          "card_type": "basic",
+          "front": "What does the 4D Monte Carlo 'split transition' confirm about vestigial gravity?",
+          "back": "The 4D fermion-bag MC production runs at lattice sizes L=4,6,8 detected that the metric susceptibility χ_metric and tetrad susceptibility χ_tetrad peak at DIFFERENT coupling values. At small lattice sizes, the peaks overlap. As L increases, they separate — the split grows. This split confirms the vestigial phase: there exists a range of couplings where the composite metric g_μν has Lorentzian signature (metric order) but the individual tetrad field ⟨E^a_μ⟩ = 0 (no tetrad order). The temperature hierarchy T_metric > T_tetrad means you enter the vestigial phase before reaching full tetrad order. This validates Paper 6's prediction from mean-field theory with lattice evidence.",
+          "bloom_level": "understand",
+          "knowledge_type": "concept",
+          "topic_tags": ["synthesis::vestigial-gravity::mc-confirmation"],
+          "difficulty_estimate": 0.7,
+          "curriculum_position": 53,
+          "design_notes": "Phase 5 synthesis — Monte Carlo validation of vestigial phase"
+        },
+        {
+          "card_id": "card-044",
+          "component_id": "vertex-lean-verification",
+          "card_type": "open_ended",
+          "front": "Describe the complete verification status of the SK-EFT program after Phase 5 completion.",
+          "back": "429 theorems + 2 axioms across 30 Lean 4 modules, zero sorry. 1001 pytest tests across 18 test files, all passing. 99 theorems proved by the Aristotle AI assistant across 27 runs. 7 papers (2 PRL + 5 PRD format). The program includes three FIRST-EVER formalizations in any proof assistant (PivotalCategory, FusionCategory, Drinfeld Double) and the first formal verification in the lattice chiral fermion literature (Paper 7). The 2 axioms encode: (1) topological classification of defects in GaugeErasure.lean, (2) a Fock space property in GoltermanShamir.lean — both mathematical facts that Lean's type theory cannot express natively. Phase 5 nearly doubled the theorem count from 216 to 429.",
+          "bloom_level": "remember",
+          "knowledge_type": "fact",
+          "topic_tags": ["synthesis::verification::phase5-status"],
+          "difficulty_estimate": 0.3,
+          "curriculum_position": 54,
+          "design_notes": "Phase 5 synthesis — final verification status"
         }
       ]
     }

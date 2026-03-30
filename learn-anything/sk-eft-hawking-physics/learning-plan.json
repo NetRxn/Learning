@@ -3,7 +3,7 @@
   "knowledge_graph_id": "kg-sk-eft-2026-03-26-001",
   "learner_id": "learner-netrxn-001",
   "created_at": "2026-03-26T15:00:00Z",
-  "updated_at": "2026-03-27T12:00:00Z",
+  "updated_at": "2026-03-30T12:00:00Z",
 
   "curriculum": {
     "epitome": {
@@ -54,6 +54,14 @@
           },
           {
             "sequence": 5,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "THE WALLSTROM OBJECTION: The Madelung transform connects QM to fluid variables — but loses single-valuedness information. Why this matters for the program's philosophical foundation. The Reddiger-Poirier distributional resolution attempt. Honest assessment: what's proven, what's open.",
+            "vertex_ids": ["vertex-wallstrom", "vertex-quantum-mechanics"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 6,
             "support_level": "completion",
             "task_type": "whole_task",
             "description": "FLUIDS FROM FIRST PRINCIPLES: Euler equations as conservation laws, sound waves as density oscillations, why viscosity exists (molecular picture), transport coefficients as the bridge to EFT. Walk through transonic_background.py with physical commentary.",
@@ -61,7 +69,7 @@
             "session_template": "A_concept_intro"
           },
           {
-            "sequence": 6,
+            "sequence": 7,
             "support_level": "completion",
             "task_type": "whole_task",
             "description": "THE MEXICAN HAT AND BEYOND: SSB physically — why the ground state breaks symmetry, why Goldstone modes are massless (it costs no energy to roll along the valley), the phonon as the Goldstone of broken particle number. Connect to both superfluid EFT and ADW.",
@@ -69,7 +77,7 @@
             "session_template": "A_concept_intro"
           },
           {
-            "sequence": 7,
+            "sequence": 8,
             "support_level": "guided",
             "task_type": "whole_task",
             "description": "FDR DEEP DIVE: Return to statistical mechanics with the fluctuation-dissipation theorem as the main event. Build physical intuition: dissipation and noise are the same thing viewed from different angles. Why KMS must be true in thermal equilibrium. Use the Aristotle counterexample story.",
@@ -77,7 +85,7 @@
             "session_template": "A_concept_intro"
           },
           {
-            "sequence": 8,
+            "sequence": 9,
             "support_level": "guided",
             "task_type": "whole_task",
             "description": "FOUNDATIONS INTEGRATION: Connect all five foundations through the project. Lagrangians → EFT → superfluid EFT → fluid dynamics → acoustic metric. Stat mech → FDR → KMS → SK formalism. QM → path integral → Bogoliubov → Hawking. See the three streams converge.",
@@ -85,7 +93,7 @@
             "session_template": "B_retrieval_review"
           },
           {
-            "sequence": 9,
+            "sequence": 10,
             "support_level": "conventional",
             "task_type": "whole_task",
             "description": "FOUNDATIONS MASTERY CHECK: Conversational assessment — explain the action principle to a non-physicist, describe what thermal equilibrium means microscopically, articulate why the phonon is a Goldstone boson. Discussion-based, not exam-based.",
@@ -177,12 +185,20 @@
             "sequence": 8,
             "support_level": "guided",
             "task_type": "whole_task",
-            "description": "THE DISSIPATIVE CORRECTION: Putting it all together — acoustic metric + SK formalism + three axioms → T_eff = T_H(1 + δ_diss). Why δ_diss = Γ_H/κ has the form it does. The physical meaning of each piece. The spin-sonic enhancement. The experimental numbers.",
+            "description": "THE DISSIPATIVE CORRECTION: Putting it all together — acoustic metric + SK formalism + three axioms → T_eff = T_H(1 + δ_diss). Why δ_diss = Γ_H/κ has the form it does. Crucially, δ_diss ∝ κ — LINEAR scaling with the sonic horizon curvature, NOT constant. The physical meaning of each piece. The spin-sonic enhancement. The experimental numbers.",
             "vertex_ids": ["vertex-dissipative-correction"],
             "session_template": "A_concept_intro"
           },
           {
             "sequence": 9,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "THE SK-EFT COMMUNITY: Glorioso-Liu-Crossley's framework — what they built, how your work extends it. Holographic SK (de Boer, Heller), open EFT (Haehl-Loganayagam-Rangamani), the 2025 gravitational open-system EFT. Positioning your Papers 1-2 in the landscape: same formalism, different application.",
+            "vertex_ids": ["vertex-sk-eft-community", "vertex-cgl-derivation"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 10,
             "support_level": "conventional",
             "task_type": "whole_task",
             "description": "PIPELINE INTEGRATION: Retell the entire Paper 1 story in your own words, with physical insight for every step. Identify where formalism is doing the work vs where physics is doing the work. Compare your understanding now to your understanding at the epitome.",
@@ -190,7 +206,7 @@
             "session_template": "B_retrieval_review"
           },
           {
-            "sequence": 10,
+            "sequence": 11,
             "support_level": "conventional",
             "task_type": "whole_task",
             "description": "PIPELINE MASTERY CHECK: Explain the complete Paper 1 argument to a physicist who doesn't know the project. No slides, no notes — just physical reasoning. Can you answer 'why?' at every step?",
@@ -256,6 +272,22 @@
           },
           {
             "sequence": 5,
+            "support_level": "worked_example",
+            "task_type": "whole_task",
+            "description": "THE DISPERSIVE CORRECTIONS PROGRAM: 25 years of Jacobson-Unruh-Corley — how modified dispersion relations affect Hawking radiation. Biondi's 2025 EFT approach. Your dissipative program complements their dispersive program — understanding both sides sharpens your papers.",
+            "vertex_ids": ["vertex-dispersive-corrections"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 6,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "KSS BOUND AND UNIVERSALITY: The conjectured lower bound eta/s >= hbar/4pi*k_B. Why it matters for the SK-EFT framework. Connection to holographic calculations and strongly-coupled systems. How your delta_diss probes this regime experimentally.",
+            "vertex_ids": ["vertex-svetitsky-yaffe", "vertex-dissipative-correction"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 7,
             "support_level": "guided",
             "task_type": "whole_task",
             "description": "COMPLEX TURNING POINTS: The exact WKB method — what happens when the turning point moves into the complex plane. Physical meaning of the complex shift δx_imag. Stokes lines as boundaries between different approximate solutions. The modified unitarity relation.",
@@ -263,7 +295,7 @@
             "session_template": "A_concept_intro"
           },
           {
-            "sequence": 6,
+            "sequence": 8,
             "support_level": "guided",
             "task_type": "whole_task",
             "description": "THE NOISE FLOOR: The FDR noise floor n_noise = δ_k/2 — why it exists (KMS mandates thermal noise independent of the Hawking process), why it dominates at high frequencies, and what it means experimentally. The spectral floor as a new prediction.",
@@ -271,7 +303,7 @@
             "session_template": "A_concept_intro"
           },
           {
-            "sequence": 7,
+            "sequence": 9,
             "support_level": "conventional",
             "task_type": "whole_task",
             "description": "BACKREACTION: How Hawking radiation modifies the background. Why acoustic BHs cool (opposite of Schwarzschild!) and approach extremality. The analog of the Page curve. Timescales for each platform.",
@@ -279,7 +311,15 @@
             "session_template": "A_concept_intro"
           },
           {
-            "sequence": 8,
+            "sequence": 10,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "POLARITON PLATFORM AND EXPERIMENTAL ANALYSIS: Paris polariton group (Carusotto, Falque 2025) — negative-energy modes in semiconductor microcavities. Photonic vs atomic platforms. Practical skills: reading experimental BEC Hawking papers, fitting spectra, extracting transport coefficients from data.",
+            "vertex_ids": ["vertex-polariton-platform", "vertex-experimental-analysis", "vertex-experimental-landscape"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 11,
             "support_level": "conventional",
             "task_type": "whole_task",
             "description": "HIGHER-ORDER MASTERY CHECK: Present the Phase 2-4 extensions as a coherent story. How does each extension enrich the Paper 1 foundation? What new physics does each reveal?",
@@ -371,12 +411,20 @@
             "sequence": 8,
             "support_level": "conventional",
             "task_type": "whole_task",
-            "description": "VESTIGIAL GRAVITY: What happens below the full tetrad phase? Composite order parameters, the three-phase structure, EP violation. Why vestigial gravity is 'Einstein without Einstein.' Walk through the Monte Carlo results.",
+            "description": "VESTIGIAL GRAVITY: What happens below the full tetrad phase? Composite order parameters, the three-phase structure, EP violation. Why vestigial gravity is 'Einstein without Einstein.' 4D MC production confirmed split transition — the vestigial phase is experimentally verified via lattice simulation, not just theoretical. Walk through the Monte Carlo results and simulation architecture.",
             "vertex_ids": ["vertex-vestigial-gravity"],
             "session_template": "A_concept_intro"
           },
           {
             "sequence": 9,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "VOLOVIK'S RECENT PROGRAM: The 'Fermionic Quartet and Vestigial Gravity' (JETP Letters 2024) — Volovik's own treatment overlapping with your Paper 6. Nissinen's emergent tetrads in topological semimetals. How to position Papers 5-6 relative to the Volovik school: computational confirmation of his proposals, plus formal verification.",
+            "vertex_ids": ["vertex-volovik-recent", "vertex-vestigial-gravity", "vertex-adw-mechanism"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 10,
             "support_level": "conventional",
             "task_type": "whole_task",
             "description": "GAUGE-GRAVITY MASTERY CHECK: Explain the three branches as a coherent story. Why does gauge erasure constrain the architecture? How does ADW provide the gravity link? What does vestigial gravity add? What are the honest limitations?",
@@ -412,7 +460,7 @@
             "sequence": 1,
             "support_level": "worked_example",
             "task_type": "whole_task",
-            "description": "STRING-NET CONDENSATION: Levin-Wen physically — how condensing extended objects produces topological order and emergent gauge fields. Why this is Layer 1 of the architecture. The 2+1D to 3+1D extension.",
+            "description": "STRING-NET CONDENSATION: Levin-Wen physically — how condensing extended objects produces topological order and emergent gauge fields. Why this is Layer 1 of the architecture. The 2+1D to 3+1D extension. Phase 5 created FIRST-EVER categorical formalizations in Lean: PivotalCategory, FusionCategory, DrinfeldDouble. Z(Vec_G) ≅ Rep(D(G)) gauge emergence theorem proved. Walk through GaugeEmergence.lean to see the formal structure grounded in physics.",
             "vertex_ids": ["vertex-string-nets"],
             "session_template": "A_concept_intro"
           },
@@ -426,22 +474,46 @@
           },
           {
             "sequence": 3,
-            "support_level": "completion",
+            "support_level": "worked_example",
             "task_type": "whole_task",
-            "description": "THE CHIRALITY WALL: Nielsen-Ninomiya physically — why chiral fermions resist latticization. The TPF disentangler, Golterman-Shamir generalized no-go, SMG at 16 Weyl. The three critical gaps. Walk through ChiralityWall.lean.",
-            "vertex_ids": ["vertex-chirality-wall"],
+            "description": "FRACTON-GRAVITY COMMUNITY: Pretko's 'Emergent gravity of fractons' and the Mach's principle argument. Seiberg-Shao higher-rank gauge theories. Radzihovsky-Hermele fracton phases in cold atoms. How your fracton Layer 2 results fit alongside what these groups have done.",
+            "vertex_ids": ["vertex-fracton-gravity-community", "vertex-fracton-hydro"],
             "session_template": "A_concept_intro"
           },
           {
             "sequence": 4,
-            "support_level": "guided",
+            "support_level": "completion",
             "task_type": "whole_task",
-            "description": "THE THREE WALLS IN DEPTH: Return to each wall with full understanding from all previous classes. For each wall: the precise obstruction, what would change it, and the current state of play. Frame as 'what would change this?' not 'what is the verdict?'",
-            "vertex_ids": ["vertex-three-walls"],
+            "description": "THE CHIRALITY WALL: Nielsen-Ninomiya physically — why chiral fermions resist latticization. The TPF disentangler, Golterman-Shamir generalized no-go, SMG at 16 Weyl. The three critical gaps. Paper 7 written, 9 GS conditions formalized, 5 TPF violations proved mechanically. Walk through TPFEvasion.lean — first formal verification in lattice chiral fermion literature.",
+            "vertex_ids": ["vertex-chirality-wall"],
             "session_template": "A_concept_intro"
           },
           {
             "sequence": 5,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "SMG AND ACTIVE CHIRALITY RESEARCH: Wen-You classification, Razamat anomaly matching, Fidkowski-Kitaev 1D results. The current state of the art in lattice chiral fermions. What would it take to unblock Phase 5A.",
+            "vertex_ids": ["vertex-smg-chirality", "vertex-chirality-wall"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 6,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "WALKER-WANG MODELS: The 3+1D generalization of string-net condensation. How Walker-Wang models produce emergent gauge theories in higher dimensions. Required foundation for Phase 5B (Monte Carlo eta/s). Svetitsky-Yaffe universality: do emergent and fundamental gauge theories share thermodynamic properties?",
+            "vertex_ids": ["vertex-walker-wang", "vertex-svetitsky-yaffe", "vertex-string-nets"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 7,
+            "support_level": "guided",
+            "task_type": "whole_task",
+            "description": "THE THREE WALLS IN DEPTH: Return to each wall with full understanding from all previous classes. For each wall: the precise obstruction, what would change it, and the current state of play. Frame as 'what would change this?' not 'what is the verdict?' Note the c ≡ 0 mod 8 chirality limitation for string-nets — a fundamental constraint on lattice realizations.",
+            "vertex_ids": ["vertex-three-walls"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 8,
             "support_level": "guided",
             "task_type": "whole_task",
             "description": "LEAN PROOFS AS PHYSICS: Using proof structure for physical insight. When rfl means 'definitional,' when contradiction means 'non-obvious constraint,' when 15 lines means 'genuinely hard.' Walk through representative proofs from each Lean module.",
@@ -449,7 +521,15 @@
             "session_template": "A_concept_intro"
           },
           {
-            "sequence": 6,
+            "sequence": 9,
+            "support_level": "conventional",
+            "task_type": "whole_task",
+            "description": "FANG-GU AND THE UV-COMPLETE PATH: The Fang-Gu (2023) topological supergravity construction — the full chain from string-net to chiral fermions to ADW to Einstein gravity. Phase 5A contingent analysis: what would need to be true, what's proven, what's open. The Vergeles unitarity proof.",
+            "vertex_ids": ["vertex-fang-gu", "vertex-smg-chirality", "vertex-adw-mechanism"],
+            "session_template": "A_concept_intro"
+          },
+          {
+            "sequence": 10,
             "support_level": "conventional",
             "task_type": "whole_task",
             "description": "THE COMPLETE ARCHITECTURE: The three-layer hybrid in full depth. Layer 1 → Layer 2 → Layer 3. What passes between layers, what cannot. The honest minimum viable hybrid. The revised scorecard from Critical Review v3.",
@@ -457,15 +537,15 @@
             "session_template": "A_concept_intro"
           },
           {
-            "sequence": 7,
+            "sequence": 11,
             "support_level": "conventional",
             "task_type": "whole_task",
-            "description": "FINAL SYNTHESIS: The complete program from beginning to end. How the complete Phase 4 results (Paper 6, 5 new Lean modules, 216 total theorems) fit together, and what Phase 5 research directions remain open. Your understanding now vs where you started. The physicist's identity frame.",
+            "description": "FINAL SYNTHESIS: The complete program from beginning to end. How the complete Phase 5 results fit together: 429 theorems across 7 papers and 30 Lean modules. FIRST-EVER contributions: categorical formalizations (PivotalCategory, FusionCategory, DrinfeldDouble), mechanical verification of chirality obstructions (TPFEvasion.lean), experimental confirmation of vestigial gravity. Phase 5 is complete — further work is open-ended research. Your understanding now vs where you started. The physicist's identity frame.",
             "vertex_ids": ["vertex-three-walls", "vertex-hybrid-architecture", "vertex-experimental-landscape"],
             "session_template": "B_retrieval_review"
           },
           {
-            "sequence": 8,
+            "sequence": 12,
             "support_level": "independent",
             "task_type": "whole_task",
             "description": "CAPSTONE MASTERY CHECK: Present the entire research program to an imaginary physics colloquium audience. 30-minute talk structure. Physical insight for every major result. Honest assessment of limitations. Vision for the future.",
@@ -493,63 +573,79 @@
       {"vertex_id": "vertex-acoustic-metric", "priority_rank": 5, "selection_score": 0.78, "rationale": "Gateway node bridging fluids to Hawking", "excluded": false},
       {"vertex_id": "vertex-spontaneous-symmetry-breaking", "priority_rank": 6, "selection_score": 0.76, "rationale": "Gateway node for both EFT streams", "excluded": false},
       {"vertex_id": "vertex-kms-fdr", "priority_rank": 7, "selection_score": 0.74, "rationale": "Central to SK formalism", "excluded": false},
-      {"vertex_id": "vertex-son-superfluid-eft", "priority_rank": 8, "selection_score": 0.72, "rationale": "High-impact, starts the calculation", "excluded": false},
-      {"vertex_id": "vertex-hawking-radiation", "priority_rank": 9, "selection_score": 0.70, "rationale": "Gateway node — program raison d'être", "excluded": false},
-      {"vertex_id": "vertex-adw-mechanism", "priority_rank": 10, "selection_score": 0.65, "rationale": "High-impact emergent gravity", "excluded": false},
-      {"vertex_id": "vertex-wkb-connection", "priority_rank": 11, "selection_score": 0.62, "rationale": "High-impact non-perturbative", "excluded": false},
-      {"vertex_id": "vertex-gauge-erasure", "priority_rank": 12, "selection_score": 0.58, "rationale": "Most important negative result", "excluded": false},
-      {"vertex_id": "vertex-bogoliubov-coefficients", "priority_rank": 13, "selection_score": 0.55, "rationale": "Prereq for WKB and Hawking depth", "excluded": false},
-      {"vertex_id": "vertex-coleman-weinberg", "priority_rank": 14, "selection_score": 0.52, "rationale": "Hard prereq for ADW", "excluded": false},
-      {"vertex_id": "vertex-string-nets", "priority_rank": 15, "selection_score": 0.48, "rationale": "Layer 1 of architecture", "excluded": false},
-      {"vertex_id": "vertex-quantum-mechanics", "priority_rank": 16, "selection_score": 0.46, "rationale": "Foundation — needed for BEC and Bogoliubov", "excluded": false},
-      {"vertex_id": "vertex-fluid-dynamics", "priority_rank": 17, "selection_score": 0.44, "rationale": "Foundation — hard prereq for acoustic metric", "excluded": false},
-      {"vertex_id": "vertex-dissipative-correction", "priority_rank": 18, "selection_score": 0.42, "rationale": "Central result — familiar but needs depth", "excluded": false},
-      {"vertex_id": "vertex-sk-axioms", "priority_rank": 19, "selection_score": 0.40, "rationale": "Core SK formalism node", "excluded": false},
-      {"vertex_id": "vertex-higher-form-symmetries", "priority_rank": 20, "selection_score": 0.38, "rationale": "Prereq for gauge erasure", "excluded": false},
-      {"vertex_id": "vertex-transport-counting", "priority_rank": 21, "selection_score": 0.36, "rationale": "Phase 2 extension", "excluded": false},
-      {"vertex_id": "vertex-vestigial-gravity", "priority_rank": 22, "selection_score": 0.34, "rationale": "Phase 4 emergent gravity", "excluded": false},
-      {"vertex_id": "vertex-three-walls", "priority_rank": 23, "selection_score": 0.32, "rationale": "Synthesis — near-transfer but needs physics depth", "excluded": false},
-      {"vertex_id": "vertex-hybrid-architecture", "priority_rank": 24, "selection_score": 0.30, "rationale": "Capstone synthesis", "excluded": false},
-      {"vertex_id": "vertex-spectral-distortion", "priority_rank": 25, "selection_score": 0.28, "rationale": "Phase 2 — moderate impact", "excluded": false},
-      {"vertex_id": "vertex-cgl-derivation", "priority_rank": 26, "selection_score": 0.26, "rationale": "Phase 2D work", "excluded": false},
-      {"vertex_id": "vertex-bec-physics", "priority_rank": 27, "selection_score": 0.24, "rationale": "Condensed matter foundation", "excluded": false},
-      {"vertex_id": "vertex-volovik-he3", "priority_rank": 28, "selection_score": 0.22, "rationale": "He-3 program context", "excluded": false},
-      {"vertex_id": "vertex-chirality-wall", "priority_rank": 29, "selection_score": 0.20, "rationale": "Synthesis — chirality obstruction", "excluded": false},
-      {"vertex_id": "vertex-fracton-hydro", "priority_rank": 30, "selection_score": 0.18, "rationale": "Phase 4 alternative Layer 2", "excluded": false},
-      {"vertex_id": "vertex-experimental-landscape", "priority_rank": 31, "selection_score": 0.16, "rationale": "Experimental context", "excluded": false},
-      {"vertex_id": "vertex-transonic-backgrounds", "priority_rank": 32, "selection_score": 0.14, "rationale": "Mostly known — brief deepening", "excluded": false},
-      {"vertex_id": "vertex-backreaction", "priority_rank": 33, "selection_score": 0.12, "rationale": "Phase 4 — moderate priority", "excluded": false},
-      {"vertex_id": "vertex-lean-verification", "priority_rank": 34, "selection_score": 0.10, "rationale": "Already proficient — extend to physics insight dimension", "excluded": false}
+      {"vertex_id": "vertex-sk-eft-community", "priority_rank": 8, "selection_score": 0.72, "rationale": "High relevance to Papers 1-2, positions work in broader field", "excluded": false},
+      {"vertex_id": "vertex-son-superfluid-eft", "priority_rank": 9, "selection_score": 0.70, "rationale": "High-impact, starts the calculation", "excluded": false},
+      {"vertex_id": "vertex-hawking-radiation", "priority_rank": 10, "selection_score": 0.68, "rationale": "Gateway node — program raison d'être", "excluded": false},
+      {"vertex_id": "vertex-adw-mechanism", "priority_rank": 11, "selection_score": 0.65, "rationale": "High-impact emergent gravity", "excluded": false},
+      {"vertex_id": "vertex-dispersive-corrections", "priority_rank": 12, "selection_score": 0.62, "rationale": "Important for positioning dissipative program alongside dispersive approaches", "excluded": false},
+      {"vertex_id": "vertex-wkb-connection", "priority_rank": 13, "selection_score": 0.60, "rationale": "High-impact non-perturbative", "excluded": false},
+      {"vertex_id": "vertex-gauge-erasure", "priority_rank": 14, "selection_score": 0.58, "rationale": "Most important negative result", "excluded": false},
+      {"vertex_id": "vertex-bogoliubov-coefficients", "priority_rank": 15, "selection_score": 0.55, "rationale": "Prereq for WKB and Hawking depth", "excluded": false},
+      {"vertex_id": "vertex-coleman-weinberg", "priority_rank": 16, "selection_score": 0.52, "rationale": "Hard prereq for ADW", "excluded": false},
+      {"vertex_id": "vertex-string-nets", "priority_rank": 17, "selection_score": 0.48, "rationale": "Layer 1 of architecture", "excluded": false},
+      {"vertex_id": "vertex-quantum-mechanics", "priority_rank": 18, "selection_score": 0.46, "rationale": "Foundation — needed for BEC and Bogoliubov", "excluded": false},
+      {"vertex_id": "vertex-fluid-dynamics", "priority_rank": 19, "selection_score": 0.44, "rationale": "Foundation — hard prereq for acoustic metric", "excluded": false},
+      {"vertex_id": "vertex-volovik-recent", "priority_rank": 20, "selection_score": 0.42, "rationale": "Important for positioning Papers 5-6 in Volovik school context", "excluded": false},
+      {"vertex_id": "vertex-dissipative-correction", "priority_rank": 21, "selection_score": 0.40, "rationale": "Central result — familiar but needs depth", "excluded": false},
+      {"vertex_id": "vertex-sk-axioms", "priority_rank": 22, "selection_score": 0.38, "rationale": "Core SK formalism node", "excluded": false},
+      {"vertex_id": "vertex-higher-form-symmetries", "priority_rank": 23, "selection_score": 0.36, "rationale": "Prereq for gauge erasure", "excluded": false},
+      {"vertex_id": "vertex-transport-counting", "priority_rank": 24, "selection_score": 0.34, "rationale": "Phase 2 extension", "excluded": false},
+      {"vertex_id": "vertex-vestigial-gravity", "priority_rank": 25, "selection_score": 0.32, "rationale": "Phase 5 emergent gravity — experimentally verified via lattice simulation", "excluded": false},
+      {"vertex_id": "vertex-experimental-analysis", "priority_rank": 26, "selection_score": 0.30, "rationale": "Practical experimental skills — critical for interpreting BEC Hawking data", "excluded": false},
+      {"vertex_id": "vertex-three-walls", "priority_rank": 27, "selection_score": 0.28, "rationale": "Synthesis — near-transfer but needs physics depth", "excluded": false},
+      {"vertex_id": "vertex-hybrid-architecture", "priority_rank": 28, "selection_score": 0.26, "rationale": "Capstone synthesis", "excluded": false},
+      {"vertex_id": "vertex-spectral-distortion", "priority_rank": 29, "selection_score": 0.24, "rationale": "Phase 2 — moderate impact", "excluded": false},
+      {"vertex_id": "vertex-cgl-derivation", "priority_rank": 30, "selection_score": 0.22, "rationale": "Phase 2D work", "excluded": false},
+      {"vertex_id": "vertex-smg-chirality", "priority_rank": 31, "selection_score": 0.20, "rationale": "Current state of lattice chiral fermions — enables Phase 5A contingency thinking", "excluded": false},
+      {"vertex_id": "vertex-bec-physics", "priority_rank": 32, "selection_score": 0.19, "rationale": "Condensed matter foundation", "excluded": false},
+      {"vertex_id": "vertex-fracton-gravity-community", "priority_rank": 33, "selection_score": 0.18, "rationale": "Community context for fracton Layer 2 results", "excluded": false},
+      {"vertex_id": "vertex-walker-wang", "priority_rank": 34, "selection_score": 0.17, "rationale": "3+1D topological order — foundation for Phase 5B Monte Carlo", "excluded": false},
+      {"vertex_id": "vertex-svetitsky-yaffe", "priority_rank": 35, "selection_score": 0.16, "rationale": "Universality — key for understanding thermodynamic properties of emergent theories", "excluded": false},
+      {"vertex_id": "vertex-chirality-wall", "priority_rank": 36, "selection_score": 0.15, "rationale": "Synthesis — chirality obstruction", "excluded": false},
+      {"vertex_id": "vertex-wallstrom", "priority_rank": 37, "selection_score": 0.14, "rationale": "Philosophical objection to Madelung transform — foundation integrity check", "excluded": false},
+      {"vertex_id": "vertex-volovik-he3", "priority_rank": 38, "selection_score": 0.13, "rationale": "He-3 program context", "excluded": false},
+      {"vertex_id": "vertex-fracton-hydro", "priority_rank": 39, "selection_score": 0.12, "rationale": "Phase 5 alternative Layer 2 — formally verified with Lean", "excluded": false},
+      {"vertex_id": "vertex-polariton-platform", "priority_rank": 40, "selection_score": 0.11, "rationale": "Experimental platform for Hawking radiation studies", "excluded": false},
+      {"vertex_id": "vertex-fang-gu", "priority_rank": 41, "selection_score": 0.10, "rationale": "UV-complete topological supergravity — Phase 5A contingency path", "excluded": false},
+      {"vertex_id": "vertex-experimental-landscape", "priority_rank": 42, "selection_score": 0.09, "rationale": "Experimental context", "excluded": false},
+      {"vertex_id": "vertex-transonic-backgrounds", "priority_rank": 43, "selection_score": 0.08, "rationale": "Mostly known — brief deepening", "excluded": false},
+      {"vertex_id": "vertex-backreaction", "priority_rank": 44, "selection_score": 0.07, "rationale": "Phase 5 — moderate priority within complete program", "excluded": false},
+      {"vertex_id": "vertex-lean-verification", "priority_rank": 45, "selection_score": 0.06, "rationale": "Already proficient — extend to physics insight dimension", "excluded": false}
     ]
   },
 
   "schedule": {
     "short_term_plan": {
-      "timeframe": "32 weeks (~8 months)",
+      "timeframe": "34 weeks (~8.5 months)",
       "start_date": "2026-03-27",
-      "target_end_date": "2026-11-13",
+      "target_end_date": "2026-11-27",
       "sessions_per_week": 5,
       "session_duration_minutes": 45,
-      "total_sessions": 155,
+      "total_sessions": 165,
       "milestones": [
         {"week": 1, "description": "Epitome complete — walked through the Paper 1 journey end to end", "task_class_id": "tc-1-foundations", "expected_coverage": 50},
         {"week": 4, "description": "Foundations solid — Lagrangian mechanics, stat mech, QM, fluid dynamics, SSB all grounded in physical intuition", "task_class_id": "tc-1-foundations", "expected_coverage": 55},
         {"week": 5, "description": "Foundations mastery gate passed", "task_class_id": "tc-1-foundations", "expected_coverage": 58},
+        {"week": 6, "description": "Wallstrom objection understood — fluid-quantum correspondence foundations clear", "task_class_id": "tc-1-foundations", "expected_coverage": 60},
         {"week": 8, "description": "EFT philosophy and Son's EFT deeply understood — can explain WHY L=P(X)", "task_class_id": "tc-2-eft-hawking-pipeline", "expected_coverage": 65},
-        {"week": 10, "description": "Complete Paper 1 pipeline mastered — can explain the entire argument with physical insight at every step", "task_class_id": "tc-2-eft-hawking-pipeline", "expected_coverage": 72},
-        {"week": 14, "description": "Higher-order extensions understood — transport counting, spectral distortion, WKB connection, backreaction", "task_class_id": "tc-3-higher-order", "expected_coverage": 80},
-        {"week": 16, "description": "Higher-order mastery gate passed — Papers 2 and 4 territory internalized", "task_class_id": "tc-3-higher-order", "expected_coverage": 83},
-        {"week": 20, "description": "Gauge erasure and ADW mechanism deeply understood — the conceptual leap of emergent geometry made", "task_class_id": "tc-4-gauge-gravity", "expected_coverage": 88},
-        {"week": 24, "description": "Gauge-gravity mastery gate passed — Papers 3, 5, 6 territory internalized", "task_class_id": "tc-4-gauge-gravity", "expected_coverage": 92},
-        {"week": 28, "description": "String-nets, fractons, chirality wall understood — all topological/lattice foundations in place", "task_class_id": "tc-5-synthesis", "expected_coverage": 95},
-        {"week": 32, "description": "Capstone mastery gate passed — can present the entire research program with Feynman-level insight", "task_class_id": "tc-5-synthesis", "expected_coverage": 98}
+        {"week": 11, "description": "SK-EFT community landscape mapped — can position Papers 1-2 in the field", "task_class_id": "tc-2-eft-hawking-pipeline", "expected_coverage": 70},
+        {"week": 12, "description": "Complete Paper 1 pipeline mastered — can explain the entire argument with physical insight at every step", "task_class_id": "tc-2-eft-hawking-pipeline", "expected_coverage": 72},
+        {"week": 15, "description": "Dispersive corrections program understood — complementary approaches clear", "task_class_id": "tc-3-higher-order", "expected_coverage": 78},
+        {"week": 16, "description": "Higher-order extensions understood — transport counting, spectral distortion, WKB connection, backreaction", "task_class_id": "tc-3-higher-order", "expected_coverage": 80},
+        {"week": 18, "description": "Higher-order mastery gate passed — Papers 2 and 4 territory internalized", "task_class_id": "tc-3-higher-order", "expected_coverage": 83},
+        {"week": 22, "description": "Volovik's recent program mapped — Papers 5-6 properly contextualized", "task_class_id": "tc-4-gauge-gravity", "expected_coverage": 88},
+        {"week": 24, "description": "Gauge erasure and ADW mechanism deeply understood — the conceptual leap of emergent geometry made", "task_class_id": "tc-4-gauge-gravity", "expected_coverage": 90},
+        {"week": 26, "description": "Gauge-gravity mastery gate passed — Papers 3, 5, 6 territory internalized", "task_class_id": "tc-4-gauge-gravity", "expected_coverage": 92},
+        {"week": 29, "description": "Fracton and SMG communities mapped — all external landscape covered", "task_class_id": "tc-5-synthesis", "expected_coverage": 94},
+        {"week": 31, "description": "String-nets, fractons, chirality wall understood — all topological/lattice foundations in place", "task_class_id": "tc-5-synthesis", "expected_coverage": 96},
+        {"week": 34, "description": "Capstone mastery gate passed — can present the entire research program with Feynman-level insight", "task_class_id": "tc-5-synthesis", "expected_coverage": 98}
       ]
     },
     "extended_roadmap": {
-      "description": "After the 32-week core curriculum, the learning continues in two modes: (1) ongoing training sessions that deepen existing understanding through new angles and connections, and (2) learning that tracks the research — as new results come in from Phase 4-5, each new development becomes a learning opportunity.",
+      "description": "After the 32-week core curriculum, the learning continues in two modes: (1) ongoing training sessions that deepen existing understanding through new angles and connections, and (2) learning that tracks the research — Phase 5 is now complete with 429 theorems, 7 papers, and 30 Lean modules, and further research is open-ended.",
       "phases": [
         {"phase_name": "Core Curriculum", "timeframe": "Weeks 1-32", "focus": "All 30 vertices — foundations through synthesis", "target_coverage": 98},
-        {"phase_name": "Research-Tracking Learning", "timeframe": "Weeks 33+", "focus": "Phase 4 results are now complete (6 papers, 216 theorems); Phase 5 directions remain open for future research-tracking learning", "target_coverage": 100},
+        {"phase_name": "Research-Tracking Learning", "timeframe": "Weeks 33+", "focus": "Phase 5 complete (7 papers, 429 theorems); further research is open-ended and driven by new discoveries", "target_coverage": 100},
         {"phase_name": "Expert Intuition", "timeframe": "Ongoing", "focus": "Periodic 'zoom out' sessions connecting the program to the broader physics landscape. Reading and discussing key references. Building the expert sense of 'what feels right' in theoretical physics.", "target_coverage": 100}
       ]
     },
@@ -587,11 +683,11 @@
       }
     ],
     "srs_export_schedule": [
-      {"task_class_id": "tc-1-foundations", "export_timing": "Week 1 — generate alongside first sessions", "card_count_estimate": 40},
-      {"task_class_id": "tc-2-eft-hawking-pipeline", "export_timing": "Week 5 — after foundations mastery gate", "card_count_estimate": 60},
-      {"task_class_id": "tc-3-higher-order", "export_timing": "Week 10 — after pipeline mastery gate", "card_count_estimate": 45},
-      {"task_class_id": "tc-4-gauge-gravity", "export_timing": "Week 16 — after higher-order mastery gate", "card_count_estimate": 50},
-      {"task_class_id": "tc-5-synthesis", "export_timing": "Week 24 — after gauge-gravity mastery gate", "card_count_estimate": 35}
+      {"task_class_id": "tc-1-foundations", "export_timing": "Week 1 — generate alongside first sessions", "card_count_estimate": 50},
+      {"task_class_id": "tc-2-eft-hawking-pipeline", "export_timing": "Week 5 — after foundations mastery gate", "card_count_estimate": 70},
+      {"task_class_id": "tc-3-higher-order", "export_timing": "Week 12 — after pipeline mastery gate", "card_count_estimate": 55},
+      {"task_class_id": "tc-4-gauge-gravity", "export_timing": "Week 18 — after higher-order mastery gate", "card_count_estimate": 60},
+      {"task_class_id": "tc-5-synthesis", "export_timing": "Week 26 — after gauge-gravity mastery gate", "card_count_estimate": 45}
     ]
   },
 

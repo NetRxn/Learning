@@ -14,3 +14,10 @@ __pycache__/
 
 # virtual environments
 .venv/
+
+# Secrets (preventive)
+.env*
+secrets.json
+credentials.json
+*.key
+*.pem

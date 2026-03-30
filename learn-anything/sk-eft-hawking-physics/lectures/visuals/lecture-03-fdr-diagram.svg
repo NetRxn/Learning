@@ -1,0 +1,89 @@
+<svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+  <title>Fluctuation-Dissipation Relation: Brownian Motion and Drag Force</title>
+
+  <!-- Background -->
+  <rect width="800" height="350" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="30" font-size="16" fill="#374151" font-family="sans-serif" font-weight="bold" text-anchor="middle">Fluctuation-Dissipation Relation (FDR)</text>
+
+  <!-- Left panel: Fluctuation -->
+  <g>
+    <!-- Panel label -->
+    <text x="150" y="60" font-size="14" fill="#374151" font-family="sans-serif" font-weight="bold" text-anchor="middle">Fluctuation</text>
+
+    <!-- Medium (light fill) -->
+    <rect x="50" y="80" width="200" height="180" fill="rgba(37,99,235,0.08)" stroke="#2563eb" stroke-width="2" rx="4"/>
+
+    <!-- Brownian motion path (jagged) -->
+    <path d="M 100 150 L 110 140 L 120 155 L 130 145 L 140 160 L 150 150 L 160 170 L 170 155 L 180 175 L 190 160 L 200 180 L 210 165 L 220 185"
+          stroke="#2563eb" stroke-width="2.5" fill="none"/>
+
+    <!-- Particle (dot) -->
+    <circle cx="100" cy="150" r="5" fill="#2563eb" stroke="#2563eb" stroke-width="1"/>
+
+    <!-- Random force vectors -->
+    <line x1="110" y1="140" x2="125" y2="125" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.6"/>
+    <polygon points="125,125 120,130 122,125" fill="#2563eb" opacity="0.6"/>
+
+    <line x1="150" y1="150" x2="165" y2="130" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.6"/>
+    <polygon points="165,130 160,135 162,130" fill="#2563eb" opacity="0.6"/>
+
+    <!-- Equation -->
+    <text x="150" y="275" font-size="12" fill="#374151" font-family="monospace" text-anchor="middle">⟨x²⟩ ~ 2Dt</text>
+    <text x="150" y="290" font-size="11" fill="#374151" font-family="sans-serif" text-anchor="middle">(mean square displacement)</text>
+  </g>
+
+  <!-- Right panel: Dissipation -->
+  <g>
+    <!-- Panel label -->
+    <text x="650" y="60" font-size="14" fill="#374151" font-family="sans-serif" font-weight="bold" text-anchor="middle">Dissipation</text>
+
+    <!-- Medium (light fill) -->
+    <rect x="550" y="80" width="200" height="180" fill="rgba(220,38,38,0.08)" stroke="#dc2626" stroke-width="2" rx="4"/>
+
+    <!-- Viscous medium -->
+    <line x1="560" y1="100" x2="740" y2="100" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+    <line x1="560" y1="120" x2="740" y2="120" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+    <line x1="560" y1="140" x2="740" y2="140" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+    <line x1="560" y1="160" x2="740" y2="160" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+    <line x1="560" y1="180" x2="740" y2="180" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+    <line x1="560" y1="200" x2="740" y2="200" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+    <line x1="560" y1="220" x2="740" y2="220" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+    <line x1="560" y1="240" x2="740" y2="240" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+
+    <!-- Particle (dot) -->
+    <circle cx="600" cy="160" r="5" fill="#dc2626" stroke="#dc2626" stroke-width="1"/>
+
+    <!-- Applied force -->
+    <line x1="600" y1="160" x2="550" y2="160" stroke="#dc2626" stroke-width="3"/>
+    <polygon points="550,160 560,155 560,165" fill="#dc2626"/>
+    <text x="545" y="175" font-size="11" fill="#374151" font-family="sans-serif">F</text>
+
+    <!-- Velocity arrow -->
+    <line x1="615" y1="160" x2="680" y2="160" stroke="#9333ea" stroke-width="2.5"/>
+    <polygon points="680,160 670,155 670,165" fill="#9333ea"/>
+    <text x="705" y="165" font-size="11" fill="#374151" font-family="sans-serif">v</text>
+
+    <!-- Equation -->
+    <text x="650" y="275" font-size="12" fill="#374151" font-family="monospace" text-anchor="middle">F = γv</text>
+    <text x="650" y="290" font-size="11" fill="#374151" font-family="sans-serif" text-anchor="middle">(drag force; γ = friction)</text>
+  </g>
+
+  <!-- Center connector with FDR equation -->
+  <g>
+    <!-- Double-headed arrow -->
+    <line x1="280" y1="160" x2="520" y2="160" stroke="#374151" stroke-width="2"/>
+    <polygon points="280,160 290,155 290,165" fill="#374151"/>
+    <polygon points="520,160 510,155 510,165" fill="#374151"/>
+
+    <!-- FDR equation box -->
+    <rect x="310" y="135" width="180" height="50" fill="#f9fafb" stroke="#374151" stroke-width="2" rx="4"/>
+    <text x="400" y="155" font-size="13" fill="#374151" font-family="monospace" font-weight="bold" text-anchor="middle">D = k_BT / γ</text>
+    <text x="400" y="172" font-size="11" fill="#374151" font-family="sans-serif" text-anchor="middle">(Einstein relation)</text>
+  </g>
+
+  <!-- Bottom interpretation -->
+  <rect x="150" y="305" width="500" height="35" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="400" y="328" font-size="12" fill="#374151" font-family="sans-serif" text-anchor="middle" font-weight="bold">How much a system fluctuates = How much it dissipates × Temperature</text>
+</svg>

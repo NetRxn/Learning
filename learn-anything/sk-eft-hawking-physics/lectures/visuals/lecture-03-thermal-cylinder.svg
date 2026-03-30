@@ -1,0 +1,59 @@
+<svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+  <title>Thermal Cylinder: KMS Condition and Imaginary Time Periodicity</title>
+
+  <!-- Background -->
+  <rect width="600" height="500" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="300" y="30" font-size="16" fill="#374151" font-family="sans-serif" font-weight="bold" text-anchor="middle">KMS Condition: Imaginary Time Periodicity</text>
+
+  <!-- Cylinder wireframe (perspective view) -->
+  <!-- Top ellipse -->
+  <ellipse cx="300" cy="150" rx="100" ry="40" fill="rgba(37,99,235,0.08)" stroke="#2563eb" stroke-width="2"/>
+
+  <!-- Bottom ellipse -->
+  <ellipse cx="300" cy="320" rx="100" ry="40" fill="rgba(37,99,235,0.08)" stroke="#2563eb" stroke-width="2"/>
+
+  <!-- Side lines -->
+  <line x1="200" y1="150" x2="200" y2="320" stroke="#2563eb" stroke-width="2"/>
+  <line x1="400" y1="150" x2="400" y2="320" stroke="#2563eb" stroke-width="2"/>
+
+  <!-- Hidden back arc (dashed) -->
+  <path d="M 200 150 A 100 40 0 0 0 400 150" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="3,3" fill="none"/>
+  <path d="M 200 320 A 100 40 0 0 0 400 320" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="3,3" fill="none"/>
+
+  <!-- Periodic field wrapping around cylinder -->
+  <g>
+    <!-- Sinusoidal path wrapping around -->
+    <path d="M 200 150 Q 230 130 250 150 T 290 150 T 330 150 T 370 150 T 400 150"
+          stroke="#16a34a" stroke-width="3" fill="none"/>
+    <path d="M 200 200 Q 230 180 250 200 T 290 200 T 330 200 T 370 200 T 400 200"
+          stroke="#16a34a" stroke-width="2.5" fill="none" opacity="0.8"/>
+    <path d="M 200 250 Q 230 230 250 250 T 290 250 T 330 250 T 370 250 T 400 250"
+          stroke="#16a34a" stroke-width="2.5" fill="none" opacity="0.8"/>
+    <path d="M 200 300 Q 230 280 250 300 T 290 300 T 330 300 T 370 300 T 400 300"
+          stroke="#16a34a" stroke-width="2.5" fill="none" opacity="0.8"/>
+    <path d="M 200 320 Q 230 300 250 320 T 290 320 T 330 320 T 370 320 T 400 320"
+          stroke="#16a34a" stroke-width="3" fill="none"/>
+  </g>
+
+  <!-- Imaginary time axis label -->
+  <text x="50" y="235" font-size="12" fill="#374151" font-family="sans-serif" font-weight="bold">τ (imaginary time)</text>
+  <path d="M 70 160 L 70 310" stroke="#374151" stroke-width="1.5" stroke-dasharray="2,2"/>
+  <polygon points="70,315 68,305 72,305" fill="#374151"/>
+
+  <!-- Spatial position label -->
+  <text x="440" y="85" font-size="12" fill="#374151" font-family="sans-serif" font-weight="bold">x (position)</text>
+  <path d="M 300 90 L 300 130" stroke="#374151" stroke-width="1.5" stroke-dasharray="2,2"/>
+  <polygon points="300,85 297,95 303,95" fill="#374151"/>
+
+  <!-- Periodicity condition annotation -->
+  <rect x="50" y="360" width="500" height="80" fill="#f9fafb" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="70" y="380" font-size="13" fill="#374151" font-family="monospace" font-weight="bold">τ → τ + β = τ + 1/T</text>
+  <text x="70" y="400" font-size="12" fill="#374151" font-family="sans-serif">(Field configuration must repeat around circumference)</text>
+  <text x="70" y="420" font-size="12" fill="#374151" font-family="sans-serif">High-energy modes (n >> 1): suppressed by e^(-nβE)</text>
+
+  <!-- KMS condition highlight -->
+  <rect x="50" y="455" width="500" height="30" fill="rgba(22,163,74,0.1)" stroke="#16a34a" stroke-width="2" rx="4"/>
+  <text x="70" y="475" font-size="12" fill="#374151" font-family="sans-serif" font-weight="bold">This periodicity IS thermal equilibrium (KMS condition)</text>
+</svg>

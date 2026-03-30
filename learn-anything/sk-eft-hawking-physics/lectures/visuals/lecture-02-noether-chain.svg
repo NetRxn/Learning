@@ -1,0 +1,63 @@
+<svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" width="900" height="200">
+  <title>The Noether Chain: U(1) to Acoustic Metric</title>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="900" height="200" fill="#ffffff" stroke="none"/>
+
+  <!-- Box 1: U(1) Symmetry -->
+  <rect x="10" y="30" width="100" height="100" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="60" y="65" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">U(1)</text>
+  <text x="60" y="80" font-size="10" fill="#374151" text-anchor="middle">Symmetry</text>
+  <text x="60" y="95" font-size="9" fill="#374151" text-anchor="middle">of L=P(X)</text>
+
+  <!-- Arrow 1 -->
+  <path d="M 120 80 L 140 80" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrowdark)"/>
+
+  <!-- Box 2: Noether's Theorem -->
+  <rect x="150" y="30" width="100" height="100" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="200" y="70" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">Noether's</text>
+  <text x="200" y="88" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">Theorem</text>
+
+  <!-- Arrow 2 -->
+  <path d="M 260 80 L 280 80" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrowdark)"/>
+
+  <!-- Box 3: Conserved Current -->
+  <rect x="290" y="30" width="110" height="100" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="345" y="65" font-size="10" font-weight="bold" fill="#374151" text-anchor="middle">Conserved</text>
+  <text x="345" y="80" font-size="10" font-weight="bold" fill="#374151" text-anchor="middle">Current j</text>
+  <text x="355" y="78" font-size="8" fill="#374151">μ</text>
+
+  <!-- Arrow 3 -->
+  <path d="M 410 80 L 430 80" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrowdark)"/>
+
+  <!-- Box 4: Fluid Flow -->
+  <rect x="440" y="30" width="100" height="100" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="490" y="65" font-size="10" font-weight="bold" fill="#374151" text-anchor="middle">Current =</text>
+  <text x="490" y="82" font-size="10" font-weight="bold" fill="#374151" text-anchor="middle">ρv</text>
+  <text x="503" y="80" font-size="8" fill="#374151">μ</text>
+  <text x="490" y="97" font-size="10" fill="#374151" text-anchor="middle">(fluid flow)</text>
+
+  <!-- Arrow 4 -->
+  <path d="M 550 80 L 570 80" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrowdark)"/>
+
+  <!-- Box 5: Linearize Perturbations -->
+  <rect x="580" y="30" width="110" height="100" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="635" y="65" font-size="10" font-weight="bold" fill="#374151" text-anchor="middle">Linearize</text>
+  <text x="635" y="82" font-size="10" font-weight="bold" fill="#374151" text-anchor="middle">perturbations</text>
+
+  <!-- Arrow 5 -->
+  <path d="M 700 80 L 720 80" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrowdark)"/>
+
+  <!-- Box 6: Acoustic Metric -->
+  <rect x="730" y="30" width="110" height="100" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="785" y="70" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">Acoustic</text>
+  <text x="785" y="87" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">Metric g</text>
+  <text x="806" y="85" font-size="8" fill="#374151">μν</text>
+
+  <!-- Marker definition -->
+  <defs>
+    <marker id="arrowdark" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#374151"/>
+    </marker>
+  </defs>
+</svg>

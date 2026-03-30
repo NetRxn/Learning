@@ -1,0 +1,109 @@
+<svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" width="700" height="500">
+  <title>The Trinity of Conservation Laws: Mass, Momentum, and Energy</title>
+  <defs>
+    <style>
+      .label { font-family: sans-serif; font-size: 14px; fill: #374151; }
+      .equation { font-family: monospace; font-size: 12px; fill: #374151; }
+      .panel-title { font-family: sans-serif; font-size: 16px; font-weight: bold; fill: #ffffff; }
+      .description { font-family: sans-serif; font-size: 13px; fill: #374151; }
+    </style>
+  </defs>
+
+  <!-- Panel 1: Mass Conservation (Blue) -->
+  <g id="panel1">
+    <!-- Background -->
+    <rect x="20" y="20" width="660" height="140" fill="#f9fafb" stroke="#2563eb" stroke-width="2" rx="6"/>
+
+    <!-- Title bar -->
+    <rect x="20" y="20" width="660" height="30" fill="#2563eb" rx="6" ry="0"/>
+    <text x="40" y="41" class="panel-title">Mass Conservation</text>
+
+    <!-- Control volume -->
+    <rect x="100" y="70" width="120" height="60" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2"/>
+
+    <!-- Inlet arrow -->
+    <path d="M 70 100 L 100 100" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowblue)"/>
+    <text x="65" y="96" class="label" font-size="12">in</text>
+
+    <!-- Outlet arrow -->
+    <path d="M 220 100 L 250 100" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowblue)"/>
+    <text x="252" y="96" class="label" font-size="12">out</text>
+
+    <!-- Equation -->
+    <text x="320" y="95" class="equation">∂ρ/∂t + ∇·(ρv) = 0</text>
+
+    <!-- Description -->
+    <text x="100" y="150" class="description">What flows in must flow out (or density changes)</text>
+  </g>
+
+  <!-- Panel 2: Momentum Conservation (Green) -->
+  <g id="panel2">
+    <!-- Background -->
+    <rect x="20" y="180" width="660" height="140" fill="#f9fafb" stroke="#16a34a" stroke-width="2" rx="6"/>
+
+    <!-- Title bar -->
+    <rect x="20" y="180" width="660" height="30" fill="#16a34a" rx="6" ry="0"/>
+    <text x="40" y="201" class="panel-title">Momentum Conservation</text>
+
+    <!-- Control volume -->
+    <rect x="100" y="230" width="120" height="60" fill="rgba(22,163,74,0.1)" stroke="#16a34a" stroke-width="2"/>
+
+    <!-- Inlet arrow -->
+    <path d="M 70 260 L 100 260" stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arrowgreen)"/>
+
+    <!-- Outlet arrow -->
+    <path d="M 220 260 L 250 260" stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arrowgreen)"/>
+
+    <!-- Pressure arrows (side forces) -->
+    <path d="M 100 245 L 85 245" stroke="#d97706" stroke-width="2" fill="none" marker-end="url(#arrowamber)"/>
+    <path d="M 220 245 L 235 245" stroke="#d97706" stroke-width="2" fill="none" marker-end="url(#arrowamber)"/>
+    <text x="50" y="242" class="label" font-size="11">pressure</text>
+    <text x="245" y="242" class="label" font-size="11">pressure</text>
+
+    <!-- Equation -->
+    <text x="320" y="255" class="equation">∂(ρv)/∂t + ∇·(ρvv + pI) = 0</text>
+
+    <!-- Description -->
+    <text x="100" y="310" class="description">Forces = pressure gradients</text>
+  </g>
+
+  <!-- Panel 3: Energy Conservation (Purple) -->
+  <g id="panel3">
+    <!-- Background -->
+    <rect x="20" y="340" width="660" height="140" fill="#f9fafb" stroke="#9333ea" stroke-width="2" rx="6"/>
+
+    <!-- Title bar -->
+    <rect x="20" y="340" width="660" height="30" fill="#9333ea" rx="6" ry="0"/>
+    <text x="40" y="361" class="panel-title">Energy Conservation</text>
+
+    <!-- Control volume -->
+    <rect x="100" y="390" width="120" height="60" fill="rgba(147,51,234,0.1)" stroke="#9333ea" stroke-width="2"/>
+
+    <!-- Inlet energy flux -->
+    <path d="M 70 420 L 100 420" stroke="#9333ea" stroke-width="2.5" fill="none" marker-end="url(#arrowpurple)"/>
+    <text x="45" y="416" class="label" font-size="11">flux</text>
+
+    <!-- Outlet energy flux -->
+    <path d="M 220 420 L 250 420" stroke="#9333ea" stroke-width="2.5" fill="none" marker-end="url(#arrowpurple)"/>
+    <text x="255" y="416" class="label" font-size="11">flux</text>
+
+    <!-- Description -->
+    <text x="100" y="470" class="description">Internal + kinetic energy conserved (inviscid)</text>
+  </g>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowgreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#16a34a"/>
+    </marker>
+    <marker id="arrowamber" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#d97706"/>
+    </marker>
+    <marker id="arrowpurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9333ea"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,77 @@
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" width="700" height="400">
+  <title>Conformal Invariance and Universality</title>
+
+  <!-- Background -->
+  <rect width="700" height="400" fill="#ffffff"/>
+
+  <!-- Left metric surface (BEC) -->
+  <g id="metric-left">
+    <!-- Curved surface representing metric 1 -->
+    <path d="M 80 200 Q 100 150 130 140 Q 160 135 170 160 Q 180 190 160 220 Q 130 240 100 235 Z"
+          fill="rgba(37,99,235,0.12)" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Surface detail curves -->
+    <path d="M 90 200 Q 115 160 160 175" stroke="#2563eb" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M 100 210 Q 125 170 165 185" stroke="#2563eb" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M 110 215 Q 135 175 170 195" stroke="#2563eb" stroke-width="1" fill="none" opacity="0.5"/>
+
+    <!-- Label -->
+    <text x="125" y="260" font-family="Arial, sans-serif" font-size="12" fill="#374151" font-weight="bold" text-anchor="middle">
+      Metric 1: BEC
+    </text>
+    <text x="125" y="278" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="middle">
+      (ρ₁, c_s₁)
+    </text>
+  </g>
+
+  <!-- Equals sign and text -->
+  <g id="equivalence">
+    <text x="350" y="140" font-family="Arial, sans-serif" font-size="28" fill="#374151" text-anchor="middle" font-weight="bold">
+      =
+    </text>
+    <text x="350" y="180" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="middle" font-weight="bold">
+      Same conformal
+    </text>
+    <text x="350" y="196" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="middle" font-weight="bold">
+      class
+    </text>
+  </g>
+
+  <!-- Right metric surface (Polariton) -->
+  <g id="metric-right">
+    <!-- Curved surface representing metric 2 (different shape, same structure) -->
+    <path d="M 530 180 Q 560 130 590 125 Q 620 122 625 165 Q 630 210 600 235 Q 560 250 540 240 Z"
+          fill="rgba(147,51,234,0.12)" stroke="#9333ea" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Surface detail curves (different curvature) -->
+    <path d="M 545 190 Q 575 145 615 160" stroke="#9333ea" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M 555 205 Q 585 155 620 175" stroke="#9333ea" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M 565 215 Q 595 165 625 190" stroke="#9333ea" stroke-width="1" fill="none" opacity="0.5"/>
+
+    <!-- Label -->
+    <text x="575" y="260" font-family="Arial, sans-serif" font-size="12" fill="#374151" font-weight="bold" text-anchor="middle">
+      Metric 2: Polariton
+    </text>
+    <text x="575" y="278" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="middle">
+      (ρ₂, c_s₂)
+    </text>
+  </g>
+
+  <!-- Hawking temperature formula box -->
+  <rect x="50" y="310" width="600" height="70" rx="6" fill="#f9fafb" stroke="#16a34a" stroke-width="2"/>
+
+  <text x="350" y="330" font-family="Arial, sans-serif" font-size="12" fill="#374151" font-weight="bold" text-anchor="middle">
+    Hawking Temperature: T_H = ℏκ/(2πk_B)
+  </text>
+
+  <text x="350" y="355" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="middle">
+    Depends only on κ (surface gravity), not on ρ or c_s separately
+  </text>
+
+  <!-- Universality message -->
+  <g id="universality-message">
+    <text x="350" y="390" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle" font-style="italic">
+      Universality: thermal radiation depends only on horizon geometry, not microscopic details
+    </text>
+  </g>
+</svg>

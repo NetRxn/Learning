@@ -1,0 +1,58 @@
+<svg viewBox="0 0 700 450" xmlns="http://www.w3.org/2000/svg" width="700" height="450">
+  <title>The Action Landscape: Classical Path Extremum</title>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="700" height="450" fill="#ffffff" stroke="none"/>
+
+  <!-- Axes labels -->
+  <text x="350" y="30" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">Action Landscape: S[path]</text>
+
+  <!-- Contour base (landscape) - drawn as concentric curves -->
+  <!-- Outer contours (high action) -->
+  <ellipse cx="350" cy="250" rx="280" ry="150" fill="none" stroke="#9ca3af" stroke-width="1" opacity="0.5"/>
+  <ellipse cx="350" cy="250" rx="240" ry="130" fill="none" stroke="#9ca3af" stroke-width="1" opacity="0.6"/>
+  <ellipse cx="350" cy="250" rx="200" ry="110" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.7"/>
+  <ellipse cx="350" cy="250" rx="160" ry="90" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.8"/>
+  <ellipse cx="350" cy="250" rx="120" ry="70" fill="none" stroke="#2563eb" stroke-width="2" opacity="0.9"/>
+  <ellipse cx="350" cy="250" rx="80" ry="50" fill="none" stroke="#2563eb" stroke-width="2"/>
+
+  <!-- Valley minimum fill -->
+  <ellipse cx="350" cy="250" rx="80" ry="50" fill="rgba(37,99,235,0.08)" stroke="none"/>
+
+  <!-- Classical path marker -->
+  <circle cx="350" cy="250" r="6" fill="#16a34a" stroke="#16a34a" stroke-width="2"/>
+  <text x="350" y="275" font-size="11" font-weight="bold" fill="#16a34a" text-anchor="middle">Classical path</text>
+  <text x="350" y="290" font-size="11" font-weight="bold" fill="#16a34a" text-anchor="middle">δS = 0</text>
+
+  <!-- Annotation: Nearby paths -->
+  <g>
+    <path d="M 320 200 L 280 160" fill="none" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrowgreen)"/>
+    <text x="270" y="145" font-size="10" fill="#16a34a" font-weight="bold">Nearby paths:</text>
+    <text x="270" y="160" font-size="10" fill="#16a34a">S ≈ S_classical</text>
+  </g>
+
+  <!-- Annotation: Distant paths -->
+  <g>
+    <path d="M 480 150 L 520 90" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowred)"/>
+    <text x="530" y="85" font-size="10" fill="#dc2626" font-weight="bold">Distant paths:</text>
+    <text x="530" y="100" font-size="10" fill="#dc2626">S >> S_classical</text>
+    <text x="530" y="115" font-size="10" fill="#dc2626">phases cancel</text>
+  </g>
+
+  <!-- Path space labels -->
+  <text x="100" y="380" font-size="11" fill="#374151" font-style="italic">Path space</text>
+  <text x="100" y="398" font-size="10" fill="#9ca3af">(all possible paths)</text>
+
+  <text x="600" y="380" font-size="11" fill="#374151" font-style="italic">Action S[path]</text>
+  <text x="600" y="398" font-size="10" fill="#9ca3af">(vertical)</text>
+
+  <!-- Marker definitions -->
+  <defs>
+    <marker id="arrowgreen" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#16a34a"/>
+    </marker>
+    <marker id="arrowred" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+</svg>

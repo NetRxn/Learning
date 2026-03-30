@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <title>Four Experimental Platforms for Hawking Radiation</title>
+  <defs>
+    <style>
+      .label { font-family: Arial, sans-serif; font-size: 12px; fill: #374151; font-weight: normal; }
+      .title { font-family: Arial, sans-serif; font-size: 15px; fill: #374151; font-weight: bold; }
+      .panel-title { font-family: Arial, sans-serif; font-size: 13px; fill: #ffffff; font-weight: bold; }
+      .small-label { font-family: Arial, sans-serif; font-size: 10px; fill: #374151; }
+      .desc-text { font-family: Arial, sans-serif; font-size: 10px; fill: #374151; line-height: 14px; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="#ffffff" stroke="none"/>
+
+  <!-- Title -->
+  <text x="400" y="25" text-anchor="middle" class="title">Four Experimental Platforms for Hawking Radiation</text>
+
+  <!-- Panel 1: BEC Heidelberg (blue) -->
+  <rect x="20" y="60" width="180" height="200" fill="rgba(37, 99, 235, 0.08)" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <rect x="20" y="60" width="180" height="30" fill="#2563eb"/>
+  <text x="110" y="81" text-anchor="middle" class="panel-title">BEC (Heidelberg)</text>
+
+  <!-- BEC schematic: cigar shape with flow -->
+  <ellipse cx="110" cy="130" rx="35" ry="15" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <path d="M 70 130 Q 60 115, 50 130 Q 60 145, 70 130" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+  <path d="M 150 130 Q 160 115, 170 130 Q 160 145, 150 130" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="110" y="155" text-anchor="middle" class="small-label" font-weight="bold">Cigar-shaped BEC</text>
+
+  <text x="110" y="175" text-anchor="middle" class="desc-text" font-weight="bold">T_H ~ nK</text>
+  <text x="110" y="188" text-anchor="middle" class="desc-text">Feshbach tuning</text>
+  <text x="110" y="201" text-anchor="middle" class="desc-text">→ κ-scaling test</text>
+  <text x="110" y="214" text-anchor="middle" class="desc-text">Lowest temps</text>
+  <text x="110" y="227" text-anchor="middle" class="desc-text">(best signal/noise)</text>
+
+  <!-- Panel 2: Polariton Paris (red) -->
+  <rect x="220" y="60" width="180" height="200" fill="rgba(220, 38, 38, 0.08)" stroke="#dc2626" stroke-width="2" rx="4"/>
+  <rect x="220" y="60" width="180" height="30" fill="#dc2626"/>
+  <text x="310" y="81" text-anchor="middle" class="panel-title">Polariton (Paris)</text>
+
+  <!-- Microcavity schematic -->
+  <rect x="275" y="115" width="70" height="25" fill="none" stroke="#dc2626" stroke-width="2"/>
+  <circle cx="290" cy="127" r="4" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+  <circle cx="310" cy="127" r="4" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="310" y="155" text-anchor="middle" class="small-label" font-weight="bold">Microcavity</text>
+
+  <text x="310" y="175" text-anchor="middle" class="desc-text" font-weight="bold">T_H ~ 0.8-4 K</text>
+  <text x="310" y="188" text-anchor="middle" class="desc-text">10¹⁰× hotter</text>
+  <text x="310" y="201" text-anchor="middle" class="desc-text">than BEC</text>
+  <text x="310" y="214" text-anchor="middle" class="desc-text" font-weight="bold">Tier 1 platform</text>
+  <text x="310" y="227" text-anchor="middle" class="desc-text">(signal confirmed)</text>
+
+  <!-- Panel 3: He-3 (green) -->
+  <rect x="420" y="60" width="180" height="200" fill="rgba(22, 163, 74, 0.08)" stroke="#16a34a" stroke-width="2" rx="4"/>
+  <rect x="420" y="60" width="180" height="30" fill="#16a34a"/>
+  <text x="510" y="81" text-anchor="middle" class="panel-title">Superfluid He-3</text>
+
+  <!-- Rotating cylinder schematic -->
+  <circle cx="510" cy="130" r="20" fill="none" stroke="#16a34a" stroke-width="2"/>
+  <line x1="510" y1="110" x2="510" y2="150" stroke="#16a34a" stroke-width="1.5"/>
+  <path d="M 525 130 L 535 125 L 535 135 Z" fill="#16a34a"/>
+  <text x="510" y="160" text-anchor="middle" class="small-label" font-weight="bold">Rotation</text>
+
+  <text x="510" y="180" text-anchor="middle" class="desc-text" font-weight="bold">Topological:</text>
+  <text x="510" y="193" text-anchor="middle" class="desc-text">Quantized vortices</text>
+  <text x="510" y="206" text-anchor="middle" class="desc-text">provide horizon</text>
+  <text x="510" y="219" text-anchor="middle" class="desc-text">via superfluid</text>
+  <text x="510" y="232" text-anchor="middle" class="desc-text">flow instability</text>
+
+  <!-- Panel 4: Water Waves (amber) -->
+  <rect x="620" y="60" width="160" height="200" fill="rgba(217, 119, 6, 0.08)" stroke="#d97706" stroke-width="2" rx="4"/>
+  <rect x="620" y="60" width="160" height="30" fill="#d97706"/>
+  <text x="700" y="81" text-anchor="middle" class="panel-title">Water Waves</text>
+
+  <!-- Water channel with weir schematic -->
+  <path d="M 655 130 L 745 130" stroke="#d97706" stroke-width="3"/>
+  <path d="M 695 130 L 695 115 L 705 115 L 705 130" fill="none" stroke="#d97706" stroke-width="2"/>
+  <text x="700" y="155" text-anchor="middle" class="small-label" font-weight="bold">Weir/Channel</text>
+
+  <text x="700" y="175" text-anchor="middle" class="desc-text">Classical analogue</text>
+  <text x="700" y="188" text-anchor="middle" class="desc-text">No quantum Hawking</text>
+  <text x="700" y="201" text-anchor="middle" class="desc-text">Tests classical</text>
+  <text x="700" y="214" text-anchor="middle" class="desc-text">aspects &amp;</text>
+  <text x="700" y="227" text-anchor="middle" class="desc-text">mode mixing</text>
+
+  <!-- Bottom summary box -->
+  <rect x="20" y="280" width="760" height="200" fill="rgba(255, 255, 255, 0.9)" stroke="#374151" stroke-width="1.5" rx="4"/>
+
+  <text x="400" y="305" text-anchor="middle" class="title">Key Differences</text>
+
+  <!-- Temperature comparison -->
+  <text x="40" y="335" class="label" font-weight="bold">Temperature:</text>
+  <text x="40" y="352" class="small-label">• BEC: nanoKelvin (10⁻⁹ K) — cleanest regime</text>
+  <text x="40" y="367" class="small-label">• Polariton: ~1 K — strong signal, disorder</text>
+  <text x="40" y="382" class="small-label">• He-3: ~100 µK — topological, superfluid</text>
+  <text x="40" y="397" class="small-label">• Water: Room T — classical, macroscopic</text>
+
+  <!-- Observable differences -->
+  <text x="400" y="335" class="label" font-weight="bold">κ-scaling test:</text>
+  <text x="400" y="352" class="small-label">All platforms measure T_H ∝ κ</text>
+  <text x="400" y="367" class="small-label">and dissipative correction δ_diss = Γ_H/κ</text>
+  <text x="400" y="397" class="small-label">Convergence validates EFT prediction</text>
+
+</svg>

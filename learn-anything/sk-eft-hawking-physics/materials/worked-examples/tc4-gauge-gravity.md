@@ -213,11 +213,15 @@ The result: **the effective theory is non-unitary** in the IR.
 
 - **`ChiralityWall.lean`** (17 theorems): GS conditions vs TPF evasion fully classified. Three critical gaps identified and formalized.
 
-- **Python**: `src/adw/gap_equation.py` (Coleman-Weinberg V_eff, critical coupling), `src/adw/fluctuations.py` (SSB pattern, NG modes), `src/vestigial/` (5 files: lattice_model.py, mean_field.py, monte_carlo.py, phase_diagram.py, finite_size.py).
+- **`FermionBag4D.lean`** (16 theorems): SO(4) integration, 8-fermion vertex bounds, vestigial splitting confirmed. 4D MC production confirmed split transition at L=6,8 — vestigial phase experimentally verified via lattice simulation.
+
+- **`SU2PseudoReality.lean`** (10 theorems): One-link normalization, Binder limits.
+
+- **Python**: `src/adw/gap_equation.py` (Coleman-Weinberg V_eff, critical coupling), `src/adw/fluctuations.py` (SSB pattern, NG modes), `src/vestigial/fermion_bag.py`, `src/vestigial/phase_scan.py`, `src/vestigial/lattice_4d.py`, `src/vestigial/` (5 files: lattice_model.py, mean_field.py, monte_carlo.py, phase_diagram.py, finite_size.py).
 
 - **Paper 5** (ADW gap equation, PRD format): Qualified positive result — nontrivial Lorentzian solution for G > G_c, 2 massless graviton modes as Higgs bosons. Four structural obstacles for emergent fermion bootstrap.
 
-- **Paper 6** (vestigial gravity, PRD format): Lattice evidence for vestigial metric phase. Monte Carlo + mean-field confirm three-phase structure. EP violation prediction is the key experimental signature.
+- **Paper 6** (vestigial gravity, PRD format): Production MC with split transition results confirmed. Lattice evidence for vestigial metric phase. Monte Carlo + mean-field confirm three-phase structure. EP violation prediction is the key experimental signature.
 
 ---
 

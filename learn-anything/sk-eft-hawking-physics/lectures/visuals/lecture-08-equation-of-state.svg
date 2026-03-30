@@ -1,0 +1,67 @@
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg">
+  <title>Thermodynamic Equation of State P(μ)</title>
+
+  <!-- Background -->
+  <rect width="700" height="400" fill="#ffffff"/>
+
+  <!-- Axes -->
+  <!-- y-axis (Pressure P) -->
+  <line x1="80" y1="320" x2="80" y2="30" stroke="#374151" stroke-width="2"/>
+  <polygon points="80,20 75,35 85,35" fill="#374151"/>
+
+  <!-- x-axis (chemical potential μ) -->
+  <line x1="80" y1="320" x2="650" y2="320" stroke="#374151" stroke-width="2"/>
+  <polygon points="660,320 645,315 645,325" fill="#374151"/>
+
+  <!-- Axis labels -->
+  <text x="30" y="170" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#374151" text-anchor="middle" transform="rotate(-90 30 170)">P (pressure)</text>
+  <text x="365" y="360" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#374151" text-anchor="middle">μ (chemical potential)</text>
+
+  <!-- Zero line reference -->
+  <line x1="75" y1="320" x2="80" y2="320" stroke="#374151" stroke-width="1"/>
+  <text x="60" y="325" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="end">0</text>
+
+  <!-- Mark threshold -->
+  <line x1="150" y1="315" x2="150" y2="325" stroke="#374151" stroke-width="1"/>
+  <text x="150" y="345" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">μ₀</text>
+
+  <!-- Equation of state curve P(μ) — smooth increasing curve, zero below threshold -->
+  <!-- Flat section from 0 to μ₀ -->
+  <line x1="80" y1="320" x2="150" y2="320" stroke="#2563eb" stroke-width="3"/>
+
+  <!-- Curved section from μ₀ onwards (cubic Bezier for smooth curve) -->
+  <path d="M 150 320 Q 250 270 380 120 Q 480 40 600 50"
+        stroke="#2563eb" stroke-width="3" fill="none"/>
+
+  <!-- Mark the operating point μ₀, P(μ₀) -->
+  <circle cx="150" cy="320" r="4" fill="#dc2626" stroke="#dc2626" stroke-width="2"/>
+  <text x="150" y="305" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#dc2626" text-anchor="middle">Operating point</text>
+
+  <!-- Draw tangent line (slope = P'(μ₀) = ρ) -->
+  <line x1="100" y1="300" x2="250" y2="200" stroke="#16a34a" stroke-width="2" stroke-dasharray="3,3"/>
+  <text x="220" y="160" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#16a34a">slope = ρ</text>
+  <text x="220" y="178" font-family="Arial, sans-serif" font-size="10" fill="#374151">(number density)</text>
+
+  <!-- Annotations with leader lines -->
+  <!-- P' = ρ annotation -->
+  <line x1="200" y1="275" x2="240" y2="250" stroke="#9333ea" stroke-width="1"/>
+  <rect x="240" y="230" width="140" height="35" rx="3" fill="rgba(147,51,234,0.08)" stroke="#9333ea" stroke-width="1"/>
+  <text x="310" y="245" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">P' = ρ</text>
+  <text x="310" y="260" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">(particle density)</text>
+
+  <!-- P(μ₀) annotation — pressure value -->
+  <line x1="150" y1="305" x2="100" y2="270" stroke="#d97706" stroke-width="1"/>
+  <rect x="20" y="245" width="140" height="35" rx="3" fill="rgba(217,119,6,0.08)" stroke="#d97706" stroke-width="1"/>
+  <text x="90" y="260" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">P(μ₀)</text>
+  <text x="90" y="275" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">(pressure value)</text>
+
+  <!-- P'' annotation — curvature (compressibility) -->
+  <line x1="350" y1="110" x2="420" y2="80" stroke="#2563eb" stroke-width="1"/>
+  <rect x="420" y="50" width="160" height="35" rx="3" fill="rgba(37,99,235,0.08)" stroke="#2563eb" stroke-width="1"/>
+  <text x="500" y="65" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">P'' → compressibility</text>
+  <text x="500" y="80" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">→ sound speed</text>
+
+  <!-- Main insight box -->
+  <rect x="80" y="350" width="540" height="35" rx="4" fill="rgba(22,163,74,0.08)" stroke="#16a34a" stroke-width="2"/>
+  <text x="350" y="370" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">All thermodynamics of the superfluid encoded in one function P(μ)</text>
+</svg>

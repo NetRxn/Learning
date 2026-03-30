@@ -711,70 +711,131 @@ graph TD
 
 ---
 
-## 15. Phase 4 Completion: The Vestigial Gravity Story (Paper 6)
+## 15. Phase 5 Complete: 429 Theorems Across 7 Papers
 
-This diagram maps the complete Phase 4 results — from the ADW mechanism through vestigial gravity to the definitive fracton obstructions.
+This diagram maps the complete program after Phase 5 — κ-scaling, categorical infrastructure, chirality formalization, and 4D MC confirmation.
 
 ```mermaid
 graph TD
-    subgraph ADW ["ADW Mechanism (Paper 5)"]
-        TETRAD["Tetrad field E^a_μ<br/>GL(4,R) gauge freedom"]
-        CW["Coleman-Weinberg<br/>V_eff from fermion loops"]
-        CRIT["Critical coupling G_c<br/>Phase transition"]
+    subgraph KAPPA ["Wave 1: κ-Scaling + Polariton"]
+        KS["κ-Scaling Discovery<br/>δ_diss ∝ κ (LINEAR)<br/>11 Lean theorems"]
+        POL["Polariton Tier 1<br/>T_H ~ 0.8-4 K<br/>10^10× hotter than BEC"]
     end
 
-    subgraph VESTIGIAL ["Vestigial Gravity (Paper 6)"]
-        PREG["Pre-geometric phase<br/>⟨E⟩ = 0, no metric"]
-        VEST["Vestigial phase<br/>⟨E⟩ = 0, but g_μν ≠ 0<br/>(composite order)"]
-        FULL["Full tetrad phase<br/>⟨E⟩ ≠ 0, EP exact"]
-        EP["EP violation<br/>m_i/m_g ≠ 1<br/>TESTABLE prediction"]
+    subgraph MC ["Wave 2: 4D Monte Carlo"]
+        SU2["SU(2) Integration<br/>Grassmann TRG<br/>10 + 16 theorems"]
+        SPLIT["4D Split Transition<br/>CONFIRMED vestigial<br/>L=4,6,8 production"]
     end
 
-    subgraph FRACTON ["Fracton Results (Phase 4)"]
-        FHYDRO["Fracton Hydro<br/>17 Lean theorems<br/>Multipole conservation"]
-        FGRAV["Fracton-Gravity<br/>20 Lean theorems<br/>Bootstrap GAP (2 vs 5 DOF)"]
-        FNA["Non-Abelian Fracton<br/>14 Lean theorems<br/>DEFINITIVE negative"]
+    subgraph CHIRAL ["Wave 3: Chirality Formal (Paper 7)"]
+        GS["9 GS Conditions<br/>Formalized in Lean<br/>28+1 + 14+1 theorems"]
+        TPF["5 TPF Violations<br/>Proved mechanically<br/>12 theorems"]
+        FIRST_CHIRAL["FIRST formal verification<br/>in lattice chiral<br/>fermion literature"]
     end
 
-    subgraph VERIFIED ["Verification Status"]
-        LEAN["216 theorems + 1 axiom<br/>16 Lean modules<br/>ZERO sorry"]
-        TESTS["822 pytest tests<br/>ALL passing"]
-        ARIST["56 Aristotle-proved<br/>18 runs, Wave 5 QA"]
+    subgraph CATEGORICAL ["Wave 4: Layer 1 Categorical"]
+        PIVOT["PivotalCategory<br/>FIRST-EVER in Lean<br/>18 theorems"]
+        FUSION["FusionCategory<br/>FIRST-EVER anywhere<br/>44 theorems"]
+        DRINFELD["Drinfeld Double<br/>FIRST-EVER in Lean<br/>15 theorems"]
+        GAUGE_EM["Gauge Emergence<br/>Z(Vec_G) ≅ Rep(D(G))<br/>14 theorems"]
     end
 
-    TETRAD --> CW
-    CW --> CRIT
-    CRIT --> PREG
-    CRIT --> VEST
-    CRIT --> FULL
-    VEST --> EP
-    FHYDRO --> FGRAV
-    FGRAV --> FNA
+    subgraph TOTAL ["Phase 5 Complete"]
+        THEOREMS["429 theorems + 2 axioms<br/>30 Lean modules<br/>ZERO sorry"]
+        TESTS_V["1001 tests<br/>ALL passing"]
+        PAPERS["7 papers<br/>99 Aristotle-proved"]
+    end
 
-    ADW --> VESTIGIAL
-    VESTIGIAL --> VERIFIED
-    FRACTON --> VERIFIED
+    KS --> POL
+    SU2 --> SPLIT
+    GS --> TPF
+    TPF --> FIRST_CHIRAL
+    PIVOT --> FUSION
+    FUSION --> DRINFELD
+    DRINFELD --> GAUGE_EM
 
-    style ADW fill:#2E86AB,color:#fff
-    style TETRAD fill:#2E86AB,color:#fff
-    style CW fill:#2E86AB,color:#fff
-    style CRIT fill:#2E86AB,color:#fff
-    style VESTIGIAL fill:#A23B72,color:#fff
-    style PREG fill:#666,color:#fff
-    style VEST fill:#A23B72,color:#fff
-    style FULL fill:#F18F01,color:#111
-    style EP fill:#FF6B6B,color:#111
-    style FRACTON fill:#4ECDC4,color:#111
-    style FHYDRO fill:#4ECDC4,color:#111
-    style FGRAV fill:#4ECDC4,color:#111
-    style FNA fill:#FF6B6B,color:#111
-    style VERIFIED fill:#66bb6a,color:#111
-    style LEAN fill:#66bb6a,color:#111
-    style TESTS fill:#66bb6a,color:#111
-    style ARIST fill:#66bb6a,color:#111
+    KAPPA --> TOTAL
+    MC --> TOTAL
+    CHIRAL --> TOTAL
+    CATEGORICAL --> TOTAL
+
+    style KAPPA fill:#2E86AB,color:#fff
+    style KS fill:#2E86AB,color:#fff
+    style POL fill:#2E86AB,color:#fff
+    style MC fill:#A23B72,color:#fff
+    style SU2 fill:#A23B72,color:#fff
+    style SPLIT fill:#A23B72,color:#fff
+    style CHIRAL fill:#F18F01,color:#111
+    style GS fill:#F18F01,color:#111
+    style TPF fill:#F18F01,color:#111
+    style FIRST_CHIRAL fill:#FF6B6B,color:#111
+    style CATEGORICAL fill:#4ECDC4,color:#111
+    style PIVOT fill:#4ECDC4,color:#111
+    style FUSION fill:#4ECDC4,color:#111
+    style DRINFELD fill:#4ECDC4,color:#111
+    style GAUGE_EM fill:#4ECDC4,color:#111
+    style TOTAL fill:#66bb6a,color:#111
+    style THEOREMS fill:#66bb6a,color:#111
+    style TESTS_V fill:#66bb6a,color:#111
+    style PAPERS fill:#66bb6a,color:#111
 ```
 
-**What to look for:** The three-phase structure is the central result of Paper 6. The vestigial phase is physically analogous to a nematic liquid crystal — orientational order without positional order. The fracton results are informative negatives: fracton hydro retains more information than Navier-Stokes, but the bootstrap gap (2 vs 5 DOF) and non-Abelian obstruction show that fractons cannot bridge to full gravity or carry non-Abelian gauge info. The verification column shows the complete program status: 216 theorems, 822 tests, 56 Aristotle-proved.
+**What to look for:** Phase 5 doubled the theorem count (216→429) across four waves. Wave 1 discovered κ-scaling (δ_diss is LINEAR in κ, not constant) and opened the polariton platform (10^10× hotter). Wave 2 confirmed the vestigial phase via 4D MC production. Wave 3 formalized the chirality wall completely (Paper 7 — first in the lattice fermion literature). Wave 4 built Layer 1's categorical foundation with three FIRST-EVER formalizations and the gauge emergence theorem.
+
+---
+
+## 16. Layer 1 Categorical Infrastructure: String-Nets to Gauge Theory
+
+This diagram shows the mathematical hierarchy connecting string-net condensation to emergent gauge theory, all formalized in Lean 4.
+
+```mermaid
+graph TD
+    subgraph MATHLIB ["Existing Mathlib"]
+        SEM["SemisimpleCategory<br/>(Mathlib foundation)"]
+    end
+
+    subgraph WAVE4A ["Wave 4A: Pivotal + Spherical"]
+        KLIN["KLinearCategory<br/>16 theorems<br/>Schur orthogonality"]
+        SPHER["SphericalCategory<br/>18 theorems<br/>FIRST PivotalCategory<br/>in any proof assistant"]
+    end
+
+    subgraph WAVE4B ["Wave 4B: Fusion"]
+        FUSCAT["FusionCategory<br/>14 theorems<br/>Pentagon equation<br/>F-symbols, D²"]
+        FUSEX["FusionExamples<br/>30 theorems<br/>Vec_Z2, Rep_S3<br/>Fibonacci (φ²=φ+1)"]
+    end
+
+    subgraph WAVE4C ["Wave 4C: Gauge Emergence"]
+        VECG["VecG<br/>9 theorems<br/>Day convolution"]
+        DRIN["DrinfeldDouble<br/>15 theorems<br/>FIRST D(G) in Lean"]
+        GAUG["GaugeEmergence<br/>14 theorems<br/>Z(Vec_G) ≅ Rep(D(G))"]
+        CLIM["Chirality limit:<br/>c ≡ 0 mod 8"]
+    end
+
+    SEM --> KLIN
+    KLIN --> SPHER
+    SPHER --> FUSCAT
+    FUSCAT --> FUSEX
+    FUSEX --> VECG
+    VECG --> DRIN
+    DRIN --> GAUG
+    GAUG --> CLIM
+
+    style MATHLIB fill:#555,color:#fff
+    style SEM fill:#555,color:#fff
+    style WAVE4A fill:#2E86AB,color:#fff
+    style KLIN fill:#2E86AB,color:#fff
+    style SPHER fill:#2E86AB,color:#fff
+    style WAVE4B fill:#A23B72,color:#fff
+    style FUSCAT fill:#A23B72,color:#fff
+    style FUSEX fill:#A23B72,color:#fff
+    style WAVE4C fill:#4ECDC4,color:#111
+    style VECG fill:#4ECDC4,color:#111
+    style DRIN fill:#4ECDC4,color:#111
+    style GAUG fill:#4ECDC4,color:#111
+    style CLIM fill:#FF6B6B,color:#111
+```
+
+**What to look for:** The hierarchy builds from Mathlib's existing category theory through three waves of new formalization. The punchline is GaugeEmergence.lean: it proves that the center of the string-net category (which classifies anyonic excitations) equals the representations of the Drinfeld double (which IS discrete gauge theory). This is the formal Layer 1 → Layer 2 connection. The chirality limitation (c ≡ 0 mod 8) shows that string-nets are intrinsically non-chiral — another face of the chirality wall.
 
 ---
 
@@ -791,5 +852,7 @@ These visualizations are designed to work together as a learning system:
 7. **Connect to knowledge** (Diagram 12) for integration with prerequisites
 8. **Go to experiments** (Diagram 13) for testable predictions
 9. **Master the details** (Diagram 14) for quantitative predictions
+10. **See the complete program** (Diagram 15) for Phase 5 status and wave structure
+11. **Understand Layer 1** (Diagram 16) for categorical infrastructure and gauge emergence
 
 Cross-reference these with the dependency graph when planning study sequences. Each diagram can be printed or projected for discussion in study groups.

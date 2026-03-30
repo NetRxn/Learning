@@ -1,0 +1,75 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <title>The Sonic Horizon: From Subsonic to Supersonic Flow</title>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="#ffffff"/>
+
+  <!-- Water/fluid region - light fill -->
+  <rect x="0" y="150" width="800" height="150" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2"/>
+
+  <!-- Left region: subsonic (v < c_s) -->
+  <!-- Flow velocity arrows -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- Subsonic region (left) -->
+  <g>
+    <!-- Flow arrows increasing to left -->
+    <line x1="50" y1="225" x2="100" y2="225" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowhead)"/>
+    <line x1="100" y1="225" x2="150" y2="225" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowhead)"/>
+    <line x1="150" y1="225" x2="200" y2="225" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+    <!-- Sound wavefronts (expanding circles) - represent acoustic disturbances -->
+    <circle cx="80" cy="225" r="30" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="80" cy="225" r="45" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.4"/>
+    <circle cx="130" cy="225" r="25" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="130" cy="225" r="40" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.4"/>
+
+    <!-- Label for subsonic -->
+    <text x="125" y="80" font-family="Arial, sans-serif" font-size="14" fill="#374151" font-weight="bold">Subsonic: v &lt; c_s</text>
+    <text x="80" y="105" font-family="Arial, sans-serif" font-size="12" fill="#374151">Waves escape upstream</text>
+  </g>
+
+  <!-- Horizon region (middle) -->
+  <g>
+    <!-- Horizon line: v = c_s -->
+    <line x1="350" y1="140" x2="350" y2="310" stroke="#dc2626" stroke-width="3" stroke-dasharray="8,4"/>
+
+    <!-- One critical sound cone at horizon -->
+    <line x1="350" y1="225" x2="380" y2="195" stroke="#2563eb" stroke-width="2" opacity="0.8"/>
+    <line x1="350" y1="225" x2="380" y2="255" stroke="#2563eb" stroke-width="2" opacity="0.8"/>
+
+    <!-- Label for horizon -->
+    <text x="310" y="330" font-family="Arial, sans-serif" font-size="13" fill="#dc2626" font-weight="bold">Horizon</text>
+    <text x="290" y="350" font-family="Arial, sans-serif" font-size="12" fill="#374151">v = c_s</text>
+  </g>
+
+  <!-- Supersonic region (right) -->
+  <g>
+    <!-- Flow arrows faster -->
+    <line x1="450" y1="225" x2="530" y2="225" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowhead)"/>
+    <line x1="530" y1="225" x2="610" y2="225" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowhead)"/>
+    <line x1="610" y1="225" x2="690" y2="225" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+    <!-- Sound cone tilted - both edges pointing downstream, nothing escapes upstream -->
+    <line x1="480" y1="225" x2="550" y2="150" stroke="#2563eb" stroke-width="2" opacity="0.8"/>
+    <line x1="480" y1="225" x2="550" y2="300" stroke="#2563eb" stroke-width="2" opacity="0.8"/>
+
+    <line x1="580" y1="225" x2="680" y2="140" stroke="#2563eb" stroke-width="2" opacity="0.8"/>
+    <line x1="580" y1="225" x2="680" y2="310" stroke="#2563eb" stroke-width="2" opacity="0.8"/>
+
+    <!-- Label for supersonic -->
+    <text x="560" y="80" font-family="Arial, sans-serif" font-size="14" fill="#374151" font-weight="bold">Supersonic: v &gt; c_s</text>
+    <text x="520" y="105" font-family="Arial, sans-serif" font-size="12" fill="#374151">All disturbances swept downstream</text>
+  </g>
+
+  <!-- Annotation: velocity increasing left to right -->
+  <text x="20" y="30" font-family="Arial, sans-serif" font-size="11" fill="#374151" font-style="italic">Flow velocity increasing →</text>
+
+</svg>

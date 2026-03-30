@@ -1,0 +1,111 @@
+<svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg" width="800" height="350">
+  <title>The River Model of a Black Hole</title>
+
+  <!-- Background -->
+  <rect width="800" height="350" fill="#ffffff"/>
+
+  <!-- Three flow regions with increasing arrow length -->
+
+  <!-- Region 1: Slow flow (left, subsonic) -->
+  <rect x="0" y="0" width="250" height="350" fill="#f9fafb" stroke="#2563eb" stroke-width="1" opacity="0.3"/>
+
+  <!-- Region 2: Medium flow -->
+  <rect x="250" y="0" width="200" height="350" fill="#f9fafb" stroke="#d97706" stroke-width="1" opacity="0.3"/>
+
+  <!-- Region 3: Strong flow (right, supersonic) -->
+  <rect x="450" y="0" width="350" height="350" fill="#f9fafb" stroke="#dc2626" stroke-width="1" opacity="0.3"/>
+
+  <!-- Horizon line (vertical dashed) -->
+  <line x1="450" y1="0" x2="450" y2="350" stroke="#dc2626" stroke-width="3" stroke-dasharray="8,5"/>
+  <text x="455" y="25" font-family="Arial, sans-serif" font-size="13" fill="#dc2626" font-weight="bold">HORIZON</text>
+
+  <!-- Region labels -->
+  <text x="125" y="30" font-family="Arial, sans-serif" font-size="13" fill="#374151" font-weight="bold">
+    Exterior
+  </text>
+  <text x="100" y="50" font-family="Arial, sans-serif" font-size="11" fill="#374151">
+    Space flows slowly
+  </text>
+
+  <text x="550" y="30" font-family="Arial, sans-serif" font-size="13" fill="#374151" font-weight="bold">
+    Interior
+  </text>
+  <text x="520" y="50" font-family="Arial, sans-serif" font-size="11" fill="#374151">
+    Current > swim speed
+  </text>
+
+  <!-- Flow arrows in region 1 (short) -->
+  <defs>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowhead-amber" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#d97706"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- Row of flow arrows, region 1 (slow, blue) -->
+  <line x1="20" y1="100" x2="50" y2="100" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+  <line x1="20" y1="150" x2="55" y2="150" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+  <line x1="20" y1="200" x2="50" y2="200" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+  <line x1="20" y1="250" x2="55" y2="250" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+  <line x1="20" y1="300" x2="50" y2="300" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+
+  <!-- Row of flow arrows, region 2 (medium, amber) -->
+  <line x1="270" y1="100" x2="330" y2="100" stroke="#d97706" stroke-width="2" marker-end="url(#arrowhead-amber)"/>
+  <line x1="270" y1="150" x2="335" y2="150" stroke="#d97706" stroke-width="2" marker-end="url(#arrowhead-amber)"/>
+  <line x1="270" y1="200" x2="330" y2="200" stroke="#d97706" stroke-width="2" marker-end="url(#arrowhead-amber)"/>
+  <line x1="270" y1="250" x2="335" y2="250" stroke="#d97706" stroke-width="2" marker-end="url(#arrowhead-amber)"/>
+  <line x1="270" y1="300" x2="330" y2="300" stroke="#d97706" stroke-width="2" marker-end="url(#arrowhead-amber)"/>
+
+  <!-- Row of flow arrows, region 3 (fast, red) -->
+  <line x1="470" y1="100" x2="570" y2="100" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowhead-red)"/>
+  <line x1="470" y1="150" x2="580" y2="150" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowhead-red)"/>
+  <line x1="470" y1="200" x2="570" y2="200" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowhead-red)"/>
+  <line x1="470" y1="250" x2="580" y2="250" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowhead-red)"/>
+  <line x1="470" y1="300" x2="570" y2="300" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowhead-red)"/>
+
+  <!-- Fish icons (trying to swim left against current) -->
+  <!-- Region 1: fish making progress -->
+  <g id="fish-region1">
+    <!-- Fish 1 -->
+    <ellipse cx="120" cy="100" rx="8" ry="5" fill="none" stroke="#16a34a" stroke-width="1.5"/>
+    <polygon points="112,100 108,98 108,102" fill="#16a34a"/>
+    <line x1="128" y1="100" x2="145" y2="100" stroke="#16a34a" stroke-width="1.5" opacity="0.6"/>
+    <text x="115" y="125" font-family="Arial, sans-serif" font-size="9" fill="#374151" text-anchor="middle">can escape</text>
+
+    <!-- Fish 2 -->
+    <ellipse cx="110" cy="200" rx="8" ry="5" fill="none" stroke="#16a34a" stroke-width="1.5"/>
+    <polygon points="102,200 98,198 98,202" fill="#16a34a"/>
+    <line x1="118" y1="200" x2="140" y2="200" stroke="#16a34a" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- Region 2: fish at critical point (horizon) -->
+  <g id="fish-horizon">
+    <ellipse cx="350" cy="175" rx="8" ry="5" fill="none" stroke="#9333ea" stroke-width="1.5"/>
+    <polygon points="342,175 338,173 338,177" fill="#9333ea"/>
+    <text x="350" y="200" font-family="Arial, sans-serif" font-size="9" fill="#374151" text-anchor="middle">hovering</text>
+  </g>
+
+  <!-- Region 3: fish swept in (caught) -->
+  <g id="fish-interior">
+    <!-- Fish 1 being swept -->
+    <ellipse cx="520" cy="100" rx="8" ry="5" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+    <polygon points="512,100 508,98 508,102" fill="#dc2626"/>
+    <line x1="528" y1="100" x2="560" y2="100" stroke="#dc2626" stroke-width="1.5" opacity="0.6"/>
+    <text x="535" y="125" font-family="Arial, sans-serif" font-size="9" fill="#374151" text-anchor="middle">swept in</text>
+
+    <!-- Fish 2 being swept -->
+    <ellipse cx="530" cy="250" rx="8" ry="5" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+    <polygon points="522,250 518,248 518,252" fill="#dc2626"/>
+    <line x1="538" y1="250" x2="575" y2="250" stroke="#dc2626" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- Bottom explanation -->
+  <text x="400" y="340" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle" font-style="italic">
+    "Space itself flows toward the singularity; once inside horizon, even light/sound cannot swim upstream"
+  </text>
+</svg>

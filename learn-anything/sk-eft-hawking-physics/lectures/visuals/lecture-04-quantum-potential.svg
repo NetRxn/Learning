@@ -1,0 +1,75 @@
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg">
+  <title>The Quantum Potential</title>
+
+  <!-- Background -->
+  <rect width="700" height="400" fill="#ffffff"/>
+
+  <!-- Axes -->
+  <line x1="60" y1="320" x2="650" y2="320" stroke="#374151" stroke-width="2"/>
+  <line x1="60" y1="50" x2="60" y2="320" stroke="#374151" stroke-width="2"/>
+
+  <!-- Axis labels -->
+  <text x="680" y="325" font-size="12" fill="#374151" font-weight="bold">x</text>
+  <text x="45" y="35" font-size="12" fill="#374151" font-weight="bold">V, Q</text>
+
+  <!-- Grid lines for reference -->
+  <line x1="150" y1="320" x2="150" y2="315" stroke="#374151" stroke-width="1"/>
+  <line x1="250" y1="320" x2="250" y2="315" stroke="#374151" stroke-width="1"/>
+  <line x1="350" y1="320" x2="350" y2="315" stroke="#374151" stroke-width="1"/>
+  <line x1="450" y1="320" x2="450" y2="315" stroke="#374151" stroke-width="1"/>
+  <line x1="550" y1="320" x2="550" y2="315" stroke="#374151" stroke-width="1"/>
+  <line x1="650" y1="320" x2="650" y2="315" stroke="#374151" stroke-width="1"/>
+
+  <!-- Classical potential V(x) - smooth well (blue solid line) -->
+  <path d="M 100 280 Q 150 150 200 100 Q 250 80 300 80 Q 350 80 400 100 Q 450 150 500 280"
+        stroke="#2563eb" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Quantum potential Q(x) - sharp features (purple dashed line) -->
+  <!-- Left side: smooth -->
+  <path d="M 100 270 Q 150 240 200 220"
+        stroke="#9333ea" stroke-width="2.5" fill="none" stroke-dasharray="6,4" stroke-linecap="round"/>
+
+  <!-- Left node region: sharp spike -->
+  <path d="M 200 220 L 210 140 L 220 220"
+        stroke="#9333ea" stroke-width="2.5" fill="none" stroke-dasharray="6,4" stroke-linejoin="round"/>
+
+  <!-- Center: features from density variation -->
+  <path d="M 220 220 Q 260 160 300 100 Q 340 160 380 220"
+        stroke="#9333ea" stroke-width="2.5" fill="none" stroke-dasharray="6,4"/>
+
+  <!-- Right node region: sharp spike -->
+  <path d="M 380 220 L 390 140 L 400 220"
+        stroke="#9333ea" stroke-width="2.5" fill="none" stroke-dasharray="6,4" stroke-linejoin="round"/>
+
+  <!-- Right side: smooth -->
+  <path d="M 400 220 Q 450 240 500 270"
+        stroke="#9333ea" stroke-width="2.5" fill="none" stroke-dasharray="6,4" stroke-linecap="round"/>
+
+  <!-- Effective potential V+Q (green thick line, overlaid) -->
+  <path d="M 100 275 Q 150 180 200 130 Q 250 100 300 85 Q 350 100 400 130 Q 450 180 500 275"
+        stroke="#16a34a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Annotation: Q large where ρ changes rapidly (left side) -->
+  <line x1="210" y1="140" x2="260" y2="90" stroke="#9333ea" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="270" y="85" font-size="11" fill="#9333ea" font-weight="bold">Q large near</text>
+  <text x="270" y="100" font-size="11" fill="#9333ea" font-weight="bold">density nodes</text>
+
+  <!-- Annotation: Q vanishes where ρ is smooth (center region) -->
+  <line x1="300" y1="80" x2="300" y2="40" stroke="#9333ea" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="305" y="35" font-size="11" fill="#9333ea" font-weight="bold">Q ≈ 0 where ρ smooth</text>
+
+  <!-- Legend box -->
+  <rect x="100" y="345" width="500" height="45" fill="#f9fafb" stroke="#374151" stroke-width="1" rx="3"/>
+
+  <line x1="120" y1="360" x2="150" y2="360" stroke="#2563eb" stroke-width="3"/>
+  <text x="160" y="364" font-size="11" fill="#374151" font-weight="bold">Classical potential V(x)</text>
+
+  <line x1="120" y1="378" x2="150" y2="378" stroke="#9333ea" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <text x="160" y="382" font-size="11" fill="#374151" font-weight="bold">Quantum potential Q(x)</text>
+
+  <line x1="370" y1="360" x2="400" y2="360" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="410" y="364" font-size="11" fill="#374151" font-weight="bold">Total V+Q</text>
+
+  <!-- Bottom annotation: Classical limit -->
+  <text x="350" y="395" text-anchor="middle" font-size="12" fill="#374151" font-weight="bold">Classical limit: Q → 0 as ℏ → 0</text>
+</svg>

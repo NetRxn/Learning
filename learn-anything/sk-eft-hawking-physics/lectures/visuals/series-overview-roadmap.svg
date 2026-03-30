@@ -1,0 +1,154 @@
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .lecture-box { fill: #ffffff; stroke-width: 2; }
+      .lecture-number { font-size: 28px; font-weight: bold; fill: #374151; }
+      .lecture-title { font-size: 15px; font-weight: bold; fill: #374151; }
+      .lecture-concept { font-size: 12px; fill: #4b5563; }
+      .section-label { font-size: 16px; font-weight: bold; fill: #374151; }
+      .arrow { stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .arrow-light { stroke: #d1d5db; stroke-width: 1.5; }
+      .arrow-key { stroke: #6b7280; stroke-width: 2; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#6b7280" />
+    </marker>
+    <marker id="arrowhead-key" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#4b5563" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="500" y="30" font-size="24" font-weight="bold" fill="#1f2937" text-anchor="middle">SK-EFT Hawking Physics: Complete 10-Lecture Roadmap</text>
+
+  <!-- Section Labels -->
+  <text x="150" y="80" class="section-label">Physical Foundations (TC1)</text>
+  <text x="700" y="80" class="section-label">EFT-to-Hawking Pipeline (TC2)</text>
+
+  <!-- LECTURE 1: Epitome (special styling, gold border, top center) -->
+  <rect x="350" y="110" width="300" height="120" rx="8" class="lecture-box" stroke="#d97706" stroke-width="3"/>
+  <text x="380" y="145" class="lecture-number">1</text>
+  <text x="420" y="145" class="lecture-title">The Paper 1 Journey</text>
+  <text x="365" y="175" class="lecture-concept">• Fluid → Hawking → dissipation</text>
+  <text x="365" y="195" class="lecture-concept">• Complete argument overview</text>
+  <text x="365" y="215" class="lecture-concept">• Foundation for entire series</text>
+
+  <!-- LEFT COLUMN: LECTURES 2-6 (TC1, Blue borders) -->
+
+  <!-- LECTURE 2: Action Principle -->
+  <rect x="30" y="280" width="220" height="110" rx="6" class="lecture-box" stroke="#2563eb" stroke-width="2"/>
+  <text x="50" y="310" class="lecture-number">2</text>
+  <text x="90" y="310" class="lecture-title">Why the Action Principle Works</text>
+  <text x="45" y="335" class="lecture-concept">• Lagrangians, Euler-Lagrange</text>
+  <text x="45" y="355" class="lecture-concept">• Noether, path integrals</text>
+
+  <!-- LECTURE 3: Physics of Counting -->
+  <rect x="30" y="420" width="220" height="110" rx="6" class="lecture-box" stroke="#2563eb" stroke-width="2"/>
+  <text x="50" y="450" class="lecture-number">3</text>
+  <text x="90" y="450" class="lecture-title">The Physics of Counting</text>
+  <text x="45" y="475" class="lecture-concept">• Stat mech, temperature, entropy</text>
+  <text x="45" y="495" class="lecture-concept">• FDR, KMS theorem</text>
+
+  <!-- LECTURE 4: Quantum Mechanics as Wave Mechanics -->
+  <rect x="30" y="560" width="220" height="110" rx="6" class="lecture-box" stroke="#2563eb" stroke-width="2"/>
+  <text x="50" y="590" class="lecture-number">4</text>
+  <text x="90" y="590" class="lecture-title">QM as Wave Mechanics</text>
+  <text x="45" y="615" class="lecture-concept">• Path integrals, Madelung</text>
+  <text x="45" y="635" class="lecture-concept">• Wallstrom, BEC</text>
+
+  <!-- LECTURE 5: SSB and Goldstone -->
+  <rect x="280" y="280" width="220" height="110" rx="6" class="lecture-box" stroke="#2563eb" stroke-width="2"/>
+  <text x="300" y="310" class="lecture-number">5</text>
+  <text x="340" y="310" class="lecture-title">The Mexican Hat and Beyond</text>
+  <text x="295" y="335" class="lecture-concept">• SSB, Goldstone modes</text>
+  <text x="295" y="355" class="lecture-concept">• ADW, vestigial gravity</text>
+
+  <!-- LECTURE 6: Fluids from First Principles -->
+  <rect x="280" y="420" width="220" height="110" rx="6" class="lecture-box" stroke="#2563eb" stroke-width="2"/>
+  <text x="300" y="450" class="lecture-number">6</text>
+  <text x="340" y="450" class="lecture-title">Fluids from First Principles</text>
+  <text x="295" y="475" class="lecture-concept">• Conservation laws, Navier-Stokes</text>
+  <text x="295" y="495" class="lecture-concept">• Viscosity, transonic flow</text>
+
+  <!-- RIGHT COLUMN: LECTURES 7-10 (TC2, Green borders) -->
+
+  <!-- LECTURE 7: EFT as a Way of Thinking -->
+  <rect x="530" y="280" width="220" height="110" rx="6" class="lecture-box" stroke="#16a34a" stroke-width="2"/>
+  <text x="550" y="310" class="lecture-number">7</text>
+  <text x="590" y="310" class="lecture-title">EFT as a Way of Thinking</text>
+  <text x="545" y="335" class="lecture-concept">• Wilsonian paradigm</text>
+  <text x="545" y="355" class="lecture-concept">• Derivative expansion, universality</text>
+
+  <!-- LECTURE 8: Son's Superfluid EFT -->
+  <rect x="780" y="280" width="210" height="110" rx="6" class="lecture-box" stroke="#16a34a" stroke-width="2"/>
+  <text x="800" y="310" class="lecture-number">8</text>
+  <text x="840" y="310" class="lecture-title">Why L = P(X) Is Inevitable</text>
+  <text x="795" y="335" class="lecture-concept">• Son's superfluid EFT</text>
+  <text x="795" y="355" class="lecture-concept">• Symmetry, acoustic metric</text>
+
+  <!-- LECTURE 9: Acoustic Metric as Geometry -->
+  <rect x="530" y="420" width="220" height="110" rx="6" class="lecture-box" stroke="#16a34a" stroke-width="2"/>
+  <text x="550" y="450" class="lecture-number">9</text>
+  <text x="590" y="450" class="lecture-title">Acoustic Metric as Geometry</text>
+  <text x="545" y="475" class="lecture-concept">• Emergent spacetime</text>
+  <text x="545" y="495" class="lecture-concept">• Unruh, Penrose diagrams</text>
+
+  <!-- LECTURE 10: Capstone (Purple border, special styling) -->
+  <rect x="530" y="560" width="460" height="110" rx="8" class="lecture-box" stroke="#9333ea" stroke-width="3"/>
+  <text x="560" y="590" class="lecture-number">10</text>
+  <text x="610" y="590" class="lecture-title">Why Horizons Radiate</text>
+  <text x="545" y="615" class="lecture-concept">• Hawking radiation, Bogoliubov transformation, dissipative correction</text>
+  <text x="545" y="635" class="lecture-concept">• Synthesis: from EFT fluids to black hole physics</text>
+
+  <!-- ARROWS FROM LECTURE 1 TO ALL OTHERS (light gray overview arrows) -->
+  <path d="M 380 230 L 140 280" class="arrow arrow-light"/>
+  <path d="M 390 230 L 150 420" class="arrow arrow-light"/>
+  <path d="M 400 230 L 160 560" class="arrow arrow-light"/>
+  <path d="M 450 230 L 390 280" class="arrow arrow-light"/>
+  <path d="M 450 230 L 390 420" class="arrow arrow-light"/>
+  <path d="M 460 230 L 640 280" class="arrow arrow-light"/>
+
+  <!-- KEY DEPENDENCY ARROWS (darker, more prominent) -->
+
+  <!-- Lecture 2 (Action Principle) → Lecture 7 (EFT) -->
+  <path d="M 250 330 Q 390 310 530 320" class="arrow arrow-key" marker-end="url(#arrowhead-key)"/>
+
+  <!-- Lecture 2 (Action Principle) → Lecture 8 (Son's EFT) -->
+  <path d="M 250 310 Q 500 250 780 310" class="arrow arrow-key" marker-end="url(#arrowhead-key)"/>
+
+  <!-- Lecture 3 (Stat Mech, KMS) → Lecture 10 (Hawking, thermal) -->
+  <path d="M 140 530 Q 200 570 530 605" class="arrow arrow-key" marker-end="url(#arrowhead-key)"/>
+
+  <!-- Lecture 4 (QM, path integral) → Lecture 10 (Bogoliubov) -->
+  <path d="M 170 670 Q 350 700 560 670" class="arrow arrow-key" marker-end="url(#arrowhead-key)"/>
+
+  <!-- Lecture 5 (SSB) → Lecture 8 (Son's EFT uses SSB) -->
+  <path d="M 500 330 L 780 330" class="arrow arrow-key" marker-end="url(#arrowhead-key)"/>
+
+  <!-- Lecture 6 (Fluids) → Lecture 9 (Acoustic Metric) -->
+  <path d="M 500 470 L 530 470" class="arrow arrow-key" marker-end="url(#arrowhead-key)"/>
+
+  <!-- Lecture 7 (EFT) → Lecture 8 (Son's specific EFT) -->
+  <path d="M 750 335 L 780 335" class="arrow arrow-key" marker-end="url(#arrowhead-key)"/>
+
+  <!-- Lecture 8 (Son's EFT) → Lecture 9 (metric from EFT) -->
+  <path d="M 885 390 Q 750 400 640 420" class="arrow arrow-key" marker-end="url(#arrowhead-key)"/>
+
+  <!-- Lecture 9 (Acoustic Metric) → Lecture 10 (horizon → radiation) -->
+  <path d="M 640 530 L 640 560" class="arrow arrow-key" marker-end="url(#arrowhead-key)"/>
+
+  <!-- Legend -->
+  <g>
+    <text x="30" y="680" font-size="11" font-weight="bold" fill="#374151">Legend:</text>
+    <rect x="115" y="668" width="8" height="8" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <text x="130" y="676" font-size="11" fill="#374151">TC1 Foundations</text>
+    <rect x="305" y="668" width="8" height="8" fill="none" stroke="#16a34a" stroke-width="2"/>
+    <text x="320" y="676" font-size="11" fill="#374151">TC2 EFT Pipeline</text>
+    <line x1="490" y1="672" x2="510" y2="672" class="arrow arrow-light" stroke="#d1d5db"/>
+    <text x="520" y="676" font-size="11" fill="#374151">Overview flow</text>
+    <line x1="730" y1="672" x2="750" y2="672" class="arrow arrow-key" stroke="#4b5563"/>
+    <text x="760" y="676" font-size="11" fill="#374151">Key dependency</text>
+  </g>
+
+  <title>SK-EFT Hawking Physics 10-Lecture Series Roadmap</title>
+</svg>

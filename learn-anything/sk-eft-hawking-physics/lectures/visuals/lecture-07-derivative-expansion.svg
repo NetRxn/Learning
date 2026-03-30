@@ -1,0 +1,48 @@
+<svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg" width="600" height="450">
+  <title>Derivative Expansion Hierarchy in EFT</title>
+
+  <!-- Background -->
+  <rect width="600" height="450" fill="#ffffff"/>
+
+  <!-- Top Layer: ∂⁴ terms (smallest) -->
+  <polygon points="250,20 300,50 250,80 200,50" fill="rgba(107,112,126,0.1)" stroke="#374151" stroke-width="2"/>
+  <text x="250" y="48" font-size="13" font-weight="bold" fill="#374151" text-anchor="middle">∂⁴ terms</text>
+  <text x="250" y="63" font-size="11" fill="#374151" text-anchor="middle" font-family="monospace">(∂²φ)², ...</text>
+  <text x="420" y="55" font-size="11" fill="#374151">Usually ignorable</text>
+
+  <!-- Arrow down -->
+  <line x1="250" y1="85" x2="250" y2="110" stroke="#374151" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Middle Layer: ∂² terms (medium) -->
+  <polygon points="300,115 380,145 300,175 220,145" fill="rgba(217,119,6,0.1)" stroke="#d97706" stroke-width="2"/>
+  <text x="300" y="143" font-size="13" font-weight="bold" fill="#374151" text-anchor="middle">∂² terms</text>
+  <text x="300" y="158" font-size="11" fill="#374151" text-anchor="middle" font-family="monospace">(∂φ)²·(∂²φ), ...</text>
+  <text x="420" y="150" font-size="11" fill="#374151">First corrections</text>
+
+  <!-- Arrow down -->
+  <line x1="300" y1="180" x2="300" y2="205" stroke="#374151" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Bottom Layer: ∂⁰ terms (largest, most important) -->
+  <polygon points="350,210 450,240 350,270 250,240" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="350" y="235" font-size="14" font-weight="bold" fill="#374151" text-anchor="middle">∂⁰ terms: P(X)</text>
+  <text x="350" y="252" font-size="11" fill="#374151" text-anchor="middle" font-family="monospace">X = (∂φ)²</text>
+  <text x="420" y="245" font-size="11" fill="#374151" font-weight="bold">Leading order</text>
+
+  <!-- Annotation box at bottom -->
+  <rect x="50" y="295" width="500" height="130" fill="#f9fafb" stroke="#374151" stroke-width="1.5" rx="6"/>
+
+  <text x="65" y="320" font-size="12" font-weight="bold" fill="#374151">Suppression Scale:</text>
+  <text x="65" y="340" font-size="11" fill="#374151" font-family="monospace">Each layer suppressed by (∂/Λ)² ~ (ω/Λ)²</text>
+  <text x="65" y="356" font-size="11" fill="#374151">where Λ is the EFT cutoff energy scale</text>
+
+  <text x="65" y="385" font-size="12" font-weight="bold" fill="#2563eb">Son's Program:</text>
+  <text x="65" y="405" font-size="11" fill="#374151" font-family="monospace">L = P(X) lives at the bottom:</text>
+  <text x="65" y="421" font-size="11" fill="#374151">all of ideal fluid dynamics in one function!</text>
+
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#374151"/>
+    </marker>
+  </defs>
+</svg>

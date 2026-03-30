@@ -3,8 +3,7 @@
   "dossier_id": "sd-sk-eft-2026-03-26-001",
   "learner_id": "learner-netrxn-001",
   "created_at": "2026-03-26T14:00:00Z",
-  "updated_at": "2026-03-27T12:00:00Z",
-
+  "updated_at": "2026-03-30T12:00:00Z",
   "graph": {
     "vertices": [
       {
@@ -37,7 +36,7 @@
         "id": "vertex-quantum-mechanics",
         "label": "Concept",
         "name": "Quantum Mechanics Foundations",
-        "description": "Wave-particle duality, Hilbert spaces, operators, the Schrödinger equation, path integrals, and the measurement problem.",
+        "description": "Wave-particle duality, Hilbert spaces, operators, the Schr\u00f6dinger equation, path integrals, and the measurement problem.",
         "blooms_level": "understand",
         "component_type": "non_recurrent",
         "frequency_score": 0.85,
@@ -70,12 +69,12 @@
         "impact_score": 0.85,
         "cluster_id": "foundations",
         "learner_state": {
-          "mastery_probability": 0.30,
+          "mastery_probability": 0.3,
           "mastery_category": "attempted",
           "confidence": 0.8,
           "evidence_count": 2,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Self-reported beginner. Familiar with key concepts (partition functions, thermal equilibrium, FDR) through the SK-EFT context but hasn't built deep foundations independently. This is a critical gap — the KMS condition and FDR are central to the program and require solid stat mech intuition.",
+          "evidence_summary": "Self-reported beginner. Familiar with key concepts (partition functions, thermal equilibrium, FDR) through the SK-EFT context but hasn't built deep foundations independently. This is a critical gap \u2014 the KMS condition and FDR are central to the program and require solid stat mech intuition.",
           "source": "calibration",
           "transfer_boost": 0.15,
           "fsrs_difficulty": 6.5,
@@ -96,7 +95,7 @@
         "impact_score": 0.9,
         "cluster_id": "foundations",
         "learner_state": {
-          "mastery_probability": 0.50,
+          "mastery_probability": 0.5,
           "mastery_category": "familiar",
           "confidence": 0.8,
           "evidence_count": 3,
@@ -127,7 +126,7 @@
           "confidence": 0.75,
           "evidence_count": 3,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Intermediate QFT/EFT — understands Wilsonian approach, derivative expansion, power counting through the project. The entire research program is built on EFT thinking. Transfer pathway (0.75 similarity) from QFT background. Gap is visceral feel for why higher-order terms are literally 'smaller physics' — needs to move from knowing the rules to feeling the logic.",
+          "evidence_summary": "Intermediate QFT/EFT \u2014 understands Wilsonian approach, derivative expansion, power counting through the project. The entire research program is built on EFT thinking. Transfer pathway (0.75 similarity) from QFT background. Gap is visceral feel for why higher-order terms are literally 'smaller physics' \u2014 needs to move from knowing the rules to feeling the logic.",
           "source": "calibration",
           "transfer_boost": 0.4,
           "fsrs_difficulty": 5.0,
@@ -141,19 +140,19 @@
         "id": "vertex-son-superfluid-eft",
         "label": "Concept",
         "name": "Son's Superfluid EFT: L = P(X)",
-        "description": "The leading-order effective field theory for a superfluid: a single Goldstone boson ψ with Lagrangian L = P(X), X = (∂ψ)².",
+        "description": "The leading-order effective field theory for a superfluid: a single Goldstone boson \u03c8 with Lagrangian L = P(X), X = (\u2202\u03c8)\u00b2.",
         "blooms_level": "analyze",
         "component_type": "non_recurrent",
         "frequency_score": 0.9,
         "impact_score": 0.95,
         "cluster_id": "eft-core",
         "learner_state": {
-          "mastery_probability": 0.50,
+          "mastery_probability": 0.5,
           "mastery_category": "familiar",
           "confidence": 0.75,
           "evidence_count": 3,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Knows Son's EFT from the project — central to Phase 1. Understands it's a Goldstone boson for broken U(1). Transfer 0.7 (far) from QFT background. Gap: building intuition for WHY L=P(X) is the unique answer requires deeper comfort with symmetry arguments and SSB.",
+          "evidence_summary": "Knows Son's EFT from the project \u2014 central to Phase 1. Understands it's a Goldstone boson for broken U(1). Transfer 0.7 (far) from QFT background. Gap: building intuition for WHY L=P(X) is the unique answer requires deeper comfort with symmetry arguments and SSB.",
           "source": "calibration",
           "transfer_boost": 0.35,
           "fsrs_difficulty": 5.5,
@@ -179,7 +178,7 @@
           "confidence": 0.7,
           "evidence_count": 2,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Knows SSB conceptually — Mexican hat potential, Goldstone theorem, phonon as Goldstone boson. Uses SSB in both the superfluid EFT (U(1) breaking) and ADW mechanism (GL(4,R) → SO(3,1)). Gap is deep intuition for the mechanism and its inevitability.",
+          "evidence_summary": "Knows SSB conceptually \u2014 Mexican hat potential, Goldstone theorem, phonon as Goldstone boson. Uses SSB in both the superfluid EFT (U(1) breaking) and ADW mechanism (GL(4,R) \u2192 SO(3,1)). Gap is deep intuition for the mechanism and its inevitability.",
           "source": "calibration",
           "transfer_boost": 0.3,
           "fsrs_difficulty": 5.5,
@@ -193,7 +192,7 @@
         "id": "vertex-bec-physics",
         "label": "Concept",
         "name": "BEC Physics & Bogoliubov Theory",
-        "description": "Bose-Einstein condensation, the Gross-Pitaevskii equation, Bogoliubov transformation, healing length ξ, and the dispersion relation.",
+        "description": "Bose-Einstein condensation, the Gross-Pitaevskii equation, Bogoliubov transformation, healing length \u03be, and the dispersion relation.",
         "blooms_level": "understand",
         "component_type": "non_recurrent",
         "frequency_score": 0.75,
@@ -205,7 +204,7 @@
           "confidence": 0.8,
           "evidence_count": 3,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Intermediate BEC/condensed matter experience. Engaged deeply with BEC physics through the project — knows experimental parameters for all three platforms (Steinhauer, Heidelberg, Trento), Bogoliubov theory, transonic flows, superfluid order parameters. Transfer 0.75. Gap is microscopic physical intuition — why atoms condense, what healing length physically represents.",
+          "evidence_summary": "Intermediate BEC/condensed matter experience. Engaged deeply with BEC physics through the project \u2014 knows experimental parameters for all three platforms (Steinhauer, Heidelberg, Trento), Bogoliubov theory, transonic flows, superfluid order parameters. Transfer 0.75. Gap is microscopic physical intuition \u2014 why atoms condense, what healing length physically represents.",
           "source": "calibration",
           "transfer_boost": 0.4,
           "fsrs_difficulty": 5.0,
@@ -219,7 +218,7 @@
         "id": "vertex-acoustic-metric",
         "label": "Concept",
         "name": "The Acoustic Metric & Analog Gravity",
-        "description": "Sound waves in a moving fluid propagate on an effective curved spacetime. Sonic horizons form where v = c_s.",
+        "description": "Acoustic metric as continuum EFT limit with \u03ba-scaling regime structure",
         "blooms_level": "analyze",
         "component_type": "non_recurrent",
         "frequency_score": 0.9,
@@ -230,8 +229,8 @@
           "mastery_category": "familiar",
           "confidence": 0.8,
           "evidence_count": 3,
-          "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Gateway node. Knows the acoustic metric formula, understands Unruh-Visser derivation structurally. AcousticMetric.lean proves 4 key theorems they designed. Transfer 0.75 from GR background. Gap: feeling how the metric emerges inevitably from linearized fluid equations — the geometric perspective, not just the formula.",
+          "last_assessed": "2026-03-30T12:00:00Z",
+          "evidence_summary": "Formalizes acoustic metric as continuum limit of lattice model with KappaScaling.lean (11 theorems) for \u03ba-dependent regime crossover.",
           "source": "calibration",
           "transfer_boost": 0.4,
           "fsrs_difficulty": 5.0,
@@ -245,7 +244,7 @@
         "id": "vertex-hawking-radiation",
         "label": "Concept",
         "name": "Hawking Radiation & the Trans-Planckian Problem",
-        "description": "A sonic horizon emits thermal phonons at T_H = ℏκ/2πk_B. The trans-Planckian problem: do UV physics matter?",
+        "description": "Hawking radiation signatures in analog gravity systems with polariton platform extension",
         "blooms_level": "analyze",
         "component_type": "non_recurrent",
         "frequency_score": 0.85,
@@ -256,8 +255,8 @@
           "mastery_category": "familiar",
           "confidence": 0.8,
           "evidence_count": 3,
-          "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Gateway node. Knows the formula, understands the trans-Planckian problem, knows why BEC experiments are the testing ground. The entire program is about Hawking radiation corrections. Transfer 0.7 from GR. Gap: deep intuition for WHY horizons radiate — the mode-mixing picture, not just the formula.",
+          "last_assessed": "2026-03-30T12:00:00Z",
+          "evidence_summary": "\u03ba-scaling changes the experimental landscape \u2014 polariton systems give T_H ~ 0.8-4 K (vs 0.35 nK for BEC). Experimental predictions module now covers 3 BEC platforms + polariton Tier 1.",
           "source": "calibration",
           "transfer_boost": 0.4,
           "fsrs_difficulty": 5.5,
@@ -271,19 +270,19 @@
         "id": "vertex-transonic-backgrounds",
         "label": "Skill",
         "name": "Transonic Flow & Sonic Horizons in BEC",
-        "description": "Setting up 1D transonic backgrounds with v(x_H) = c_s(x_H) at the horizon. Surface gravity κ and experimental parameters.",
+        "description": "Setting up 1D transonic backgrounds with v(x_H) = c_s(x_H) at the horizon. Surface gravity \u03ba and experimental parameters.",
         "blooms_level": "apply",
         "component_type": "recurrent",
         "frequency_score": 0.7,
         "impact_score": 0.75,
         "cluster_id": "analog-gravity",
         "learner_state": {
-          "mastery_probability": 0.60,
+          "mastery_probability": 0.6,
           "mastery_category": "familiar",
           "confidence": 0.85,
           "evidence_count": 3,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Wrote transonic_background.py. Knows the physical setup, the three experimental platforms, the adiabaticity parameter D = κξ/c_s. Solid working knowledge from code development. Gap: deeper physical feel for the flow topology.",
+          "evidence_summary": "Wrote transonic_background.py. Knows the physical setup, the three experimental platforms, the adiabaticity parameter D = \u03ba\u03be/c_s. Solid working knowledge from code development. Gap: deeper physical feel for the flow topology.",
           "source": "calibration",
           "transfer_boost": 0.45,
           "fsrs_difficulty": 4.0,
@@ -297,19 +296,19 @@
         "id": "vertex-sk-contour",
         "label": "Concept",
         "name": "The Schwinger-Keldysh Contour",
-        "description": "The SK contour doubles DOF to compute real-time correlators in thermal/mixed states. Physical fields ψ_r and noise fields ψ_a.",
+        "description": "The SK contour doubles DOF to compute real-time correlators in thermal/mixed states. Physical fields \u03c8_r and noise fields \u03c8_a.",
         "blooms_level": "understand",
         "component_type": "non_recurrent",
         "frequency_score": 0.9,
         "impact_score": 0.95,
         "cluster_id": "sk-formalism",
         "learner_state": {
-          "mastery_probability": 0.50,
+          "mastery_probability": 0.5,
           "mastery_category": "familiar",
           "confidence": 0.75,
           "evidence_count": 3,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Gateway node. Central to the entire project — SKDoubling.lean has 9 theorems they designed. Knows the forward/backward branch structure, r/a field decomposition. Gap: physical intuition for WHY we need to double — the deep connection between real-time physics and the contour structure.",
+          "evidence_summary": "Gateway node. Central to the entire project \u2014 SKDoubling.lean has 9 theorems they designed. Knows the forward/backward branch structure, r/a field decomposition. Gap: physical intuition for WHY we need to double \u2014 the deep connection between real-time physics and the contour structure.",
           "source": "calibration",
           "transfer_boost": 0.35,
           "fsrs_difficulty": 6.0,
@@ -323,19 +322,19 @@
         "id": "vertex-kms-fdr",
         "label": "Concept",
         "name": "KMS Symmetry & Fluctuation-Dissipation Relations",
-        "description": "The KMS condition encodes thermal equilibrium: ψ_a → ψ_a + iβ∂_t ψ_r. Generates FDR automatically.",
+        "description": "The KMS condition encodes thermal equilibrium: \u03c8_a \u2192 \u03c8_a + i\u03b2\u2202_t \u03c8_r. Generates FDR automatically.",
         "blooms_level": "analyze",
         "component_type": "non_recurrent",
         "frequency_score": 0.85,
         "impact_score": 0.9,
         "cluster_id": "sk-formalism",
         "learner_state": {
-          "mastery_probability": 0.50,
+          "mastery_probability": 0.5,
           "mastery_category": "familiar",
           "confidence": 0.75,
           "evidence_count": 3,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Knows the KMS condition from the project. Discovered the Aristotle counterexample that broke the original KMSSymmetry. CGLTransform.lean derives FDR. Gap: physical intuition for what KMS means beyond the formula — why dissipation and noise must be linked by temperature.",
+          "evidence_summary": "Knows the KMS condition from the project. Discovered the Aristotle counterexample that broke the original KMSSymmetry. CGLTransform.lean derives FDR. Gap: physical intuition for what KMS means beyond the formula \u2014 why dissipation and noise must be linked by temperature.",
           "source": "calibration",
           "transfer_boost": 0.3,
           "fsrs_difficulty": 6.0,
@@ -356,12 +355,12 @@
         "impact_score": 0.9,
         "cluster_id": "sk-formalism",
         "learner_state": {
-          "mastery_probability": 0.50,
+          "mastery_probability": 0.5,
           "mastery_category": "familiar",
           "confidence": 0.75,
           "evidence_count": 3,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Designed the Lean proofs (SKDoubling.lean) that verify these axioms constrain 9 terms → 2 free parameters. Knows the result and the proof structure. Gap: physical feel for each axiom — why positivity means probability conservation, what normalization physically requires.",
+          "evidence_summary": "Designed the Lean proofs (SKDoubling.lean) that verify these axioms constrain 9 terms \u2192 2 free parameters. Knows the result and the proof structure. Gap: physical feel for each axiom \u2014 why positivity means probability conservation, what normalization physically requires.",
           "source": "calibration",
           "transfer_boost": 0.35,
           "fsrs_difficulty": 5.5,
@@ -375,19 +374,19 @@
         "id": "vertex-dissipative-correction",
         "label": "Concept",
         "name": "First-Order Dissipative Hawking Correction",
-        "description": "T_eff = T_H(1 + δ_disp + δ_diss + δ_cross), where δ_diss = Γ_H/κ is the new dissipative correction.",
+        "description": "The dissipative correction to Hawking radiation, incorporating \u03ba-dependent linear scaling and verified crossover formulas",
         "blooms_level": "evaluate",
         "component_type": "non_recurrent",
         "frequency_score": 0.85,
         "impact_score": 0.95,
         "cluster_id": "phase1-2-results",
         "learner_state": {
-          "mastery_probability": 0.60,
+          "mastery_probability": 0.6,
           "mastery_category": "familiar",
           "confidence": 0.8,
           "evidence_count": 4,
-          "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Central node. Transfer 0.85 (near) — designed the entire Phase 1 calculation, wrote Paper 1, designed the Lean proofs. Knows the result, the derivation structure, and the experimental numbers. Gap is the critical one identified in the dossier: knowing WHAT vs feeling WHY — physical intuition for why each step is inevitable.",
+          "last_assessed": "2026-03-30T12:00:00Z",
+          "evidence_summary": "\u03b4_diss \u221d \u03ba with LINEAR scaling, not constant as originally assumed. \u03ba-scaling crossover formula now verified: \u03ba_cross = 6(\u03b3\u2081+\u03b3\u2082)/(\u03c0\u03be\u00b2). This CHANGES how the dissipative correction is understood.",
           "source": "calibration",
           "transfer_boost": 0.5,
           "fsrs_difficulty": 5.0,
@@ -401,14 +400,14 @@
         "id": "vertex-transport-counting",
         "label": "Concept",
         "name": "Transport Coefficient Counting & Higher Orders",
-        "description": "count(N) = ⌊(N+1)/2⌋ + 1. Parity alternation theorem: odd orders parity-preserving, even orders require parity breaking.",
+        "description": "count(N) = \u230a(N+1)/2\u230b + 1. Parity alternation theorem: odd orders parity-preserving, even orders require parity breaking.",
         "blooms_level": "analyze",
         "component_type": "non_recurrent",
         "frequency_score": 0.6,
         "impact_score": 0.7,
         "cluster_id": "phase1-2-results",
         "learner_state": {
-          "mastery_probability": 0.50,
+          "mastery_probability": 0.5,
           "mastery_category": "familiar",
           "confidence": 0.8,
           "evidence_count": 3,
@@ -427,7 +426,7 @@
         "id": "vertex-spectral-distortion",
         "label": "Concept",
         "name": "Frequency-Dependent Spectral Distortion",
-        "description": "Second-order correction δ^(2)(ω) ∝ ω³ — spectrum deviates from Planckian. On-shell vanishing via positivity constraint.",
+        "description": "Second-order correction \u03b4^(2)(\u03c9) \u221d \u03c9\u00b3 \u2014 spectrum deviates from Planckian. On-shell vanishing via positivity constraint.",
         "blooms_level": "evaluate",
         "component_type": "non_recurrent",
         "frequency_score": 0.5,
@@ -453,7 +452,7 @@
         "id": "vertex-cgl-derivation",
         "label": "Concept",
         "name": "CGL Dynamical KMS Derivation",
-        "description": "The Crossley-Glorioso-Liu master formula pairing noise with odd-in-ω dissipative terms.",
+        "description": "The Crossley-Glorioso-Liu master formula pairing noise with odd-in-\u03c9 dissipative terms.",
         "blooms_level": "analyze",
         "component_type": "non_recurrent",
         "frequency_score": 0.5,
@@ -465,7 +464,7 @@
           "confidence": 0.7,
           "evidence_count": 2,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Recently completed Phase 2D work — CGL derivation, 7 Lean theorems. Knows the chain: CGL FDR → T-reversal → model identification → FirstOrderKMS. Gap: physical content of the CGL formula — why noise comes from the antisymmetric part.",
+          "evidence_summary": "Recently completed Phase 2D work \u2014 CGL derivation, 7 Lean theorems. Knows the chain: CGL FDR \u2192 T-reversal \u2192 model identification \u2192 FirstOrderKMS. Gap: physical content of the CGL formula \u2014 why noise comes from the antisymmetric part.",
           "source": "calibration",
           "transfer_boost": 0.3,
           "fsrs_difficulty": 6.0,
@@ -505,7 +504,7 @@
         "id": "vertex-bogoliubov-coefficients",
         "label": "Concept",
         "name": "Bogoliubov Coefficients & Particle Creation",
-        "description": "Mode mixing at a horizon: |β_k|² gives particle spectrum. Standard Hawking: n_k = Planck distribution.",
+        "description": "Mode mixing at a horizon: |\u03b2_k|\u00b2 gives particle spectrum. Standard Hawking: n_k = Planck distribution.",
         "blooms_level": "understand",
         "component_type": "non_recurrent",
         "frequency_score": 0.7,
@@ -517,7 +516,7 @@
           "confidence": 0.7,
           "evidence_count": 2,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Knows Bogoliubov coefficients from the project — bogoliubov.py computes modified coefficients. Understands that |β_k|² gives particle number. Gap: physical intuition for how mode mixing creates particles — the conceptual leap from classical waves to quantum particle creation.",
+          "evidence_summary": "Knows Bogoliubov coefficients from the project \u2014 bogoliubov.py computes modified coefficients. Understands that |\u03b2_k|\u00b2 gives particle number. Gap: physical intuition for how mode mixing creates particles \u2014 the conceptual leap from classical waves to quantum particle creation.",
           "source": "propagation",
           "transfer_boost": 0.25,
           "fsrs_difficulty": 6.0,
@@ -538,12 +537,12 @@
         "impact_score": 0.7,
         "cluster_id": "gauge-structure",
         "learner_state": {
-          "mastery_probability": 0.40,
+          "mastery_probability": 0.4,
           "mastery_category": "familiar",
           "confidence": 0.65,
           "evidence_count": 2,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Knows the concept from the gauge erasure work — understands that 1-form symmetries act on Wilson loops and must be Abelian. Gap: deep intuition for WHY higher-form symmetries must be Abelian (operators on codimension >1 submanifolds commute) and the physical picture of the photon as a Goldstone.",
+          "evidence_summary": "Knows the concept from the gauge erasure work \u2014 understands that 1-form symmetries act on Wilson loops and must be Abelian. Gap: deep intuition for WHY higher-form symmetries must be Abelian (operators on codimension >1 submanifolds commute) and the physical picture of the photon as a Goldstone.",
           "source": "calibration",
           "transfer_boost": 0.2,
           "fsrs_difficulty": 6.5,
@@ -569,7 +568,7 @@
           "confidence": 0.8,
           "evidence_count": 3,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Wrote Paper 3 and GaugeErasure.lean (11 theorems + 1 axiom). Knows the argument chain, the N=4 SYM case, the SM analysis. Gap: feeling the inevitability of the result — why non-Abelian gauge info MUST be lost in the fluid limit, not just that it IS.",
+          "evidence_summary": "Wrote Paper 3 and GaugeErasure.lean (11 theorems + 1 axiom). Knows the argument chain, the N=4 SYM case, the SM analysis. Gap: feeling the inevitability of the result \u2014 why non-Abelian gauge info MUST be lost in the fluid limit, not just that it IS.",
           "source": "calibration",
           "transfer_boost": 0.4,
           "fsrs_difficulty": 5.5,
@@ -583,19 +582,19 @@
         "id": "vertex-adw-mechanism",
         "label": "Concept",
         "name": "ADW Mechanism: Emergent Tetrad Gravity",
-        "description": "Multi-fermion interaction produces tetrad condensate via SSB: GL(4,R) → SO(3,1). 2 massless spin-2 gravitons emerge as Goldstone bosons.",
+        "description": "Multi-fermion interaction produces tetrad condensate via SSB: GL(4,R) \u2192 SO(3,1). 2 massless spin-2 gravitons emerge as Goldstone bosons.",
         "blooms_level": "evaluate",
         "component_type": "non_recurrent",
         "frequency_score": 0.55,
         "impact_score": 0.85,
         "cluster_id": "emergent-gravity",
         "learner_state": {
-          "mastery_probability": 0.50,
+          "mastery_probability": 0.5,
           "mastery_category": "familiar",
           "confidence": 0.75,
           "evidence_count": 3,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Wrote Paper 5 with 21 Lean theorems. Knows the breaking pattern, mode counting, Coleman-Weinberg mechanism, 4 structural obstacles. Gap: the conceptual leap that spacetime geometry emerges from fermion condensation — this requires genuine rethinking of what geometry IS.",
+          "evidence_summary": "Wrote Paper 5 with 21 Lean theorems. Knows the breaking pattern, mode counting, Coleman-Weinberg mechanism, 4 structural obstacles. Gap: the conceptual leap that spacetime geometry emerges from fermion condensation \u2014 this requires genuine rethinking of what geometry IS.",
           "source": "calibration",
           "transfer_boost": 0.35,
           "fsrs_difficulty": 7.0,
@@ -609,7 +608,7 @@
         "id": "vertex-vestigial-gravity",
         "label": "Concept",
         "name": "Vestigial Gravity (Level 1)",
-        "description": "Composite metric g_μν without coherent tetrad VEV. Three-phase structure: pre-geometric → vestigial → full tetrad. EP violation predicted.",
+        "description": "Vestigial gravity patterns in lattice Yang-Mills, with confirmed split transitions and comprehensive Lean formalization",
         "blooms_level": "evaluate",
         "component_type": "non_recurrent",
         "frequency_score": 0.45,
@@ -620,8 +619,8 @@
           "mastery_category": "familiar",
           "confidence": 0.7,
           "evidence_count": 2,
-          "last_assessed": "2026-03-27T12:00:00Z",
-          "evidence_summary": "Phase 4 COMPLETE: Paper 6 written with Monte Carlo simulation. VestigialGravity.lean verified with 18 theorems. Knows the three-phase structure, EP violation prediction, lattice model. Gap: physical intuition for what a composite order parameter means and why it can have different symmetry from the elementary field.",
+          "last_assessed": "2026-03-30T12:00:00Z",
+          "evidence_summary": "4D MC production runs CONFIRMED split transition at L=6,8 (metric and tetrad susceptibility peaks at different couplings). VestigialGravity.lean still 18 theorems but Paper 6 updated with production MC results. Phase 5 added FermionBag4D.lean (16 theorems) for 4D MC infrastructure.",
           "source": "calibration",
           "transfer_boost": 0.3,
           "fsrs_difficulty": 7.0,
@@ -647,7 +646,7 @@
           "confidence": 0.65,
           "evidence_count": 2,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Knows from Paper 5 context — gap_equation.py computes V_eff, hubbard_stratonovich.py sets up the decomposition. Understands structurally. Gap: physical intuition for what 'integrating out fermions' means and how radiative corrections trigger symmetry breaking.",
+          "evidence_summary": "Knows from Paper 5 context \u2014 gap_equation.py computes V_eff, hubbard_stratonovich.py sets up the decomposition. Understands structurally. Gap: physical intuition for what 'integrating out fermions' means and how radiative corrections trigger symmetry breaking.",
           "source": "propagation",
           "transfer_boost": 0.2,
           "fsrs_difficulty": 6.5,
@@ -661,19 +660,19 @@
         "id": "vertex-fracton-hydro",
         "label": "Concept",
         "name": "Fracton Hydrodynamics & Information Retention",
-        "description": "Fractons with restricted mobility. Conserving charge + dipole + higher multipoles retains exponentially more UV info than Navier-Stokes.",
+        "description": "Hydrodynamics of fracton topological order with \u03ba-scaling insights and expanded experimental platforms",
         "blooms_level": "understand",
         "component_type": "non_recurrent",
         "frequency_score": 0.4,
         "impact_score": 0.65,
         "cluster_id": "fracton-topological",
         "learner_state": {
-          "mastery_probability": 0.40,
+          "mastery_probability": 0.4,
           "mastery_category": "familiar",
           "confidence": 0.7,
           "evidence_count": 2,
-          "last_assessed": "2026-03-27T12:00:00Z",
-          "evidence_summary": "Phase 4 complete: FractonHydro.lean verified with 17 theorems. sk_eft.py and information_retention.py verified. Knows restricted mobility concept, conservation laws, information retention comparison. Gap: physical intuition for fractons — why restricted mobility changes everything about hydrodynamics.",
+          "last_assessed": "2026-03-30T12:00:00Z",
+          "evidence_summary": "Phase 5 \u03ba-scaling test shows fracton information retention argument holds, but the experimental landscape now includes polariton platform (10^10\u00d7 hotter than BEC).",
           "source": "calibration",
           "transfer_boost": 0.25,
           "fsrs_difficulty": 6.0,
@@ -687,19 +686,19 @@
         "id": "vertex-string-nets",
         "label": "Concept",
         "name": "String-Net Condensation & Topological Order",
-        "description": "Levin-Wen: condensing string-like objects produces topological order, emergent gauge fields, and emergent fermions. Layer 1 of the architecture.",
+        "description": "String-net models and categorical quantum mechanics, now with groundbreaking categorical formalizations in Lean",
         "blooms_level": "understand",
         "component_type": "non_recurrent",
         "frequency_score": 0.35,
         "impact_score": 0.6,
         "cluster_id": "fracton-topological",
         "learner_state": {
-          "mastery_probability": 0.30,
+          "mastery_probability": 0.3,
           "mastery_category": "attempted",
           "confidence": 0.6,
           "evidence_count": 1,
-          "last_assessed": "2026-03-27T12:00:00Z",
-          "evidence_summary": "Phase 4 fracton work complete. Conceptual exposure through the Critical Review and hybrid architecture design. Knows string-nets are Layer 1 providing gauge structure. Gap: significant — topological order and string-net condensation are conceptually rich and require dedicated learning. Currently at the vocabulary level.",
+          "last_assessed": "2026-03-30T12:00:00Z",
+          "evidence_summary": "Major update \u2014 Phase 5 Wave 4 created FIRST-EVER categorical formalizations: PivotalCategory (18 theorems, first in any proof assistant), FusionCategory (14 theorems), FusionExamples (30 theorems), VecG (9 theorems), DrinfeldDouble (15 theorems, first in any proof assistant), GaugeEmergence (14 theorems). Total Layer 1 categorical: 101 theorems. Z(Vec_G) \u2245 Rep(D(G)) gauge emergence proved.",
           "source": "propagation",
           "transfer_boost": 0.1,
           "fsrs_difficulty": 7.0,
@@ -713,7 +712,7 @@
         "id": "vertex-three-walls",
         "label": "Concept",
         "name": "The Three Structural Walls",
-        "description": "Gauge wall (structurally impossible), gravity wall (Nordström ceiling), chirality wall (fracturing but not broken).",
+        "description": "Three major obstacles in lattice chiral fermion construction: chirality wall, gauge mixing, and string-net limitations, now with formal verification",
         "blooms_level": "evaluate",
         "component_type": "non_recurrent",
         "frequency_score": 0.7,
@@ -724,8 +723,8 @@
           "mastery_category": "familiar",
           "confidence": 0.85,
           "evidence_count": 4,
-          "last_assessed": "2026-03-27T12:00:00Z",
-          "evidence_summary": "All three walls now have complete formal verification and Python implementations. Wrote the Critical Review v3 articulating all three walls. Knows the assessment, the status of each wall, what would change the picture. Gap: moving from documented assessment to felt understanding of the obstruction mechanisms — understanding at the physics level, not just the narrative level.",
+          "last_assessed": "2026-03-30T12:00:00Z",
+          "evidence_summary": "Update to note chirality wall now has COMPLETE formal verification (Paper 7). Gauge emergence theorem Z(Vec_G) \u2245 Rep(D(G)) proved in Lean. String-net chirality limitation c \u2261 0 mod 8 proved.",
           "source": "calibration",
           "transfer_boost": 0.55,
           "fsrs_difficulty": 5.0,
@@ -739,7 +738,7 @@
         "id": "vertex-chirality-wall",
         "label": "Concept",
         "name": "The Chirality Wall & Lattice Fermions",
-        "description": "Nielsen-Ninomiya no-go. TPF disentangler evades it. Golterman-Shamir generalized no-go. SMG evidence at 16 Weyl.",
+        "description": "Formalized lattice chiral fermion obstacle with complete Lean verification of Golterman-Shamir conditions and TPF evasion",
         "blooms_level": "evaluate",
         "component_type": "non_recurrent",
         "frequency_score": 0.35,
@@ -750,8 +749,8 @@
           "mastery_category": "familiar",
           "confidence": 0.7,
           "evidence_count": 2,
-          "last_assessed": "2026-03-27T12:00:00Z",
-          "evidence_summary": "Phase 4 complete: ChiralityWall.lean verified with 17 theorems. Wrote tpf_gs_analysis.py. Knows the no-go theorem, TPF construction, three critical gaps. Gap: physical intuition for WHY chiral fermions are so hard on a lattice — the deep connection between chirality and topology.",
+          "last_assessed": "2026-03-30T12:00:00Z",
+          "evidence_summary": "Major update \u2014 Phase 5 formalized ALL 9 GS conditions as Lean propositions and proved 5 TPF violations mechanically. Three new Lean modules: LatticeHamiltonian (28+1 lemma), GoltermanShamir (14+1 axiom), TPFEvasion (12). Paper 7 written on this. FIRST formal verification result in lattice chiral fermion literature.",
           "source": "calibration",
           "transfer_boost": 0.3,
           "fsrs_difficulty": 7.0,
@@ -803,7 +802,7 @@
           "confidence": 0.65,
           "evidence_count": 1,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Wrote backreaction.py. Knows acoustic BHs cool (opposite of Schwarzschild) and approach extremality. Gap: physical intuition for WHY this is opposite — requires understanding the thermodynamic difference between acoustic and gravitational horizons.",
+          "evidence_summary": "Wrote backreaction.py. Knows acoustic BHs cool (opposite of Schwarzschild) and approach extremality. Gap: physical intuition for WHY this is opposite \u2014 requires understanding the thermodynamic difference between acoustic and gravitational horizons.",
           "source": "propagation",
           "transfer_boost": 0.2,
           "fsrs_difficulty": 5.5,
@@ -817,19 +816,19 @@
         "id": "vertex-volovik-he3",
         "label": "Concept",
         "name": "Volovik's He-3 Program & Superfluid Classification",
-        "description": "Superfluid ³He-A produces emergent Weyl fermions, gauge fields, and tetrad gravity. Master classification table.",
+        "description": "Superfluid \u00b3He-A produces emergent Weyl fermions, gauge fields, and tetrad gravity. Master classification table.",
         "blooms_level": "understand",
         "component_type": "non_recurrent",
         "frequency_score": 0.45,
         "impact_score": 0.7,
         "cluster_id": "condensed-matter",
         "learner_state": {
-          "mastery_probability": 0.40,
+          "mastery_probability": 0.4,
           "mastery_category": "familiar",
           "confidence": 0.65,
           "evidence_count": 2,
           "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Knows from Critical Review and the GL phase classification work. Understands the classification table structure. Gap: physical intuition for He-3 — what actually happens in the superfluid that produces emergent Weyl points.",
+          "evidence_summary": "Knows from Critical Review and the GL phase classification work. Understands the classification table structure. Gap: physical intuition for He-3 \u2014 what actually happens in the superfluid that produces emergent Weyl points.",
           "source": "propagation",
           "transfer_boost": 0.25,
           "fsrs_difficulty": 6.0,
@@ -843,19 +842,19 @@
         "id": "vertex-lean-verification",
         "label": "Skill",
         "name": "Reading Lean Proofs for Physical Insight",
-        "description": "Using Lean formalization as a source of physical insight — proof structure reveals physics structure.",
+        "description": "Lean formalization infrastructure for SK-EFT program with categorical and topological order theorems",
         "blooms_level": "evaluate",
         "component_type": "non_recurrent",
         "frequency_score": 0.5,
         "impact_score": 0.6,
         "cluster_id": "methodology",
         "learner_state": {
-          "mastery_probability": 0.80,
+          "mastery_probability": 0.8,
           "mastery_category": "proficient",
           "confidence": 0.9,
           "evidence_count": 4,
-          "last_assessed": "2026-03-26T14:00:00Z",
-          "evidence_summary": "Expert-level Lean user. Transfer 0.9 (near) — auto-boost. 216+ theorems, 40+ via Aristotle, sophisticated submission/integration workflow. Already reads Lean proofs fluently. The curriculum will extend this to extracting PHYSICAL insight from proof structure — a new dimension of existing expertise.",
+          "last_assessed": "2026-03-30T12:00:00Z",
+          "evidence_summary": "429 theorems + 2 axioms, 30 Lean modules, 99 Aristotle-proved across 27 runs. Includes FIRST-EVER formalizations: PivotalCategory, FusionCategory, Drinfeld Double.",
           "source": "calibration",
           "transfer_boost": 0.7,
           "fsrs_difficulty": 3.0,
@@ -869,7 +868,7 @@
         "id": "vertex-hybrid-architecture",
         "label": "Concept",
         "name": "The Three-Layer Hybrid Architecture",
-        "description": "Layer 1 (quantum order) → Layer 2 (fluid dynamics) → Layer 3 (SM + GR). The honest minimum viable hybrid.",
+        "description": "Hybrid lattice-continuum architecture integrating EFT, topological order, and categorical foundations",
         "blooms_level": "evaluate",
         "component_type": "non_recurrent",
         "frequency_score": 0.6,
@@ -880,8 +879,8 @@
           "mastery_category": "familiar",
           "confidence": 0.85,
           "evidence_count": 4,
-          "last_assessed": "2026-03-27T12:00:00Z",
-          "evidence_summary": "Complete 6-paper program verified: 216 theorems + 1 axiom across all verification layers. 822 tests passing. Wave 5 QA complete. Designed the entire architecture, wrote the Feasibility Study and Critical Review. Knows the structure, the scorecard, the minimum viable hybrid. Gap: intuition for WHY each link works and where the weak joints are — the physics of the transitions between layers.",
+          "last_assessed": "2026-03-30T12:00:00Z",
+          "evidence_summary": "Updated to 429 theorems + 2 axioms, 30 Lean modules, 1001 tests, 7 papers. Layer 1 now has formal categorical infrastructure connecting to gauge emergence.",
           "source": "calibration",
           "transfer_boost": 0.55,
           "fsrs_difficulty": 5.0,
@@ -890,84 +889,971 @@
           "bkt_p_slip": 0.08,
           "bkt_p_guess": 0.12
         }
+      },
+      {
+        "id": "vertex-sk-eft-community",
+        "label": "Concept",
+        "name": "SK-EFT Community & Holographic SK",
+        "description": "The Glorioso-Liu-Crossley framework for dissipative hydrodynamics EFT, holographic Schwinger-Keldysh (de Boer, Heller), open EFT (Haehl-Loganayagam-Rangamani), and the 2025 gravitational EFT for dissipative open systems. The theoretical foundation your Papers 1-2 build on.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.7,
+        "impact_score": 0.8,
+        "cluster_id": "research-landscape",
+        "learner_state": {
+          "mastery_probability": 0.1,
+          "mastery_category": "novice",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-27T20:00:00Z",
+          "evidence_summary": "New topic \u2014 not yet assessed. Added to curriculum based on Phase 5 roadmap gap analysis and external research landscape review.",
+          "source": "planned",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 6.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.12,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-dispersive-corrections",
+        "label": "Concept",
+        "name": "Dispersive Corrections Program (Jacobson-Unruh-Corley)",
+        "description": "The 25-year program studying how modified dispersion relations affect Hawking radiation. Corley-Jacobson trans-Planckian analysis, Biondi 2025 EFT approach. The complementary program to your dissipative approach.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.7,
+        "impact_score": 0.75,
+        "cluster_id": "research-landscape",
+        "learner_state": {
+          "mastery_probability": 0.1,
+          "mastery_category": "novice",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-27T20:00:00Z",
+          "evidence_summary": "New topic \u2014 not yet assessed. Added to curriculum based on Phase 5 roadmap gap analysis and external research landscape review.",
+          "source": "planned",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 6.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.12,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-volovik-recent",
+        "label": "Concept",
+        "name": "Volovik's Recent Program (2024-2025)",
+        "description": "Volovik's 'Fermionic Quartet and Vestigial Gravity' (JETP Letters 2024), Nissinen's emergent tetrads in topological semimetals, and the broader Volovik school's current research directions. Direct overlap with Papers 5-6.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.6,
+        "impact_score": 0.75,
+        "cluster_id": "research-landscape",
+        "learner_state": {
+          "mastery_probability": 0.1,
+          "mastery_category": "novice",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-27T20:00:00Z",
+          "evidence_summary": "New topic \u2014 not yet assessed. Added to curriculum based on Phase 5 roadmap gap analysis and external research landscape review.",
+          "source": "planned",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 6.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.12,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-fracton-gravity-community",
+        "label": "Concept",
+        "name": "Fracton-Gravity Community (Pretko, Seiberg, Shao)",
+        "description": "Pretko's 'Emergent gravity of fractons' Mach's principle argument, Seiberg-Shao higher-rank gauge theories, Radzihovsky-Hermele fracton phases. The external landscape for your fracton Layer 2 results.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.5,
+        "impact_score": 0.65,
+        "cluster_id": "research-landscape",
+        "learner_state": {
+          "mastery_probability": 0.1,
+          "mastery_category": "novice",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-27T20:00:00Z",
+          "evidence_summary": "New topic \u2014 not yet assessed. Added to curriculum based on Phase 5 roadmap gap analysis and external research landscape review.",
+          "source": "planned",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 6.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.12,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-walker-wang",
+        "label": "Concept",
+        "name": "Walker-Wang Models & 3+1D Topological Order",
+        "description": "The 3+1D generalization of string-net condensation. Walker-Wang models produce emergent gauge theories in 3+1D. Required for Phase 5B (Monte Carlo eta/s for emergent SU(2)).",
+        "blooms_level": "understand",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.5,
+        "impact_score": 0.6,
+        "cluster_id": "synthesis",
+        "learner_state": {
+          "mastery_probability": 0.1,
+          "mastery_category": "novice",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-27T20:00:00Z",
+          "evidence_summary": "New topic \u2014 not yet assessed. Added to curriculum based on Phase 5 roadmap gap analysis and external research landscape review.",
+          "source": "planned",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 6.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.12,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-svetitsky-yaffe",
+        "label": "Concept",
+        "name": "Svetitsky-Yaffe Universality & KSS Bound",
+        "description": "Svetitsky-Yaffe universality: deconfinement transitions in gauge theories share universality classes with spin models. KSS bound: conjectured lower bound eta/s >= hbar/4pi*k_B on viscosity-to-entropy ratio. Tests whether gauge erasure applies to emergent gauge theories.",
+        "blooms_level": "understand",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.5,
+        "impact_score": 0.65,
+        "cluster_id": "research-landscape",
+        "learner_state": {
+          "mastery_probability": 0.1,
+          "mastery_category": "novice",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-27T20:00:00Z",
+          "evidence_summary": "New topic \u2014 not yet assessed. Added to curriculum based on Phase 5 roadmap gap analysis and external research landscape review.",
+          "source": "planned",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 6.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.12,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-wallstrom",
+        "label": "Concept",
+        "name": "Wallstrom Objection & Madelung Transform",
+        "description": "The Wallstrom objection: the Madelung transform from Schrodinger to fluid variables loses single-valuedness information. The Reddiger-Poirier distributional framework as a potential resolution. Foundational issue for the fluid-to-quantum correspondence.",
+        "blooms_level": "understand",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.4,
+        "impact_score": 0.55,
+        "cluster_id": "foundations",
+        "learner_state": {
+          "mastery_probability": 0.1,
+          "mastery_category": "novice",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-27T20:00:00Z",
+          "evidence_summary": "New topic \u2014 not yet assessed. Added to curriculum based on Phase 5 roadmap gap analysis and external research landscape review.",
+          "source": "planned",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 6.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.12,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-polariton-platform",
+        "label": "Concept",
+        "name": "Polariton Platform (Paris/Carusotto)",
+        "description": "Polariton analog gravity: exciton-polaritons in semiconductor microcavities as an alternative analog gravity platform. Falque et al. (PRL 2025) observed negative-energy modes. Photonic rather than atomic \u2014 qualitatively different from BEC platforms.",
+        "blooms_level": "understand",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.4,
+        "impact_score": 0.5,
+        "cluster_id": "analog-gravity",
+        "learner_state": {
+          "mastery_probability": 0.1,
+          "mastery_category": "novice",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-27T20:00:00Z",
+          "evidence_summary": "New topic \u2014 not yet assessed. Added to curriculum based on Phase 5 roadmap gap analysis and external research landscape review.",
+          "source": "planned",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 6.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.12,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-smg-chirality",
+        "label": "Concept",
+        "name": "SMG & Active Chirality Research (Wen, You, Razamat)",
+        "description": "Symmetric Mass Generation as a route to lattice chiral fermions without doublers. Wen-You classification, Razamat anomaly matching, Fidkowski-Kitaev 1D results. Active research directly relevant to chirality wall and Phase 5A.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.5,
+        "impact_score": 0.6,
+        "cluster_id": "research-landscape",
+        "learner_state": {
+          "mastery_probability": 0.1,
+          "mastery_category": "novice",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-27T20:00:00Z",
+          "evidence_summary": "New topic \u2014 not yet assessed. Added to curriculum based on Phase 5 roadmap gap analysis and external research landscape review.",
+          "source": "planned",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 6.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.12,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-fang-gu",
+        "label": "Concept",
+        "name": "Fang-Gu Topological Supergravity",
+        "description": "Fang-Gu (2023) construction: a UV-complete path from string-net condensation through chiral fermions to ADW tetrad gravity to Einstein gravity. The target of Phase 5A if chirality wall conditions are resolved.",
+        "blooms_level": "evaluate",
+        "component_type": "non_recurrent",
+        "frequency_score": 0.4,
+        "impact_score": 0.6,
+        "cluster_id": "emergent-gravity",
+        "learner_state": {
+          "mastery_probability": 0.1,
+          "mastery_category": "novice",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-27T20:00:00Z",
+          "evidence_summary": "New topic \u2014 not yet assessed. Added to curriculum based on Phase 5 roadmap gap analysis and external research landscape review.",
+          "source": "planned",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 6.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.12,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
+      },
+      {
+        "id": "vertex-experimental-analysis",
+        "label": "Skill",
+        "name": "Experimental Data Analysis for BEC Hawking",
+        "description": "Practical skills: reading BEC Hawking experimental papers, fitting spectral data to theoretical models (thermal + dispersive + dissipative + noise floor), extracting transport coefficients, comparing to platform-specific predictions. Required for Phase 5D response.",
+        "blooms_level": "apply",
+        "component_type": "recurrent",
+        "frequency_score": 0.5,
+        "impact_score": 0.55,
+        "cluster_id": "analog-gravity",
+        "learner_state": {
+          "mastery_probability": 0.1,
+          "mastery_category": "novice",
+          "confidence": 0.5,
+          "evidence_count": 0,
+          "last_assessed": "2026-03-27T20:00:00Z",
+          "evidence_summary": "New topic \u2014 not yet assessed. Added to curriculum based on Phase 5 roadmap gap analysis and external research landscape review.",
+          "source": "planned",
+          "transfer_boost": 0.15,
+          "fsrs_difficulty": 6.0,
+          "fsrs_stability": 1.0,
+          "bkt_p_transit": 0.12,
+          "bkt_p_slip": 0.08,
+          "bkt_p_guess": 0.12
+        }
       }
     ],
     "edges": [
-      {"from_id": "vertex-lagrangian-mechanics", "to_id": "vertex-eft-philosophy", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-lagrangian-mechanics", "to_id": "vertex-son-superfluid-eft", "label": "PREREQUISITE", "strength": 0.95, "prerequisite_type": "hard"},
-      {"from_id": "vertex-lagrangian-mechanics", "to_id": "vertex-spontaneous-symmetry-breaking", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-quantum-mechanics", "to_id": "vertex-bec-physics", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-quantum-mechanics", "to_id": "vertex-hawking-radiation", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-quantum-mechanics", "to_id": "vertex-bogoliubov-coefficients", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
-      {"from_id": "vertex-statistical-mechanics", "to_id": "vertex-kms-fdr", "label": "PREREQUISITE", "strength": 0.95, "prerequisite_type": "hard"},
-      {"from_id": "vertex-statistical-mechanics", "to_id": "vertex-sk-contour", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-statistical-mechanics", "to_id": "vertex-coleman-weinberg", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
-      {"from_id": "vertex-fluid-dynamics", "to_id": "vertex-acoustic-metric", "label": "PREREQUISITE", "strength": 0.95, "prerequisite_type": "hard"},
-      {"from_id": "vertex-fluid-dynamics", "to_id": "vertex-transonic-backgrounds", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-fluid-dynamics", "to_id": "vertex-son-superfluid-eft", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
-      {"from_id": "vertex-eft-philosophy", "to_id": "vertex-son-superfluid-eft", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-eft-philosophy", "to_id": "vertex-transport-counting", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
-      {"from_id": "vertex-eft-philosophy", "to_id": "vertex-sk-axioms", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
-      {"from_id": "vertex-son-superfluid-eft", "to_id": "vertex-acoustic-metric", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-son-superfluid-eft", "to_id": "vertex-sk-contour", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-spontaneous-symmetry-breaking", "to_id": "vertex-son-superfluid-eft", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
-      {"from_id": "vertex-spontaneous-symmetry-breaking", "to_id": "vertex-adw-mechanism", "label": "PREREQUISITE", "strength": 0.95, "prerequisite_type": "hard"},
-      {"from_id": "vertex-spontaneous-symmetry-breaking", "to_id": "vertex-higher-form-symmetries", "label": "PREREQUISITE", "strength": 0.6, "prerequisite_type": "soft"},
-      {"from_id": "vertex-bec-physics", "to_id": "vertex-transonic-backgrounds", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-bec-physics", "to_id": "vertex-experimental-landscape", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-acoustic-metric", "to_id": "vertex-hawking-radiation", "label": "PREREQUISITE", "strength": 0.95, "prerequisite_type": "hard"},
-      {"from_id": "vertex-acoustic-metric", "to_id": "vertex-transonic-backgrounds", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-hawking-radiation", "to_id": "vertex-bogoliubov-coefficients", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
-      {"from_id": "vertex-hawking-radiation", "to_id": "vertex-dissipative-correction", "label": "PREREQUISITE", "strength": 0.95, "prerequisite_type": "hard"},
-      {"from_id": "vertex-hawking-radiation", "to_id": "vertex-backreaction", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-sk-contour", "to_id": "vertex-kms-fdr", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-sk-contour", "to_id": "vertex-sk-axioms", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-kms-fdr", "to_id": "vertex-sk-axioms", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
-      {"from_id": "vertex-kms-fdr", "to_id": "vertex-cgl-derivation", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-sk-axioms", "to_id": "vertex-dissipative-correction", "label": "PREREQUISITE", "strength": 0.95, "prerequisite_type": "hard"},
-      {"from_id": "vertex-sk-axioms", "to_id": "vertex-transport-counting", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-dissipative-correction", "to_id": "vertex-spectral-distortion", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-dissipative-correction", "to_id": "vertex-wkb-connection", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
-      {"from_id": "vertex-bogoliubov-coefficients", "to_id": "vertex-wkb-connection", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-transport-counting", "to_id": "vertex-spectral-distortion", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
-      {"from_id": "vertex-transport-counting", "to_id": "vertex-cgl-derivation", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
-      {"from_id": "vertex-wkb-connection", "to_id": "vertex-experimental-landscape", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
-      {"from_id": "vertex-wkb-connection", "to_id": "vertex-backreaction", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-higher-form-symmetries", "to_id": "vertex-gauge-erasure", "label": "PREREQUISITE", "strength": 0.95, "prerequisite_type": "hard"},
-      {"from_id": "vertex-gauge-erasure", "to_id": "vertex-three-walls", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-gauge-erasure", "to_id": "vertex-hybrid-architecture", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
-      {"from_id": "vertex-adw-mechanism", "to_id": "vertex-vestigial-gravity", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-adw-mechanism", "to_id": "vertex-three-walls", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
-      {"from_id": "vertex-adw-mechanism", "to_id": "vertex-hybrid-architecture", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "hard"},
-      {"from_id": "vertex-coleman-weinberg", "to_id": "vertex-adw-mechanism", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
-      {"from_id": "vertex-volovik-he3", "to_id": "vertex-vestigial-gravity", "label": "PREREQUISITE", "strength": 0.8, "prerequisite_type": "soft"},
-      {"from_id": "vertex-volovik-he3", "to_id": "vertex-adw-mechanism", "label": "PREREQUISITE", "strength": 0.6, "prerequisite_type": "soft"},
-      {"from_id": "vertex-string-nets", "to_id": "vertex-fracton-hydro", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
-      {"from_id": "vertex-string-nets", "to_id": "vertex-hybrid-architecture", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
-      {"from_id": "vertex-fracton-hydro", "to_id": "vertex-hybrid-architecture", "label": "PREREQUISITE", "strength": 0.6, "prerequisite_type": "soft"},
-      {"from_id": "vertex-chirality-wall", "to_id": "vertex-three-walls", "label": "PREREQUISITE", "strength": 0.85, "prerequisite_type": "hard"},
-      {"from_id": "vertex-vestigial-gravity", "to_id": "vertex-three-walls", "label": "PREREQUISITE", "strength": 0.7, "prerequisite_type": "soft"},
-      {"from_id": "vertex-three-walls", "to_id": "vertex-hybrid-architecture", "label": "PREREQUISITE", "strength": 0.9, "prerequisite_type": "hard"},
-      {"from_id": "vertex-acoustic-metric", "to_id": "vertex-volovik-he3", "label": "RELATED", "strength": 0.7, "transfer_coefficient": 0.5},
-      {"from_id": "vertex-sk-contour", "to_id": "vertex-kms-fdr", "label": "RELATED", "strength": 0.9, "transfer_coefficient": 0.8},
-      {"from_id": "vertex-dissipative-correction", "to_id": "vertex-wkb-connection", "label": "RELATED", "strength": 0.85, "transfer_coefficient": 0.7},
-      {"from_id": "vertex-gauge-erasure", "to_id": "vertex-fracton-hydro", "label": "RELATED", "strength": 0.6, "transfer_coefficient": 0.4},
-      {"from_id": "vertex-adw-mechanism", "to_id": "vertex-vestigial-gravity", "label": "RELATED", "strength": 0.85, "transfer_coefficient": 0.7},
-      {"from_id": "vertex-spontaneous-symmetry-breaking", "to_id": "vertex-higher-form-symmetries", "label": "RELATED", "strength": 0.5, "transfer_coefficient": 0.3},
-      {"from_id": "vertex-bec-physics", "to_id": "vertex-volovik-he3", "label": "RELATED", "strength": 0.6, "transfer_coefficient": 0.4},
-      {"from_id": "vertex-dissipative-correction", "to_id": "vertex-sk-axioms", "label": "REINFORCEMENT", "strength": 0.9},
-      {"from_id": "vertex-wkb-connection", "to_id": "vertex-hawking-radiation", "label": "REINFORCEMENT", "strength": 0.85},
-      {"from_id": "vertex-gauge-erasure", "to_id": "vertex-higher-form-symmetries", "label": "REINFORCEMENT", "strength": 0.8},
-      {"from_id": "vertex-adw-mechanism", "to_id": "vertex-spontaneous-symmetry-breaking", "label": "REINFORCEMENT", "strength": 0.85},
-      {"from_id": "vertex-hybrid-architecture", "to_id": "vertex-three-walls", "label": "REINFORCEMENT", "strength": 0.9},
-      {"from_id": "vertex-experimental-landscape", "to_id": "vertex-transonic-backgrounds", "label": "REINFORCEMENT", "strength": 0.7},
-      {"from_id": "vertex-cgl-derivation", "to_id": "vertex-kms-fdr", "label": "REINFORCEMENT", "strength": 0.85},
-      {"from_id": "vertex-lean-verification", "to_id": "vertex-sk-axioms", "label": "REINFORCEMENT", "strength": 0.6}
+      {
+        "from_id": "vertex-lagrangian-mechanics",
+        "to_id": "vertex-eft-philosophy",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-lagrangian-mechanics",
+        "to_id": "vertex-son-superfluid-eft",
+        "label": "PREREQUISITE",
+        "strength": 0.95,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-lagrangian-mechanics",
+        "to_id": "vertex-spontaneous-symmetry-breaking",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-quantum-mechanics",
+        "to_id": "vertex-bec-physics",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-quantum-mechanics",
+        "to_id": "vertex-hawking-radiation",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-quantum-mechanics",
+        "to_id": "vertex-bogoliubov-coefficients",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-statistical-mechanics",
+        "to_id": "vertex-kms-fdr",
+        "label": "PREREQUISITE",
+        "strength": 0.95,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-statistical-mechanics",
+        "to_id": "vertex-sk-contour",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-statistical-mechanics",
+        "to_id": "vertex-coleman-weinberg",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-fluid-dynamics",
+        "to_id": "vertex-acoustic-metric",
+        "label": "PREREQUISITE",
+        "strength": 0.95,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-fluid-dynamics",
+        "to_id": "vertex-transonic-backgrounds",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-fluid-dynamics",
+        "to_id": "vertex-son-superfluid-eft",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-eft-philosophy",
+        "to_id": "vertex-son-superfluid-eft",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-eft-philosophy",
+        "to_id": "vertex-transport-counting",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-eft-philosophy",
+        "to_id": "vertex-sk-axioms",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-son-superfluid-eft",
+        "to_id": "vertex-acoustic-metric",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-son-superfluid-eft",
+        "to_id": "vertex-sk-contour",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-spontaneous-symmetry-breaking",
+        "to_id": "vertex-son-superfluid-eft",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-spontaneous-symmetry-breaking",
+        "to_id": "vertex-adw-mechanism",
+        "label": "PREREQUISITE",
+        "strength": 0.95,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-spontaneous-symmetry-breaking",
+        "to_id": "vertex-higher-form-symmetries",
+        "label": "PREREQUISITE",
+        "strength": 0.6,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-bec-physics",
+        "to_id": "vertex-transonic-backgrounds",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-bec-physics",
+        "to_id": "vertex-experimental-landscape",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-acoustic-metric",
+        "to_id": "vertex-hawking-radiation",
+        "label": "PREREQUISITE",
+        "strength": 0.95,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-acoustic-metric",
+        "to_id": "vertex-transonic-backgrounds",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-hawking-radiation",
+        "to_id": "vertex-bogoliubov-coefficients",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-hawking-radiation",
+        "to_id": "vertex-dissipative-correction",
+        "label": "PREREQUISITE",
+        "strength": 0.95,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-hawking-radiation",
+        "to_id": "vertex-backreaction",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-sk-contour",
+        "to_id": "vertex-kms-fdr",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-sk-contour",
+        "to_id": "vertex-sk-axioms",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-kms-fdr",
+        "to_id": "vertex-sk-axioms",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-kms-fdr",
+        "to_id": "vertex-cgl-derivation",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-sk-axioms",
+        "to_id": "vertex-dissipative-correction",
+        "label": "PREREQUISITE",
+        "strength": 0.95,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-sk-axioms",
+        "to_id": "vertex-transport-counting",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-dissipative-correction",
+        "to_id": "vertex-spectral-distortion",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-dissipative-correction",
+        "to_id": "vertex-wkb-connection",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-bogoliubov-coefficients",
+        "to_id": "vertex-wkb-connection",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-transport-counting",
+        "to_id": "vertex-spectral-distortion",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-transport-counting",
+        "to_id": "vertex-cgl-derivation",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-wkb-connection",
+        "to_id": "vertex-experimental-landscape",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-wkb-connection",
+        "to_id": "vertex-backreaction",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-higher-form-symmetries",
+        "to_id": "vertex-gauge-erasure",
+        "label": "PREREQUISITE",
+        "strength": 0.95,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-gauge-erasure",
+        "to_id": "vertex-three-walls",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-gauge-erasure",
+        "to_id": "vertex-hybrid-architecture",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-adw-mechanism",
+        "to_id": "vertex-vestigial-gravity",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-adw-mechanism",
+        "to_id": "vertex-three-walls",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-adw-mechanism",
+        "to_id": "vertex-hybrid-architecture",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-coleman-weinberg",
+        "to_id": "vertex-adw-mechanism",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-volovik-he3",
+        "to_id": "vertex-vestigial-gravity",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-volovik-he3",
+        "to_id": "vertex-adw-mechanism",
+        "label": "PREREQUISITE",
+        "strength": 0.6,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-string-nets",
+        "to_id": "vertex-fracton-hydro",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-string-nets",
+        "to_id": "vertex-hybrid-architecture",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-fracton-hydro",
+        "to_id": "vertex-hybrid-architecture",
+        "label": "PREREQUISITE",
+        "strength": 0.6,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-chirality-wall",
+        "to_id": "vertex-three-walls",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-vestigial-gravity",
+        "to_id": "vertex-three-walls",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-three-walls",
+        "to_id": "vertex-hybrid-architecture",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-acoustic-metric",
+        "to_id": "vertex-volovik-he3",
+        "label": "RELATED",
+        "strength": 0.7,
+        "transfer_coefficient": 0.5
+      },
+      {
+        "from_id": "vertex-sk-contour",
+        "to_id": "vertex-kms-fdr",
+        "label": "RELATED",
+        "strength": 0.9,
+        "transfer_coefficient": 0.8
+      },
+      {
+        "from_id": "vertex-dissipative-correction",
+        "to_id": "vertex-wkb-connection",
+        "label": "RELATED",
+        "strength": 0.85,
+        "transfer_coefficient": 0.7
+      },
+      {
+        "from_id": "vertex-gauge-erasure",
+        "to_id": "vertex-fracton-hydro",
+        "label": "RELATED",
+        "strength": 0.6,
+        "transfer_coefficient": 0.4
+      },
+      {
+        "from_id": "vertex-adw-mechanism",
+        "to_id": "vertex-vestigial-gravity",
+        "label": "RELATED",
+        "strength": 0.85,
+        "transfer_coefficient": 0.7
+      },
+      {
+        "from_id": "vertex-spontaneous-symmetry-breaking",
+        "to_id": "vertex-higher-form-symmetries",
+        "label": "RELATED",
+        "strength": 0.5,
+        "transfer_coefficient": 0.3
+      },
+      {
+        "from_id": "vertex-bec-physics",
+        "to_id": "vertex-volovik-he3",
+        "label": "RELATED",
+        "strength": 0.6,
+        "transfer_coefficient": 0.4
+      },
+      {
+        "from_id": "vertex-dissipative-correction",
+        "to_id": "vertex-sk-axioms",
+        "label": "REINFORCEMENT",
+        "strength": 0.9
+      },
+      {
+        "from_id": "vertex-wkb-connection",
+        "to_id": "vertex-hawking-radiation",
+        "label": "REINFORCEMENT",
+        "strength": 0.85
+      },
+      {
+        "from_id": "vertex-gauge-erasure",
+        "to_id": "vertex-higher-form-symmetries",
+        "label": "REINFORCEMENT",
+        "strength": 0.8
+      },
+      {
+        "from_id": "vertex-adw-mechanism",
+        "to_id": "vertex-spontaneous-symmetry-breaking",
+        "label": "REINFORCEMENT",
+        "strength": 0.85
+      },
+      {
+        "from_id": "vertex-hybrid-architecture",
+        "to_id": "vertex-three-walls",
+        "label": "REINFORCEMENT",
+        "strength": 0.9
+      },
+      {
+        "from_id": "vertex-experimental-landscape",
+        "to_id": "vertex-transonic-backgrounds",
+        "label": "REINFORCEMENT",
+        "strength": 0.7
+      },
+      {
+        "from_id": "vertex-cgl-derivation",
+        "to_id": "vertex-kms-fdr",
+        "label": "REINFORCEMENT",
+        "strength": 0.85
+      },
+      {
+        "from_id": "vertex-lean-verification",
+        "to_id": "vertex-sk-axioms",
+        "label": "REINFORCEMENT",
+        "strength": 0.6
+      },
+      {
+        "from_id": "vertex-sk-contour",
+        "to_id": "vertex-sk-eft-community",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-sk-axioms",
+        "to_id": "vertex-sk-eft-community",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-hawking-radiation",
+        "to_id": "vertex-dispersive-corrections",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-acoustic-metric",
+        "to_id": "vertex-dispersive-corrections",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-volovik-he3",
+        "to_id": "vertex-volovik-recent",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-vestigial-gravity",
+        "to_id": "vertex-volovik-recent",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-fracton-hydro",
+        "to_id": "vertex-fracton-gravity-community",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-string-nets",
+        "to_id": "vertex-walker-wang",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-walker-wang",
+        "to_id": "vertex-svetitsky-yaffe",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-statistical-mechanics",
+        "to_id": "vertex-svetitsky-yaffe",
+        "label": "PREREQUISITE",
+        "strength": 0.6,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-quantum-mechanics",
+        "to_id": "vertex-wallstrom",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-fluid-dynamics",
+        "to_id": "vertex-wallstrom",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-experimental-landscape",
+        "to_id": "vertex-polariton-platform",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-bec-physics",
+        "to_id": "vertex-polariton-platform",
+        "label": "PREREQUISITE",
+        "strength": 0.5,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-chirality-wall",
+        "to_id": "vertex-smg-chirality",
+        "label": "PREREQUISITE",
+        "strength": 0.9,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-smg-chirality",
+        "to_id": "vertex-fang-gu",
+        "label": "PREREQUISITE",
+        "strength": 0.85,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-adw-mechanism",
+        "to_id": "vertex-fang-gu",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "hard"
+      },
+      {
+        "from_id": "vertex-string-nets",
+        "to_id": "vertex-fang-gu",
+        "label": "PREREQUISITE",
+        "strength": 0.75,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-experimental-landscape",
+        "to_id": "vertex-experimental-analysis",
+        "label": "PREREQUISITE",
+        "strength": 0.8,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-dissipative-correction",
+        "to_id": "vertex-experimental-analysis",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-wkb-connection",
+        "to_id": "vertex-experimental-analysis",
+        "label": "PREREQUISITE",
+        "strength": 0.7,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-cgl-derivation",
+        "to_id": "vertex-sk-eft-community",
+        "label": "PREREQUISITE",
+        "strength": 0.75,
+        "prerequisite_type": "soft"
+      },
+      {
+        "from_id": "vertex-sk-eft-community",
+        "to_id": "vertex-dissipative-correction",
+        "label": "REINFORCEMENT",
+        "strength": 0.8
+      },
+      {
+        "from_id": "vertex-dispersive-corrections",
+        "to_id": "vertex-hawking-radiation",
+        "label": "REINFORCEMENT",
+        "strength": 0.7
+      },
+      {
+        "from_id": "vertex-volovik-recent",
+        "to_id": "vertex-adw-mechanism",
+        "label": "REINFORCEMENT",
+        "strength": 0.8
+      },
+      {
+        "from_id": "vertex-fracton-gravity-community",
+        "to_id": "vertex-fracton-hydro",
+        "label": "REINFORCEMENT",
+        "strength": 0.7
+      },
+      {
+        "from_id": "vertex-svetitsky-yaffe",
+        "to_id": "vertex-gauge-erasure",
+        "label": "REINFORCEMENT",
+        "strength": 0.7
+      },
+      {
+        "from_id": "vertex-wallstrom",
+        "to_id": "vertex-quantum-mechanics",
+        "label": "REINFORCEMENT",
+        "strength": 0.6
+      }
     ]
   },
-
   "gap_analysis": {
-    "total_vertices": 30,
+    "total_vertices": 45,
     "coverage_summary": {
       "mastered": 0,
       "proficient": 1,
@@ -981,25 +1867,25 @@
         "vertex_id": "vertex-statistical-mechanics",
         "name": "Statistical Mechanics & Thermal Physics",
         "priority_score": 0.92,
-        "rationale": "Critical foundation — hard prerequisite for KMS/FDR and SK contour, which are central to the entire program. Currently at beginner level (0.30). Highest-priority gap because everything in the SK formalism cluster depends on it."
+        "rationale": "Critical foundation \u2014 hard prerequisite for KMS/FDR and SK contour, which are central to the entire program. Currently at beginner level (0.30). Highest-priority gap because everything in the SK formalism cluster depends on it."
       },
       {
         "vertex_id": "vertex-lagrangian-mechanics",
         "name": "Lagrangian & Hamiltonian Mechanics",
         "priority_score": 0.88,
-        "rationale": "Hard prerequisite for EFT philosophy and Son's superfluid EFT — two gateway nodes. Currently at beginner level (0.35). Without this foundation, the entire EFT reasoning chain lacks grounding."
+        "rationale": "Hard prerequisite for EFT philosophy and Son's superfluid EFT \u2014 two gateway nodes. Currently at beginner level (0.35). Without this foundation, the entire EFT reasoning chain lacks grounding."
       },
       {
         "vertex_id": "vertex-sk-contour",
         "name": "The Schwinger-Keldysh Contour",
         "priority_score": 0.82,
-        "rationale": "Gateway node with highest betweenness centrality in the SK branch. Currently familiar (0.50) but needs depth — the physical motivation for doubling DOF is the key insight the learner is missing."
+        "rationale": "Gateway node with highest betweenness centrality in the SK branch. Currently familiar (0.50) but needs depth \u2014 the physical motivation for doubling DOF is the key insight the learner is missing."
       },
       {
         "vertex_id": "vertex-eft-philosophy",
         "name": "EFT Philosophy & Derivative Expansion",
-        "priority_score": 0.80,
-        "rationale": "Gateway node with highest frequency (0.95) and impact (0.95). Currently familiar (0.55) — needs to become intuitive. The visceral feel for 'smaller physics at higher orders' unlocks everything."
+        "priority_score": 0.8,
+        "rationale": "Gateway node with highest frequency (0.95) and impact (0.95). Currently familiar (0.55) \u2014 needs to become intuitive. The visceral feel for 'smaller physics at higher orders' unlocks everything."
       },
       {
         "vertex_id": "vertex-acoustic-metric",
@@ -1011,13 +1897,13 @@
         "vertex_id": "vertex-spontaneous-symmetry-breaking",
         "name": "Spontaneous Symmetry Breaking & Goldstone Modes",
         "priority_score": 0.76,
-        "rationale": "Gateway node. Hard prerequisite for both Son's EFT and ADW mechanism — the two main physics streams. Currently familiar (0.45). Deep SSB intuition is the connective tissue of the program."
+        "rationale": "Gateway node. Hard prerequisite for both Son's EFT and ADW mechanism \u2014 the two main physics streams. Currently familiar (0.45). Deep SSB intuition is the connective tissue of the program."
       },
       {
         "vertex_id": "vertex-kms-fdr",
         "name": "KMS Symmetry & Fluctuation-Dissipation Relations",
         "priority_score": 0.74,
-        "rationale": "Central to the SK formalism and the dissipative correction result. Currently familiar (0.50). The physical content of KMS — why thermal equilibrium links dissipation to noise — is essential."
+        "rationale": "Central to the SK formalism and the dissipative correction result. Currently familiar (0.50). The physical content of KMS \u2014 why thermal equilibrium links dissipation to noise \u2014 is essential."
       },
       {
         "vertex_id": "vertex-son-superfluid-eft",
@@ -1028,8 +1914,8 @@
       {
         "vertex_id": "vertex-hawking-radiation",
         "name": "Hawking Radiation & the Trans-Planckian Problem",
-        "priority_score": 0.70,
-        "rationale": "Gateway node — the entire program's raison d'être. Currently familiar (0.55). Mode-mixing intuition needed."
+        "priority_score": 0.7,
+        "rationale": "Gateway node \u2014 the entire program's raison d'\u00eatre. Currently familiar (0.55). Mode-mixing intuition needed."
       },
       {
         "vertex_id": "vertex-adw-mechanism",
@@ -1065,7 +1951,7 @@
         "vertex_id": "vertex-string-nets",
         "name": "String-Net Condensation & Topological Order",
         "priority_score": 0.48,
-        "rationale": "Layer 1 of the architecture. Currently attempted (0.30). Conceptually rich — needs dedicated learning."
+        "rationale": "Layer 1 of the architecture. Currently attempted (0.30). Conceptually rich \u2014 needs dedicated learning."
       }
     ],
     "transfer_leverage": [
@@ -1073,7 +1959,7 @@
         "vertex_id": "vertex-lean-verification",
         "source_skill": "Lean 4 / Formal Verification",
         "transfer_type": "near",
-        "scaffold_description": "Expert Lean skills transfer almost entirely — the curriculum adds the 'extract physical insight from proof structure' dimension to existing expertise."
+        "scaffold_description": "Expert Lean skills transfer almost entirely \u2014 the curriculum adds the 'extract physical insight from proof structure' dimension to existing expertise."
       },
       {
         "vertex_id": "vertex-three-walls",
@@ -1091,7 +1977,7 @@
         "vertex_id": "vertex-dissipative-correction",
         "source_skill": "SK-EFT Hawking Research (project architect)",
         "transfer_type": "near",
-        "scaffold_description": "Knows the result thoroughly. The curriculum closes the WHAT→WHY gap: physical inevitability of each derivation step."
+        "scaffold_description": "Knows the result thoroughly. The curriculum closes the WHAT\u2192WHY gap: physical inevitability of each derivation step."
       },
       {
         "vertex_id": "vertex-acoustic-metric",
@@ -1112,6 +1998,6 @@
         "scaffold_description": "QFT/EFT background gives the conceptual framework. The curriculum builds the visceral feel for scale separation."
       }
     ],
-    "effective_scope_estimate": "You already cover ~47% of the impact-weighted graph at the 'familiar' level — you know the vocabulary, the results, and the narrative for almost everything. The curriculum doesn't need to teach you what these concepts ARE; it needs to build physical intuition for WHY they work. This dramatically compresses the curriculum: instead of a 12-month ground-up physics education, you need a ~6-8 month intuition-building program. The two genuine foundation gaps (statistical mechanics and Lagrangian mechanics) need ~4-6 weeks of dedicated early work; after that, your project familiarity accelerates every subsequent topic. Estimated total: 120-160 sessions at 45 min/day, 5 days/week."
+    "effective_scope_estimate": "You already cover ~47% of the impact-weighted graph at the 'familiar' level \u2014 you know the vocabulary, the results, and the narrative for almost everything. The curriculum doesn't need to teach you what these concepts ARE; it needs to build physical intuition for WHY they work. This dramatically compresses the curriculum: instead of a 12-month ground-up physics education, you need a ~6-8 month intuition-building program. The two genuine foundation gaps (statistical mechanics and Lagrangian mechanics) need ~4-6 weeks of dedicated early work; after that, your project familiarity accelerates every subsequent topic. Estimated total: 120-160 sessions at 45 min/day, 5 days/week."
   }
 }

@@ -1,0 +1,79 @@
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" width="700" height="400">
+  <title>Surface Gravity and Crossover: EFT Regime vs UV Breakdown</title>
+  <defs>
+    <style>
+      .label { font-family: sans-serif; font-size: 14px; fill: #374151; }
+      .title { font-family: sans-serif; font-size: 18px; font-weight: bold; fill: #374151; }
+      .equation { font-family: monospace; font-size: 11px; fill: #374151; }
+      .annotation { font-family: sans-serif; font-size: 12px; fill: #374151; }
+      .regime-label { font-family: sans-serif; font-size: 13px; font-weight: bold; fill: #374151; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="30" class="title" text-anchor="middle">Surface Gravity and EFT Crossover</text>
+
+  <!-- Axes -->
+  <line x1="80" y1="340" x2="680" y2="340" stroke="#374151" stroke-width="2"/>
+  <line x1="80" y1="60" x2="80" y2="340" stroke="#374151" stroke-width="2"/>
+
+  <!-- Axis labels -->
+  <text x="690" y="355" class="label">κ (surface gravity)</text>
+  <text x="40" y="65" class="label">δ_diss</text>
+
+  <!-- Origin point -->
+  <circle cx="80" cy="340" r="2" fill="#374151"/>
+
+  <!-- Left regime background (EFT) -->
+  <rect x="80" y="60" width="200" height="280" fill="rgba(37,99,235,0.05)" stroke="none"/>
+  <text x="140" y="90" class="regime-label" fill="#2563eb">EFT Regime</text>
+
+  <!-- Right regime background (UV) -->
+  <rect x="280" y="60" width="400" height="280" fill="rgba(220,38,38,0.05)" stroke="none"/>
+  <text x="520" y="90" class="regime-label" fill="#dc2626">UV Breakdown</text>
+
+  <!-- Crossover line (vertical dashed) -->
+  <line x1="280" y1="60" x2="280" y2="340" stroke="#dc2626" stroke-width="2" stroke-dasharray="5,5"/>
+
+  <!-- Linear curve (EFT regime: δ_diss ∝ κ) -->
+  <path d="M 80 340 L 280 100" stroke="#2563eb" stroke-width="3" fill="none"/>
+
+  <!-- Transition/saturation region -->
+  <path d="M 280 100 Q 350 80 450 75 T 680 70" stroke="#dc2626" stroke-width="3" fill="none"/>
+
+  <!-- Mark crossover point -->
+  <circle cx="280" cy="100" r="4" fill="#dc2626"/>
+  <text x="285" y="100" class="annotation">κ_cross</text>
+
+  <!-- Crossover formula annotation -->
+  <g id="formula-box">
+    <rect x="280" y="200" width="280" height="60" fill="#f9fafb" stroke="#374151" stroke-width="1" rx="4"/>
+    <text x="300" y="220" class="equation">κ_cross = 6(γ₁+γ₂)/(πξ²)</text>
+    <text x="300" y="240" class="annotation" font-size="11">Heidelberg tunes κ via</text>
+    <text x="300" y="255" class="annotation" font-size="11">Feshbach resonance to test</text>
+  </g>
+
+  <!-- EFT regime annotation (linear scaling) -->
+  <g id="eft-annotation">
+    <text x="100" y="160" class="annotation" fill="#2563eb">Dissipation</text>
+    <text x="100" y="178" class="annotation" fill="#2563eb">perturbative</text>
+    <text x="100" y="196" class="annotation" fill="#2563eb">(kappa-scaling)</text>
+  </g>
+
+  <!-- UV breakdown annotation -->
+  <g id="uv-annotation">
+    <text x="480" y="145" class="annotation" fill="#dc2626">EFT fails:</text>
+    <text x="480" y="163" class="annotation" fill="#dc2626">dissipation</text>
+    <text x="480" y="181" class="annotation" fill="#dc2626">saturates</text>
+  </g>
+
+  <!-- Grid lines for reference -->
+  <line x1="80" y1="280" x2="680" y2="280" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.5"/>
+  <line x1="80" y1="220" x2="680" y2="220" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.5"/>
+  <line x1="160" y1="60" x2="160" y2="340" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.5"/>
+  <line x1="240" y1="60" x2="240" y2="340" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.5"/>
+  <line x1="400" y1="60" x2="400" y2="340" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.5"/>
+
+  <!-- Bottom note -->
+  <text x="350" y="380" class="annotation" text-anchor="middle" font-size="12" font-style="italic">The crossover marks where effective field theory transitions to strong coupling</text>
+</svg>

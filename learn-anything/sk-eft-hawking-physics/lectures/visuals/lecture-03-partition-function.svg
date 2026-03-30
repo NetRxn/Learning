@@ -1,0 +1,61 @@
+<svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg">
+  <title>Partition Function as Master Key to Thermodynamics</title>
+
+  <!-- Background -->
+  <rect width="700" height="500" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="350" y="30" font-size="16" fill="#374151" font-family="sans-serif" font-weight="bold" text-anchor="middle">Partition Function: Master Key to Thermodynamics</text>
+
+  <!-- Central hub circle -->
+  <circle cx="350" cy="260" r="55" fill="rgba(37,99,235,0.12)" stroke="#2563eb" stroke-width="3"/>
+
+  <!-- Hub text -->
+  <text x="350" y="255" font-size="12" fill="#374151" font-family="monospace" font-weight="bold" text-anchor="middle">Z = Σ e^(-βEₙ)</text>
+  <text x="350" y="270" font-size="11" fill="#374151" font-family="sans-serif" text-anchor="middle">(Partition</text>
+  <text x="350" y="283" font-size="11" fill="#374151" font-family="sans-serif" text-anchor="middle">Function)</text>
+
+  <!-- Spoke 1: Free Energy (top-left) -->
+  <g>
+    <line x1="310" y1="210" x2="180" y2="100" stroke="#16a34a" stroke-width="2.5"/>
+    <circle cx="180" cy="100" r="25" fill="rgba(22,163,74,0.12)" stroke="#16a34a" stroke-width="2.5"/>
+    <text x="180" y="95" font-size="11" fill="#374151" font-family="sans-serif" font-weight="bold" text-anchor="middle">Free Energy</text>
+    <text x="180" y="108" font-size="10" fill="#374151" font-family="monospace" text-anchor="middle">F = -k_BT ln Z</text>
+  </g>
+
+  <!-- Spoke 2: Entropy (top-right) -->
+  <g>
+    <line x1="390" y1="210" x2="520" y2="100" stroke="#16a34a" stroke-width="2.5"/>
+    <circle cx="520" cy="100" r="25" fill="rgba(22,163,74,0.12)" stroke="#16a34a" stroke-width="2.5"/>
+    <text x="520" y="95" font-size="11" fill="#374151" font-family="sans-serif" font-weight="bold" text-anchor="middle">Entropy</text>
+    <text x="520" y="108" font-size="10" fill="#374151" font-family="monospace" text-anchor="middle">S = -∂F/∂T</text>
+  </g>
+
+  <!-- Spoke 3: Energy (right) -->
+  <g>
+    <line x1="395" y1="260" x2="550" y2="260" stroke="#16a34a" stroke-width="2.5"/>
+    <circle cx="565" cy="260" r="25" fill="rgba(22,163,74,0.12)" stroke="#16a34a" stroke-width="2.5"/>
+    <text x="565" y="255" font-size="11" fill="#374151" font-family="sans-serif" font-weight="bold" text-anchor="middle">Energy</text>
+    <text x="565" y="268" font-size="9" fill="#374151" font-family="monospace" text-anchor="middle">⟨E⟩ = -∂ln Z/∂β</text>
+  </g>
+
+  <!-- Spoke 4: Fluctuations (bottom-right) -->
+  <g>
+    <line x1="390" y1="310" x2="520" y2="420" stroke="#16a34a" stroke-width="2.5"/>
+    <circle cx="520" cy="420" r="25" fill="rgba(22,163,74,0.12)" stroke="#16a34a" stroke-width="2.5"/>
+    <text x="520" y="415" font-size="11" fill="#374151" font-family="sans-serif" font-weight="bold" text-anchor="middle">Fluctuations</text>
+    <text x="520" y="428" font-size="9" fill="#374151" font-family="monospace" text-anchor="middle">⟨(ΔE)²⟩ = ∂²ln Z/∂β²</text>
+  </g>
+
+  <!-- Spoke 5: Pressure (bottom-left) -->
+  <g>
+    <line x1="310" y1="310" x2="180" y2="420" stroke="#16a34a" stroke-width="2.5"/>
+    <circle cx="180" cy="420" r="25" fill="rgba(22,163,74,0.12)" stroke="#16a34a" stroke-width="2.5"/>
+    <text x="180" y="415" font-size="11" fill="#374151" font-family="sans-serif" font-weight="bold" text-anchor="middle">Pressure</text>
+    <text x="180" y="428" font-size="9" fill="#374151" font-family="monospace" text-anchor="middle">P = k_BT ∂ln Z/∂V</text>
+  </g>
+
+  <!-- Bottom annotation -->
+  <rect x="120" y="465" width="460" height="25" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2" rx="3"/>
+  <text x="350" y="482" font-size="11" fill="#374151" font-family="sans-serif" font-weight="bold" text-anchor="middle">Everything you need about a thermal system comes from Z</text>
+</svg>

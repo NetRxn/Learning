@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" font-family="Georgia, serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+    <linearGradient id="thermal-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fecaca"/>
+      <stop offset="50%" stop-color="#fee2e2"/>
+      <stop offset="100%" stop-color="#fecaca"/>
+    </linearGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#e5e7eb" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="22" font-weight="bold" fill="#1e293b">The Complex Time Plane: Why Temperature = Imaginary Time</text>
+
+  <!-- ====== LEFT PANEL: Complex time plane ====== -->
+  <rect x="30" y="55" width="420" height="380" rx="8" fill="#fafafa" stroke="#d1d5db"/>
+  <text x="240" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#374151">Complex Time Plane</text>
+
+  <!-- Grid background -->
+  <rect x="80" y="95" width="340" height="310" fill="url(#grid)"/>
+
+  <!-- Thermal strip shading -->
+  <rect x="80" y="125" width="340" height="180" fill="url(#thermal-grad)" opacity="0.4" rx="4"/>
+  <text x="425" y="220" text-anchor="end" font-size="11" fill="#dc2626" font-style="italic">thermal strip</text>
+
+  <!-- Real time axis -->
+  <line x1="80" y1="305" x2="420" y2="305" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="425" y="310" font-size="13" fill="#333" font-weight="bold">Re(t)</text>
+  <text x="250" y="330" text-anchor="middle" font-size="11" fill="#555">real time: physical evolution</text>
+
+  <!-- Imaginary time axis -->
+  <line x1="120" y1="400" x2="120" y2="95" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="115" y="88" text-anchor="end" font-size="13" fill="#333" font-weight="bold">Im(t) = τ</text>
+
+  <!-- β markers on imaginary axis -->
+  <line x1="115" y1="305" x2="125" y2="305" stroke="#333" stroke-width="2"/>
+  <text x="108" y="310" text-anchor="end" font-size="12" fill="#333">τ = 0</text>
+
+  <line x1="115" y1="125" x2="125" y2="125" stroke="#333" stroke-width="2"/>
+  <text x="108" y="130" text-anchor="end" font-size="12" fill="#dc2626" font-weight="bold">τ = β</text>
+
+  <line x1="115" y1="215" x2="125" y2="215" stroke="#333" stroke-width="1.5"/>
+  <text x="108" y="220" text-anchor="end" font-size="11" fill="#666">τ = β/2</text>
+
+  <!-- Real time arrow (blue) -->
+  <line x1="140" y1="305" x2="380" y2="305" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)" opacity="0.8"/>
+  <text x="260" y="350" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="bold">e^{-iHt}  →  oscillates</text>
+  <text x="260" y="366" text-anchor="middle" font-size="11" fill="#2563eb">phases spin, nothing decays</text>
+
+  <!-- Imaginary time arrow (red) -->
+  <line x1="140" y1="295" x2="140" y2="140" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-red)" opacity="0.8"/>
+  <text x="195" y="180" font-size="12" fill="#dc2626" font-weight="bold">e^{-Hτ}</text>
+  <text x="195" y="196" font-size="11" fill="#dc2626">suppresses</text>
+  <text x="195" y="212" font-size="11" fill="#dc2626">high-energy</text>
+  <text x="195" y="228" font-size="11" fill="#dc2626">states</text>
+
+  <!-- KMS identification arrows -->
+  <path d="M 370,305 Q 420,215 370,125" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arrow-green)"/>
+  <text x="395" y="180" font-size="11" fill="#16a34a" font-weight="bold">KMS:</text>
+  <text x="395" y="196" font-size="11" fill="#16a34a">τ=0 and τ=β</text>
+  <text x="395" y="212" font-size="11" fill="#16a34a">are the</text>
+  <text x="395" y="228" font-size="11" fill="#16a34a">SAME point!</text>
+
+  <!-- ====== RIGHT PANEL: Cylinder picture ====== -->
+  <rect x="470" y="55" width="410" height="380" rx="8" fill="#fafafa" stroke="#d1d5db"/>
+  <text x="675" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#374151">The Thermal Cylinder</text>
+
+  <!-- Cylinder body -->
+  <ellipse cx="675" cy="140" rx="120" ry="30" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="555" y1="140" x2="555" y2="360" stroke="#64748b" stroke-width="2"/>
+  <line x1="795" y1="140" x2="795" y2="360" stroke="#64748b" stroke-width="2"/>
+  <ellipse cx="675" cy="360" rx="120" ry="30" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+  <ellipse cx="675" cy="140" rx="120" ry="30" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+
+  <!-- Cylinder shading -->
+  <rect x="555" y="140" width="240" height="220" fill="#fef2f2" opacity="0.3"/>
+
+  <!-- Labels on cylinder -->
+  <text x="675" y="148" text-anchor="middle" font-size="12" fill="#dc2626" font-weight="bold">τ = β = 1/T</text>
+  <text x="675" y="368" text-anchor="middle" font-size="12" fill="#dc2626" font-weight="bold">τ = 0</text>
+
+  <!-- These are the same! -->
+  <path d="M 808,150 Q 850,250 808,350" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+  <path d="M 808,350 Q 850,250 808,150" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+  <text x="870" y="245" text-anchor="middle" font-size="12" fill="#16a34a" font-weight="bold">GLUED</text>
+  <text x="870" y="262" text-anchor="middle" font-size="11" fill="#16a34a">together</text>
+
+  <!-- Circumference label -->
+  <text x="520" y="255" text-anchor="middle" font-size="12" fill="#7c3aed" font-weight="bold" transform="rotate(-90,520,255)">circumference = β = 1/T</text>
+
+  <!-- Real time arrow along cylinder -->
+  <line x1="555" y1="260" x2="490" y2="260" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+  <text x="500" y="280" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="bold">real time</text>
+  <text x="500" y="295" text-anchor="middle" font-size="10" fill="#2563eb">(along axis)</text>
+
+  <!-- Path around cylinder -->
+  <path d="M 620,360 Q 555,330 570,280 Q 590,220 640,190 Q 700,160 740,180 Q 780,200 780,250 Q 775,310 730,350" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arrow-red)"/>
+  <text x="600" y="270" font-size="11" fill="#dc2626" font-weight="bold">going around</text>
+  <text x="600" y="286" font-size="11" fill="#dc2626">= thermal trace</text>
+  <text x="600" y="302" font-size="11" fill="#dc2626">= Tr[e^{-βH} ...]</text>
+
+  <!-- ====== BOTTOM PANEL: The key insight ====== -->
+  <rect x="30" y="450" width="850" height="230" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text x="455" y="478" text-anchor="middle" font-size="16" font-weight="bold" fill="#166534">The Physical Insight: Three Faces of the Same Math</text>
+
+  <!-- Three columns -->
+  <!-- Column 1 -->
+  <rect x="50" y="495" width="250" height="80" rx="6" fill="#dbeafe" stroke="#93c5fd"/>
+  <text x="175" y="517" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">Real Time Evolution</text>
+  <text x="175" y="537" text-anchor="middle" font-size="18" fill="#1e40af" font-family="monospace">e^{-iHt}</text>
+  <text x="175" y="558" text-anchor="middle" font-size="11" fill="#3b82f6">Phases rotate. System oscillates.</text>
+  <text x="175" y="572" text-anchor="middle" font-size="11" fill="#3b82f6">No state preferred.</text>
+
+  <!-- Arrow 1→2 -->
+  <text x="325" y="535" text-anchor="middle" font-size="16" fill="#374151">→</text>
+  <text x="325" y="555" text-anchor="middle" font-size="10" fill="#6b7280">set t = -iτ</text>
+
+  <!-- Column 2 -->
+  <rect x="345" y="495" width="250" height="80" rx="6" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="470" y="517" text-anchor="middle" font-size="13" font-weight="bold" fill="#991b1b">Imaginary Time Evolution</text>
+  <text x="470" y="537" text-anchor="middle" font-size="18" fill="#991b1b" font-family="monospace">e^{-Hτ}</text>
+  <text x="470" y="558" text-anchor="middle" font-size="11" fill="#dc2626">Amplitudes DECAY. High energy</text>
+  <text x="470" y="572" text-anchor="middle" font-size="11" fill="#dc2626">suppressed exponentially.</text>
+
+  <!-- Arrow 2→3 -->
+  <text x="620" y="535" text-anchor="middle" font-size="16" fill="#374151">→</text>
+  <text x="620" y="555" text-anchor="middle" font-size="10" fill="#6b7280">set τ = β</text>
+
+  <!-- Column 3 -->
+  <rect x="640" y="495" width="220" height="80" rx="6" fill="#faf5ff" stroke="#d8b4fe"/>
+  <text x="750" y="517" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b21a8">Thermal State</text>
+  <text x="750" y="537" text-anchor="middle" font-size="18" fill="#6b21a8" font-family="monospace">e^{-βH} / Z</text>
+  <text x="750" y="558" text-anchor="middle" font-size="11" fill="#7c3aed">Boltzmann weights!</text>
+  <text x="750" y="572" text-anchor="middle" font-size="11" fill="#7c3aed">THIS is thermal equilibrium.</text>
+
+  <!-- Bottom punchline -->
+  <rect x="80" y="595" width="760" height="70" rx="6" fill="#fff" stroke="#86efac"/>
+  <text x="460" y="618" text-anchor="middle" font-size="13" fill="#166534" font-weight="bold">KMS periodicity: Going around the imaginary-time circle of circumference β = 1/T</text>
+  <text x="460" y="638" text-anchor="middle" font-size="13" fill="#166534" font-weight="bold">brings you back to the SAME physical state. This is what "thermal equilibrium" means.</text>
+  <text x="460" y="656" text-anchor="middle" font-size="12" fill="#166534">Hot system (large T) → small circle → easy to go around → strongly constrains correlations.</text>
+</svg>

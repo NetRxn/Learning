@@ -1,0 +1,231 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1100" font-family="Georgia, serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333"/>
+    </marker>
+  </defs>
+
+  <text x="500" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#1e293b">Three BEC Platforms for Analog Hawking Radiation</text>
+
+  <!-- ====== STEINHAUER ====== -->
+  <rect x="15" y="50" width="310" height="520" rx="10" fill="#f0f9ff" stroke="#2E86AB" stroke-width="2.5"/>
+  <rect x="15" y="50" width="310" height="45" rx="10" fill="#2E86AB"/>
+  <rect x="15" y="75" width="310" height="20" fill="#2E86AB"/>
+  <text x="170" y="78" text-anchor="middle" font-size="17" font-weight="bold" fill="#fff">STEINHAUER</text>
+  <text x="170" y="112" text-anchor="middle" font-size="13" fill="#2E86AB" font-weight="bold">Technion, Israel</text>
+  <text x="170" y="128" text-anchor="middle" font-size="12" fill="#64748b">The only Hawking measurement</text>
+
+  <!-- Atom -->
+  <rect x="35" y="142" width="270" height="35" rx="5" fill="#dbeafe" stroke="#93c5fd"/>
+  <text x="170" y="164" text-anchor="middle" font-size="13" fill="#1e40af" font-weight="bold">Atom: ⁸⁷Rb (Rubidium-87)</text>
+
+  <!-- Setup diagram: elongated trap -->
+  <rect x="45" y="190" width="250" height="90" rx="5" fill="#fff" stroke="#e5e7eb"/>
+  <text x="170" y="207" text-anchor="middle" font-size="11" fill="#374151" font-weight="bold">Elongated 1D Trap</text>
+  <!-- Trap walls -->
+  <path d="M 70,230 Q 70,260 170,265 Q 270,260 270,230" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- BEC cloud -->
+  <ellipse cx="170" cy="248" rx="90" ry="12" fill="#bfdbfe" opacity="0.6" stroke="#3b82f6" stroke-width="1"/>
+  <!-- Flow arrow -->
+  <line x1="90" y1="248" x2="250" y2="248" stroke="#2E86AB" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="170" y="244" text-anchor="middle" font-size="10" fill="#2E86AB">flow v(x) →</text>
+  <!-- Potential step -->
+  <line x1="185" y1="230" x2="185" y2="270" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="185" y="278" text-anchor="middle" font-size="9" fill="#dc2626">horizon</text>
+
+  <!-- Key parameters -->
+  <text x="35" y="305" font-size="12" fill="#374151" font-weight="bold">Key Parameters:</text>
+  <text x="35" y="322" font-size="11" fill="#475569">a_s = 109 a₀ (fixed — no Feshbach)</text>
+  <text x="35" y="338" font-size="11" fill="#475569">n₀ = 5×10⁷ m⁻¹ (1D density)</text>
+  <text x="35" y="354" font-size="11" fill="#475569">v_upstream ≈ 0.85 mm/s (Mach ~ 0.74)</text>
+  <text x="35" y="370" font-size="11" fill="#475569">T_H ≈ 0.35 nK (measured!)</text>
+
+  <!-- What it proved -->
+  <rect x="35" y="385" width="270" height="70" rx="5" fill="#dcfce7" stroke="#86efac"/>
+  <text x="170" y="403" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">What it proved:</text>
+  <text x="170" y="419" text-anchor="middle" font-size="10" fill="#166534">Thermal Hawking spectrum observed</text>
+  <text x="170" y="433" text-anchor="middle" font-size="10" fill="#166534">Entanglement between Hawking pairs</text>
+  <text x="170" y="447" text-anchor="middle" font-size="10" fill="#166534">T_H matches κ prediction</text>
+
+  <!-- Limitation -->
+  <rect x="35" y="465" width="270" height="48" rx="5" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="170" y="483" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="bold">Limitation:</text>
+  <text x="170" y="499" text-anchor="middle" font-size="10" fill="#991b1b">Can't tune κ independently → can't do</text>
+  <text x="170" y="511" text-anchor="middle" font-size="10" fill="#991b1b">the κ-scaling test for δ_diss</text>
+
+  <!-- What it's best for -->
+  <rect x="35" y="523" width="270" height="35" rx="5" fill="#2E86AB" opacity="0.15" stroke="#2E86AB"/>
+  <text x="170" y="545" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">Best for: Confirming Hawking exists</text>
+
+  <!-- ====== HEIDELBERG ====== -->
+  <rect x="345" y="50" width="310" height="520" rx="10" fill="#fdf2f8" stroke="#A23B72" stroke-width="2.5"/>
+  <rect x="345" y="50" width="310" height="45" rx="10" fill="#A23B72"/>
+  <rect x="345" y="75" width="310" height="20" fill="#A23B72"/>
+  <text x="500" y="78" text-anchor="middle" font-size="17" font-weight="bold" fill="#fff">HEIDELBERG</text>
+  <text x="500" y="112" text-anchor="middle" font-size="13" fill="#A23B72" font-weight="bold">Oberthaler Group, Germany</text>
+  <text x="500" y="128" text-anchor="middle" font-size="12" fill="#64748b">The tunable scattering length</text>
+
+  <!-- Atom -->
+  <rect x="365" y="142" width="270" height="35" rx="5" fill="#fce7f3" stroke="#f9a8d4"/>
+  <text x="500" y="164" text-anchor="middle" font-size="13" fill="#9d174d" font-weight="bold">Atom: ³⁹K (Potassium-39)</text>
+
+  <!-- Setup diagram: lattice with DMD -->
+  <rect x="375" y="190" width="250" height="90" rx="5" fill="#fff" stroke="#e5e7eb"/>
+  <text x="500" y="207" text-anchor="middle" font-size="11" fill="#374151" font-weight="bold">DMD-Shaped Potential + Feshbach Coil</text>
+  <!-- Potential shaped by DMD -->
+  <path d="M 400,255 L 420,255 L 440,250 L 460,250 L 480,240 L 500,235 L 520,250 L 540,255 L 560,255 L 580,255 L 600,255" fill="none" stroke="#A23B72" stroke-width="2"/>
+  <!-- BEC in potential -->
+  <ellipse cx="500" cy="250" rx="85" ry="8" fill="#fce7f3" opacity="0.6" stroke="#A23B72" stroke-width="1"/>
+  <!-- Magnetic field lines (Feshbach) -->
+  <line x1="395" y1="230" x2="395" y2="260" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="605" y1="230" x2="605" y2="260" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="395" y="225" text-anchor="middle" font-size="8" fill="#f59e0b">B</text>
+  <text x="605" y="225" text-anchor="middle" font-size="8" fill="#f59e0b">B</text>
+  <!-- Tuning knob -->
+  <text x="500" y="278" text-anchor="middle" font-size="9" fill="#A23B72" font-style="italic">B-field tunes a_s → tunes κ</text>
+
+  <!-- Key parameters -->
+  <text x="365" y="305" font-size="12" fill="#374151" font-weight="bold">Key Parameters:</text>
+  <text x="365" y="322" font-size="11" fill="#475569">a_s = TUNABLE (0 → 200 a₀ via Feshbach)</text>
+  <text x="365" y="338" font-size="11" fill="#475569">n₀ = 3×10⁷ m⁻¹ (1D density)</text>
+  <text x="365" y="354" font-size="11" fill="#475569">v_upstream ≈ 3.0 mm/s (Mach ~ 0.77)</text>
+  <text x="365" y="370" font-size="11" fill="#475569">DMD: arbitrary potential shaping</text>
+
+  <!-- What it enables -->
+  <rect x="365" y="385" width="270" height="70" rx="5" fill="#dcfce7" stroke="#86efac"/>
+  <text x="500" y="403" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">What it enables:</text>
+  <text x="500" y="419" text-anchor="middle" font-size="10" fill="#166534">κ-scaling test: vary κ, measure δ_diss(κ)</text>
+  <text x="500" y="433" text-anchor="middle" font-size="10" fill="#166534">Precise dispersion relation measurement</text>
+  <text x="500" y="447" text-anchor="middle" font-size="10" fill="#166534">WKB resummation verification</text>
+
+  <!-- Limitation -->
+  <rect x="365" y="465" width="270" height="48" rx="5" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="500" y="483" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="bold">Limitation:</text>
+  <text x="500" y="499" text-anchor="middle" font-size="10" fill="#991b1b">Hasn't measured Hawking radiation yet</text>
+  <text x="500" y="511" text-anchor="middle" font-size="10" fill="#991b1b">(projected parameters, not yet realized)</text>
+
+  <!-- What it's best for -->
+  <rect x="365" y="523" width="270" height="35" rx="5" fill="#A23B72" opacity="0.15" stroke="#A23B72"/>
+  <text x="500" y="545" text-anchor="middle" font-size="11" fill="#9d174d" font-weight="bold">Best for: Testing δ_diss = Γ_H/κ</text>
+
+  <!-- ====== TRENTO ====== -->
+  <rect x="675" y="50" width="310" height="520" rx="10" fill="#fffbeb" stroke="#F18F01" stroke-width="2.5"/>
+  <rect x="675" y="50" width="310" height="45" rx="10" fill="#F18F01"/>
+  <rect x="675" y="75" width="310" height="20" fill="#F18F01"/>
+  <text x="830" y="78" text-anchor="middle" font-size="17" font-weight="bold" fill="#fff">TRENTO</text>
+  <text x="830" y="112" text-anchor="middle" font-size="13" fill="#F18F01" font-weight="bold">Carusotto Group, Italy</text>
+  <text x="830" y="128" text-anchor="middle" font-size="12" fill="#64748b">The spin-sonic amplifier</text>
+
+  <!-- Atom -->
+  <rect x="695" y="142" width="270" height="35" rx="5" fill="#fef3c7" stroke="#fcd34d"/>
+  <text x="830" y="164" text-anchor="middle" font-size="13" fill="#92400e" font-weight="bold">Atom: ²³Na (Sodium-23), spin-1</text>
+
+  <!-- Setup diagram: two-component -->
+  <rect x="705" y="190" width="250" height="90" rx="5" fill="#fff" stroke="#e5e7eb"/>
+  <text x="830" y="207" text-anchor="middle" font-size="11" fill="#374151" font-weight="bold">Two-Component Spinor BEC</text>
+  <!-- Two overlapping clouds -->
+  <ellipse cx="830" cy="245" rx="85" ry="14" fill="#bfdbfe" opacity="0.4" stroke="#3b82f6" stroke-width="1"/>
+  <ellipse cx="830" cy="255" rx="85" ry="14" fill="#fed7aa" opacity="0.4" stroke="#F18F01" stroke-width="1"/>
+  <text x="730" y="242" font-size="9" fill="#3b82f6">|m_F = +1⟩</text>
+  <text x="730" y="268" font-size="9" fill="#F18F01">|m_F = -1⟩</text>
+  <!-- Spin wave arrow -->
+  <path d="M 870,240 Q 880,250 870,260" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="895" y="253" font-size="8" fill="#dc2626">spin</text>
+  <text x="895" y="263" font-size="8" fill="#dc2626">wave</text>
+
+  <!-- Key parameters -->
+  <text x="695" y="305" font-size="12" fill="#374151" font-weight="bold">Key Parameters:</text>
+  <text x="695" y="322" font-size="11" fill="#475569">a_s = 52 a₀ (density channel)</text>
+  <text x="695" y="338" font-size="11" fill="#475569">c_spin &lt;&lt; c_density (key trick!)</text>
+  <text x="695" y="354" font-size="11" fill="#475569">n₀ = 1×10⁸ m⁻¹ (higher density)</text>
+  <text x="695" y="370" font-size="11" fill="#475569">T_H/T_max enhanced by c_d/c_spin</text>
+
+  <!-- What it enables -->
+  <rect x="695" y="385" width="270" height="70" rx="5" fill="#dcfce7" stroke="#86efac"/>
+  <text x="830" y="403" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">What it enables:</text>
+  <text x="830" y="419" text-anchor="middle" font-size="10" fill="#166534">Enhanced signal: spin sound is slow</text>
+  <text x="830" y="433" text-anchor="middle" font-size="10" fill="#166534">→ higher T_H relative to background</text>
+  <text x="830" y="447" text-anchor="middle" font-size="10" fill="#166534">Multi-mode dynamics, gauge effects</text>
+
+  <!-- Limitation -->
+  <rect x="695" y="465" width="270" height="48" rx="5" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="830" y="483" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="bold">Limitation:</text>
+  <text x="830" y="499" text-anchor="middle" font-size="10" fill="#991b1b">Most complex setup. No Hawking</text>
+  <text x="830" y="511" text-anchor="middle" font-size="10" fill="#991b1b">measurement yet. Theoretical proposal stage.</text>
+
+  <!-- What it's best for -->
+  <rect x="695" y="523" width="270" height="35" rx="5" fill="#F18F01" opacity="0.15" stroke="#F18F01"/>
+  <text x="830" y="545" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Best for: Amplified δ_diss detection</text>
+
+  <!-- ====== BOTTOM: Comparison and the κ-scaling test ====== -->
+  <rect x="15" y="590" width="970" height="130" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="500" y="615" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">The Critical Experiment: κ-Scaling Test</text>
+
+  <text x="40" y="640" font-size="12" fill="#475569">If δ_diss = Γ_H/κ is correct, then varying κ while keeping Γ_H fixed should give δ_diss ∝ 1/κ.</text>
+  <text x="40" y="660" font-size="12" fill="#475569">Only Heidelberg can do this: the Feshbach resonance tunes a_s → changes c_s → changes κ, while the DMD potential</text>
+  <text x="40" y="680" font-size="12" fill="#475569">holds the flow geometry fixed. Measure the Hawking spectrum at 5+ values of κ. Plot δ vs 1/κ. If it's linear → Paper 1 confirmed.</text>
+
+  <rect x="40" y="693" width="940" height="22" rx="4" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="500" y="709" text-anchor="middle" font-size="12" fill="#166534" font-weight="bold">Steinhauer proved Hawking exists. Heidelberg can test the EFT. Trento can amplify the signal.</text>
+
+  <!-- ====== BOTTOM PANEL: The Feshbach trick explained ====== -->
+  <rect x="15" y="740" width="970" height="345" rx="10" fill="#fafafa" stroke="#d1d5db"/>
+  <text x="500" y="768" text-anchor="middle" font-size="16" font-weight="bold" fill="#374151">How the Feshbach Resonance Works (Heidelberg's Secret Weapon)</text>
+
+  <!-- Left: energy diagram -->
+  <rect x="40" y="785" width="420" height="280" rx="6" fill="#fff" stroke="#e5e7eb"/>
+
+  <!-- Two potential curves -->
+  <text x="250" y="805" text-anchor="middle" font-size="12" fill="#374151" font-weight="bold">Two-Atom Scattering: Open + Closed Channels</text>
+
+  <!-- Axes -->
+  <line x1="80" y1="1030" x2="420" y2="1030" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="80" y1="1030" x2="80" y2="815" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="430" y="1035" font-size="11" fill="#333">r (separation)</text>
+  <text x="68" y="815" font-size="11" fill="#333">E</text>
+
+  <!-- Open channel (lower curve) -->
+  <path d="M 100,980 Q 140,1025 180,1010 Q 220,990 280,1000 Q 340,1010 400,1020" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="350" y="1000" font-size="11" fill="#2563eb" font-weight="bold">open channel</text>
+  <text x="350" y="1013" font-size="9" fill="#2563eb">(atoms scatter here)</text>
+
+  <!-- Closed channel (upper curve, with bound state) -->
+  <path d="M 100,900 Q 150,960 200,940 Q 250,910 280,920 Q 340,940 400,960" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="350" y="920" font-size="11" fill="#dc2626" font-weight="bold">closed channel</text>
+  <text x="350" y="933" font-size="9" fill="#dc2626">(molecular state)</text>
+
+  <!-- Bound state level -->
+  <line x1="160" y1="950" x2="260" y2="950" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <circle cx="210" cy="950" r="4" fill="#dc2626"/>
+  <text x="210" y="970" text-anchor="middle" font-size="9" fill="#dc2626">bound state</text>
+
+  <!-- B-field arrow moving the closed channel -->
+  <path d="M 130,890 L 130,860" fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M 130,960 L 130,990" fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="100" y="930" font-size="9" fill="#f59e0b" font-weight="bold">B tunes</text>
+  <text x="100" y="942" font-size="9" fill="#f59e0b" font-weight="bold">gap ↕</text>
+
+  <!-- Collision energy -->
+  <line x1="80" y1="1010" x2="140" y2="1010" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="85" y="1003" font-size="9" fill="#16a34a">E_collision</text>
+
+  <!-- Right: explanation -->
+  <rect x="480" y="785" width="490" height="280" rx="6" fill="#fff" stroke="#e5e7eb"/>
+  <text x="725" y="810" text-anchor="middle" font-size="13" fill="#374151" font-weight="bold">The Physical Mechanism</text>
+
+  <text x="500" y="840" font-size="12" fill="#475569">Two ³⁹K atoms approach each other. They scatter</text>
+  <text x="500" y="858" font-size="12" fill="#475569">in the "open channel" (blue curve).</text>
+
+  <text x="500" y="885" font-size="12" fill="#475569">There's also a "closed channel" (red curve) — a</text>
+  <text x="500" y="903" font-size="12" fill="#475569">molecular bound state at a slightly different energy.</text>
+
+  <text x="500" y="930" font-size="12" fill="#475569">An external magnetic field B shifts the closed</text>
+  <text x="500" y="948" font-size="12" fill="#475569">channel up or down relative to the open one.</text>
+
+  <rect x="500" y="962" width="450" height="50" rx="5" fill="#fef3c7" stroke="#fcd34d"/>
+  <text x="725" y="982" text-anchor="middle" font-size="12" fill="#92400e" font-weight="bold">When the bound state aligns with the collision</text>
+  <text x="725" y="998" text-anchor="middle" font-size="12" fill="#92400e" font-weight="bold">energy → RESONANCE → a_s diverges!</text>
+
+  <text x="500" y="1032" font-size="12" fill="#475569">Near resonance, a_s changes from +∞ to -∞.</text>
+  <text x="500" y="1050" font-size="12" fill="#475569">Dial B → set a_s to any value → control ξ, c_s, κ.</text>
+</svg>

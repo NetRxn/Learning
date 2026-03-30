@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400">
+  <title>Hawking Thermal Spectrum with Dissipative Correction</title>
+  <defs>
+    <style>
+      .label { font-family: Arial, sans-serif; font-size: 13px; fill: #374151; font-weight: normal; }
+      .title { font-family: Arial, sans-serif; font-size: 15px; fill: #374151; font-weight: bold; }
+      .axis-label { font-family: Arial, sans-serif; font-size: 12px; fill: #374151; }
+      .small-label { font-family: Arial, sans-serif; font-size: 10px; fill: #374151; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="400" fill="#ffffff" stroke="none"/>
+
+  <!-- Title -->
+  <text x="350" y="25" text-anchor="middle" class="title">Hawking Thermal Spectrum</text>
+
+  <!-- Axes -->
+  <line x1="60" y1="320" x2="650" y2="320" stroke="#374151" stroke-width="2"/>
+  <line x1="60" y1="60" x2="60" y2="320" stroke="#374151" stroke-width="2"/>
+
+  <!-- Axis labels -->
+  <text x="675" y="325" class="axis-label">ω</text>
+  <text x="35" y="55" class="axis-label">N(ω)</text>
+
+  <!-- Axis ticks and labels -->
+  <line x1="100" y1="315" x2="100" y2="325" stroke="#374151" stroke-width="1"/>
+  <text x="100" y="345" text-anchor="middle" class="small-label">ω₁</text>
+  <line x1="180" y1="315" x2="180" y2="325" stroke="#374151" stroke-width="1"/>
+  <text x="180" y="345" text-anchor="middle" class="small-label">ω₂</text>
+  <line x1="280" y1="315" x2="280" y2="325" stroke="#374151" stroke-width="1"/>
+  <text x="280" y="345" text-anchor="middle" class="small-label">ω_peak</text>
+  <line x1="400" y1="315" x2="400" y2="325" stroke="#374151" stroke-width="1"/>
+  <text x="400" y="345" text-anchor="middle" class="small-label">ω₃</text>
+  <line x1="550" y1="315" x2="550" y2="325" stroke="#374151" stroke-width="1"/>
+  <text x="550" y="345" text-anchor="middle" class="small-label">ω₄</text>
+
+  <!-- Y-axis ticks -->
+  <line x1="55" y1="260" x2="65" y2="260" stroke="#374151" stroke-width="1"/>
+  <text x="50" y="265" text-anchor="end" class="small-label">0.5</text>
+  <line x1="55" y1="200" x2="65" y2="200" stroke="#374151" stroke-width="1"/>
+  <text x="50" y="205" text-anchor="end" class="small-label">1.0</text>
+  <line x1="55" y1="140" x2="65" y2="140" stroke="#374151" stroke-width="1"/>
+  <text x="50" y="145" text-anchor="end" class="small-label">1.5</text>
+  <line x1="55" y1="80" x2="65" y2="80" stroke="#374151" stroke-width="1"/>
+  <text x="50" y="85" text-anchor="end" class="small-label">2.0</text>
+
+  <!-- Ideal thermal curve (blue solid) -->
+  <path d="M 80 290 Q 120 250, 160 190 Q 200 130, 240 90 Q 280 75, 320 95 Q 360 140, 400 200 Q 450 260, 500 290 Q 550 305, 600 310"
+        stroke="#2563eb" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Dissipative modified curve (red dashed) - slightly enhanced at low freq, suppressed at high -->
+  <path d="M 80 285 Q 120 235, 160 170 Q 200 105, 240 75 Q 280 65, 320 100 Q 360 155, 400 215 Q 450 270, 500 300 Q 550 310, 600 312"
+        stroke="#dc2626" stroke-width="2.5" fill="none" stroke-dasharray="5,3" stroke-linecap="round"/>
+
+  <!-- Peak annotation -->
+  <circle cx="280" cy="75" r="3" fill="#16a34a" stroke="#16a34a" stroke-width="1"/>
+  <line x1="280" y1="75" x2="280" y2="40" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="285" y="45" class="small-label" fill="#16a34a">Peak: T_H =</text>
+  <text x="310" y="45" class="small-label" fill="#16a34a">ℏκ/(2πk_B)</text>
+
+  <!-- Legend -->
+  <rect x="420" y="70" width="200" height="80" fill="rgba(255, 255, 255, 0.9)" stroke="#374151" stroke-width="1.5" rx="3"/>
+
+  <line x1="435" y1="90" x2="460" y2="90" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="470" y="95" class="label">Ideal (T_H only)</text>
+
+  <line x1="435" y1="120" x2="460" y2="120" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="5,3"/>
+  <text x="470" y="125" class="label">With dissipation:</text>
+  <text x="470" y="140" class="small-label">(1 + δ_diss)</text>
+
+  <!-- Annotation box -->
+  <rect x="420" y="175" width="200" height="60" fill="rgba(147, 51, 234, 0.08)" stroke="#9333ea" stroke-width="1.5" rx="3"/>
+  <text x="520" y="195" text-anchor="middle" class="label" font-weight="bold">Dissipative shift:</text>
+  <text x="520" y="212" text-anchor="middle" class="small-label">δ_diss = Γ_H/κ</text>
+  <text x="520" y="228" text-anchor="middle" class="small-label">(Wider, enhanced spectrum)</text>
+
+</svg>

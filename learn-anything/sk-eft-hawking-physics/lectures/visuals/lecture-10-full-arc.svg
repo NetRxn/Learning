@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <title>Complete 10-Lecture Arc: From Fluids to Hawking Radiation</title>
+  <defs>
+    <style>
+      .label { font-family: Arial, sans-serif; font-size: 12px; fill: #ffffff; font-weight: normal; }
+      .title { font-family: Arial, sans-serif; font-size: 16px; fill: #374151; font-weight: bold; }
+      .sublabel { font-family: Arial, sans-serif; font-size: 11px; fill: #374151; font-weight: normal; }
+      .small-label { font-family: Arial, sans-serif; font-size: 10px; fill: #374151; }
+    </style>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="#ffffff" stroke="none"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" class="title">The Complete 10-Lecture Arc</text>
+  <text x="450" y="50" text-anchor="middle" class="sublabel">From Classical Fluids to Hawking Radiation &amp; Dissipation</text>
+
+  <!-- MAIN FLOW (top path) -->
+  <!-- Box 1: Flowing Fluid (Lecture 1) -->
+  <rect x="30" y="80" width="110" height="60" fill="#2563eb" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="85" y="105" text-anchor="middle" class="label" font-weight="bold">Flowing</text>
+  <text x="85" y="120" text-anchor="middle" class="label" font-weight="bold">Fluid</text>
+  <text x="85" y="140" text-anchor="middle" class="sublabel" fill="#2563eb">Lec 1</text>
+
+  <!-- Arrow -->
+  <path d="M 140 110 L 170 110" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Box 2: Conservation Laws (Lecture 2) -->
+  <rect x="170" y="80" width="110" height="60" fill="#2563eb" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="225" y="105" text-anchor="middle" class="label" font-weight="bold">Conservation</text>
+  <text x="225" y="120" text-anchor="middle" class="label" font-weight="bold">Laws</text>
+  <text x="225" y="140" text-anchor="middle" class="sublabel" fill="#2563eb">Lec 2</text>
+
+  <!-- Arrow -->
+  <path d="M 280 110 L 310 110" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Box 3: Sound Waves (Lecture 3) -->
+  <rect x="310" y="80" width="110" height="60" fill="#2563eb" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="365" y="105" text-anchor="middle" class="label" font-weight="bold">Sound</text>
+  <text x="365" y="120" text-anchor="middle" class="label" font-weight="bold">Waves</text>
+  <text x="365" y="140" text-anchor="middle" class="sublabel" fill="#2563eb">Lec 3</text>
+
+  <!-- Arrow -->
+  <path d="M 420 110 L 450 110" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Box 4: Acoustic Metric (Lecture 4) -->
+  <rect x="450" y="80" width="110" height="60" fill="#2563eb" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="505" y="100" text-anchor="middle" class="label" font-weight="bold">Acoustic</text>
+  <text x="505" y="118" text-anchor="middle" class="label" font-weight="bold">Metric</text>
+  <text x="505" y="140" text-anchor="middle" class="sublabel" fill="#2563eb">Lec 4</text>
+
+  <!-- Arrow -->
+  <path d="M 560 110 L 590 110" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Box 5: Horizon (Lecture 5) -->
+  <rect x="590" y="80" width="110" height="60" fill="#2563eb" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="645" y="110" text-anchor="middle" class="label" font-weight="bold">Horizon</text>
+  <text x="645" y="140" text-anchor="middle" class="sublabel" fill="#2563eb">Lec 5</text>
+
+  <!-- Arrow to Hawking -->
+  <path d="M 700 110 L 730 110" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Box 6: Hawking Radiation (Lecture 10) -->
+  <rect x="730" y="80" width="140" height="60" fill="#dc2626" stroke="#dc2626" stroke-width="2" rx="4"/>
+  <text x="800" y="100" text-anchor="middle" class="label" font-weight="bold">Hawking</text>
+  <text x="800" y="118" text-anchor="middle" class="label" font-weight="bold">Radiation</text>
+  <text x="800" y="140" text-anchor="middle" class="sublabel" fill="#dc2626">Lec 10</text>
+
+  <!-- BRANCH 1: Spontaneous Symmetry Breaking (left side) -->
+  <path d="M 505 140 L 505 180" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+
+  <!-- Box: SSB (Lecture 6) -->
+  <rect x="440" y="180" width="130" height="60" fill="#2563eb" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="505" y="205" text-anchor="middle" class="label" font-weight="bold">SSB: U(1) → Phonon</text>
+  <text x="505" y="225" text-anchor="middle" class="sublabel" fill="#2563eb">Lec 6</text>
+
+  <!-- Arrow down -->
+  <path d="M 505 240 L 505 270" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+
+  <!-- Box: L=P(X) EFT (Lecture 7) -->
+  <rect x="440" y="270" width="130" height="60" fill="#16a34a" stroke="#16a34a" stroke-width="2" rx="4"/>
+  <text x="505" y="295" text-anchor="middle" class="label" font-weight="bold">L = P(X)</text>
+  <text x="505" y="313" text-anchor="middle" class="label" font-weight="bold">(Son's EFT)</text>
+  <text x="505" y="333" text-anchor="middle" class="sublabel" fill="#16a34a">Lec 7</text>
+
+  <!-- BRANCH 2: Action & Symmetry (middle) -->
+  <path d="M 365 140 L 365 180" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+
+  <!-- Box: Action Principle (Lecture 1.5) -->
+  <rect x="275" y="180" width="130" height="60" fill="#2563eb" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="340" y="205" text-anchor="middle" class="label" font-weight="bold">Action Principle</text>
+  <text x="340" y="225" text-anchor="middle" class="sublabel" fill="#2563eb">Lec 1.5</text>
+
+  <!-- Arrow down -->
+  <path d="M 340 240 L 340 270" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+
+  <!-- Box: Noether & Symmetry (Lecture 2.5) -->
+  <rect x="275" y="270" width="130" height="60" fill="#2563eb" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="340" y="295" text-anchor="middle" class="label" font-weight="bold">Noether &amp;</text>
+  <text x="340" y="313" text-anchor="middle" class="label" font-weight="bold">Symmetry</text>
+  <text x="340" y="333" text-anchor="middle" class="sublabel" fill="#2563eb">Lec 2.5</text>
+
+  <!-- Arrow to L=P(X) -->
+  <path d="M 405 300 L 440 300" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- BRANCH 3: Statistical Mechanics & Dissipation (right side) -->
+  <path d="M 645 140 L 645 180" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+
+  <!-- Box: Stat Mech / KMS (Lecture 8) -->
+  <rect x="575" y="180" width="140" height="60" fill="#dc2626" stroke="#dc2626" stroke-width="2" rx="4"/>
+  <text x="645" y="205" text-anchor="middle" class="label" font-weight="bold">Stat Mech: KMS</text>
+  <text x="645" y="225" text-anchor="middle" class="sublabel" fill="#dc2626">Lec 8</text>
+
+  <!-- Arrow down -->
+  <path d="M 645 240 L 645 270" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+
+  <!-- Box: FDR (Lecture 8.5) -->
+  <rect x="575" y="270" width="140" height="60" fill="#dc2626" stroke="#dc2626" stroke-width="2" rx="4"/>
+  <text x="645" y="295" text-anchor="middle" class="label" font-weight="bold">Fluctuation-</text>
+  <text x="645" y="313" text-anchor="middle" class="label" font-weight="bold">Dissipation (FDR)</text>
+  <text x="645" y="333" text-anchor="middle" class="sublabel" fill="#dc2626">Lec 8.5</text>
+
+  <!-- Arrow down -->
+  <path d="M 645 330 L 645 360" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+
+  <!-- Box: SK Formalism (Lecture 9) -->
+  <rect x="575" y="360" width="140" height="60" fill="#dc2626" stroke="#dc2626" stroke-width="2" rx="4"/>
+  <text x="645" y="385" text-anchor="middle" class="label" font-weight="bold">SK Formalism</text>
+  <text x="645" y="403" text-anchor="middle" class="label" font-weight="bold">&amp; Keldysh</text>
+  <text x="645" y="423" text-anchor="middle" class="sublabel" fill="#dc2626">Lec 9</text>
+
+  <!-- Arrow to dissipative correction -->
+  <path d="M 645 420 L 645 450" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+
+  <!-- Box: Dissipative Correction (Lecture 10) -->
+  <rect x="575" y="450" width="140" height="60" fill="#dc2626" stroke="#dc2626" stroke-width="2" rx="4"/>
+  <text x="645" y="475" text-anchor="middle" class="label" font-weight="bold">δ_diss = Γ_H/κ</text>
+  <text x="645" y="493" text-anchor="middle" class="sublabel" fill="#dc2626">Lec 10</text>
+
+  <!-- BOTTOM: Convergence -->
+  <path d="M 505 330 L 505 380 L 450 380" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <path d="M 645 510 L 500 510" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+  <path d="M 500 510 L 500 380" stroke="#9333ea" stroke-width="2.5"/>
+
+  <!-- Central convergence box -->
+  <rect x="350" y="380" width="150" height="80" fill="rgba(147, 51, 234, 0.12)" stroke="#9333ea" stroke-width="2.5" rx="4"/>
+  <text x="425" y="405" text-anchor="middle" class="label" font-weight="bold" fill="#374151">Unified Prediction:</text>
+  <text x="425" y="423" text-anchor="middle" class="sublabel" fill="#374151">T_H ∝ κ (surface gravity)</text>
+  <text x="425" y="440" text-anchor="middle" class="sublabel" fill="#374151">δ_diss ∝ Γ_H/κ</text>
+
+  <!-- BOTTOM: Experimental Test -->
+  <rect x="30" y="510" width="840" height="60" fill="rgba(16, 163, 74, 0.08)" stroke="#16a34a" stroke-width="2" rx="4"/>
+  <text x="450" y="535" text-anchor="middle" class="sublabel" font-weight="bold" fill="#374151">Experimental Test (All 4 Platforms):</text>
+  <text x="450" y="555" text-anchor="middle" class="small-label" fill="#374151">BEC, Polariton, He-3, Water Waves measure T_H and δ_diss → validates EFT + dissipation theory</text>
+
+  <!-- Legend -->
+  <text x="30" y="585" class="small-label" font-weight="bold" fill="#2563eb">Blue = Foundations (Lec 1-6)</text>
+  <text x="300" y="585" class="small-label" font-weight="bold" fill="#16a34a">Green = EFT Pipeline (Lec 7)</text>
+  <text x="580" y="585" class="small-label" font-weight="bold" fill="#dc2626">Red = Dissipation Track (Lec 8-10)</text>
+
+</svg>

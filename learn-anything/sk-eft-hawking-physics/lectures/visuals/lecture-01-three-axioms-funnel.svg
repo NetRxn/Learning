@@ -1,0 +1,64 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+  <title>The Three Axioms Funnel: 9 Terms to 2</title>
+
+  <!-- Background -->
+  <rect width="500" height="650" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="250" y="30" font-family="Arial, sans-serif" font-size="14" fill="#374151" font-weight="bold" text-anchor="middle">SK Axioms Filter Candidate Terms</text>
+
+  <!-- Top section: 9 candidate terms -->
+  <polygon points="80,70 420,70 380,140 120,140" fill="rgba(147,51,234,0.1)" stroke="#9333ea" stroke-width="2"/>
+  <text x="250" y="108" font-family="Arial, sans-serif" font-size="12" fill="#374151" font-weight="bold" text-anchor="middle">9 Candidate SK Action Terms</text>
+
+  <!-- Axiom 1: Normalization -->
+  <g>
+    <polygon points="90,160 410,160 370,210 130,210" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2"/>
+    <text x="250" y="188" font-family="Arial, sans-serif" font-size="11" fill="#374151" font-weight="bold" text-anchor="middle">Axiom 1: Normalization</text>
+    <text x="255" y="203" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">Z[φ,φ] = 1</text>
+  </g>
+
+  <!-- Arrow and count -->
+  <line x1="250" y1="210" x2="250" y2="235" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="270" cy="222" r="14" fill="#2563eb"/>
+  <text x="270" y="227" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" font-weight="bold" text-anchor="middle">6</text>
+
+  <!-- Axiom 2: Positivity -->
+  <g>
+    <polygon points="100,250 400,250 365,300 135,300" fill="rgba(16,163,74,0.1)" stroke="#16a34a" stroke-width="2"/>
+    <text x="250" y="275" font-family="Arial, sans-serif" font-size="11" fill="#374151" font-weight="bold" text-anchor="middle">Axiom 2: Positivity</text>
+    <text x="255" y="290" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">Im S_SK ≥ 0</text>
+  </g>
+
+  <!-- Arrow and count -->
+  <line x1="250" y1="300" x2="250" y2="325" stroke="#16a34a" stroke-width="2"/>
+  <circle cx="270" cy="312" r="14" fill="#16a34a"/>
+  <text x="270" y="317" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+
+  <!-- Axiom 3: KMS -->
+  <g>
+    <polygon points="110,340 390,340 360,390 140,390" fill="rgba(217,119,6,0.1)" stroke="#d97706" stroke-width="2"/>
+    <text x="250" y="363" font-family="Arial, sans-serif" font-size="11" fill="#374151" font-weight="bold" text-anchor="middle">Axiom 3: KMS (Thermal Equilibrium)</text>
+    <text x="255" y="378" font-family="Arial, sans-serif" font-size="10" fill="#374151" text-anchor="middle">⟨e^βH⟩ consistency</text>
+  </g>
+
+  <!-- Arrow and count -->
+  <line x1="250" y1="390" x2="250" y2="415" stroke="#d97706" stroke-width="2"/>
+  <circle cx="270" cy="402" r="14" fill="#d97706"/>
+  <text x="270" y="407" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+
+  <!-- Bottom section: 2 surviving terms -->
+  <polygon points="150,430 350,430 320,510 180,510" fill="rgba(147,51,234,0.15)" stroke="#9333ea" stroke-width="3"/>
+
+  <text x="250" y="460" font-family="Arial, sans-serif" font-size="12" fill="#374151" font-weight="bold" text-anchor="middle">2 Surviving Terms</text>
+  <text x="250" y="480" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="middle">γ₁: Standard viscosity</text>
+  <text x="250" y="498" font-family="Arial, sans-serif" font-size="11" fill="#374151" text-anchor="middle">γ₂: Bulk viscosity</text>
+
+  <!-- Annotation -->
+  <rect x="50" y="545" width="400" height="85" rx="6" fill="rgba(147,51,234,0.08)" stroke="#9333ea" stroke-width="1.5"/>
+  <text x="70" y="565" font-family="Arial, sans-serif" font-size="11" fill="#374151" font-weight="bold">The Funnel Effect:</text>
+  <text x="70" y="582" font-family="Arial, sans-serif" font-size="10" fill="#374151">Three constraints systematically filter candidate terms,</text>
+  <text x="70" y="597" font-family="Arial, sans-serif" font-size="10" fill="#374151">leaving only two physically consistent viscosity coefficients.</text>
+  <text x="70" y="612" font-family="Arial, sans-serif" font-size="10" fill="#374151">This is the power of axiom-based reduction in effective field theory.</text>
+
+</svg>

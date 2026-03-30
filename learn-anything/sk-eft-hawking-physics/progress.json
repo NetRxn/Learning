@@ -1,0 +1,97 @@
+{
+  "id": "prog-sk-eft-2026-03-27-001",
+  "skill_slug": "sk-eft-hawking-physics",
+  "learner_id": "learner-netrxn-001",
+  "created_at": "2026-03-27T20:00:00Z",
+  "updated_at": "2026-03-30T18:00:00Z",
+
+  "current_state": {
+    "curriculum_position": {
+      "task_class_id": "tc-1-foundations",
+      "task_sequence": 2,
+      "status": "in_progress",
+      "notes": "Session 2 delivered as expanded async Feynman-style lecture (v2, ~9500 words, plane reading). Covered Action Principle in 20 sections: Fermat's principle, Lagrangian L=T-V with virial intuition, calculus of variations derivation, Euler-Lagrange in practice, generalized coordinates as EFT parallel, Noether's theorem with full U(1)->fluid chain, Noether-KMS connection (FDR as Noether current), Feynman path integral with SK connection, stationary phase quality and adiabaticity, field theory action for L=P(X), Hamiltonian/Legendre/phase space, dissipation impossibility and SK solution, symmetry determining Lagrangians, GR preview with ADW, Lagrangian gallery (8 examples), deep 'why' question, Phase 5 landscape through action-principle lens (kappa-scaling, polariton, categorical, chirality, vestigial MC). 10 retrieval probes embedded. Pending interactive confirmation in Session 3."
+    },
+    "next_session_agenda": {
+      "plan": "Session 3 should open with retrieval probes on BOTH Session 1 (KMS, healing length, experimental platforms, SK axioms) AND Session 2 (action principle, Noether chain, path integral, dissipation problem). Use the 5 embedded retrieval questions from the Session 2 lecture plus the 5 probes planned from Session 1. Based on retrieval results, either reinforce weak areas or proceed to learner's choice of TC1-seq3 (Statistical Mechanics) or TC1-seq4 (Quantum Mechanics). IMPORTANT: Return to interactive format for real-time difficulty calibration — two async sessions in a row would leave us without any performance data.",
+      "retrieval_probes": [
+        {"vertex_id": "vertex-kms-fdr", "question": "Explain why imaginary time periodicity with period beta = 1/T is equivalent to thermal equilibrium. What happens to high-energy states going around the thermal cylinder?", "days_since_last": 1},
+        {"vertex_id": "vertex-acoustic-metric", "question": "What is the healing length physically, and why does the ratio D = kappa*xi/c_s control whether the EFT works at the horizon?", "days_since_last": 1},
+        {"vertex_id": "vertex-experimental-landscape", "question": "What makes Heidelberg uniquely suited for the kappa-scaling test? What physical mechanism (Feshbach resonance) enables this?", "days_since_last": 1},
+        {"vertex_id": "vertex-sk-axioms", "question": "How do the three SK axioms reduce 9 candidate terms to 2? Which axiom does the most work and why?", "days_since_last": 1},
+        {"vertex_id": "vertex-lagrangian-mechanics", "question": "Explain in your own words why the path integral resolves the 'how does light know' paradox of Fermat's principle. What role does constructive vs. destructive interference play?", "days_since_last": 0},
+        {"vertex_id": "vertex-lagrangian-mechanics", "question": "Why is the Lagrangian T - V rather than T + V? Give the physical intuition.", "days_since_last": 0},
+        {"vertex_id": "vertex-lagrangian-mechanics", "question": "Trace the chain from U(1) symmetry of L=P(X) through Noether's theorem to the acoustic metric. What is the conserved quantity, and how does it become fluid dynamics?", "days_since_last": 0},
+        {"vertex_id": "vertex-sk-contour", "question": "Why can't a standard Lagrangian describe dissipation? What is it about the Euler-Lagrange equations that makes them time-reversible? How does SK doubling solve this?", "days_since_last": 0},
+        {"vertex_id": "vertex-eft-philosophy", "question": "You've seen L=P(X) for the superfluid and L=-(1/4)F^2 for electrodynamics. Both have a shift/gauge symmetry. What's the physical parallel?", "days_since_last": 0}
+      ],
+      "new_content": "TC1 sequence 3 (Statistical Mechanics) or sequence 4 (Quantum Mechanics) — learner's choice",
+      "template": "B_retrieval_review"
+    },
+    "motivation_state": {
+      "engagement_trend": "high",
+      "plateau_status": "none",
+      "identity_reinforcement_notes": "Learner continues to drive the learning pace — requesting specific session formats, managing their own time. This is strong self-directed learning behavior. The async lecture format shows the learner is integrating physics study into daily life (plane reading), which is a strong engagement signal.",
+      "session_count": 2
+    },
+    "difficulty_calibration": {
+      "current_zone": "ZPD-OPTIMAL",
+      "rolling_accuracy_5": null,
+      "scaffold_level": 1,
+      "notes": "Two sessions completed, zero interactive retrieval data points. Session 3 MUST include interactive assessment to populate the rolling accuracy window. The async format has been productive for content delivery but we're flying blind on actual comprehension. Priority: get performance data."
+    }
+  },
+
+  "sessions": [
+    {
+      "session_id": "session-001",
+      "date": "2026-03-27",
+      "duration_minutes": 90,
+      "template_used": "A_concept_intro (modified: Feynman lecture-first format per learner request)",
+      "topics_covered": [
+        {"vertex_id": "vertex-fluid-dynamics", "activity_type": "exposition", "performance": "engaged"},
+        {"vertex_id": "vertex-acoustic-metric", "activity_type": "exposition", "performance": "engaged"},
+        {"vertex_id": "vertex-hawking-radiation", "activity_type": "exposition", "performance": "engaged"},
+        {"vertex_id": "vertex-sk-contour", "activity_type": "exposition", "performance": "engaged"},
+        {"vertex_id": "vertex-sk-axioms", "activity_type": "exposition_and_discussion", "performance": "strong"},
+        {"vertex_id": "vertex-dissipative-correction", "activity_type": "exposition_and_discussion", "performance": "strong"},
+        {"vertex_id": "vertex-kms-fdr", "activity_type": "deep_dive_discussion", "performance": "strong"},
+        {"vertex_id": "vertex-bec-physics", "activity_type": "deep_dive_discussion", "performance": "strong"},
+        {"vertex_id": "vertex-experimental-landscape", "activity_type": "deep_dive_discussion", "performance": "strong"},
+        {"vertex_id": "vertex-gauge-erasure", "activity_type": "tangent_discussion", "performance": "strong"},
+        {"vertex_id": "vertex-eft-philosophy", "activity_type": "discussion", "performance": "strong"}
+      ],
+      "retrieval_probes": [],
+      "mastery_transitions": [],
+      "difficulty_observations": {
+        "zone_start": "unknown",
+        "zone_end": "ZPD-OPTIMAL",
+        "adjustments": "Learner preferred Feynman lecture format. Questions showed strong conceptual engagement. No scaffolding needed — learner drove the depth of exploration."
+      },
+      "session_summary": "EPITOME SESSION (extended). Delivered full Paper 1 journey Feynman-style: flowing fluid -> acoustic metric -> Hawking radiation -> dissipation -> SK formalism -> three axioms -> delta_diss. Learner then drove deep dives into: (1) KMS condition, (2) EFT information compression, (3) Healing length, (4) Three experimental platforms, (5) Research landscape novelty assessment, (6) Phase 5 roadmap gap analysis. Exceptionally productive session."
+    },
+    {
+      "session_id": "session-002",
+      "date": "2026-03-28",
+      "duration_minutes": 90,
+      "template_used": "A_concept_intro (modified: Feynman async lecture v2, expanded with Phase 5 updates)",
+      "topics_covered": [
+        {"vertex_id": "vertex-lagrangian-mechanics", "activity_type": "exposition", "performance": "pending_retrieval"},
+        {"vertex_id": "vertex-eft-philosophy", "activity_type": "exposition", "performance": "pending_retrieval"},
+        {"vertex_id": "vertex-son-superfluid-eft", "activity_type": "exposition", "performance": "pending_retrieval"},
+        {"vertex_id": "vertex-spontaneous-symmetry-breaking", "activity_type": "exposition", "performance": "pending_retrieval"},
+        {"vertex_id": "vertex-quantum-mechanics", "activity_type": "exposition", "performance": "pending_retrieval"},
+        {"vertex_id": "vertex-sk-contour", "activity_type": "exposition", "performance": "pending_retrieval"},
+        {"vertex_id": "vertex-acoustic-metric", "activity_type": "exposition", "performance": "pending_retrieval"}
+      ],
+      "retrieval_probes": [],
+      "mastery_transitions": [],
+      "difficulty_observations": {
+        "zone_start": "ZPD-OPTIMAL",
+        "zone_end": "ZPD-OPTIMAL",
+        "adjustments": "Async format — no real-time calibration possible. Lecture pitched at ZPD-OPTIMAL based on Session 1 performance. Five embedded retrieval questions for Session 3 assessment."
+      },
+      "session_summary": "ASYNC LECTURE v2 (~9500 words, 20 sections): Why the Action Principle Works. Full coverage: (1) Fermat/lifeguard parable; (2-3) Lagrangian L=T-V with virial intuition for minus sign; (4) Calculus of variations derivation from first principles; (5) Euler-Lagrange in practice — F=ma, generalized momentum, relativistic case; (6) Generalized coordinates as EFT parallel, kappa-scaling crossover connection; (7) Noether's theorem — full derivation + U(1)->conservation->fluid dynamics->acoustic metric chain + categorical preview; (8) NEW: Noether-KMS deep connection — FDR as Noether current of KMS symmetry, three axioms as action-principle logic, kappa-scaling interpretation; (9) Feynman path integral with SK thermal connection; (10) NEW: Stationary phase quantification — when semiclassical works, D parameter as semiclassical criterion; (11) Field theory action for L=P(X) — explicit linearization to acoustic metric; (12) Hamiltonian — Legendre transform, phase space, Liouville, SK double evolution; (13) Dissipation impossibility — time-reversal + Liouville arguments, SK solution; (14) Symmetry determines Lagrangian — Son's argument, EFT philosophy, kappa-scaling crossover; (15) GR preview — Einstein-Hilbert, ADW, emergent metric hierarchy, MC confirmation; (16) Gallery of 8 Lagrangians including SK doubled action; (17) Deep 'why' question — quantum/information/categorical explanations; (18) NEW: Phase 5 landscape through action-principle lens — kappa-scaling, polariton (10^10x hotter), categorical formalizations (101 theorems), chirality wall (Paper 7), vestigial gravity MC, total program (429 theorems). 10 retrieval probes (7 new + 3 Session 1 delayed) embedded for Session 3."
+    }
+  ]
+}

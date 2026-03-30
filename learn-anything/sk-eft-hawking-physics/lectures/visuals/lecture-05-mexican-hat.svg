@@ -1,0 +1,70 @@
+<svg viewBox="0 0 600 600" width="600" height="600" xmlns="http://www.w3.org/2000/svg">
+  <title>The Mexican Hat Potential</title>
+  <defs>
+    <radialGradient id="hatGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#f9fafb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f9fafb;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="600" fill="#ffffff"/>
+
+  <!-- Central gradient background -->
+  <circle cx="300" cy="300" r="280" fill="url(#hatGradient)"/>
+
+  <!-- Concentric contour circles (representing potential levels) -->
+  <circle cx="300" cy="300" r="20" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="300" cy="300" r="50" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="300" cy="300" r="80" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="300" cy="300" r="110" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="300" cy="300" r="140" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="300" cy="300" r="170" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Central maximum (unstable equilibrium) -->
+  <circle cx="300" cy="300" r="12" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+  <line x1="295" y1="295" x2="305" y2="305" stroke="#dc2626" stroke-width="2.5"/>
+  <line x1="305" y1="295" x2="295" y2="305" stroke="#dc2626" stroke-width="2.5"/>
+
+  <!-- Valley circle (ring of minima) - thick green -->
+  <circle cx="300" cy="300" r="200" fill="none" stroke="#16a34a" stroke-width="5"/>
+
+  <!-- Ground state point on the ring -->
+  <circle cx="480" cy="300" r="8" fill="rgba(22,163,74,0.15)" stroke="#16a34a" stroke-width="2.5"/>
+
+  <!-- Goldstone mode arrow (tangent to ring, green) -->
+  <defs>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#16a34a" />
+    </marker>
+  </defs>
+  <path d="M 480,300 Q 520,270 540,250" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+  <text x="545" y="235" font-family="Arial, sans-serif" font-size="13" font-weight="500" fill="#374151">Goldstone mode</text>
+  <text x="545" y="250" font-family="Arial, sans-serif" font-size="13" font-weight="500" fill="#374151">(massless)</text>
+
+  <!-- Higgs mode arrow (radial, red) -->
+  <defs>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#dc2626" />
+    </marker>
+  </defs>
+  <path d="M 480,300 L 540,300" fill="none" stroke="#dc2626" stroke-width="2.5" marker-end="url(#arrowRed)"/>
+  <text x="545" y="290" font-family="Arial, sans-serif" font-size="13" font-weight="500" fill="#374151">Higgs mode</text>
+  <text x="545" y="305" font-family="Arial, sans-serif" font-size="13" font-weight="500" fill="#374151">(massive)</text>
+
+  <!-- Center label -->
+  <text x="300" y="280" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#dc2626">Symmetric</text>
+  <text x="300" y="297" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#dc2626">but unstable</text>
+
+  <!-- Ring label -->
+  <text x="310" y="165" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#16a34a">Broken symmetry,</text>
+  <text x="310" y="182" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#16a34a">stable minimum</text>
+
+  <!-- Axis labels -->
+  <text x="520" y="330" font-family="Arial, sans-serif" font-size="12" fill="#374151">φ₁</text>
+  <text x="310" y="120" font-family="Arial, sans-serif" font-size="12" fill="#374151">φ₂</text>
+
+  <!-- Title -->
+  <text x="300" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#374151">V(φ) = λ(|φ|² - v²)²</text>
+</svg>

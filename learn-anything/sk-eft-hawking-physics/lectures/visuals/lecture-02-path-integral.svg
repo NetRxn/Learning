@@ -1,0 +1,74 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" width="800" height="400">
+  <title>Feynman Path Integral: Classical vs Quantum Paths</title>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="400" fill="#ffffff" stroke="none"/>
+
+  <!-- Start point A -->
+  <circle cx="50" cy="200" r="6" fill="#374151" stroke="#374151" stroke-width="2"/>
+  <text x="50" y="235" font-size="14" font-weight="bold" fill="#374151" text-anchor="middle">A</text>
+
+  <!-- End point B -->
+  <circle cx="750" cy="200" r="6" fill="#374151" stroke="#374151" stroke-width="2"/>
+  <text x="750" y="235" font-size="14" font-weight="bold" fill="#374151" text-anchor="middle">B</text>
+
+  <!-- Path 1: Nearly straight (classical) - thick and green -->
+  <path d="M 50 200 Q 400 195, 750 200" fill="none" stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Path 2: Slight upward curve -->
+  <path d="M 50 200 Q 200 160, 400 140 Q 600 165, 750 200" fill="none" stroke="#9ca3af" stroke-width="1.5"/>
+
+  <!-- Path 3: Slight downward curve -->
+  <path d="M 50 200 Q 200 240, 400 260 Q 600 235, 750 200" fill="none" stroke="#9ca3af" stroke-width="1.5"/>
+
+  <!-- Path 4: Medium upward deviation -->
+  <path d="M 50 200 Q 200 140, 400 100 Q 600 150, 750 200" fill="none" stroke="#9ca3af" stroke-width="1.5"/>
+
+  <!-- Path 5: Medium downward deviation -->
+  <path d="M 50 200 Q 200 260, 400 300 Q 600 250, 750 200" fill="none" stroke="#9ca3af" stroke-width="1.5"/>
+
+  <!-- Path 6: Large upward deviation -->
+  <path d="M 50 200 Q 150 100, 300 60 Q 500 120, 750 200" fill="none" stroke="#9ca3af" stroke-width="1.5"/>
+
+  <!-- Path 7: Large downward deviation -->
+  <path d="M 50 200 Q 150 300, 300 340 Q 500 280, 750 200" fill="none" stroke="#9ca3af" stroke-width="1.5"/>
+
+  <!-- Path 8: Extreme upward -->
+  <path d="M 50 200 Q 200 80, 400 40 Q 600 100, 750 200" fill="none" stroke="#c7d2e0" stroke-width="1.2" opacity="0.6"/>
+
+  <!-- Path 9: Extreme downward -->
+  <path d="M 50 200 Q 200 320, 400 360 Q 600 300, 750 200" fill="none" stroke="#c7d2e0" stroke-width="1.2" opacity="0.6"/>
+
+  <!-- Annotation: Classical path region -->
+  <g>
+    <path d="M 350 170 L 320 130" fill="none" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrowgreen)"/>
+    <text x="310" y="120" font-size="11" fill="#16a34a" text-anchor="end" font-weight="bold">Classical path</text>
+  </g>
+
+  <!-- Annotation: Nearby paths -->
+  <g>
+    <path d="M 500 240 L 480 270" fill="none" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrowblue)"/>
+    <text x="510" y="295" font-size="11" fill="#2563eb" font-weight="bold">Nearby paths:</text>
+    <text x="510" y="310" font-size="11" fill="#2563eb">same phase</text>
+  </g>
+
+  <!-- Annotation: Distant wild paths -->
+  <g>
+    <path d="M 200 320 L 160 340" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowred)"/>
+    <text x="150" y="360" font-size="11" fill="#dc2626" font-weight="bold">Wild paths</text>
+    <text x="150" y="375" font-size="11" fill="#dc2626">cancel (random phases)</text>
+  </g>
+
+  <!-- Marker definitions -->
+  <defs>
+    <marker id="arrowgreen" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#16a34a"/>
+    </marker>
+    <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowred" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+</svg>

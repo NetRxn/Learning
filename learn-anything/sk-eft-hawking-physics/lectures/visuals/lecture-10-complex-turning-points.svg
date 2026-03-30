@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450">
+  <title>Complex Turning Points and Dissipative Shift</title>
+  <defs>
+    <style>
+      .label { font-family: Arial, sans-serif; font-size: 13px; fill: #374151; font-weight: normal; }
+      .title { font-family: Arial, sans-serif; font-size: 15px; fill: #374151; font-weight: bold; }
+      .axis-label { font-family: Arial, sans-serif; font-size: 12px; fill: #374151; }
+      .small-label { font-family: Arial, sans-serif; font-size: 11px; fill: #374151; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="450" fill="#ffffff" stroke="none"/>
+
+  <!-- Title -->
+  <text x="350" y="25" text-anchor="middle" class="title">Complex Turning Points and Dissipation</text>
+
+  <!-- Complex plane axes -->
+  <line x1="100" y1="280" x2="600" y2="280" stroke="#374151" stroke-width="2"/>
+  <line x1="350" y1="80" x2="350" y2="380" stroke="#374151" stroke-width="2"/>
+
+  <!-- Axis labels -->
+  <text x="615" y="285" class="axis-label" font-weight="bold">Re(x)</text>
+  <text x="345" y="75" class="axis-label" font-weight="bold">Im(x)</text>
+
+  <!-- Real axis label -->
+  <text x="100" y="305" class="small-label">Physical region</text>
+
+  <!-- Horizon marking on real axis -->
+  <circle cx="350" cy="280" r="5" fill="none" stroke="#374151" stroke-width="2"/>
+  <text x="350" y="330" text-anchor="middle" class="label" font-weight="bold">Horizon (x₀)</text>
+
+  <!-- Ideal turning point (blue, on or near real axis) -->
+  <circle cx="480" cy="280" r="6" fill="#2563eb" stroke="#2563eb" stroke-width="2"/>
+  <text x="480" y="260" text-anchor="middle" class="label" fill="#2563eb" font-weight="bold">Ideal TP</text>
+  <line x1="480" y1="280" x2="480" y2="310" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="480" y="325" text-anchor="middle" class="small-label" fill="#2563eb">(Real axis)</text>
+
+  <!-- Dissipative turning point (red, shifted into complex plane) -->
+  <circle cx="500" cy="220" r="6" fill="#dc2626" stroke="#dc2626" stroke-width="2"/>
+  <text x="520" y="210" class="label" fill="#dc2626" font-weight="bold">Dissipative TP</text>
+  <text x="520" y="225" class="small-label" fill="#dc2626">(Im shift ∝ Γ_H)</text>
+
+  <!-- Shift arrow from ideal to dissipative TP -->
+  <defs>
+    <marker id="arrow-shift" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#9333ea"/>
+    </marker>
+  </defs>
+  <path d="M 480 275 L 495 235" stroke="#9333ea" stroke-width="2" marker-end="url(#arrow-shift)"/>
+  <text x="460" y="250" class="small-label" fill="#9333ea" font-weight="bold">Γ_H shift</text>
+
+  <!-- WKB/Stokes contour (green) -->
+  <path d="M 480 280 Q 510 250, 520 200 Q 525 170, 500 140 Q 470 120, 450 140 Q 440 160, 450 200 Q 465 240, 480 280"
+        stroke="#16a34a" stroke-width="2" fill="none" stroke-dasharray="4,2"/>
+  <text x="550" y="170" class="small-label" fill="#16a34a" font-weight="bold">WKB contour</text>
+
+  <!-- Annotation box (large, at bottom) -->
+  <rect x="60" y="360" width="620" height="70" fill="rgba(147, 51, 234, 0.08)" stroke="#9333ea" stroke-width="2" rx="4"/>
+
+  <text x="350" y="383" text-anchor="middle" class="label" font-weight="bold">Dissipation Effect:</text>
+  <text x="350" y="402" text-anchor="middle" class="small-label">Turning point shifts off real axis into complex plane by ∝ Γ_H</text>
+  <text x="350" y="418" text-anchor="middle" class="small-label">This modifies the WKB exponent → Bogoliubov coefficient β → δ_diss = Γ_H/κ</text>
+
+</svg>

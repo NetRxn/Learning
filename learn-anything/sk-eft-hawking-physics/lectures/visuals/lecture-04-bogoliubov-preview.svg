@@ -1,0 +1,74 @@
+<svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+  <title>Bogoliubov Transformation Preview</title>
+
+  <!-- Background -->
+  <rect width="800" height="350" fill="#ffffff"/>
+
+  <!-- Left section: in-modes -->
+  <text x="100" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">In-Modes</text>
+  <text x="100" y="48" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="bold">(entering region)</text>
+
+  <!-- Simple sinusoidal wave 1 (in-mode 1) -->
+  <path d="M 30 80 Q 45 60 60 80 Q 75 100 90 80 Q 105 60 120 80"
+        stroke="#2563eb" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <text x="100" y="120" text-anchor="middle" font-size="10" fill="#2563eb">â_in</text>
+
+  <!-- Simple sinusoidal wave 2 (in-mode 2) -->
+  <path d="M 30 160 Q 45 140 60 160 Q 75 180 90 160 Q 105 140 120 160"
+        stroke="#2563eb" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <text x="100" y="200" text-anchor="middle" font-size="10" fill="#2563eb">â_in</text>
+
+  <!-- In-arrow to region -->
+  <path d="M 130 100 L 200 100" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowhead-blue)"/>
+  <path d="M 130 180 L 200 180" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowhead-blue)"/>
+
+  <!-- Central scattering region (gray shaded) -->
+  <rect x="200" y="40" width="120" height="240" fill="rgba(55,65,81,0.08)" stroke="#374151" stroke-width="2" rx="5"/>
+  <text x="260" y="105" text-anchor="middle" font-size="11" fill="#374151" font-weight="bold">Scattering</text>
+  <text x="260" y="120" text-anchor="middle" font-size="11" fill="#374151" font-weight="bold">Region</text>
+  <text x="260" y="140" text-anchor="middle" font-size="10" fill="#374151" font-style="italic">(Horizon)</text>
+
+  <!-- Right section: out-modes -->
+  <text x="700" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">Out-Modes</text>
+  <text x="700" y="48" text-anchor="middle" font-size="11" fill="#374151" font-weight="bold">(mixed frequencies)</text>
+
+  <!-- Out-mode 1: positive frequency (blue) -->
+  <path d="M 630 70 Q 645 50 660 70 Q 675 90 690 70 Q 705 50 720 70"
+        stroke="#2563eb" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="675" y="105" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">positive freq</text>
+
+  <!-- Out-mode 2: mixed (negative frequency - red dashed) -->
+  <path d="M 630 140 Q 645 120 660 140 Q 675 160 690 140 Q 705 120 720 140"
+        stroke="#dc2626" stroke-width="2" fill="none" stroke-dasharray="5,3" stroke-linecap="round"/>
+  <text x="675" y="175" text-anchor="middle" font-size="9" fill="#dc2626" font-weight="bold">negative freq</text>
+
+  <!-- Out-mode 3: also mixed (negative frequency - red dashed) -->
+  <path d="M 630 210 Q 645 190 660 210 Q 675 230 690 210 Q 705 190 720 210"
+        stroke="#dc2626" stroke-width="2" fill="none" stroke-dasharray="5,3" stroke-linecap="round"/>
+  <text x="675" y="245" text-anchor="middle" font-size="9" fill="#dc2626" font-weight="bold">negative freq</text>
+
+  <!-- Out-arrow from region -->
+  <path d="M 320 100 L 380 100" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowhead-blue)"/>
+  <path d="M 320 150 L 380 150" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrowhead-red)"/>
+  <path d="M 320 200 L 380 200" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrowhead-red)"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- Key transformation equation -->
+  <rect x="150" y="270" width="500" height="60" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="2" rx="4"/>
+
+  <text x="400" y="290" text-anchor="middle" font-size="12" font-weight="bold" fill="#374151">Bogoliubov Transformation:</text>
+
+  <text x="400" y="310" text-anchor="middle" font-size="13" fill="#2563eb" font-family="monospace">â_out = α â_in + β â†_in</text>
+
+  <!-- Annotation about β -->
+  <text x="400" y="335" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="bold">β ≠ 0 means particle creation from vacuum</text>
+</svg>

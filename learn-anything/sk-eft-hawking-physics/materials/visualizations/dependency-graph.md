@@ -310,7 +310,8 @@ graph TD
 - **High Priority Gaps:** Statistical Mechanics (30%), String Nets (20%), Coleman-Weinberg (20%)
 - **Recommended Focus:** Consolidate developing (yellow) concepts before advancing
 - **Bottlenecks:** SK Axioms and Phase 1-2 Results unlock synthesis (TW/HA)
-- **Phase 4 Status:** All 5 new Lean modules verified (ChiralityWall, VestigialGravity, FractonHydro, FractonGravity, FractonNonAbelian). Paper 6 written. 216 total theorems, zero sorry.
+- **Phase 5 Status:** 429 theorems + 2 axioms across 30 Lean modules. 7 papers (Paper 7: chirality formal verification). 1001 tests. 99 Aristotle-proved across 27 runs.
+- **Key Phase 5 Changes:** δ_diss ∝ κ (LINEAR, not constant). Polariton 10^10× hotter. 4D MC confirmed vestigial split. FIRST-EVER categorical formalizations. Gauge emergence Z(Vec_G) ≅ Rep(D(G)). Chirality limitation c ≡ 0 mod 8.
 
 ---
 

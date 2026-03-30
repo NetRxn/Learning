@@ -1,0 +1,94 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" width="800" height="400">
+  <title>Why Standard Actions Can't Describe Dissipation: SK Solution</title>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="400" fill="#ffffff" stroke="none"/>
+
+  <!-- Title -->
+  <text x="400" y="25" font-size="14" font-weight="bold" fill="#374151" text-anchor="middle">Standard Action vs SK Doubling</text>
+
+  <!-- Left panel: Standard Action -->
+  <g>
+    <!-- Panel box -->
+    <rect x="20" y="50" width="340" height="320" fill="rgba(37,99,235,0.05)" stroke="#2563eb" stroke-width="2" rx="4"/>
+
+    <!-- Title -->
+    <text x="190" y="75" font-size="12" font-weight="bold" fill="#2563eb" text-anchor="middle">Standard Action</text>
+
+    <!-- Phase space axes -->
+    <line x1="60" y1="310" x2="320" y2="310" stroke="#374151" stroke-width="2"/>
+    <line x1="60" y1="310" x2="60" y2="100" stroke="#374151" stroke-width="2"/>
+
+    <!-- Axis labels -->
+    <text x="330" y="318" font-size="11" fill="#374151" font-weight="bold">x</text>
+    <text x="50" y="95" font-size="11" fill="#374151" font-weight="bold">p</text>
+
+    <!-- Closed orbit (ellipse) -->
+    <ellipse cx="190" cy="200" rx="80" ry="60" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+
+    <!-- Arrow showing direction of orbit -->
+    <path d="M 260 180 L 270 175" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowblue)"/>
+    <path d="M 190 140 L 185 130" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowblue)"/>
+
+    <!-- Annotation -->
+    <text x="190" y="330" font-size="10" fill="#374151" font-weight="bold" text-anchor="middle">Liouville theorem:</text>
+    <text x="190" y="348" font-size="9" fill="#374151" text-anchor="middle">phase space volume</text>
+    <text x="190" y="362" font-size="9" fill="#374151" text-anchor="middle">preserved</text>
+  </g>
+
+  <!-- Right panel: SK Doubling -->
+  <g>
+    <!-- Panel box -->
+    <rect x="440" y="50" width="340" height="320" fill="rgba(220,38,38,0.05)" stroke="#dc2626" stroke-width="2" rx="4"/>
+
+    <!-- Title -->
+    <text x="610" y="75" font-size="12" font-weight="bold" fill="#dc2626" text-anchor="middle">SK Doubled Action</text>
+
+    <!-- Two phase spaces side by side -->
+    <!-- Left copy (forward) -->
+    <line x1="480" y1="310" x2="580" y2="310" stroke="#374151" stroke-width="1.5"/>
+    <line x1="480" y1="310" x2="480" y2="140" stroke="#374151" stroke-width="1.5"/>
+    <text x="575" y="318" font-size="9" fill="#374151">x₁</text>
+    <text x="470" y="135" font-size="9" fill="#374151">p₁</text>
+
+    <!-- Right copy (backward) -->
+    <line x1="620" y1="310" x2="720" y2="310" stroke="#374151" stroke-width="1.5"/>
+    <line x1="620" y1="310" x2="620" y2="140" stroke="#374151" stroke-width="1.5"/>
+    <text x="715" y="318" font-size="9" fill="#374151">x₂</text>
+    <text x="610" y="135" font-size="9" fill="#374151">p₂</text>
+
+    <!-- Left orbit -->
+    <ellipse cx="530" cy="220" rx="40" ry="35" fill="none" stroke="#2563eb" stroke-width="2"/>
+
+    <!-- Right orbit (contracting) -->
+    <ellipse cx="670" cy="220" rx="50" ry="40" fill="none" stroke="#dc2626" stroke-width="2"/>
+    <ellipse cx="670" cy="220" rx="35" ry="28" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,2"/>
+
+    <!-- Connecting arrow showing coupling -->
+    <path d="M 570 210 L 620 210" fill="none" stroke="#9333ea" stroke-width="2" marker-end="url(#arrowpurple)"/>
+    <path d="M 620 230 L 570 230" fill="none" stroke="#9333ea" stroke-width="2" marker-end="url(#arrowpurple)"/>
+
+    <!-- Annotations -->
+    <text x="530" y="280" font-size="9" fill="#2563eb" text-anchor="middle">Forward</text>
+
+    <text x="670" y="280" font-size="9" fill="#dc2626" text-anchor="middle">Backward</text>
+
+    <text x="610" y="330" font-size="10" fill="#374151" font-weight="bold" text-anchor="middle">SK doubling: forward + backward</text>
+    <text x="610" y="348" font-size="9" fill="#374151" text-anchor="middle">allows phase space contraction</text>
+    <text x="610" y="362" font-size="9" fill="#374151" text-anchor="middle">in physical sector</text>
+  </g>
+
+  <!-- Key insight box -->
+  <rect x="40" y="380" width="720" height="0" fill="none" stroke="none"/>
+  <text x="400" y="385" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">Time-reversible Hamiltonian dynamics prevents dissipation; SK solution overcomes this via doubling</text>
+
+  <!-- Marker definitions -->
+  <defs>
+    <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowpurple" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9333ea"/>
+    </marker>
+  </defs>
+</svg>
